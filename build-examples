@@ -68,7 +68,12 @@ sub write_mugl_html {
     my $html = $mugl;
     $html =~ s/\.xml$/.html/;
 
-    my $syntax_highlighted_mugl = `./lib/Pygments-1.5/pygmentize -f html lib/js-multigraph/spec/mugl/$mugl`;
+    $syntax_highlighted_mugl = "";
+    open(PYG, "PYTHONIOENCODING=utf_8 ./lib/Pygments-1.5/pygmentize -f html lib/js-multigraph/spec/mugl/$mugl |");
+    while (my $line = <PYG>) {
+        $syntax_highlighted_mugl .= $line;
+    }
+    close(PYG);
 
     my $muglmenu = make_mugl_menu($mugl);
 
