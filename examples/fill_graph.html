@@ -1,0 +1,217 @@
+<html>
+  <head>
+    <title>Multigraph Example: fill_graph.xml</title>
+    <link rel="stylesheet" href="../common.css"></link>
+    <script type="text/javascript" src="../lib/js-multigraph/build/multigraph-min.js"></script>
+<script type="text/javascript">$ = window.multigraph.jQuery;</script>
+<link rel="stylesheet" href="../borland.css"></link>
+  </head>
+  <body>
+    <div class="header">
+      <span class="header-image-wrapper">
+        <img src="../multigraph.png" width="72" height="72"/>
+      </span>
+      <div class="title">Multigraph - Interactive Data Graphs for the Web</div>
+      <div class="nav">
+  <ul>
+    <li class=""><a href="../index.html">Home</a></li>
+    <li class=""><a href="../download.html">Download</a></li>
+    <li class=""><a href="../documentation.html">Documentation</a></li>
+    <li class="selected"><a href="../examples">Examples</a></li>
+  </ul>
+</div>
+
+    </div>
+    <div class="content">
+      <table width="100%"><tr>
+  <td valign="top" width="300">
+    <ul class="example-list">
+      <li><a href="acis-webservice.html">acis-webservice.xml</a></li>
+<li><a href="axis-colors.html">axis-colors.xml</a></li>
+<li><a href="axisbinding-tempgraph.html">axisbinding-tempgraph.xml</a></li>
+<li><a href="background_image.html">background_image.xml</a></li>
+<li><a href="band_graph.html">band_graph.xml</a></li>
+<li><a href="bar_graph.html">bar_graph.xml</a></li>
+<li><a href="bar_legend.html">bar_legend.xml</a></li>
+<li><a href="constant-plot.html">constant-plot.xml</a></li>
+<li><a href="crn-webservice.html">crn-webservice.xml</a></li>
+<li><a href="dashboard-aoi.html">dashboard-aoi.xml</a></li>
+<li><a href="dashboard-asi.html">dashboard-asi.xml</a></li>
+<li><a href="dashboard-co2.html">dashboard-co2.xml</a></li>
+<li><a href="dashboard-ghouse.html">dashboard-ghouse.xml</a></li>
+<li><a href="dashboard-glacier.html">dashboard-glacier.xml</a></li>
+<li><a href="dashboard-naoi.html">dashboard-naoi.xml</a></li>
+<li><a href="dashboard-ocean.html">dashboard-ocean.xml</a></li>
+<li><a href="dashboard-oni.html">dashboard-oni.xml</a></li>
+<li><a href="dashboard-pnap.html">dashboard-pnap.xml</a></li>
+<li><a href="dashboard-projections.html">dashboard-projections.xml</a></li>
+<li><a href="dashboard-sea.html">dashboard-sea.xml</a></li>
+<li><a href="dashboard-snow.html">dashboard-snow.xml</a></li>
+<li><a href="dashboard-soi.html">dashboard-soi.xml</a></li>
+<li><a href="dashboard-sun.html">dashboard-sun.xml</a></li>
+<li><a href="dashboard-temp.html">dashboard-temp.xml</a></li>
+<li><a href="dewpoint.html">dewpoint.xml</a></li>
+<li><a href="empty_titles.html">empty_titles.xml</a></li>
+<li><a href="fcav.html">fcav.xml</a></li>
+<li class="selected">fill_graph.xml</li>
+<li><a href="fotos-sst.html">fotos-sst.xml</a></li>
+<li><a href="geomweather.html">geomweather.xml</a></li>
+<li><a href="legend.html">legend.xml</a></li>
+<li><a href="minimal_graph.html">minimal_graph.xml</a></li>
+<li><a href="mymugl.html">mymugl.xml</a></li>
+<li><a href="plotarea-background-color.html">plotarea-background-color.xml</a></li>
+<li><a href="pointline_legend.html">pointline_legend.xml</a></li>
+<li><a href="rangebar_graph.html">rangebar_graph.xml</a></li>
+<li><a href="tempgraph-acis-maxt-webservice.html">tempgraph-acis-maxt-webservice.xml</a></li>
+<li><a href="tempgraph-csv.html">tempgraph-csv.xml</a></li>
+<li><a href="tempgraph-datetime.html">tempgraph-datetime.xml</a></li>
+<li><a href="tempgraph.html">tempgraph.xml</a></li>
+<li><a href="testgraph.html">testgraph.xml</a></li>
+
+    </ul>
+  </td>
+  <td valign="top" align="center">
+    <div class="title">fill_graph.xml</div>
+    <div class="multigraph" data-src="../js-multigraph/spec/mugl/fill_graph.xml"></div>
+    <p>
+    <div class="mugl">
+      <div class="highlight"><pre><span class="nt">&lt;mugl&gt;</span>
+  <span class="nt">&lt;background</span> <span class="na">color=</span><span class="s">&quot;0xcccccc&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;window</span> <span class="na">margin=</span><span class="s">&quot;0&quot;</span> <span class="na">padding=</span><span class="s">&quot;5&quot;</span> <span class="na">border=</span><span class="s">&quot;5&quot;</span> <span class="na">bordercolor=</span><span class="s">&quot;0x000000&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;plotarea</span> <span class="na">margintop=</span><span class="s">&quot;10&quot;</span> <span class="na">marginleft=</span><span class="s">&quot;38&quot;</span> <span class="na">marginbottom=</span><span class="s">&quot;35&quot;</span> <span class="na">marginright=</span><span class="s">&quot;35&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;horizontalaxis</span> <span class="na">id=</span><span class="s">&quot;x&quot;</span> <span class="na">min=</span><span class="s">&quot;1900&quot;</span> <span class="na">max=</span><span class="s">&quot;2000&quot;</span> <span class="na">length=</span><span class="s">&quot;1&quot;</span> <span class="na">base=</span><span class="s">&quot;-1,-1&quot;</span> <span class="na">anchor=</span><span class="s">&quot;-1&quot;</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;verticalaxis</span>   <span class="na">id=</span><span class="s">&quot;y&quot;</span>  <span class="na">min=</span><span class="s">&quot;-1&quot;</span> <span class="na">max=</span><span class="s">&quot;1&quot;</span> <span class="na">length=</span><span class="s">&quot;1&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;plot&gt;</span>
+      <span class="nt">&lt;horizontalaxis</span> <span class="na">ref=</span><span class="s">&quot;x&quot;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;variable</span> <span class="na">ref=</span><span class="s">&quot;x&quot;</span><span class="nt">/&gt;</span>
+      <span class="nt">&lt;/horizontalaxis&gt;</span>
+      <span class="nt">&lt;verticalaxis</span> <span class="na">ref=</span><span class="s">&quot;y&quot;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;variable</span> <span class="na">ref=</span><span class="s">&quot;y&quot;</span><span class="nt">/&gt;</span>
+      <span class="nt">&lt;/verticalaxis&gt;</span>
+      <span class="nt">&lt;renderer</span> <span class="na">type=</span><span class="s">&quot;fill&quot;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;option</span> <span class="na">name=</span><span class="s">&quot;linecolor&quot;</span> <span class="na">value=</span><span class="s">&quot;0xff00ff&quot;</span><span class="nt">/&gt;</span>
+        <span class="nt">&lt;option</span> <span class="na">name=</span><span class="s">&quot;linewidth&quot;</span> <span class="na">value=</span><span class="s">&quot;1&quot;</span><span class="nt">/&gt;</span>
+        <span class="nt">&lt;option</span> <span class="na">name=</span><span class="s">&quot;fillcolor&quot;</span> <span class="na">value=</span><span class="s">&quot;0x00ff00&quot;</span><span class="nt">/&gt;</span>
+        <span class="nt">&lt;option</span> <span class="na">name=</span><span class="s">&quot;fillopacity&quot;</span> <span class="na">value=</span><span class="s">&quot;1&quot;</span><span class="nt">/&gt;</span>
+        <span class="nt">&lt;option</span> <span class="na">name=</span><span class="s">&quot;fillbase&quot;</span> <span class="na">value=</span><span class="s">&quot;-0.05&quot;</span><span class="nt">/&gt;</span>
+      <span class="nt">&lt;/renderer&gt;</span>
+    <span class="nt">&lt;/plot&gt;</span>
+    <span class="nt">&lt;data&gt;</span>
+      <span class="nt">&lt;variables&gt;</span>
+        <span class="nt">&lt;variable</span> <span class="na">column=</span><span class="s">&quot;0&quot;</span> <span class="na">id=</span><span class="s">&quot;x&quot;</span><span class="nt">/&gt;</span>
+        <span class="nt">&lt;variable</span> <span class="na">column=</span><span class="s">&quot;1&quot;</span> <span class="na">id=</span><span class="s">&quot;y&quot;</span> <span class="na">missingvalue=</span><span class="s">&quot;-9000&quot;</span> <span class="na">missingop=</span><span class="s">&quot;le&quot;</span><span class="nt">/&gt;</span>
+      <span class="nt">&lt;/variables&gt;</span>
+      <span class="nt">&lt;values&gt;</span>
+        1900,-0.710738
+        1901,-0.709837
+        1902,-0.738885
+        1903,-0.822017
+        1904,-0.828376
+        1905,-0.748973
+        1906,-0.670167
+        1907,-0.717963
+        1908,-0.757014
+        1909,-0.742775
+        1910,-9000
+        1911,-9000
+        1912,-9000
+        1913,-9000
+        1914,-0.709540
+        1915,-0.666296
+        1916,-0.615051
+        1917,-0.681798
+        1918,-0.653037
+        1919,-0.594194
+        1920,-0.657729
+        1921,-0.661296
+        1922,-0.633630
+        1923,-0.596698
+        1924,-0.601313
+        1925,-0.609820
+        1926,-0.635884
+        1927,-0.623605
+        1928,-0.559513
+        1929,-0.598222
+        1930,-0.652624
+        1931,-0.632389
+        1932,-0.624553
+        1933,-0.609135
+        1934,-0.602625
+        1935,-0.566810
+        1936,-0.552560
+        1937,-0.584782
+        1938,-0.576507
+        1939,-0.518921
+        1940,-9000
+        1941,-9000
+        1942,-0.520879
+        1943,-0.541142
+        1944,-0.535743
+        1945,-0.471457
+        1946,-0.511557
+        1947,-0.533288
+        1948,-0.521996
+        1949,-0.569460
+        1950,-0.486723
+        1951,-0.458477
+        1952,-0.536644
+        1953,-0.453351
+        1954,-0.444120
+        1955,-0.480438
+        1956,-0.453878
+        1957,-0.421881
+        1958,-0.463311
+        1959,-0.395277
+        1960,-0.440320
+        1961,-0.461807
+        1962,-0.461378
+        1963,-0.453368
+        1964,-0.495349
+        1965,-0.476183
+        1966,-0.453868
+        1967,-0.400522
+        1968,-0.375041
+        1969,-0.400482
+        1970,-9000
+        1971,-9000
+        1972,-9000
+        1973,-9000
+        1974,-9000
+        1975,-9000
+        1976,-9000
+        1977,-9000
+        1978,-9000
+        1979,-9000
+        1980,-9000
+        1981,-0.104629
+        1982,-0.163454
+        1983,-0.265794
+        1984,-0.199850
+        1985,-0.118408
+        1986,-0.088032
+        1987,-0.027990
+        1988,-0.048658
+        1989,-0.012725
+        1990,0.024057
+        1991,0.015163
+        1992,-0.206681
+        1993,-0.108136
+        1994,-0.009449
+        1995,-0.004492
+        1996,0.054049
+        1997,0.075091
+        1998,0.120801
+        1999,0.137926
+        2000,0.166130
+      <span class="nt">&lt;/values&gt;</span>
+    <span class="nt">&lt;/data&gt;</span>
+<span class="nt">&lt;/mugl&gt;</span>
+</pre></div>
+
+    </div>
+  </td>
+</tr></table>
+
+    </div>
+  </body>
+</html>

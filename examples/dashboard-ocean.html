@@ -1,0 +1,368 @@
+<html>
+  <head>
+    <title>Multigraph Example: dashboard-ocean.xml</title>
+    <link rel="stylesheet" href="../common.css"></link>
+    <script type="text/javascript" src="../lib/js-multigraph/build/multigraph-min.js"></script>
+<script type="text/javascript">$ = window.multigraph.jQuery;</script>
+<link rel="stylesheet" href="../borland.css"></link>
+  </head>
+  <body>
+    <div class="header">
+      <span class="header-image-wrapper">
+        <img src="../multigraph.png" width="72" height="72"/>
+      </span>
+      <div class="title">Multigraph - Interactive Data Graphs for the Web</div>
+      <div class="nav">
+  <ul>
+    <li class=""><a href="../index.html">Home</a></li>
+    <li class=""><a href="../download.html">Download</a></li>
+    <li class=""><a href="../documentation.html">Documentation</a></li>
+    <li class="selected"><a href="../examples">Examples</a></li>
+  </ul>
+</div>
+
+    </div>
+    <div class="content">
+      <table width="100%"><tr>
+  <td valign="top" width="300">
+    <ul class="example-list">
+      <li><a href="acis-webservice.html">acis-webservice.xml</a></li>
+<li><a href="axis-colors.html">axis-colors.xml</a></li>
+<li><a href="axisbinding-tempgraph.html">axisbinding-tempgraph.xml</a></li>
+<li><a href="background_image.html">background_image.xml</a></li>
+<li><a href="band_graph.html">band_graph.xml</a></li>
+<li><a href="bar_graph.html">bar_graph.xml</a></li>
+<li><a href="bar_legend.html">bar_legend.xml</a></li>
+<li><a href="constant-plot.html">constant-plot.xml</a></li>
+<li><a href="crn-webservice.html">crn-webservice.xml</a></li>
+<li><a href="dashboard-aoi.html">dashboard-aoi.xml</a></li>
+<li><a href="dashboard-asi.html">dashboard-asi.xml</a></li>
+<li><a href="dashboard-co2.html">dashboard-co2.xml</a></li>
+<li><a href="dashboard-ghouse.html">dashboard-ghouse.xml</a></li>
+<li><a href="dashboard-glacier.html">dashboard-glacier.xml</a></li>
+<li><a href="dashboard-naoi.html">dashboard-naoi.xml</a></li>
+<li class="selected">dashboard-ocean.xml</li>
+<li><a href="dashboard-oni.html">dashboard-oni.xml</a></li>
+<li><a href="dashboard-pnap.html">dashboard-pnap.xml</a></li>
+<li><a href="dashboard-projections.html">dashboard-projections.xml</a></li>
+<li><a href="dashboard-sea.html">dashboard-sea.xml</a></li>
+<li><a href="dashboard-snow.html">dashboard-snow.xml</a></li>
+<li><a href="dashboard-soi.html">dashboard-soi.xml</a></li>
+<li><a href="dashboard-sun.html">dashboard-sun.xml</a></li>
+<li><a href="dashboard-temp.html">dashboard-temp.xml</a></li>
+<li><a href="dewpoint.html">dewpoint.xml</a></li>
+<li><a href="empty_titles.html">empty_titles.xml</a></li>
+<li><a href="fcav.html">fcav.xml</a></li>
+<li><a href="fill_graph.html">fill_graph.xml</a></li>
+<li><a href="fotos-sst.html">fotos-sst.xml</a></li>
+<li><a href="geomweather.html">geomweather.xml</a></li>
+<li><a href="legend.html">legend.xml</a></li>
+<li><a href="minimal_graph.html">minimal_graph.xml</a></li>
+<li><a href="mymugl.html">mymugl.xml</a></li>
+<li><a href="plotarea-background-color.html">plotarea-background-color.xml</a></li>
+<li><a href="pointline_legend.html">pointline_legend.xml</a></li>
+<li><a href="rangebar_graph.html">rangebar_graph.xml</a></li>
+<li><a href="tempgraph-acis-maxt-webservice.html">tempgraph-acis-maxt-webservice.xml</a></li>
+<li><a href="tempgraph-csv.html">tempgraph-csv.xml</a></li>
+<li><a href="tempgraph-datetime.html">tempgraph-datetime.xml</a></li>
+<li><a href="tempgraph.html">tempgraph.xml</a></li>
+<li><a href="testgraph.html">testgraph.xml</a></li>
+
+    </ul>
+  </td>
+  <td valign="top" align="center">
+    <div class="title">dashboard-ocean.xml</div>
+    <div class="multigraph" data-src="../js-multigraph/spec/mugl/dashboard-ocean.xml"></div>
+    <p>
+    <div class="mugl">
+      <div class="highlight"><pre><span class="nt">&lt;mugl&gt;</span>
+  <span class="nt">&lt;window</span> <span class="na">border=</span><span class="s">&quot;0&quot;</span> <span class="na">margin=</span><span class="s">&quot;0&quot;</span> <span class="na">padding=</span><span class="s">&quot;0&quot;</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;ui</span> <span class="na">eventhandler=</span><span class="s">&quot;saui&quot;</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;legend</span> <span class="na">visible=</span><span class="s">&quot;false&quot;</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;plotarea</span> <span class="na">marginbottom=</span><span class="s">&quot;50&quot;</span> <span class="na">marginleft=</span><span class="s">&quot;60&quot;</span> <span class="na">marginright=</span><span class="s">&quot;25&quot;</span> <span class="na">margintop=</span><span class="s">&quot;10&quot;</span><span class="nt">/&gt;</span>
+
+  <span class="nt">&lt;horizontalaxis</span> <span class="na">highlightstyle=</span><span class="s">&quot;labels&quot;</span> <span class="na">id=</span><span class="s">&quot;x&quot;</span> <span class="na">linewidth=</span><span class="s">&quot;0&quot;</span> <span class="na">max=</span><span class="s">&quot;2011&quot;</span> <span class="na">min=</span><span class="s">&quot;1955&quot;</span> <span class="na">tickmax=</span><span class="s">&quot;0&quot;</span> <span class="na">tickmin=</span><span class="s">&quot;-4&quot;</span> <span class="na">type=</span><span class="s">&quot;datetime&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;labels&gt;</span>
+      <span class="nt">&lt;label</span> <span class="na">format=</span><span class="s">&quot;%Y&quot;</span> <span class="na">spacing=</span><span class="s">&quot;100Y 50Y 20Y 10Y 5Y 2Y 1Y&quot;</span><span class="nt">/&gt;</span>
+      <span class="nt">&lt;label</span> <span class="na">format=</span><span class="s">&quot;%n %y&quot;</span> <span class="na">spacing=</span><span class="s">&quot;6M 3M 2M 1M&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;/labels&gt;</span>
+    <span class="nt">&lt;title</span> <span class="na">anchor=</span><span class="s">&quot;0 5&quot;</span> <span class="na">position=</span><span class="s">&quot;-5 0&quot;</span><span class="nt">&gt;</span>Year<span class="nt">&lt;/title&gt;</span>
+    <span class="nt">&lt;grid</span> <span class="na">color=</span><span class="s">&quot;0xeeeeee&quot;</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;/horizontalaxis&gt;</span>
+  
+  <span class="nt">&lt;verticalaxis</span> <span class="na">highlightstyle=</span><span class="s">&quot;labels&quot;</span> <span class="na">id=</span><span class="s">&quot;y&quot;</span> <span class="na">linewidth=</span><span class="s">&quot;0&quot;</span> <span class="na">max=</span><span class="s">&quot;11&quot;</span> <span class="na">min=</span><span class="s">&quot;-6&quot;</span> <span class="na">tickmax=</span><span class="s">&quot;0&quot;</span> <span class="na">tickmin=</span><span class="s">&quot;-4&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;labels&gt;</span>
+      <span class="nt">&lt;label</span> <span class="na">densityfactor=</span><span class="s">&quot;0.5&quot;</span> <span class="na">format=</span><span class="s">&quot;%1d&quot;</span> <span class="na">spacing=</span><span class="s">&quot;20 10 5 2 1&quot;</span><span class="nt">/&gt;</span>
+      <span class="nt">&lt;label</span> <span class="na">densityfactor=</span><span class="s">&quot;0.5&quot;</span> <span class="na">format=</span><span class="s">&quot;%.1f&quot;</span> <span class="na">spacing=</span><span class="s">&quot;0.5 0.2 0.1&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;/labels&gt;</span>
+    <span class="nt">&lt;title</span> <span class="na">anchor=</span><span class="s">&quot;0 -4&quot;</span> <span class="na">angle=</span><span class="s">&quot;90&quot;</span> <span class="na">position=</span><span class="s">&quot;-15 0&quot;</span><span class="nt">&gt;</span>Heat Content Anomaly (10^22 Joules)<span class="nt">&lt;/title&gt;</span>
+    
+    
+    <span class="nt">&lt;grid</span> <span class="na">color=</span><span class="s">&quot;0xeeeeee&quot;</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;/verticalaxis&gt;</span>
+
+  <span class="nt">&lt;plot&gt;</span>
+    <span class="nt">&lt;legend</span> <span class="na">label=</span><span class="s">&quot;Yearly average&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;horizontalaxis</span> <span class="na">ref=</span><span class="s">&quot;x&quot;</span><span class="nt">&gt;&lt;variable</span> <span class="na">ref=</span><span class="s">&quot;a_datetime&quot;</span><span class="nt">/&gt;&lt;/horizontalaxis&gt;</span>
+    <span class="nt">&lt;verticalaxis</span> <span class="na">ref=</span><span class="s">&quot;y&quot;</span><span class="nt">&gt;&lt;variable</span> <span class="na">ref=</span><span class="s">&quot;a_ohc&quot;</span><span class="nt">/&gt;&lt;/verticalaxis&gt;</span>
+    <span class="nt">&lt;renderer</span> <span class="na">type=</span><span class="s">&quot;bar&quot;</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;option</span> <span class="na">min=</span><span class="s">&quot;0&quot;</span> <span class="na">name=</span><span class="s">&quot;fillcolor&quot;</span> <span class="na">value=</span><span class="s">&quot;0xFFCC33&quot;</span><span class="nt">/&gt;</span>
+      <span class="nt">&lt;option</span> <span class="na">max=</span><span class="s">&quot;0&quot;</span> <span class="na">name=</span><span class="s">&quot;fillcolor&quot;</span> <span class="na">value=</span><span class="s">&quot;0x66CCFF&quot;</span><span class="nt">/&gt;</span>
+      <span class="nt">&lt;option</span> <span class="na">name=</span><span class="s">&quot;barwidth&quot;</span> <span class="na">value=</span><span class="s">&quot;3M&quot;</span><span class="nt">/&gt;</span>
+      <span class="nt">&lt;option</span> <span class="na">name=</span><span class="s">&quot;baroffset&quot;</span> <span class="na">value=</span><span class="s">&quot;0&quot;</span><span class="nt">/&gt;</span>
+      <span class="nt">&lt;option</span> <span class="na">name=</span><span class="s">&quot;barbase&quot;</span> <span class="na">value=</span><span class="s">&quot;0&quot;</span><span class="nt">/&gt;</span>			
+    <span class="nt">&lt;/renderer&gt;</span>
+    <span class="nt">&lt;datatips</span> <span class="na">format=</span><span class="s">&quot;{0}: {1}&quot;</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;variable</span> <span class="na">format=</span><span class="s">&quot;&#39;%y&quot;</span><span class="nt">/&gt;</span>
+      <span class="nt">&lt;variable</span> <span class="na">format=</span><span class="s">&quot;%.2f&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;/datatips&gt;</span>
+  <span class="nt">&lt;/plot&gt;</span>
+  
+  <span class="nt">&lt;data&gt;</span>
+    <span class="nt">&lt;variables&gt;</span>
+      <span class="nt">&lt;variable</span> <span class="na">column=</span><span class="s">&quot;0&quot;</span> <span class="na">id=</span><span class="s">&quot;a_datetime&quot;</span> <span class="na">type=</span><span class="s">&quot;datetime&quot;</span><span class="nt">/&gt;</span>
+      <span class="nt">&lt;variable</span> <span class="na">column=</span><span class="s">&quot;1&quot;</span> <span class="na">id=</span><span class="s">&quot;a_ohc&quot;</span> <span class="na">type=</span><span class="s">&quot;number&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;/variables&gt;</span>
+    <span class="nt">&lt;values&gt;</span>195503,-2.870925
+    195506,-0.113296
+    195509,-1.813742
+    195512,-8.006910
+    195603,-2.414607
+    195606,-4.435912
+    195609,-2.657124
+    195612,-0.925465
+    195703,-4.127088
+    195706,-5.581200
+    195709,-3.828830
+    195712,-4.916498
+    195803,-0.855545
+    195806,-1.357801
+    195809,-0.407367
+    195812,-3.510767
+    195903,-4.332010
+    195906,-0.125907
+    195909,-2.352780
+    195912,-1.947408
+    196003,-2.228227
+    196006,-1.150731
+    196009,-0.156272
+    196012,-2.233837
+    196103,-2.596031
+    196106,-2.191460
+    196109,-0.904096
+    196112,-2.766685
+    196203,-1.934766
+    196206,-3.028738
+    196209,1.394506
+    196212,-0.732860
+    196303,-2.489068
+    196306,-1.974558
+    196309,-3.881539
+    196312,-0.741971
+    196403,-2.540313
+    196406,-0.999370
+    196409,-3.549917
+    196412,-5.396096
+    196503,-3.407796
+    196506,-3.651060
+    196509,-2.260303
+    196512,-2.920660
+    196603,-4.449966
+    196606,-3.878906
+    196609,-2.689987
+    196612,-4.756363
+    196703,-4.570507
+    196706,-3.258782
+    196709,-4.821247
+    196712,-4.795085
+    196803,-7.423230
+    196806,-4.560177
+    196809,-3.969141
+    196812,-6.957617
+    196903,-3.020220
+    196906,-4.897943
+    196909,-4.474632
+    196912,-5.532115
+    197003,-7.440534
+    197006,-5.943474
+    197009,-3.995174
+    197012,-3.814011
+    197103,-4.959818
+    197106,-3.910183
+    197109,-3.726991
+    197112,-2.473084
+    197203,-4.091886
+    197206,-2.546359
+    197209,-7.319052
+    197212,-6.997852
+    197303,-6.992775
+    197306,-3.276178
+    197309,-1.011192
+    197312,-2.795871
+    197403,-4.533430
+    197406,-3.247841
+    197409,-2.194062
+    197412,-1.125790
+    197503,-2.142713
+    197506,-2.137060
+    197509,-1.747772
+    197512,-0.178088
+    197603,-2.744268
+    197606,-0.842794
+    197609,-3.663460
+    197612,-3.164245
+    197703,0.753891
+    197706,1.487581
+    197709,-0.297367
+    197712,-1.816468
+    197803,0.659256
+    197806,0.187264
+    197809,-1.208797
+    197812,0.569558
+    197903,0.244650
+    197906,-1.640488
+    197909,-1.909762
+    197912,-0.533093
+    198003,1.621881
+    198006,1.814072
+    198009,-0.058225
+    198012,0.985701
+    198103,0.466168
+    198106,0.533019
+    198109,-1.490330
+    198112,0.979715
+    198203,-1.497088
+    198206,-1.675889
+    198209,-5.023788
+    198212,-1.026936
+    198303,-3.626007
+    198306,2.378404
+    198309,-6.587296
+    198312,-3.216581
+    198403,2.502578
+    198406,-2.455971
+    198409,-2.656800
+    198412,0.773362
+    198503,1.784262
+    198506,1.809035
+    198509,0.248802
+    198512,-3.403238
+    198603,-0.832756
+    198606,1.703444
+    198609,-1.313413
+    198612,-3.706943
+    198703,-0.207668
+    198706,-1.372012
+    198709,-2.150298
+    198712,0.158271
+    198803,0.584576
+    198806,0.317025
+    198809,1.239289
+    198812,2.213718
+    198903,1.054723
+    198906,2.184729
+    198909,0.722344
+    198912,-0.347162
+    199003,1.214564
+    199006,-1.215741
+    199009,-1.483075
+    199012,2.194279
+    199103,2.197050
+    199106,3.208981
+    199109,2.128791
+    199112,3.047323
+    199203,0.985577
+    199206,1.039451
+    199209,0.747103
+    199212,-0.484800
+    199303,1.901216
+    199306,0.015097
+    199309,0.072376
+    199312,0.746983
+    199403,1.721594
+    199406,-0.640212
+    199409,2.212776
+    199412,2.744155
+    199503,3.308967
+    199506,2.081990
+    199509,0.500178
+    199512,3.164957
+    199603,4.493011
+    199606,7.236841
+    199609,2.027310
+    199612,4.419474
+    199703,4.525420
+    199706,3.687227
+    199709,2.090730
+    199712,2.676816
+    199803,3.046485
+    199806,5.323545
+    199809,3.689739
+    199812,5.156975
+    199903,5.387740
+    199906,5.638496
+    199909,6.149894
+    199912,6.594871
+    200003,4.724419
+    200006,6.468111
+    200009,7.166307
+    200012,5.068066
+    200103,3.077063
+    200106,2.730582
+    200109,3.212115
+    200112,7.447919
+    200203,5.505382
+    200206,7.580402
+    200209,7.701295
+    200212,6.368768
+    200303,8.746428
+    200306,9.988827
+    200309,9.416799
+    200312,11.654599
+    200403,11.021895
+    200406,9.882969
+    200409,9.770131
+    200412,10.287180
+    200503,8.052967
+    200506,8.463543
+    200509,7.850172
+    200512,9.281549
+    200603,10.344161
+    200606,9.907475
+    200609,10.797197
+    200612,10.671215
+    200703,9.897107
+    200706,8.811687
+    200709,9.611671
+    200712,9.592865
+    200803,10.786921
+    200806,10.336898
+    200809,10.391636
+    200812,8.693643
+    200903,10.177031
+    200906,9.101593
+    200909,10.603754
+    200912,10.623687
+    201003,11.199052
+    201006,9.614531
+    201009,9.911873
+    201012,10.745736
+    201103,10.729007
+    201106,10.042230
+    201109,12.127255
+    201112,10.578411
+    201203,12.398594
+    201206,10.399316
+  <span class="nt">&lt;/values&gt;</span>
+<span class="nt">&lt;/data&gt;</span>
+
+<span class="nt">&lt;/mugl&gt;</span>
+</pre></div>
+
+    </div>
+  </td>
+</tr></table>
+
+    </div>
+  </body>
+</html>

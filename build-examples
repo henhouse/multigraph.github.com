@@ -1,0 +1,97 @@
+#! /usr/bin/perl
+
+use lib "lib";
+use Template;
+
+if (-e "examples") {
+    sys("/bin/rm -rf examples");
+}
+sys("mkdir examples");
+sys("chmod +x ./lib/Pygments-1.5/pygmentize");
+sys("./lib/Pygments-1.5/pygmentize -f html -S borland > borland.css");
+
+chdir("lib/js-multigraph/spec/mugl");
+@mugls = (<*.xml>);
+chdir("../../../..");
+
+my $site_master_template       = new Template("templates/site-master.html");
+my $site_menu_template         = new Template("templates/site-menu.html");
+my $examples_template          = new Template("templates/examples.html");
+my $examples_overview_template = new Template("templates/examples-overview.html");
+
+foreach $mugl (@mugls) {
+    printf("%s\n", $mugl);
+    write_mugl_html($mugl);
+}
+
+open(OUT, ">examples/index.html");
+print OUT $site_master_template->render({
+    'siteroot' => "..",
+    'title'    => "Multigraph Examples",
+    'sitemenu' => $site_menu_template->render({
+        'examples' => 'selected',
+        'siteroot' => "..",
+     }),
+
+    'content' => $examples_overview_template->render({
+        'muglmenu' => make_mugl_menu(),
+        'content'  => Template::file_contents("page-sources/examples-overview.html")
+    })
+});
+close(OUT);
+
+
+sub make_mugl_menu {
+    my $mugl = shift;
+
+    my $muglmenu = "";
+    foreach $m (@mugls) {
+        if ($m eq $mugl) {
+            $muglmenu .= "<li class=\"selected\">$m</li>\n";
+        } else {
+            my $html = $m;
+            $html =~ s/\.xml$/.html/;
+            $muglmenu .= "<li><a href=\"$html\">$m</a></li>\n";
+        }
+    }
+    return $muglmenu;
+}
+
+sub sys {
+    my $cmd = shift;
+    return system($cmd);
+}
+
+sub write_mugl_html {
+    my $mugl = shift;
+
+    my $html = $mugl;
+    $html =~ s/\.xml$/.html/;
+
+    my $syntax_highlighted_mugl = `./lib/Pygments-1.5/pygmentize -f html lib/js-multigraph/spec/mugl/$mugl`;
+
+    my $muglmenu = make_mugl_menu($mugl);
+
+    open(OUT, ">examples/$html");
+    print OUT $site_master_template->render({
+        'siteroot' => "..",
+        'title'    => "Multigraph Example: $mugl",
+        'headers'  => join("\n", ('<script type="text/javascript" src="../lib/js-multigraph/build/multigraph-min.js"></script>',
+                                  '<script type="text/javascript">$ = window.multigraph.jQuery;</script>',
+                                  '<link rel="stylesheet" href="../borland.css"></link>')),
+
+        'sitemenu' => $site_menu_template->render({
+            'examples' => 'selected',
+            'siteroot' => "..",
+         }),
+
+        'content' => $examples_template->render({
+            'siteroot'                => "..",
+            'mugl'                    => $mugl,
+            'muglmenu'                => $muglmenu,
+            'syntax_highlighted_mugl' => $syntax_highlighted_mugl
+        })
+    });
+    close(OUT);
+}
+
