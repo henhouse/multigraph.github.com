@@ -76,15 +76,10 @@ sub write_mugl_html {
     print OUT $site_master_template->render({
         'siteroot' => "..",
         'title'    => "Multigraph Example: $mugl",
-        'headers'  => join("\n", ('<script type="text/javascript" src="../lib/js-multigraph/build/multigraph-min.js"></script>',
-                                  '<script type="text/javascript">$ = window.multigraph.jQuery;</script>',
-                                  '<link rel="stylesheet" href="../borland.css"></link>')),
-
         'sitemenu' => $site_menu_template->render({
             'examples' => 'selected',
             'siteroot' => "..",
          }),
-
         'content' => $examples_template->render({
             'siteroot'                => "..",
             'mugl'                    => $mugl,
