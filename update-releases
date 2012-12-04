@@ -98,6 +98,13 @@ foreach my $release (@releases) {
 }
 
 #
+# leave the lib/js-multigraph repo with the latest tag checked out
+#
+message("registering submodule lib/js-multigraph to be positioned at $latest_release_tag");
+sys("(cd lib/js-multigraph ; git checkout $latests_release_tag) > /dev/null 2>&1");
+sys("git submodule update --recursive");
+
+#
 # make copies of most recent release files as multigraph.js, multigraph-min.js
 #
 message("creating copies of $latest_release_tag files as multigraph.js, multigraph-min.js, ReleaseNotes.md");

@@ -33,11 +33,13 @@ Creating a Release of Multigraph
    of the specific version number.  Commit the change.
    
         emacs ReleaseNotes.md
+        git add ReleaseNotes.md
         git commit -m 'updates ReleaseNotes.md in preparation for release 4.1'
         
 1. Run 'ant minify' to rebuild the built versions of Multigraph in the project; commit the results.
 
         ant minify
+        git add build
         git commit -m 'runs ant minify'
 
 1. Tag the release with the tag "vM.N", where M.N is the version number, and with a log message
@@ -55,14 +57,22 @@ Creating a Release of Multigraph
         cd multigraph-github.com
         ./update-releases
 
-   This script updates the files in the 'download' directory by creating new ones called
-   multigraph-4.1.js and multigraph-min-4.1.js, and copies of them called 'multigraph.js'
-   and 'multigraph-min.js'.  It also updates various pages on the site with links to these
-   files.
+   This script updates the files in the 'download' directory by
+   creating new ones called multigraph-4.1.js and
+   multigraph-min-4.1.js, and copies of them called 'multigraph.js'
+   and 'multigraph-min.js'.  It also creates
+   downloads/ReleaseNotes-4.1.md by copying ReleaseNotes.md file from
+   the v4.1 tag, and updates various pages on the site with links to
+   these files.
+   
+   Note that <code>update-releases</code> takes care of updating
+   the lib/js-multigraph submodule of multigraph.github.com, including
+   leaving it in a state with the latest release checked out.
    
 1. Commit the changes and push to github
 
-        git commit -m 'releases v4.1'
+        git add .
+        git commit -m 'updates to js-multigraph creating release v4.1'
         git push
 
 
@@ -102,5 +112,39 @@ site, and prevents the <code>update-releases</code> script from ever including i
 
 1. Commit the changes and push to github
 
-        git commit -m 'releases v4.1'
+        git add .
+        git commit -m 'updates to js-multigraph marking release v4.1 as bad'
+        git push
+
+Completely Removing a Release
+-----------------------------
+
+If you really want to completely remove a release so that there is no
+record of it ever having existed, you can do the following.  Only do
+this if you are sure that no one has updated their local copy of the
+js-multigraph repository since the release was created; deleting a
+release after someone has pulled the tag into their local copy will
+probably cause problems. Really, the only situation in which you
+should do this is if you are testing the release process itself and
+you are sure that no one else has been using the js-multigraph repo on
+github since you created the release that you're deleting.
+
+1. Delete the tag from your js-multigraph project, and push the deletion
+   to github.
+
+        cd js-multigraph
+        git tag -d v4.1
+        git push origin :refs/tags/v4.1
+        
+1. In the multigraph.github.com repo, delete the download files associated with
+   the deleted release, and re-run the <code>update-releases</code> script.
+
+        cd multigraph-github.com
+        rm download/*-4.1.*
+        ./update-releases
+
+1. Commit the changes and push to github
+
+        git add .
+        git commit -m 'updates to js-multigraph deleting release v4.1'
         git push
