@@ -69,6 +69,12 @@ Creating a Release of Multigraph
    the lib/js-multigraph submodule of multigraph.github.com, including
    leaving it in a state with the latest release checked out.
    
+1. Preview the web site by running jekyll locally.  Be sure to especially
+   check the downloads page.
+
+        jekyll --server
+        browse to http://0.0.0.0:4000
+
 1. Commit the changes and push to github
 
         git add .
@@ -110,6 +116,12 @@ site, and prevents the <code>update-releases</code> script from ever including i
         rm download/*-4.1.*
         ./update-releases
 
+1. Preview the web site by running jekyll locally.  Be sure to especially
+   check the downloads page.
+
+        jekyll --server
+        browse to http://0.0.0.0:4000
+
 1. Commit the changes and push to github
 
         git add .
@@ -142,6 +154,12 @@ github since you created the release that you're deleting.
         cd multigraph-github.com
         rm download/*-4.1.*
         ./update-releases
+
+1. Preview the web site by running jekyll locally.  Be sure to especially
+   check the downloads page.
+
+        jekyll --server
+        browse to http://0.0.0.0:4000
 
 1. Commit the changes and push to github
 
