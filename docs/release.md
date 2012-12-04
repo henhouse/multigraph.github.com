@@ -15,6 +15,8 @@ Creating a Release of Multigraph
    * make sure your copy of the js-multigraph repo is up to date with the latest commits, or,
      if you want to create a release that is not at the head of the master branch, that
      it is positioned at the commit where you want to create the release 
+   * make sure that any submodules (jermaine, error-display) are present in your 
+     js-multigraph and positioned at the correct commit for the release
    * run all jasmine tests
    * view all graphics tests
 
@@ -57,3 +59,48 @@ Creating a Release of Multigraph
    multigraph-4.1.js and multigraph-min-4.1.js, and copies of them called 'multigraph.js'
    and 'multigraph-min.js'.  It also updates various pages on the site with links to these
    files.
+   
+1. Commit the changes and push to github
+
+        git commit -m 'releases v4.1'
+        git push
+
+
+Deleting a Release of Multigraph
+================================
+
+In general you should NOT delete a release, especially if it has been
+out long enough for anyone to have downloaded it.  If you've decided
+that a particular release of Multigraph is bad for some reason and needs
+to be removed from the web so that no one will download it any more,
+you can flag it as bad.
+
+Flagging a Release as Bad
+-------------------------
+
+This process keeps the release tag in the repository, so there is
+still a record of it, but removes mention of that release from the web
+site, and prevents the <code>update-releases</code> script from ever including it again.
+
+1. In the js-multigraph repo, create an additional tag for the release, whose
+   name is the release tag followed by the suffix "-bad", and push the new tag
+   to github.
+
+        cd js-multigraph
+        git tag -a -m 'tags v4.1 as bad' v4.1-bad v4.1 
+        git push origin v4.1-bad
+        
+   Note that it's important to use the full release tag name; for example, if the
+   bad tag is "v4.1", you should create a tag named "v4.1-bad", not "4.1-bad".
+   
+1. In the multigraph.github.com repo, delete the download files associated with
+   the bad release, and re-run the <code>update-releases</code> script.
+
+        cd multigraph-github.com
+        rm download/*-4.1.*
+        ./update-releases
+
+1. Commit the changes and push to github
+
+        git commit -m 'releases v4.1'
+        git push
