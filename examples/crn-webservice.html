@@ -1,264 +1,191 @@
-<html>
-  <head>
-    <title>Multigraph Example: crn-webservice.xml</title>
-    <link rel="stylesheet" href="../common.css"></link>
-    <link rel="stylesheet" href="../borland.css"></link>
-    <link rel="shortcut icon" href="../multigraph_favicon.png" type="image/x-icon"/>
-    <script type="text/javascript" src="../lib/js-multigraph/build/multigraph-min.js"></script>
-    <script type="text/javascript">$ = window.multigraph.jQuery;</script>
-    
-  </head>
-  <body>
-    <div class="header">
-      <span class="header-image-wrapper">
-        <img src="../multigraph.png" width="72" height="72"/>
-      </span>
-      <div class="title">Multigraph - Interactive Data Graphs for the Web</div>
-      <div class="nav">
-  <ul>
-    <li class=""><a href="../index.html">Home</a></li>
-    <li class=""><a href="../download.html">Download</a></li>
-    <li class=""><a href="../documentation.html">Documentation</a></li>
-    <li class="selected"><a href="../examples">Examples</a></li>
-  </ul>
+---
+siteroot: ..
+layout: example
+menu-examples: selected
+title: Multigraph - Examples - crn-webservice.xml
+example-crn-webservice: selected
+mugl: crn-webservice.xml
+autogen: true
+---
+<div class="title">{{page.mugl}}</div>
+<div class="multigraph" data-src="{{ page.siteroot }}/lib/js-multigraph/spec/mugl/{{page.mugl}}"></div>
+<p>
+<div class="mugl">
+{% highlight xml %}
+<mugl>
+  <legend base="0 1" anchor="0 1" position="0 5" border="0" rows="1" frame="padding">
+    <icon width="15" height="15" border="0"/>
+  </legend>
+  <window margin="2" border="2" padding="5" />
+  <plotarea marginbottom="80" marginleft="60" marginright="170" margintop="25"/>
+  <horizontalaxis id="time"
+                  position="0 0"
+                  pregap="0"
+                  postgap="0"
+                  type="datetime"
+                  min="2009011116"
+                  max="2009011216">
+    <title/>
+    <labels format="%h:00%L%d %n%L%Y" start="0" angle="0" anchor="0 1" spacing="2M 1M 7D 5D 2D 24H 12H 6H 1H 30m 1m" />
+    <binding id="timebinding" min="2009011116" max="2009011216"/>
+    <grid/>
+  </horizontalaxis>
+  <verticalaxis id="temp"
+                position="0 0"
+                base = "-1 -1"
+                pregap="0"
+                postgap="0"
+                type="number"
+                min="0"
+                max="20.5">
+    <title angle="90" position="-45 0" anchor="0 -1">Temperature (C)</title>
+    <labels format="%.1f" start="0" angle="0" position="-10 0" anchor="1 0" spacing="50 20 10 5 2 1 0.1 0.01"/>
+    <binding id="tempbinding" min="0" max="1"/>
+  </verticalaxis>
+  
+  <verticalaxis id="precip"
+                position="0 0"
+                base="1 -1"
+                pregap="0"
+                postgap="0"
+                type="number"
+                min="0"
+                max="10.1">
+    <title angle="90" position="25 0" anchor="0 1">Precip (mm)</title>
+    <labels format="%.1f" start="0" angle="0" position="5 0" anchor="-1 0" spacing="50 20 10 5 2 1 0.1 0.01"/>
+    <zoom anchor="0"/>
+    <pan allowed="no"/>
+    <binding id="precipbinding" min="0" max="1"/>
+  </verticalaxis>
+  
+  <verticalaxis id="solarad"
+                position="60 0"
+                base="1 -1"
+                pregap="0"
+                postgap="0"
+                type="number"
+                min="0"
+                max="1100">
+    <title angle="90" position="35 0" anchor="0 1">Solar Radiation (W/m^2)</title>
+    <labels format="%1d" start="0" angle="0" position="5 0" anchor="-1 0" spacing="1000 500 200 50 20 10 5 2 1 0.1 0.01"/>
+    <zoom anchor="0"/>
+    <pan allowed="no"/>
+    <binding id="solaradbinding" min="0" max="1"/>
+  </verticalaxis>
+  
+  <verticalaxis id="windspd"
+                position="120 0"
+                base="1 -1"
+                pregap="0"
+                postgap="0"
+                type="number"
+                min="0"
+                max="15">
+    <title angle="90" position="35 0" anchor="0 1">Wind (m/s)</title>
+    <labels format="%.1f" start="0" angle="0" position="5 0" anchor="-1 0" spacing="1000 500 200 50 20 10 5 2 1 0.1 0.01"/>
+    <zoom anchor="0"/>
+    <pan allowed="no"/>
+    <binding id="windspdbinding" min="0" max="1"/>
+  </verticalaxis>
+  
+  <plot>
+    <legend label="Solar Radiation"/>
+    <horizontalaxis ref="time">
+      <variable ref="time_1h"/>
+    </horizontalaxis>
+    <verticalaxis ref="solarad">
+      <variable ref="solarad"/>
+    </verticalaxis>
+    <renderer type="fill">
+      <option name="linecolor" value="#ffaaaa"/>
+      <option name="fillcolor" value="#ffaaaa"/>
+    </renderer>
+  </plot>
+
+  <plot>
+    <legend label="Precip"/>
+    <horizontalaxis ref="time">
+      <variable ref="time_5m"/>
+    </horizontalaxis>
+    <verticalaxis ref="precip">
+      <variable ref="precip"/>
+    </verticalaxis>
+    <renderer type="bar">
+      <option name="fillcolor"  value="green"/>
+      <option name="barwidth" value="5m"/>
+      <option name="baroffset" value="0"/>
+      <option name="linecolor" value="black"/>
+    </renderer>
+  </plot>
+
+  <plot>
+    <legend label="Air Temp"/>
+    <horizontalaxis ref="time">
+      <variable ref="time_5m"/>
+    </horizontalaxis>
+    <verticalaxis ref="temp">
+      <variable ref="temp"/>
+    </verticalaxis>
+    <renderer type="line">
+      <option name="linecolor" value="blue"/>
+      <option name="pointcolor"  value="black"/>
+      <option name="pointsize"   value="0"/>
+      <option name="linewidth" value="3"/>
+    </renderer>
+  </plot>
+
+  <plot>
+    <legend label="Surface Temp"/>
+    <horizontalaxis ref="time">
+      <variable ref="time_1h"/>
+    </horizontalaxis>
+    <verticalaxis ref="temp">
+      <variable ref="sur_temp"/>
+    </verticalaxis>
+    <renderer type="line">
+      <option name="linecolor" value="red"/>
+      <option name="pointcolor"  value="black"/>
+      <option name="pointsize"   value="0"/>
+      <option name="linewidth" value="3"/>
+    </renderer>
+  </plot>
+  
+  <plot>
+    <legend label="Wind Speed"/>
+    <horizontalaxis ref="time">
+      <variable ref="time_1h"/>
+    </horizontalaxis>
+    <verticalaxis ref="windspd">
+      <variable ref="windspd"/>
+    </verticalaxis>
+    <renderer type="line">
+      <option name="linecolor" value="black"/>
+    </renderer>
+  </plot>
+  
+
+
+  
+  <data>
+    <variables>
+      <variable id="time_1h"  column="0" type="datetime"/>
+      <variable id="solarad"  column="1" type="number"/>
+      <variable id="sur_temp" column="2" type="number"/>
+      <variable id="windspd"  column="3" type="number"/>
+    </variables>
+    <service location="http://www.multigraph.org/data/examples/demo3/crndata.cgi/1026/SOLARAD,SUR_TEMP,WINDSPD/"/>
+  </data>
+  
+  <data>
+    <variables>
+      <variable column="0" id="time_5m" type="datetime"/>
+      <variable column="1" id="temp"/>
+      <variable column="2" id="precip"/>
+    </variables>
+    <service location="http://www.multigraph.org/data/examples/demo3/crndata.cgi/1026/T5,P5/"/>
+  </data>
+
+</mugl>
+
+{% endhighlight %}
 </div>
-
-    </div>
-    <div class="content">
-      <table width="100%"><tr>
-  <td valign="top" width="300">
-    <ul class="example-list">
-      <li><a href="acis-static.html">acis-static.xml</a></li>
-<li><a href="acis-webservice.html">acis-webservice.xml</a></li>
-<li><a href="axis-colors.html">axis-colors.xml</a></li>
-<li><a href="axisbinding-tempgraph.html">axisbinding-tempgraph.xml</a></li>
-<li><a href="background_image.html">background_image.xml</a></li>
-<li><a href="band_graph.html">band_graph.xml</a></li>
-<li><a href="bar_graph.html">bar_graph.xml</a></li>
-<li><a href="bar_legend.html">bar_legend.xml</a></li>
-<li><a href="constant-plot.html">constant-plot.xml</a></li>
-<li class="selected">crn-webservice.xml</li>
-<li><a href="dashboard-aoi.html">dashboard-aoi.xml</a></li>
-<li><a href="dashboard-asi.html">dashboard-asi.xml</a></li>
-<li><a href="dashboard-co2.html">dashboard-co2.xml</a></li>
-<li><a href="dashboard-ghouse.html">dashboard-ghouse.xml</a></li>
-<li><a href="dashboard-glacier.html">dashboard-glacier.xml</a></li>
-<li><a href="dashboard-naoi.html">dashboard-naoi.xml</a></li>
-<li><a href="dashboard-ocean.html">dashboard-ocean.xml</a></li>
-<li><a href="dashboard-oni.html">dashboard-oni.xml</a></li>
-<li><a href="dashboard-pnap.html">dashboard-pnap.xml</a></li>
-<li><a href="dashboard-projections.html">dashboard-projections.xml</a></li>
-<li><a href="dashboard-sea.html">dashboard-sea.xml</a></li>
-<li><a href="dashboard-snow.html">dashboard-snow.xml</a></li>
-<li><a href="dashboard-soi.html">dashboard-soi.xml</a></li>
-<li><a href="dashboard-sun.html">dashboard-sun.xml</a></li>
-<li><a href="dashboard-temp.html">dashboard-temp.xml</a></li>
-<li><a href="dewpoint.html">dewpoint.xml</a></li>
-<li><a href="empty_titles.html">empty_titles.xml</a></li>
-<li><a href="fcav.html">fcav.xml</a></li>
-<li><a href="fill_graph.html">fill_graph.xml</a></li>
-<li><a href="fotos-sst.html">fotos-sst.xml</a></li>
-<li><a href="geomweather.html">geomweather.xml</a></li>
-<li><a href="legend.html">legend.xml</a></li>
-<li><a href="minimal_graph.html">minimal_graph.xml</a></li>
-<li><a href="multigraph-logo.html">multigraph-logo.xml</a></li>
-<li><a href="mymugl.html">mymugl.xml</a></li>
-<li><a href="plotarea-background-color.html">plotarea-background-color.xml</a></li>
-<li><a href="pointline_legend.html">pointline_legend.xml</a></li>
-<li><a href="rangebar_graph.html">rangebar_graph.xml</a></li>
-<li><a href="tempgraph-acis-maxt-webservice.html">tempgraph-acis-maxt-webservice.xml</a></li>
-<li><a href="tempgraph-csv.html">tempgraph-csv.xml</a></li>
-<li><a href="tempgraph-datetime.html">tempgraph-datetime.xml</a></li>
-<li><a href="tempgraph.html">tempgraph.xml</a></li>
-<li><a href="testgraph.html">testgraph.xml</a></li>
-
-    </ul>
-  </td>
-  <td valign="top" align="center">
-    <div class="title">crn-webservice.xml</div>
-    <div class="multigraph" data-src="../lib/js-multigraph/spec/mugl/crn-webservice.xml"></div>
-    <p>
-    <div class="mugl">
-      <div class="highlight"><pre><span class="nt">&lt;mugl&gt;</span>
-  <span class="nt">&lt;legend</span> <span class="na">base=</span><span class="s">&quot;0 1&quot;</span> <span class="na">anchor=</span><span class="s">&quot;0 1&quot;</span> <span class="na">position=</span><span class="s">&quot;0 5&quot;</span> <span class="na">border=</span><span class="s">&quot;0&quot;</span> <span class="na">rows=</span><span class="s">&quot;1&quot;</span> <span class="na">frame=</span><span class="s">&quot;padding&quot;</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;icon</span> <span class="na">width=</span><span class="s">&quot;15&quot;</span> <span class="na">height=</span><span class="s">&quot;15&quot;</span> <span class="na">border=</span><span class="s">&quot;0&quot;</span><span class="nt">/&gt;</span>
-  <span class="nt">&lt;/legend&gt;</span>
-  <span class="nt">&lt;window</span> <span class="na">margin=</span><span class="s">&quot;2&quot;</span> <span class="na">border=</span><span class="s">&quot;2&quot;</span> <span class="na">padding=</span><span class="s">&quot;5&quot;</span> <span class="nt">/&gt;</span>
-  <span class="nt">&lt;plotarea</span> <span class="na">marginbottom=</span><span class="s">&quot;80&quot;</span> <span class="na">marginleft=</span><span class="s">&quot;60&quot;</span> <span class="na">marginright=</span><span class="s">&quot;170&quot;</span> <span class="na">margintop=</span><span class="s">&quot;25&quot;</span><span class="nt">/&gt;</span>
-  <span class="nt">&lt;horizontalaxis</span> <span class="na">id=</span><span class="s">&quot;time&quot;</span>
-                  <span class="na">position=</span><span class="s">&quot;0 0&quot;</span>
-                  <span class="na">pregap=</span><span class="s">&quot;0&quot;</span>
-                  <span class="na">postgap=</span><span class="s">&quot;0&quot;</span>
-                  <span class="na">type=</span><span class="s">&quot;datetime&quot;</span>
-                  <span class="na">min=</span><span class="s">&quot;2009011116&quot;</span>
-                  <span class="na">max=</span><span class="s">&quot;2009011216&quot;</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;title/&gt;</span>
-    <span class="nt">&lt;labels</span> <span class="na">format=</span><span class="s">&quot;%h:00%L%d %n%L%Y&quot;</span> <span class="na">start=</span><span class="s">&quot;0&quot;</span> <span class="na">angle=</span><span class="s">&quot;0&quot;</span> <span class="na">anchor=</span><span class="s">&quot;0 1&quot;</span> <span class="na">spacing=</span><span class="s">&quot;2M 1M 7D 5D 2D 24H 12H 6H 1H 30m 1m&quot;</span> <span class="nt">/&gt;</span>
-    <span class="nt">&lt;binding</span> <span class="na">id=</span><span class="s">&quot;timebinding&quot;</span> <span class="na">min=</span><span class="s">&quot;2009011116&quot;</span> <span class="na">max=</span><span class="s">&quot;2009011216&quot;</span><span class="nt">/&gt;</span>
-    <span class="nt">&lt;grid/&gt;</span>
-  <span class="nt">&lt;/horizontalaxis&gt;</span>
-  <span class="nt">&lt;verticalaxis</span> <span class="na">id=</span><span class="s">&quot;temp&quot;</span>
-                <span class="na">position=</span><span class="s">&quot;0 0&quot;</span>
-                <span class="na">base =</span> <span class="s">&quot;-1 -1&quot;</span>
-                <span class="na">pregap=</span><span class="s">&quot;0&quot;</span>
-                <span class="na">postgap=</span><span class="s">&quot;0&quot;</span>
-                <span class="na">type=</span><span class="s">&quot;number&quot;</span>
-                <span class="na">min=</span><span class="s">&quot;0&quot;</span>
-                <span class="na">max=</span><span class="s">&quot;20.5&quot;</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;title</span> <span class="na">angle=</span><span class="s">&quot;90&quot;</span> <span class="na">position=</span><span class="s">&quot;-45 0&quot;</span> <span class="na">anchor=</span><span class="s">&quot;0 -1&quot;</span><span class="nt">&gt;</span>Temperature (C)<span class="nt">&lt;/title&gt;</span>
-    <span class="nt">&lt;labels</span> <span class="na">format=</span><span class="s">&quot;%.1f&quot;</span> <span class="na">start=</span><span class="s">&quot;0&quot;</span> <span class="na">angle=</span><span class="s">&quot;0&quot;</span> <span class="na">position=</span><span class="s">&quot;-10 0&quot;</span> <span class="na">anchor=</span><span class="s">&quot;1 0&quot;</span> <span class="na">spacing=</span><span class="s">&quot;50 20 10 5 2 1 0.1 0.01&quot;</span><span class="nt">/&gt;</span>
-    <span class="nt">&lt;binding</span> <span class="na">id=</span><span class="s">&quot;tempbinding&quot;</span> <span class="na">min=</span><span class="s">&quot;0&quot;</span> <span class="na">max=</span><span class="s">&quot;1&quot;</span><span class="nt">/&gt;</span>
-  <span class="nt">&lt;/verticalaxis&gt;</span>
-  
-  <span class="nt">&lt;verticalaxis</span> <span class="na">id=</span><span class="s">&quot;precip&quot;</span>
-                <span class="na">position=</span><span class="s">&quot;0 0&quot;</span>
-                <span class="na">base=</span><span class="s">&quot;1 -1&quot;</span>
-                <span class="na">pregap=</span><span class="s">&quot;0&quot;</span>
-                <span class="na">postgap=</span><span class="s">&quot;0&quot;</span>
-                <span class="na">type=</span><span class="s">&quot;number&quot;</span>
-                <span class="na">min=</span><span class="s">&quot;0&quot;</span>
-                <span class="na">max=</span><span class="s">&quot;10.1&quot;</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;title</span> <span class="na">angle=</span><span class="s">&quot;90&quot;</span> <span class="na">position=</span><span class="s">&quot;25 0&quot;</span> <span class="na">anchor=</span><span class="s">&quot;0 1&quot;</span><span class="nt">&gt;</span>Precip (mm)<span class="nt">&lt;/title&gt;</span>
-    <span class="nt">&lt;labels</span> <span class="na">format=</span><span class="s">&quot;%.1f&quot;</span> <span class="na">start=</span><span class="s">&quot;0&quot;</span> <span class="na">angle=</span><span class="s">&quot;0&quot;</span> <span class="na">position=</span><span class="s">&quot;5 0&quot;</span> <span class="na">anchor=</span><span class="s">&quot;-1 0&quot;</span> <span class="na">spacing=</span><span class="s">&quot;50 20 10 5 2 1 0.1 0.01&quot;</span><span class="nt">/&gt;</span>
-    <span class="nt">&lt;zoom</span> <span class="na">anchor=</span><span class="s">&quot;0&quot;</span><span class="nt">/&gt;</span>
-    <span class="nt">&lt;pan</span> <span class="na">allowed=</span><span class="s">&quot;no&quot;</span><span class="nt">/&gt;</span>
-    <span class="nt">&lt;binding</span> <span class="na">id=</span><span class="s">&quot;precipbinding&quot;</span> <span class="na">min=</span><span class="s">&quot;0&quot;</span> <span class="na">max=</span><span class="s">&quot;1&quot;</span><span class="nt">/&gt;</span>
-  <span class="nt">&lt;/verticalaxis&gt;</span>
-  
-  <span class="nt">&lt;verticalaxis</span> <span class="na">id=</span><span class="s">&quot;solarad&quot;</span>
-                <span class="na">position=</span><span class="s">&quot;60 0&quot;</span>
-                <span class="na">base=</span><span class="s">&quot;1 -1&quot;</span>
-                <span class="na">pregap=</span><span class="s">&quot;0&quot;</span>
-                <span class="na">postgap=</span><span class="s">&quot;0&quot;</span>
-                <span class="na">type=</span><span class="s">&quot;number&quot;</span>
-                <span class="na">min=</span><span class="s">&quot;0&quot;</span>
-                <span class="na">max=</span><span class="s">&quot;1100&quot;</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;title</span> <span class="na">angle=</span><span class="s">&quot;90&quot;</span> <span class="na">position=</span><span class="s">&quot;35 0&quot;</span> <span class="na">anchor=</span><span class="s">&quot;0 1&quot;</span><span class="nt">&gt;</span>Solar Radiation (W/m^2)<span class="nt">&lt;/title&gt;</span>
-    <span class="nt">&lt;labels</span> <span class="na">format=</span><span class="s">&quot;%1d&quot;</span> <span class="na">start=</span><span class="s">&quot;0&quot;</span> <span class="na">angle=</span><span class="s">&quot;0&quot;</span> <span class="na">position=</span><span class="s">&quot;5 0&quot;</span> <span class="na">anchor=</span><span class="s">&quot;-1 0&quot;</span> <span class="na">spacing=</span><span class="s">&quot;1000 500 200 50 20 10 5 2 1 0.1 0.01&quot;</span><span class="nt">/&gt;</span>
-    <span class="nt">&lt;zoom</span> <span class="na">anchor=</span><span class="s">&quot;0&quot;</span><span class="nt">/&gt;</span>
-    <span class="nt">&lt;pan</span> <span class="na">allowed=</span><span class="s">&quot;no&quot;</span><span class="nt">/&gt;</span>
-    <span class="nt">&lt;binding</span> <span class="na">id=</span><span class="s">&quot;solaradbinding&quot;</span> <span class="na">min=</span><span class="s">&quot;0&quot;</span> <span class="na">max=</span><span class="s">&quot;1&quot;</span><span class="nt">/&gt;</span>
-  <span class="nt">&lt;/verticalaxis&gt;</span>
-  
-  <span class="nt">&lt;verticalaxis</span> <span class="na">id=</span><span class="s">&quot;windspd&quot;</span>
-                <span class="na">position=</span><span class="s">&quot;120 0&quot;</span>
-                <span class="na">base=</span><span class="s">&quot;1 -1&quot;</span>
-                <span class="na">pregap=</span><span class="s">&quot;0&quot;</span>
-                <span class="na">postgap=</span><span class="s">&quot;0&quot;</span>
-                <span class="na">type=</span><span class="s">&quot;number&quot;</span>
-                <span class="na">min=</span><span class="s">&quot;0&quot;</span>
-                <span class="na">max=</span><span class="s">&quot;15&quot;</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;title</span> <span class="na">angle=</span><span class="s">&quot;90&quot;</span> <span class="na">position=</span><span class="s">&quot;35 0&quot;</span> <span class="na">anchor=</span><span class="s">&quot;0 1&quot;</span><span class="nt">&gt;</span>Wind (m/s)<span class="nt">&lt;/title&gt;</span>
-    <span class="nt">&lt;labels</span> <span class="na">format=</span><span class="s">&quot;%.1f&quot;</span> <span class="na">start=</span><span class="s">&quot;0&quot;</span> <span class="na">angle=</span><span class="s">&quot;0&quot;</span> <span class="na">position=</span><span class="s">&quot;5 0&quot;</span> <span class="na">anchor=</span><span class="s">&quot;-1 0&quot;</span> <span class="na">spacing=</span><span class="s">&quot;1000 500 200 50 20 10 5 2 1 0.1 0.01&quot;</span><span class="nt">/&gt;</span>
-    <span class="nt">&lt;zoom</span> <span class="na">anchor=</span><span class="s">&quot;0&quot;</span><span class="nt">/&gt;</span>
-    <span class="nt">&lt;pan</span> <span class="na">allowed=</span><span class="s">&quot;no&quot;</span><span class="nt">/&gt;</span>
-    <span class="nt">&lt;binding</span> <span class="na">id=</span><span class="s">&quot;windspdbinding&quot;</span> <span class="na">min=</span><span class="s">&quot;0&quot;</span> <span class="na">max=</span><span class="s">&quot;1&quot;</span><span class="nt">/&gt;</span>
-  <span class="nt">&lt;/verticalaxis&gt;</span>
-  
-  <span class="nt">&lt;plot&gt;</span>
-    <span class="nt">&lt;legend</span> <span class="na">label=</span><span class="s">&quot;Solar Radiation&quot;</span><span class="nt">/&gt;</span>
-    <span class="nt">&lt;horizontalaxis</span> <span class="na">ref=</span><span class="s">&quot;time&quot;</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;variable</span> <span class="na">ref=</span><span class="s">&quot;time_1h&quot;</span><span class="nt">/&gt;</span>
-    <span class="nt">&lt;/horizontalaxis&gt;</span>
-    <span class="nt">&lt;verticalaxis</span> <span class="na">ref=</span><span class="s">&quot;solarad&quot;</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;variable</span> <span class="na">ref=</span><span class="s">&quot;solarad&quot;</span><span class="nt">/&gt;</span>
-    <span class="nt">&lt;/verticalaxis&gt;</span>
-    <span class="nt">&lt;renderer</span> <span class="na">type=</span><span class="s">&quot;fill&quot;</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;option</span> <span class="na">name=</span><span class="s">&quot;linecolor&quot;</span> <span class="na">value=</span><span class="s">&quot;#ffaaaa&quot;</span><span class="nt">/&gt;</span>
-      <span class="nt">&lt;option</span> <span class="na">name=</span><span class="s">&quot;fillcolor&quot;</span> <span class="na">value=</span><span class="s">&quot;#ffaaaa&quot;</span><span class="nt">/&gt;</span>
-    <span class="nt">&lt;/renderer&gt;</span>
-  <span class="nt">&lt;/plot&gt;</span>
-
-  <span class="nt">&lt;plot&gt;</span>
-    <span class="nt">&lt;legend</span> <span class="na">label=</span><span class="s">&quot;Precip&quot;</span><span class="nt">/&gt;</span>
-    <span class="nt">&lt;horizontalaxis</span> <span class="na">ref=</span><span class="s">&quot;time&quot;</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;variable</span> <span class="na">ref=</span><span class="s">&quot;time_5m&quot;</span><span class="nt">/&gt;</span>
-    <span class="nt">&lt;/horizontalaxis&gt;</span>
-    <span class="nt">&lt;verticalaxis</span> <span class="na">ref=</span><span class="s">&quot;precip&quot;</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;variable</span> <span class="na">ref=</span><span class="s">&quot;precip&quot;</span><span class="nt">/&gt;</span>
-    <span class="nt">&lt;/verticalaxis&gt;</span>
-    <span class="nt">&lt;renderer</span> <span class="na">type=</span><span class="s">&quot;bar&quot;</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;option</span> <span class="na">name=</span><span class="s">&quot;fillcolor&quot;</span>  <span class="na">value=</span><span class="s">&quot;green&quot;</span><span class="nt">/&gt;</span>
-      <span class="nt">&lt;option</span> <span class="na">name=</span><span class="s">&quot;barwidth&quot;</span> <span class="na">value=</span><span class="s">&quot;5m&quot;</span><span class="nt">/&gt;</span>
-      <span class="nt">&lt;option</span> <span class="na">name=</span><span class="s">&quot;baroffset&quot;</span> <span class="na">value=</span><span class="s">&quot;0&quot;</span><span class="nt">/&gt;</span>
-      <span class="nt">&lt;option</span> <span class="na">name=</span><span class="s">&quot;linecolor&quot;</span> <span class="na">value=</span><span class="s">&quot;black&quot;</span><span class="nt">/&gt;</span>
-    <span class="nt">&lt;/renderer&gt;</span>
-  <span class="nt">&lt;/plot&gt;</span>
-
-  <span class="nt">&lt;plot&gt;</span>
-    <span class="nt">&lt;legend</span> <span class="na">label=</span><span class="s">&quot;Air Temp&quot;</span><span class="nt">/&gt;</span>
-    <span class="nt">&lt;horizontalaxis</span> <span class="na">ref=</span><span class="s">&quot;time&quot;</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;variable</span> <span class="na">ref=</span><span class="s">&quot;time_5m&quot;</span><span class="nt">/&gt;</span>
-    <span class="nt">&lt;/horizontalaxis&gt;</span>
-    <span class="nt">&lt;verticalaxis</span> <span class="na">ref=</span><span class="s">&quot;temp&quot;</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;variable</span> <span class="na">ref=</span><span class="s">&quot;temp&quot;</span><span class="nt">/&gt;</span>
-    <span class="nt">&lt;/verticalaxis&gt;</span>
-    <span class="nt">&lt;renderer</span> <span class="na">type=</span><span class="s">&quot;line&quot;</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;option</span> <span class="na">name=</span><span class="s">&quot;linecolor&quot;</span> <span class="na">value=</span><span class="s">&quot;blue&quot;</span><span class="nt">/&gt;</span>
-      <span class="nt">&lt;option</span> <span class="na">name=</span><span class="s">&quot;pointcolor&quot;</span>  <span class="na">value=</span><span class="s">&quot;black&quot;</span><span class="nt">/&gt;</span>
-      <span class="nt">&lt;option</span> <span class="na">name=</span><span class="s">&quot;pointsize&quot;</span>   <span class="na">value=</span><span class="s">&quot;0&quot;</span><span class="nt">/&gt;</span>
-      <span class="nt">&lt;option</span> <span class="na">name=</span><span class="s">&quot;linewidth&quot;</span> <span class="na">value=</span><span class="s">&quot;3&quot;</span><span class="nt">/&gt;</span>
-    <span class="nt">&lt;/renderer&gt;</span>
-  <span class="nt">&lt;/plot&gt;</span>
-
-  <span class="nt">&lt;plot&gt;</span>
-    <span class="nt">&lt;legend</span> <span class="na">label=</span><span class="s">&quot;Surface Temp&quot;</span><span class="nt">/&gt;</span>
-    <span class="nt">&lt;horizontalaxis</span> <span class="na">ref=</span><span class="s">&quot;time&quot;</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;variable</span> <span class="na">ref=</span><span class="s">&quot;time_1h&quot;</span><span class="nt">/&gt;</span>
-    <span class="nt">&lt;/horizontalaxis&gt;</span>
-    <span class="nt">&lt;verticalaxis</span> <span class="na">ref=</span><span class="s">&quot;temp&quot;</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;variable</span> <span class="na">ref=</span><span class="s">&quot;sur_temp&quot;</span><span class="nt">/&gt;</span>
-    <span class="nt">&lt;/verticalaxis&gt;</span>
-    <span class="nt">&lt;renderer</span> <span class="na">type=</span><span class="s">&quot;line&quot;</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;option</span> <span class="na">name=</span><span class="s">&quot;linecolor&quot;</span> <span class="na">value=</span><span class="s">&quot;red&quot;</span><span class="nt">/&gt;</span>
-      <span class="nt">&lt;option</span> <span class="na">name=</span><span class="s">&quot;pointcolor&quot;</span>  <span class="na">value=</span><span class="s">&quot;black&quot;</span><span class="nt">/&gt;</span>
-      <span class="nt">&lt;option</span> <span class="na">name=</span><span class="s">&quot;pointsize&quot;</span>   <span class="na">value=</span><span class="s">&quot;0&quot;</span><span class="nt">/&gt;</span>
-      <span class="nt">&lt;option</span> <span class="na">name=</span><span class="s">&quot;linewidth&quot;</span> <span class="na">value=</span><span class="s">&quot;3&quot;</span><span class="nt">/&gt;</span>
-    <span class="nt">&lt;/renderer&gt;</span>
-  <span class="nt">&lt;/plot&gt;</span>
-  
-  <span class="nt">&lt;plot&gt;</span>
-    <span class="nt">&lt;legend</span> <span class="na">label=</span><span class="s">&quot;Wind Speed&quot;</span><span class="nt">/&gt;</span>
-    <span class="nt">&lt;horizontalaxis</span> <span class="na">ref=</span><span class="s">&quot;time&quot;</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;variable</span> <span class="na">ref=</span><span class="s">&quot;time_1h&quot;</span><span class="nt">/&gt;</span>
-    <span class="nt">&lt;/horizontalaxis&gt;</span>
-    <span class="nt">&lt;verticalaxis</span> <span class="na">ref=</span><span class="s">&quot;windspd&quot;</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;variable</span> <span class="na">ref=</span><span class="s">&quot;windspd&quot;</span><span class="nt">/&gt;</span>
-    <span class="nt">&lt;/verticalaxis&gt;</span>
-    <span class="nt">&lt;renderer</span> <span class="na">type=</span><span class="s">&quot;line&quot;</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;option</span> <span class="na">name=</span><span class="s">&quot;linecolor&quot;</span> <span class="na">value=</span><span class="s">&quot;black&quot;</span><span class="nt">/&gt;</span>
-    <span class="nt">&lt;/renderer&gt;</span>
-  <span class="nt">&lt;/plot&gt;</span>
-  
-
-
-  
-  <span class="nt">&lt;data&gt;</span>
-    <span class="nt">&lt;variables&gt;</span>
-      <span class="nt">&lt;variable</span> <span class="na">id=</span><span class="s">&quot;time_1h&quot;</span>  <span class="na">column=</span><span class="s">&quot;0&quot;</span> <span class="na">type=</span><span class="s">&quot;datetime&quot;</span><span class="nt">/&gt;</span>
-      <span class="nt">&lt;variable</span> <span class="na">id=</span><span class="s">&quot;solarad&quot;</span>  <span class="na">column=</span><span class="s">&quot;1&quot;</span> <span class="na">type=</span><span class="s">&quot;number&quot;</span><span class="nt">/&gt;</span>
-      <span class="nt">&lt;variable</span> <span class="na">id=</span><span class="s">&quot;sur_temp&quot;</span> <span class="na">column=</span><span class="s">&quot;2&quot;</span> <span class="na">type=</span><span class="s">&quot;number&quot;</span><span class="nt">/&gt;</span>
-      <span class="nt">&lt;variable</span> <span class="na">id=</span><span class="s">&quot;windspd&quot;</span>  <span class="na">column=</span><span class="s">&quot;3&quot;</span> <span class="na">type=</span><span class="s">&quot;number&quot;</span><span class="nt">/&gt;</span>
-    <span class="nt">&lt;/variables&gt;</span>
-    <span class="nt">&lt;service</span> <span class="na">location=</span><span class="s">&quot;http://www.multigraph.org/data/examples/demo3/crndata.cgi/1026/SOLARAD,SUR_TEMP,WINDSPD/&quot;</span><span class="nt">/&gt;</span>
-  <span class="nt">&lt;/data&gt;</span>
-  
-  <span class="nt">&lt;data&gt;</span>
-    <span class="nt">&lt;variables&gt;</span>
-      <span class="nt">&lt;variable</span> <span class="na">column=</span><span class="s">&quot;0&quot;</span> <span class="na">id=</span><span class="s">&quot;time_5m&quot;</span> <span class="na">type=</span><span class="s">&quot;datetime&quot;</span><span class="nt">/&gt;</span>
-      <span class="nt">&lt;variable</span> <span class="na">column=</span><span class="s">&quot;1&quot;</span> <span class="na">id=</span><span class="s">&quot;temp&quot;</span><span class="nt">/&gt;</span>
-      <span class="nt">&lt;variable</span> <span class="na">column=</span><span class="s">&quot;2&quot;</span> <span class="na">id=</span><span class="s">&quot;precip&quot;</span><span class="nt">/&gt;</span>
-    <span class="nt">&lt;/variables&gt;</span>
-    <span class="nt">&lt;service</span> <span class="na">location=</span><span class="s">&quot;http://www.multigraph.org/data/examples/demo3/crndata.cgi/1026/T5,P5/&quot;</span><span class="nt">/&gt;</span>
-  <span class="nt">&lt;/data&gt;</span>
-
-<span class="nt">&lt;/mugl&gt;</span>
-</pre></div>
-
-    </div>
-  </td>
-</tr></table>
-
-    </div>
-  </body>
-</html>

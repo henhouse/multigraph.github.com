@@ -1,87 +1,20 @@
-<html>
-  <head>
-    <title>Multigraph Example: minimal_graph.xml</title>
-    <link rel="stylesheet" href="../common.css"></link>
-    <link rel="stylesheet" href="../borland.css"></link>
-    <link rel="shortcut icon" href="../multigraph_favicon.png" type="image/x-icon"/>
-    <script type="text/javascript" src="../lib/js-multigraph/build/multigraph-min.js"></script>
-    <script type="text/javascript">$ = window.multigraph.jQuery;</script>
-    
-  </head>
-  <body>
-    <div class="header">
-      <span class="header-image-wrapper">
-        <img src="../multigraph.png" width="72" height="72"/>
-      </span>
-      <div class="title">Multigraph - Interactive Data Graphs for the Web</div>
-      <div class="nav">
-  <ul>
-    <li class=""><a href="../index.html">Home</a></li>
-    <li class=""><a href="../download.html">Download</a></li>
-    <li class=""><a href="../documentation.html">Documentation</a></li>
-    <li class="selected"><a href="../examples">Examples</a></li>
-  </ul>
-</div>
-
-    </div>
-    <div class="content">
-      <table width="100%"><tr>
-  <td valign="top" width="300">
-    <ul class="example-list">
-      <li><a href="acis-static.html">acis-static.xml</a></li>
-<li><a href="acis-webservice.html">acis-webservice.xml</a></li>
-<li><a href="axis-colors.html">axis-colors.xml</a></li>
-<li><a href="axisbinding-tempgraph.html">axisbinding-tempgraph.xml</a></li>
-<li><a href="background_image.html">background_image.xml</a></li>
-<li><a href="band_graph.html">band_graph.xml</a></li>
-<li><a href="bar_graph.html">bar_graph.xml</a></li>
-<li><a href="bar_legend.html">bar_legend.xml</a></li>
-<li><a href="constant-plot.html">constant-plot.xml</a></li>
-<li><a href="crn-webservice.html">crn-webservice.xml</a></li>
-<li><a href="dashboard-aoi.html">dashboard-aoi.xml</a></li>
-<li><a href="dashboard-asi.html">dashboard-asi.xml</a></li>
-<li><a href="dashboard-co2.html">dashboard-co2.xml</a></li>
-<li><a href="dashboard-ghouse.html">dashboard-ghouse.xml</a></li>
-<li><a href="dashboard-glacier.html">dashboard-glacier.xml</a></li>
-<li><a href="dashboard-naoi.html">dashboard-naoi.xml</a></li>
-<li><a href="dashboard-ocean.html">dashboard-ocean.xml</a></li>
-<li><a href="dashboard-oni.html">dashboard-oni.xml</a></li>
-<li><a href="dashboard-pnap.html">dashboard-pnap.xml</a></li>
-<li><a href="dashboard-projections.html">dashboard-projections.xml</a></li>
-<li><a href="dashboard-sea.html">dashboard-sea.xml</a></li>
-<li><a href="dashboard-snow.html">dashboard-snow.xml</a></li>
-<li><a href="dashboard-soi.html">dashboard-soi.xml</a></li>
-<li><a href="dashboard-sun.html">dashboard-sun.xml</a></li>
-<li><a href="dashboard-temp.html">dashboard-temp.xml</a></li>
-<li><a href="dewpoint.html">dewpoint.xml</a></li>
-<li><a href="empty_titles.html">empty_titles.xml</a></li>
-<li><a href="fcav.html">fcav.xml</a></li>
-<li><a href="fill_graph.html">fill_graph.xml</a></li>
-<li><a href="fotos-sst.html">fotos-sst.xml</a></li>
-<li><a href="geomweather.html">geomweather.xml</a></li>
-<li><a href="legend.html">legend.xml</a></li>
-<li class="selected">minimal_graph.xml</li>
-<li><a href="multigraph-logo.html">multigraph-logo.xml</a></li>
-<li><a href="mymugl.html">mymugl.xml</a></li>
-<li><a href="plotarea-background-color.html">plotarea-background-color.xml</a></li>
-<li><a href="pointline_legend.html">pointline_legend.xml</a></li>
-<li><a href="rangebar_graph.html">rangebar_graph.xml</a></li>
-<li><a href="tempgraph-acis-maxt-webservice.html">tempgraph-acis-maxt-webservice.xml</a></li>
-<li><a href="tempgraph-csv.html">tempgraph-csv.xml</a></li>
-<li><a href="tempgraph-datetime.html">tempgraph-datetime.xml</a></li>
-<li><a href="tempgraph.html">tempgraph.xml</a></li>
-<li><a href="testgraph.html">testgraph.xml</a></li>
-
-    </ul>
-  </td>
-  <td valign="top" align="center">
-    <div class="title">minimal_graph.xml</div>
-    <div class="multigraph" data-src="../lib/js-multigraph/spec/mugl/minimal_graph.xml"></div>
-    <p>
-    <div class="mugl">
-      <div class="highlight"><pre><span class="nt">&lt;mugl&gt;</span>
-  <span class="nt">&lt;data&gt;</span>
-    <span class="nt">&lt;values&gt;</span>
+---
+siteroot: ..
+layout: example
+menu-examples: selected
+title: Multigraph - Examples - minimal_graph.xml
+example-minimal_graph: selected
+mugl: minimal_graph.xml
+autogen: true
+---
+<div class="title">{{page.mugl}}</div>
+<div class="multigraph" data-src="{{ page.siteroot }}/lib/js-multigraph/spec/mugl/{{page.mugl}}"></div>
+<p>
+<div class="mugl">
+{% highlight xml %}
+<mugl>
+  <data>
+    <values>
       0, 3
       1, 2
       2, 4
@@ -91,15 +24,9 @@
       6, 7
       7, 8
       8, 5
-    <span class="nt">&lt;/values&gt;</span>
-  <span class="nt">&lt;/data&gt;</span>
-<span class="nt">&lt;/mugl&gt;</span>
-</pre></div>
+    </values>
+  </data>
+</mugl>
 
-    </div>
-  </td>
-</tr></table>
-
-    </div>
-  </body>
-</html>
+{% endhighlight %}
+</div>

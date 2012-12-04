@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{{ page.title }}</title>
+    <link rel="stylesheet" href="{{ page.siteroot }}/css/common.css"></link>
+    <link rel="stylesheet" href="{{ page.siteroot }}/css/borland.css"></link>
+    <link rel="shortcut icon" href="{{ page.siteroot }}/images/multigraph-favicon.png" type="image/x-icon"/>
+    <script type="text/javascript" src="{{ page.siteroot }}/download/multigraph-min-latest.js"></script>
+    <script type="text/javascript">$ = window.multigraph.jQuery;</script>
+    {{ page.headers }}
+  </head>
+  <body>
+    <div class="header">
+      <span class="header-image-wrapper">
+        <img src="{{ page.siteroot }}/images/multigraph-logo72x72.png" width="72" height="72"/>
+      </span>
+      <div class="title">Multigraph - Interactive Data Graphs for the Web</div>
+      {% include site-menu.html %}
+    </div>
+    <div class="content">
+      <table width="100%"><tr>
+          <td valign="top" width="300">
+            {% include example-menu.html %}
+          </td>
+          <td valign="top" align="center">
+            {{ content }}
+          </td>
+      </tr></table>
+    </div>
+  </body>
+</html>

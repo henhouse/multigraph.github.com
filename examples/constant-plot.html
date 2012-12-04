@@ -1,142 +1,69 @@
-<html>
-  <head>
-    <title>Multigraph Example: constant-plot.xml</title>
-    <link rel="stylesheet" href="../common.css"></link>
-    <link rel="stylesheet" href="../borland.css"></link>
-    <link rel="shortcut icon" href="../multigraph_favicon.png" type="image/x-icon"/>
-    <script type="text/javascript" src="../lib/js-multigraph/build/multigraph-min.js"></script>
-    <script type="text/javascript">$ = window.multigraph.jQuery;</script>
+---
+siteroot: ..
+layout: example
+menu-examples: selected
+title: Multigraph - Examples - constant-plot.xml
+example-constant-plot: selected
+mugl: constant-plot.xml
+autogen: true
+---
+<div class="title">{{page.mugl}}</div>
+<div class="multigraph" data-src="{{ page.siteroot }}/lib/js-multigraph/spec/mugl/{{page.mugl}}"></div>
+<p>
+<div class="mugl">
+{% highlight xml %}
+<mugl>
+  <window border="0" margin="0" padding="0"/>
+  <legend visible="false"/>
+  <plotarea marginbottom="50" marginleft="60" marginright="25" margintop="10"/>
+
+  <horizontalaxis highlightstyle="labels" id="x" linewidth="0" max="201207" min="200601" tickmax="0" tickmin="-4" type="datetime">
+    <labels>
+      <label format="%Y" spacing="100Y 50Y 20Y 10Y 5Y 2Y 1Y "/>
+      <label format="%n %y" spacing="6M 3M 2M 1M"/>
+    </labels>
+    <title anchor="0 5" position="-15 0">Month/Year</title>
+    <grid color="0xeeeeee"/>
+  </horizontalaxis>
+  <verticalaxis highlightstyle="labels" id="y" linewidth="0" max="4.5" min="-4.5" tickmax="0" tickmin="-4">
+    <labels>
+      <label densityfactor="0.5" format="%1d" spacing="20 10 5 2 1"/>
+      <label densityfactor="0.5" format="%.1f" spacing="0.5 0.2 0.1"/>
+    </labels>
+    <title anchor="0 -4" angle="90" position="-15 0">Some Constant Plots</title>
     
-  </head>
-  <body>
-    <div class="header">
-      <span class="header-image-wrapper">
-        <img src="../multigraph.png" width="72" height="72"/>
-      </span>
-      <div class="title">Multigraph - Interactive Data Graphs for the Web</div>
-      <div class="nav">
-  <ul>
-    <li class=""><a href="../index.html">Home</a></li>
-    <li class=""><a href="../download.html">Download</a></li>
-    <li class=""><a href="../documentation.html">Documentation</a></li>
-    <li class="selected"><a href="../examples">Examples</a></li>
-  </ul>
+    
+    <grid color="0xeeeeee"/>
+  </verticalaxis>
+
+  <plot>
+    <legend visible="false"/>
+    <verticalaxis ref="y"><constant value="0"/></verticalaxis>
+    <renderer type="line">
+      <option name="linecolor" value="0x999999"/>
+      <option name="linewidth" value="1"/>
+    </renderer>
+  </plot>
+
+  <plot>
+    <legend visible="false"/>
+    <verticalaxis ref="y"><constant value="2"/></verticalaxis>
+    <renderer type="line">
+      <option name="linecolor" value="0x990000"/>
+      <option name="linewidth" value="1"/>
+    </renderer>
+  </plot>
+
+  <plot>
+    <legend visible="false"/>
+    <verticalaxis ref="y"><constant value="-2"/></verticalaxis>
+    <renderer type="line">
+      <option name="linecolor" value="0x000099"/>
+      <option name="linewidth" value="3"/>
+    </renderer>
+  </plot>
+
+</mugl>
+
+{% endhighlight %}
 </div>
-
-    </div>
-    <div class="content">
-      <table width="100%"><tr>
-  <td valign="top" width="300">
-    <ul class="example-list">
-      <li><a href="acis-static.html">acis-static.xml</a></li>
-<li><a href="acis-webservice.html">acis-webservice.xml</a></li>
-<li><a href="axis-colors.html">axis-colors.xml</a></li>
-<li><a href="axisbinding-tempgraph.html">axisbinding-tempgraph.xml</a></li>
-<li><a href="background_image.html">background_image.xml</a></li>
-<li><a href="band_graph.html">band_graph.xml</a></li>
-<li><a href="bar_graph.html">bar_graph.xml</a></li>
-<li><a href="bar_legend.html">bar_legend.xml</a></li>
-<li class="selected">constant-plot.xml</li>
-<li><a href="crn-webservice.html">crn-webservice.xml</a></li>
-<li><a href="dashboard-aoi.html">dashboard-aoi.xml</a></li>
-<li><a href="dashboard-asi.html">dashboard-asi.xml</a></li>
-<li><a href="dashboard-co2.html">dashboard-co2.xml</a></li>
-<li><a href="dashboard-ghouse.html">dashboard-ghouse.xml</a></li>
-<li><a href="dashboard-glacier.html">dashboard-glacier.xml</a></li>
-<li><a href="dashboard-naoi.html">dashboard-naoi.xml</a></li>
-<li><a href="dashboard-ocean.html">dashboard-ocean.xml</a></li>
-<li><a href="dashboard-oni.html">dashboard-oni.xml</a></li>
-<li><a href="dashboard-pnap.html">dashboard-pnap.xml</a></li>
-<li><a href="dashboard-projections.html">dashboard-projections.xml</a></li>
-<li><a href="dashboard-sea.html">dashboard-sea.xml</a></li>
-<li><a href="dashboard-snow.html">dashboard-snow.xml</a></li>
-<li><a href="dashboard-soi.html">dashboard-soi.xml</a></li>
-<li><a href="dashboard-sun.html">dashboard-sun.xml</a></li>
-<li><a href="dashboard-temp.html">dashboard-temp.xml</a></li>
-<li><a href="dewpoint.html">dewpoint.xml</a></li>
-<li><a href="empty_titles.html">empty_titles.xml</a></li>
-<li><a href="fcav.html">fcav.xml</a></li>
-<li><a href="fill_graph.html">fill_graph.xml</a></li>
-<li><a href="fotos-sst.html">fotos-sst.xml</a></li>
-<li><a href="geomweather.html">geomweather.xml</a></li>
-<li><a href="legend.html">legend.xml</a></li>
-<li><a href="minimal_graph.html">minimal_graph.xml</a></li>
-<li><a href="multigraph-logo.html">multigraph-logo.xml</a></li>
-<li><a href="mymugl.html">mymugl.xml</a></li>
-<li><a href="plotarea-background-color.html">plotarea-background-color.xml</a></li>
-<li><a href="pointline_legend.html">pointline_legend.xml</a></li>
-<li><a href="rangebar_graph.html">rangebar_graph.xml</a></li>
-<li><a href="tempgraph-acis-maxt-webservice.html">tempgraph-acis-maxt-webservice.xml</a></li>
-<li><a href="tempgraph-csv.html">tempgraph-csv.xml</a></li>
-<li><a href="tempgraph-datetime.html">tempgraph-datetime.xml</a></li>
-<li><a href="tempgraph.html">tempgraph.xml</a></li>
-<li><a href="testgraph.html">testgraph.xml</a></li>
-
-    </ul>
-  </td>
-  <td valign="top" align="center">
-    <div class="title">constant-plot.xml</div>
-    <div class="multigraph" data-src="../lib/js-multigraph/spec/mugl/constant-plot.xml"></div>
-    <p>
-    <div class="mugl">
-      <div class="highlight"><pre><span class="nt">&lt;mugl&gt;</span>
-  <span class="nt">&lt;window</span> <span class="na">border=</span><span class="s">&quot;0&quot;</span> <span class="na">margin=</span><span class="s">&quot;0&quot;</span> <span class="na">padding=</span><span class="s">&quot;0&quot;</span><span class="nt">/&gt;</span>
-  <span class="nt">&lt;legend</span> <span class="na">visible=</span><span class="s">&quot;false&quot;</span><span class="nt">/&gt;</span>
-  <span class="nt">&lt;plotarea</span> <span class="na">marginbottom=</span><span class="s">&quot;50&quot;</span> <span class="na">marginleft=</span><span class="s">&quot;60&quot;</span> <span class="na">marginright=</span><span class="s">&quot;25&quot;</span> <span class="na">margintop=</span><span class="s">&quot;10&quot;</span><span class="nt">/&gt;</span>
-
-  <span class="nt">&lt;horizontalaxis</span> <span class="na">highlightstyle=</span><span class="s">&quot;labels&quot;</span> <span class="na">id=</span><span class="s">&quot;x&quot;</span> <span class="na">linewidth=</span><span class="s">&quot;0&quot;</span> <span class="na">max=</span><span class="s">&quot;201207&quot;</span> <span class="na">min=</span><span class="s">&quot;200601&quot;</span> <span class="na">tickmax=</span><span class="s">&quot;0&quot;</span> <span class="na">tickmin=</span><span class="s">&quot;-4&quot;</span> <span class="na">type=</span><span class="s">&quot;datetime&quot;</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;labels&gt;</span>
-      <span class="nt">&lt;label</span> <span class="na">format=</span><span class="s">&quot;%Y&quot;</span> <span class="na">spacing=</span><span class="s">&quot;100Y 50Y 20Y 10Y 5Y 2Y 1Y &quot;</span><span class="nt">/&gt;</span>
-      <span class="nt">&lt;label</span> <span class="na">format=</span><span class="s">&quot;%n %y&quot;</span> <span class="na">spacing=</span><span class="s">&quot;6M 3M 2M 1M&quot;</span><span class="nt">/&gt;</span>
-    <span class="nt">&lt;/labels&gt;</span>
-    <span class="nt">&lt;title</span> <span class="na">anchor=</span><span class="s">&quot;0 5&quot;</span> <span class="na">position=</span><span class="s">&quot;-15 0&quot;</span><span class="nt">&gt;</span>Month/Year<span class="nt">&lt;/title&gt;</span>
-    <span class="nt">&lt;grid</span> <span class="na">color=</span><span class="s">&quot;0xeeeeee&quot;</span><span class="nt">/&gt;</span>
-  <span class="nt">&lt;/horizontalaxis&gt;</span>
-  <span class="nt">&lt;verticalaxis</span> <span class="na">highlightstyle=</span><span class="s">&quot;labels&quot;</span> <span class="na">id=</span><span class="s">&quot;y&quot;</span> <span class="na">linewidth=</span><span class="s">&quot;0&quot;</span> <span class="na">max=</span><span class="s">&quot;4.5&quot;</span> <span class="na">min=</span><span class="s">&quot;-4.5&quot;</span> <span class="na">tickmax=</span><span class="s">&quot;0&quot;</span> <span class="na">tickmin=</span><span class="s">&quot;-4&quot;</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;labels&gt;</span>
-      <span class="nt">&lt;label</span> <span class="na">densityfactor=</span><span class="s">&quot;0.5&quot;</span> <span class="na">format=</span><span class="s">&quot;%1d&quot;</span> <span class="na">spacing=</span><span class="s">&quot;20 10 5 2 1&quot;</span><span class="nt">/&gt;</span>
-      <span class="nt">&lt;label</span> <span class="na">densityfactor=</span><span class="s">&quot;0.5&quot;</span> <span class="na">format=</span><span class="s">&quot;%.1f&quot;</span> <span class="na">spacing=</span><span class="s">&quot;0.5 0.2 0.1&quot;</span><span class="nt">/&gt;</span>
-    <span class="nt">&lt;/labels&gt;</span>
-    <span class="nt">&lt;title</span> <span class="na">anchor=</span><span class="s">&quot;0 -4&quot;</span> <span class="na">angle=</span><span class="s">&quot;90&quot;</span> <span class="na">position=</span><span class="s">&quot;-15 0&quot;</span><span class="nt">&gt;</span>Some Constant Plots<span class="nt">&lt;/title&gt;</span>
-    
-    
-    <span class="nt">&lt;grid</span> <span class="na">color=</span><span class="s">&quot;0xeeeeee&quot;</span><span class="nt">/&gt;</span>
-  <span class="nt">&lt;/verticalaxis&gt;</span>
-
-  <span class="nt">&lt;plot&gt;</span>
-    <span class="nt">&lt;legend</span> <span class="na">visible=</span><span class="s">&quot;false&quot;</span><span class="nt">/&gt;</span>
-    <span class="nt">&lt;verticalaxis</span> <span class="na">ref=</span><span class="s">&quot;y&quot;</span><span class="nt">&gt;&lt;constant</span> <span class="na">value=</span><span class="s">&quot;0&quot;</span><span class="nt">/&gt;&lt;/verticalaxis&gt;</span>
-    <span class="nt">&lt;renderer</span> <span class="na">type=</span><span class="s">&quot;line&quot;</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;option</span> <span class="na">name=</span><span class="s">&quot;linecolor&quot;</span> <span class="na">value=</span><span class="s">&quot;0x999999&quot;</span><span class="nt">/&gt;</span>
-      <span class="nt">&lt;option</span> <span class="na">name=</span><span class="s">&quot;linewidth&quot;</span> <span class="na">value=</span><span class="s">&quot;1&quot;</span><span class="nt">/&gt;</span>
-    <span class="nt">&lt;/renderer&gt;</span>
-  <span class="nt">&lt;/plot&gt;</span>
-
-  <span class="nt">&lt;plot&gt;</span>
-    <span class="nt">&lt;legend</span> <span class="na">visible=</span><span class="s">&quot;false&quot;</span><span class="nt">/&gt;</span>
-    <span class="nt">&lt;verticalaxis</span> <span class="na">ref=</span><span class="s">&quot;y&quot;</span><span class="nt">&gt;&lt;constant</span> <span class="na">value=</span><span class="s">&quot;2&quot;</span><span class="nt">/&gt;&lt;/verticalaxis&gt;</span>
-    <span class="nt">&lt;renderer</span> <span class="na">type=</span><span class="s">&quot;line&quot;</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;option</span> <span class="na">name=</span><span class="s">&quot;linecolor&quot;</span> <span class="na">value=</span><span class="s">&quot;0x990000&quot;</span><span class="nt">/&gt;</span>
-      <span class="nt">&lt;option</span> <span class="na">name=</span><span class="s">&quot;linewidth&quot;</span> <span class="na">value=</span><span class="s">&quot;1&quot;</span><span class="nt">/&gt;</span>
-    <span class="nt">&lt;/renderer&gt;</span>
-  <span class="nt">&lt;/plot&gt;</span>
-
-  <span class="nt">&lt;plot&gt;</span>
-    <span class="nt">&lt;legend</span> <span class="na">visible=</span><span class="s">&quot;false&quot;</span><span class="nt">/&gt;</span>
-    <span class="nt">&lt;verticalaxis</span> <span class="na">ref=</span><span class="s">&quot;y&quot;</span><span class="nt">&gt;&lt;constant</span> <span class="na">value=</span><span class="s">&quot;-2&quot;</span><span class="nt">/&gt;&lt;/verticalaxis&gt;</span>
-    <span class="nt">&lt;renderer</span> <span class="na">type=</span><span class="s">&quot;line&quot;</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;option</span> <span class="na">name=</span><span class="s">&quot;linecolor&quot;</span> <span class="na">value=</span><span class="s">&quot;0x000099&quot;</span><span class="nt">/&gt;</span>
-      <span class="nt">&lt;option</span> <span class="na">name=</span><span class="s">&quot;linewidth&quot;</span> <span class="na">value=</span><span class="s">&quot;3&quot;</span><span class="nt">/&gt;</span>
-    <span class="nt">&lt;/renderer&gt;</span>
-  <span class="nt">&lt;/plot&gt;</span>
-
-<span class="nt">&lt;/mugl&gt;</span>
-</pre></div>
-
-    </div>
-  </td>
-</tr></table>
-
-    </div>
-  </body>
-</html>
