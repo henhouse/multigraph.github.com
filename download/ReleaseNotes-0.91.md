@@ -8,7 +8,5 @@ Release Notes
 =============
 
 Version 0.91
-------------
-
-* first test release created to test release system
+  * first test release created to test release system
   
