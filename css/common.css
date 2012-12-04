@@ -16,6 +16,22 @@
   margin-right: 20px;
 }
 
+.header div.latest-release {
+  border: 1px solid #000000;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.header .latest-release table td {
+  padding: 2px;
+}
+
+.header .latest-release table td.label {
+  text-align: right;
+  font-weight: bold;
+}
+
 div.header div.title {
   position: absolute;
   left: 100px;
