@@ -111,4 +111,3 @@ above HTML markup; see the [documentation](documentation) for details.
 
 You can see lots of examples of graphs, and the MUGL files that
 generate them, in the [Examples](examples) section of this web site.
-Yee ha!
