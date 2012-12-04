@@ -98,13 +98,6 @@ foreach my $release (@releases) {
 }
 
 #
-# leave the lib/js-multigraph repo with the latest tag checked out
-#
-message("registering submodule lib/js-multigraph to be positioned at $latest_release_tag");
-sys("(cd lib/js-multigraph ; git checkout $latests_release_tag) > /dev/null 2>&1");
-sys("git submodule update --recursive");
-
-#
 # make copies of most recent release files as multigraph.js, multigraph-min.js
 #
 message("creating copies of $latest_release_tag files as multigraph.js, multigraph-min.js, ReleaseNotes.md");
@@ -116,8 +109,22 @@ sys("cp ./download/multigraph-${latest_release_number}.js ./download/multigraph.
 sys("cp ./download/multigraph-min-${latest_release_number}.js ./download/multigraph-min.js");
 
 #
+# leave the lib/js-multigraph repo with the latest tag checked out
+#
+message("registering submodule lib/js-multigraph to be positioned at $latest_release_tag");
+sys("(cd lib/js-multigraph ; git checkout $latests_release_tag) > /dev/null 2>&1");
+sys("git submodule update --recursive");
+
+#
+# build the example pages for this release
+#
+message("building mugl example pages");
+sys("./build-examples");
+
+#
 # write latest release number and date to _include files
 #
+message("writing release-related files");
 open(OUT, ">_includes/latest-release-date.txt");
 print OUT $latest_release_date;
 close(OUT);
