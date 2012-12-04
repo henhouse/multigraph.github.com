@@ -114,4 +114,19 @@ pre {
   padding-top: 6px;
 }
 
+table.release-table {
+  margin-left: 40px;
+  border-collapse: collapse;
+}
 
+table.release-table th, table.release-table td {
+  border: 1px solid black;
+  padding: 5px;
+}
+
+
+.release-table tr th {
+  text-align: left;
+  font-weight: bold;
+
+}

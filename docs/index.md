@@ -5,5 +5,7 @@ menu-documentation: selected
 title: Multigraph - Documentation
 ---
 
-Placeholder text for the documentation page.
+[Creating a Release](release.html)
+
+# Update the ReleaseNotes.md file in the js-multigraph repo
 
