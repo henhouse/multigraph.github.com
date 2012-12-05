@@ -5,4 +5,5 @@ menu-documentation: selected
 title: Multigraph - Documentation
 ---
 
-[Creating a Release](release.html)
+* [Mugl Schema XSD](mugl-schema.html)
+* [Creating a Release](release.html)

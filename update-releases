@@ -43,7 +43,7 @@ message("updating lib/js-multigraph with the latest commits");
 sys("(cd lib/js-multigraph ; git checkout master; git pull )");
 
 #
-# build list of release tags by runnign ./lib/js-multigraph/tags script
+# build list of release tags by running ./lib/js-multigraph/tags script
 #
 message("building list of release tags");
 @releases = ();
@@ -62,7 +62,7 @@ close(TAGS);
 
 
 #
-# copy js and ReleaseNotes files
+# copy built js files, and ReleaseNotes files, for each release, from js-multigraph to downloads
 #
 message("copying js and ReleaseNotes files for releases from lib/js-multigraph to downloads directory");
 foreach my $release (@releases) {
@@ -120,6 +120,12 @@ sys("git submodule update --recursive");
 #
 message("building mugl example pages");
 sys("./build-examples");
+
+#
+# copy the mugl-schema xsd file into place
+#
+message("copying lib/js-multigraph/mugl-schema/mugl.xsd");
+sys("cp lib/js-multigraph/mugl-schema/mugl.xsd _includes");
 
 #
 # write latest release number and date to _include files
