@@ -14,7 +14,7 @@ The authors are
 * John Frimmel (jrfrimme@unca.edu)
 * Danielle Betke
 
-with past contributes by
+with contributions to prior versions by
 
 * Devin Eldreth
 * Egg Davis

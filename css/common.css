@@ -146,3 +146,12 @@ table.release-table th, table.release-table td {
   font-weight: bold;
 
 }
+
+table.logo-footer {
+  position: absolute;
+  bottom: 25px;
+}
+
+table.logo-footer tr td {
+  padding-left: 20px;
+}
