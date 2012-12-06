@@ -8,9 +8,7 @@ title: Multigraph - Creating a Release
 Creating a Release of Multigraph
 ================================
 
-1. Be absolutely sure that you're ready to create a release; deleting a release is difficult.  Do
-   all of the after this one at the same time; don't start the process and leave some of the steps
-   undone.  Before you start, be sure to:
+1. Be absolutely sure that you're ready to create a release; deleting a release is difficult.  Before you start, be sure to:
    * make sure your copy of the js-multigraph repo is on the master branch
    * make sure your copy of the js-multigraph repo is up to date with the latest commits, or,
      if you want to create a release that is not at the head of the master branch, that
@@ -19,6 +17,9 @@ Creating a Release of Multigraph
      js-multigraph and positioned at the correct commit for the release
    * run all jasmine tests
    * view all graphics tests
+   
+1. Do all of the following steps at the same time; don't start the release process and
+   leave it before you have finished all these steps.
 
 1. Decide on a version number for the release; this is usually done by incrementing the
    minor verison number (the part after the decimal) by one.  You can view a list of all

@@ -29,6 +29,7 @@ area, in order to see some particular feature or relationship,
 Multigraph lets you pan or zoom around in "data space" in order to better
 understand and visualize the data.
 
+Multigraph is free software; see the [License](docs/license.html) page for details.
 
 Interacting with a Multigraph
 ============
