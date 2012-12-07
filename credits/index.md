@@ -6,7 +6,7 @@ title: Multigraph - Credits
 ---
 
 Multigraph was developed at UNC Asheville's National Environmental Modeling and Analysis Center (NEMAC), with
-support from the National Oceanic Atmospheric Association (NOAA) and the US Forest Service.
+support from the National Oceanic and Atmospheric Association (NOAA) and the US Forest Service.
 
 The authors are
 

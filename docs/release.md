@@ -114,7 +114,7 @@ site, and prevents the <code>update-releases</code> script from ever including i
    the bad release, and re-run the <code>update-releases</code> script.
 
         cd multigraph-github.com
-        rm download/*-4.1.*
+        git rm download/*-4.1.*
         ./update-releases
 
 1. Preview the web site by running jekyll locally.  Be sure to especially
@@ -153,7 +153,7 @@ github since you created the release that you're deleting.
    the deleted release, and re-run the <code>update-releases</code> script.
 
         cd multigraph-github.com
-        rm download/*-4.1.*
+        git rm download/*-4.1.*
         ./update-releases
 
 1. Preview the web site by running jekyll locally.  Be sure to especially
