@@ -12,6 +12,7 @@ The authors are
 
 * Mark Phillips (mphillip@unca.edu)
 * John Frimmel (jrfrimme@unca.edu)
+* Semmy Purewall
 * Danielle Betke
 
 with contributions to prior versions by
