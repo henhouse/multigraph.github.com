@@ -93,53 +93,126 @@ object are:
 
 * <code>mugl</code>
 
-  This should be the URL of a MUGL file to load.  This option is
-  required.
+  this should be the URL of a MUGL file to load.  Exactly one
+  of <code>mugl</code> or <code>muglString</code> must be present.
   
-* <code>width</code>
+* <code>muglString</code> 
 
-  The width of the graph, in pixels.  If this is not present, Multigraph
+  this should be a string which contains the MUGL XML to be loaded
+  (the actual XML document, as a string  not the URL or name of a
+  file containing it).  Exactly one of <code>mugl</code> or
+  <code>muglString</code> must be present.
+  
+* <code>width</code> 
+
+  the width of the graph, in pixels.  If this is not present, Multigraph
   will query the div itself to get its width; this means that you
   can use CSS to assign it.
 
-* <code>height</code>
+* <code>height</code> 
 
-  The height of the graph, in pixels.  If this is not present, Multigraph
+  the height of the graph, in pixels.  If this is not present, Multigraph
   will query the div itself to get its height; this means that you
   can use CSS to assign it.
 
-* <code>driver</code>
+* <code>driver</code> 
 
-  The graphics driver to use in the graph.  The possible values are
+  the graphics driver to use in the graph.  The possible values are
   
-  * "canvas"
-  
-    Uses the HTML5 Canvas tag for graphics.  This works in all recent browsers
+  * <code>"canvas"</code> 
+
+    causes Multigraph to use the HTML5 Canvas tag for graphics.  This works in all recent browsers
     except versions of IE prior to 9.
   
-  * "raphael"
-  
-    Uses the [Raphael](http://raphaeljs.com) graphics library for graphics.  This
+  * <code>"raphael"</code> 
+
+    causes Multigraph to use the [Raphael](http://raphaeljs.com) graphics library for graphics.  This
     library uses SVG in browsers that support SVG; it uses VML in versions of IE
     prior to 9.
   
-  * "auto"
-  
-    This is the default; it causes Multigraph to use the canvas driver in
+  * <code>"auto"</code> 
+
+    this is the default; it causes Multigraph to use the canvas driver in
     all browsers that support it, and otherwise it uses the Raphael driver.
 
-* <code>error</code>
+* <code>error</code> 
 
-  A custom error-handling function (see below)
+  this is optional; if it is present, its value should be a function
+  for handling error messages that Multigraph generates; Multigraph
+  will call this function if and when it encounters an error in the
+  course of loading a MUGL file, drawing a graph, or doing anything
+  else that it does. The function should take a single argument which
+  is an instance of a JavaScript Error object.  The default behavior,
+  which is what happens if this option is not present, is to use
+  Multigraph's own internal mechanism for displaying user messages.
+    
+* <code>warning</code> 
+
+  this is optional; if it is present, its value should be a function
+  for handling warning messages, similar to the above description for
+  error messages.  (Warning messages are like errors but are less
+  severe.)  The default behavior is that warnings are handled using
+  whatever the current mechanism for handling errors is --- i.e.
+  either Multigraph's internal message display, or the custom function
+  specified by the value of the <code>error</code> option.
   
-* <code>warning</code>
-
-  A custom warning-handling function (see below)
-  
-### Custom Error/Warning Handlers
-
-Blah blah blah...
-
 ### Accessing a Multigraph
 
-Blah blah blah...
+You can also use the <code>multigraph</code> JQuery plugin
+to retrieve and interact with a Multigraph.  The plugin
+defines a method called <code>multigraph</code> (both
+the plugin and the method are named <code>multigraph</code>).
+This method returns a JQuery promise object that resolves
+when the Multigraph object has finished loading, and you can
+use that promise object to access the graph itself.
+
+If you're not familiar with JQuery promise objects, they're just a
+convenient way to handle asynchronous code.  A promise object is
+needed in this case because Multigraph doesn't finish constructing the
+graph until after the MUGL file it references has been loaded, and
+this generally involves an asynchronous (ajax) request for the file.
+So it's not possible to directly return the Multigraph object;
+instead, what is returned is a promise object that can be used to
+apply functions to the (possibly not-yet-created) Multigraph object
+through the promise object's done() method.
+
+This is easier to follow with a concrete example:
+
+{% highlight javascript %}
+  $('#mygraph').multigraph({ 'mugl' : URL_OF_MUGL_FILE });
+  var multigraphPromise = $('#mygraph').multigraph('multigraph');
+  multigraphPromise.done(function(m) {
+    // The promise will call this function once the Multigraph object
+    // has been constructed, and pass it in as the argument 'm'.  Here
+    // you can put code that accesses the Multigraph API using m.  For
+    // example:
+    console.log("This graph's first axis has an id of: " + m.graphs().at(0).axes().at(0).id());
+  });
+  multigraphPromise.done(function(m) {
+    // You can call the promise's done() method as many times as you want; it will execute
+    // every function you pass to it, in the same order in which you pass them, once the
+    // Multigraph object has been constructed.
+    console.log("And its second axis has an id of: " + m.graphs().at(0).axes().at(1).id());
+  });
+{% endhighlight %}
+
+The <code>multigraph</code> plugin also defines a convenience method
+called <code>done</code>, which simply delegates to the underlying promise's 
+<code>done</code> method; you can use this plugin method to avoid having to 
+store a reference to the promise object:
+
+{% highlight javascript %}
+  $('#mygraph').multigraph({ 'mugl' : URL_OF_MUGL_FILE });
+  $('#mygraph').multigraph('done', function(m) {
+    console.log("This graph's first axis has an id of: " + m.graphs().at(0).axes().at(0).id());
+  });
+  $('#mygraph').multigraph('done', function(m) {
+    console.log("And its second axis has an id of: " + m.graphs().at(0).axes().at(1).id());
+  });
+{% endhighlight %}
+
+The Multigraph object, <code>m</code> in the examples above, is an instance of the
+window.multigraph.Multigraph model in the Multigraph JavaScript API.  The
+[documentation for this API](api) hasn't been fully written yet, but the beginnings of
+it are in place.
+

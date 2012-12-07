@@ -12,7 +12,7 @@ The authors are
 
 * Mark Phillips (mphillip@unca.edu)
 * John Frimmel (jrfrimme@unca.edu)
-* Semmy Purewal
+* Semmy Purewal (semmypurewal@gmail.com)
 * Danielle Betke
 
 with contributions to prior versions by
@@ -28,4 +28,3 @@ with contributions to prior versions by
     <td><img src="../images/usfs.jpg"></td>
   </tr>
 </table>
-
