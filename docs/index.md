@@ -24,10 +24,25 @@ the following documentation resources are also available:
 
   The official XML schema definition for MUGL, as an XSD file.
 
-* [API Documentation](api)
+* [Using Multigraph with JavaScript](js.html)
 
-  Contains documentation on how to invoke Multigraph from JavaScript, including
-  how to incorporate Multigraph as a component in a larger application.
+  An introduction to how to use JavaScript to create and/or interact
+  with Multigraph.
+  
+* [JavaScript API Reference](api)
+
+  This is the reference documentation for Multigraph's JavaScript
+  objects, generated automaticaly from the source code using
+  [YUIDoc](http://yui.github.com/yuidoc).  At the moment it is
+  somewhat incomplete and is intended mostly for internal use by
+  Multigraph developers, but the idea is that ultimately these docs
+  will be fleshed out and will become useful as a reference for
+  building applications that use and interact with Multigraph.
+  
+  Note that Multigraph uses the [Jermaine](http://github.com/semmypurewal/jermaine)
+  JavaScript modeling tool to define most of its objects; the Multigraph
+  JavaScript API Reference documentation will make a lot more sense if you
+  first have some familiarity with Jermaine.
   
 * [Creating a Release](release.html)
 
