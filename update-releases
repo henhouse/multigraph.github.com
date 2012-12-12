@@ -36,6 +36,16 @@ EOF
     close(OUT);
 }
 
+if (! `which yuidoc`) {
+    die "yuidoc is not installed on this system; update-releases requires it.\n";
+}
+if (! `which ant`) {
+    die "ant is not installed on this system; update-releases requires it.\n";
+}
+if (! `which git`) {
+    die "git is not installed on this system; update-releases requires it.\n";
+}
+
 #
 # make sure js-multigraph repo in lib/js-multigraph has latest commits
 #
