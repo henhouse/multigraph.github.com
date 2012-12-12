@@ -8,10 +8,10 @@ title: Multigraph - Documentation
 License
 =======
 
-Multigraph is free software, distributed with the following copyright and license.
+Multigraph is free software; you may use it under the terms of the MIT License:
 
-Copyright (C) 2012, 2013 University of North Carolina at Asheville.
-
-<code>
+<code><pre>
 {% include LICENSE.txt %}
-</code>
+</pre></code>
+
+[More information about the MIT License](http://en.wikipedia.org/wiki/MIT_license)
