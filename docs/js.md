@@ -11,14 +11,15 @@ Using Multigraph with JavaScript
 Multigraph's HTML5 interface lets you create a graph in an HTML page
 by simply putting a <code>div</code> in the page which has
 <code>class="multigraph"</code>, and a <code>data-src</code> attribute
-that gives the location of the MUGL file to load.  Multigraph scans
-through the entire page looking for all <code>div</code>s of class
+that gives the location of the MUGL file to load (see the
+[home page](..) for details).  Multigraph scans through the entire
+page looking for all <code>div</code>s of class
 <code>multigraph</code>, and runs some code on each one to insert the
 relevant graph into it.  This is the easiest way to get a Multigraph
 into a web page, and doesn't involve writing any JavaScript code.  If
-you want more control over the details of what Multigraph does, though, you
-can write your own custom JavaScript code that interacts with
-Multigraph.
+you want more control over the details of what Multigraph does,
+though, you can write your own custom JavaScript code that interacts
+with Multigraph.
 
 The <code>multigraph</code> JavaScript Namespace
 ------------------------------------------------
