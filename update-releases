@@ -119,8 +119,9 @@ sys("cp ./download/multigraph-min-${latest_release_number}.js ./download/multigr
 # leave the lib/js-multigraph repo with the latest tag checked out
 #
 message("registering submodule lib/js-multigraph to be positioned at $latest_release_tag");
-sys("(cd lib/js-multigraph ; git checkout $latests_release_tag) > /dev/null 2>&1");
-sys("git submodule update --recursive");
+sys("(cd lib/js-multigraph ; git checkout $latest_release_tag) > /dev/null 2>&1");
+###NO: this seems to undo the above line!:
+###sys("git submodule update --recursive");
 
 #
 # build the example pages for this release
