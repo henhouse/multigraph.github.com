@@ -1,0 +1,337 @@
+<?xml version="1.0"?>
+<mugl>
+  <window
+      width="INTEGER"
+      height="INTEGER"
+      border="INTEGER(2)"
+      bordercolor="COLOR(black)"
+      margin="INTEGER(2)"
+      padding="INTEGER(5)">
+    <!--|
+        | The <window> element specifies the following things related to the graph's
+        | margin, border, and padding area.  The <window> element is optional and
+        | can appear at most once in the MUGL file.
+        |
+        |   width: width of the graph, in pixels
+        |   height: height of the graph, in pixels
+        |       The width and height attributes are 
+        |       usually are omitted, in which case they default to the size
+        |       specified when the graph is created, either with the
+        |       "data-width" and "data-height" attributes if the graph is
+        |       created using HTML5 markup, or with CSS attributes on the
+        |       div element that contains the graph, or with options passed
+        |       to the Multigraph constructor in JavaScript code.
+        |   border:  thickness, in pixels, of the border to draw around the graph.
+        |       A value of 0 causes no border to be drawn.
+        |   bordercolor: color to use for the border.
+        |   margin: amount of margin to leave outside all four sides of the border.
+        |   padding: amount of padding to leave inside all four sides of the border
+        |-->
+  </window>
+
+  <legend
+      visible="BOOLEAN"
+      base="POINT(1,1)"
+      anchor="POINT(1,1)"
+      position="POINT(0,0)"
+      frame="FRAME(padding)"
+      color="COLOR(white)"
+      opacity="DOUBLE(1.0)"
+      border="INTEGER(1)"
+      bordercolor="COLOR(black)"
+      rows="INTEGER"
+      columns="INTEGER"
+      cornerradius="INTEGER(0)"
+      padding="INTEGER(0)">
+    <!--| 
+        | The <legend> element controls whether and how Multigraph creates a legend
+        | for the graph.   The <legend> element is optional and
+        | can appear at most once in the MUGL file.
+        |
+        |   visible: whether the legend should be drawn or not; the default is "false"
+        |       if there is only one plot in the graph, and "true" if there are more
+        |       than one plot
+        |   base, anchor, position, frame: specify the location of the legend in the
+        |       graph
+        |   color: color of the legend background
+        |   opacity: opacity of the legend background; a value of 0 causes no
+        |       background to be drawn behind the legend.  This opacity value only
+        |       affects the legend background; it does not affect the text or icons
+        |       inside the legend
+        |   border: thickness, in pixels, of the border drawn around the legend; a
+        |       value of 0 causes no border to be drawn
+        |   bordercolor: color of border around the legend
+        |   rows, columns: the legend is layed out in a grid, with an icon and text
+        |       label corresponding to a single plot in each grid cell.  These attributes
+        |       determine how many rows and/or columns are in the grid.
+        |       If neither rows nor columns is specified, columns defaults to 1,
+        |       and there will be one row for each plots
+        |       in the graph.  If only one of rows/columns is specified, the other
+        |       will be computed to be whatever it needs to be so that rows X columns
+        |       is greater than or equal to the number of plots.  If both rows and columns
+        |       are specified, the legend is layed out in a grid of that size.
+        |   cornerradius: the radius, in pixels, of rounding to apply to the corners of
+        |       the legend box
+        |   padding: an amount of space, in pixels, to leave inside the border of the legend
+        |-->
+    <icon
+        width="INTEGER(40)"
+        height="INTEGER(30)"
+        border="INTEGER(1)">
+      <!--|
+          | The <icon> subelement of <legend> controls the shape and appearance of the
+          | little icons that Mulitgraph draws for each plot in the legend.  This subelement
+          | is optional and may appear at most once inside the <legend> element.
+          |
+          |   width: the width, in pixels, of the icon
+          |   height: the height, in pixels, of the icon
+          |   horder: the thickness, in pixels, of the border to be drawn around each
+          |       plot icon
+          |-->
+    </icon>
+  </legend>
+
+  <background>
+    <!--|
+        | The <background> element controls how Multigraph draws the graph's background
+        | (the area inside the border).     The <background> element is optional and can
+        | appear at most once in the MUGL file.
+        |
+        |   color: a solid color to fill the background with
+        |-->
+    color="COLOR(white)">
+    <img
+        src="STRING"
+        anchor="POINT(-1 -1)"
+        base="POINT(-1 -1)"
+        position="POINT(0 0)"
+        frame="FRAME(padding)">
+      <!--|
+          | The <img> subelement of <background> specifies an image to draw in
+          | the background.  This subelement is optional and can appear at most
+          | once.  If it is present, the image is drawn after the background is
+          | filled with the background color, but before anything else is drawn,
+          | so the image will appear underneath everything.
+          |
+          |   src: the URL of the image to be drawn.  If this is a relative
+          |       URL, it is interpreted relative to the URL of the MUGL file.
+          |       This attribute is required.
+          |   anchor, base, position, frame:  specify the positioning
+          |       of the image
+          |-->
+    </img>
+  </background>
+
+  <plotarea
+      marginbottom="INTEGER(35)"
+      marginleft="INTEGER(38)"
+      margintop="INTEGER(10)"
+      marginright="INTEGER(35)"
+      border="INTEGER(0)"
+      bordercolor="COLOR(0xeeeeee)"
+      color="COLOR">
+    <!--|
+        | The <plotarea> element specifies the size and appearance of the plot area.  The
+        | element is optional and can appear at most once in the MUGL file.
+        |   
+        |  marginbottom, marginleft, margintop, marginright: these attributes give the
+        |      margin amounts for the plot area, in pixels
+        |  border: the thickness, in pixels, of a border to draw around the plot area; a
+        |      value of 0 means that no border is drawn
+        |  bordercolor: the color to use for the border
+        |  color: a color to fill the background of the plot area with.  If the attribute is
+        |      present, the plot area is filled with this color after any background color
+        |      and/or background image from the <background> element are drawn.  The default
+        |      behavior, if this attribute is not specified, is that no fill is applied
+        |      to the plot area, so that whatever color and/or image was drawn for the
+        |      <background> element shows through.
+        |-->
+  </plotarea>
+
+  <title
+      base="POINT(0 1)"
+      anchor="POINT(0 1)"
+      position="POINT(0 0)"
+      frame="FRAME(padding)"
+      color="COLOR(white)"
+      opacity="DOUBLE(1.0)"
+      border="INTEGER(0)"
+      bordercolor="COLOR(black)"
+      padding="INTEGER(0)"
+      cornerradius="INTEGER(15)"
+      fontsize="INTEGER">
+    <!--|
+        | The <title> element indicates a title to be displayed in the graph.  If the <title>
+        | element is not present, no title is drawn.  If it is present, the text of the element
+        | indicates the text of the title.
+        |
+        | NOTE: at the time of this writing, the title element is not fully implemented in
+        |       Multigraph 4.0.  A better way to implement a graph title is to do it outside   
+        |       of Multigraph: create a <div> element outside of the Multigraph <div>, and use
+        |       CSS to style and position it as desired.  (You can even position it to appear
+        |       as though it's inside the graph, by using relative or absolute positioning.)
+        |
+        |    anchor, base, position, frame:  specify the position of the title
+        |    color: color of the background rectangle to be drawn behind the title
+        |    opacity: opacity of the title background
+        |    border: thickness, in pixels, of the border drawn around the title; a
+        |        value of 0 causes no border to be drawn
+        |    bordercolor: color of border around the title
+        |    padding: an amount of space, in pixels, to leave inside the border of the title
+        |    cornerradius: the radius, in pixels, of rounding to apply to the corners of
+        |        the title box
+        |    fontsize: the size of the font to use for the title
+        |-->
+  </title>
+
+  <horizontalaxis
+      id="STRING"
+      type="DATATYPE(number)"
+      length="DISPLACEMENT(1.0)"
+      base="POINT(-1,1)"
+      anchor="DOUBLE(-1)"
+      position="POINT(0,0)"
+      min="DATAVALUEORAUTO(auto)"
+      max="DATAVALUEORAUTO(auto)"
+      minposition="DISPLACEMENT(-1.0)"
+      maxposition="DISPLACEMENT(1.0)"
+      color="COLOR(black)"
+      linewidth="INTEGER(1)"
+      tickmin="INTEGER(-3)"
+      tickmax="INTEGER(3)"
+      tickcolor="COLOR(black)">
+    <!--|
+        | The <horizontalaxis> element specifies a horizontal axis element for the graph.
+        | Every graph has at least one horizontal axis, but the <horizontalaxis> element
+        | is optional in the MUGL file; if it is absent, a horizontal axis with all
+        | the default values is implied.
+        |
+        | id: the id of the axis.  If this attribute is missing, an id of "x" is used for
+        |     the first horizontal axis, "x1" for the second, and so on.
+        | type: the data type of the axis
+        | length: the length of the axis, as a DISPLACEMENT, where A is a number between 0
+        |     and 1 representing a fraction of the width of the plot area, and B is a number
+        |     of pixels to be added to that length
+        | base: a POINT in the range (-1,-1) to (1,1) giving the location in the plot area
+        |     of the base point for the axis's location
+        | position: a POINT value giving the position offset for the location of the axis,
+        |     relative to the base point
+        | anchor: a single number in the range [-1,1] indicating the location of the
+        |     anchor point along the axis.  -1 corresponds to the left endpoint, and 1
+        |     corresponds to the right endpoint.
+        | min: the minimum data value for the axis; this is typically the value associated
+        |     with the left endpoint of the axis, but see "minposition" below.
+        | max: the maximum data value for the axis; this is typically the value associated
+        |     with the right endpoint of the axis, but see "maxposition" below.
+        | minposition: the location on the axis that corresponds to the minimum data value;
+        |     this is a DISPLACEMENT value, in which A is number in the range [-1,1], with -1
+        |     corresponding to the left endpoint, and 1 corresponding to the right endpoint.
+        |     The value B is a pixel offset from the location determined by A.  The default
+        |     value of minposition is "-1", which corresponds to the left endpoint of the axis.
+        | maxposition: the location on the axis that corresponds to the maximum data value;
+        |     this is a DISPLACEMENT value, in which A is number in the range [-1,1], with -1
+        |     corresponding to the left endpoint, and 1 corresponding to the right endpoint.
+        |     The value B is a pixel offset from the location determined by A.  The default
+        |     value of minposition is "1", which corresponds to the right endpoint of the axis.
+        | color: the color of the line to draw for the axis
+        | linewidth: the pixel thickness of the line to draw for the axis
+        | tickmin: the length, in pixels, of the part of the axis tick marks that extends below
+        |     the axis
+        | tickmax: the length, in pixels, of the part of the axis tick marks that extends above
+        |     the axis
+        | tickcolor: the color to use when drawing the axis tick marks
+        |-->
+    
+    
+    <title
+        position="POINT"
+        anchor="POINT"
+        angle="DOUBLE(0)">
+      <!--|
+          | The <title> subelement of <horizontalaxis>...
+          |-->
+      <!--
+          "position-horizontal-top"    : function () { return new window.multigraph.math.Point(0, 15); },
+          "position-horizontal-bottom" : function () { return new window.multigraph.math.Point(0, -18); },
+          "position-vertical-right"    : function () { return new window.multigraph.math.Point(33, 0); },
+          "position-vertical-left"     : function () { return new window.multigraph.math.Point(-25, 0); },
+          
+          "anchor-horizontal-top"      : function () { return new window.multigraph.math.Point(0, -1); },
+          "anchor-horizontal-bottom"   : function () { return new window.multigraph.math.Point(0, 1); },
+          "anchor-vertical-right"      : function () { return new window.multigraph.math.Point(-1, 0); },
+          "anchor-vertical-left"       : function () { return new window.multigraph.math.Point(1, 0); },
+      -->
+    </title>
+    
+    <labels
+        format="STRING"
+        start="STRING(0)"
+        angle="DOUBLE(0.0)"
+        position="POINT(0 0)"
+        anchor="POINT(0 0)"
+        color="COLOR(black)"
+        spacing="STRING"
+        densityfactor="DOUBLE(1.0)">
+      <!--|
+          | The <labels> subelement of <horizontalaxis>...
+          |-->
+      <!-- 10000 5000 2000 1000 500 200 100 50 20 10 5 2 1 0.1 0.01 0.001 -->
+      <!-- 1000Y 500Y 200Y 100Y 50Y 20Y 10Y 5Y 2Y 1Y 6M 3M 2M 1M 7D 3D 2D 1D 12H 6H 3H 2H 1H -->
+      <label
+          format="STRING"
+          start="STRING"
+          angle="DOUBLE"
+          position="POINT"
+          anchor="POINT"
+          spacing="STRING REQUIRED"
+          densityfactor="DOUBLE">
+        <!--|
+            | The <label> subelement of <labels>...
+            |-->
+      </label>
+    </labels>
+    
+    <grid
+        color="COLOR(0xeeeeee)"
+        visible="BOOLEAN(false)">
+      <!--|
+          | The <grid> subelement of <horizontalaxis>...
+          |-->
+    </grid>      
+    
+    <pan
+        allowed="Boolean(yes)"
+        min="DataValue"
+        max="DataValue">
+      <!--|
+          | The <pan> subelement of <horizontalaxis>...
+          |-->
+    </pan>
+    
+    <zoom
+        allowed="Boolean(yes)"
+        min="DataValue"
+        max="DataValue"
+        anchor="DataValue">
+      <!--|
+          | The <zoom> subelement of <horizontalaxis>...
+          |-->
+    </zoom>
+    
+    <binding
+        id="required"
+        min="DataValue REQUIRED"
+        max="DataValue REQUIRED">
+      <!--|
+          | The <binding> subelement of <horizontalaxis>...
+          |-->
+    </binding>
+    
+  </horizontalaxis>
+  
+  <element name="verticalaxis"   type="Axis"           minOccurs="0" maxOccurs="unbounded"/>
+  <element name="plot"           type="Plot"           minOccurs="0" maxOccurs="unbounded"/>
+  <element name="data"           type="Data"           minOccurs="0" maxOccurs="unbounded"/>
+
+
+</mugl>
