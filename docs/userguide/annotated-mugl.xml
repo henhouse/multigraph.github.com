@@ -14,7 +14,7 @@
         |
         |   width: width of the graph, in pixels
         |   height: height of the graph, in pixels
-        |       The width and height attributes are 
+        |       The width and height attributes are
         |       usually are omitted, in which case they default to the size
         |       specified when the graph is created, either with the
         |       "data-width" and "data-height" attributes if the graph is
@@ -28,7 +28,6 @@
         |   padding: amount of padding to leave inside all four sides of the border
         |-->
   </window>
-
   <legend
       visible="BOOLEAN"
       base="POINT(1,1)"
@@ -43,7 +42,7 @@
       columns="INTEGER"
       cornerradius="INTEGER(0)"
       padding="INTEGER(0)">
-    <!--| 
+    <!--|
         | The <legend> element controls whether and how Multigraph creates a legend
         | for the graph.   The <legend> element is optional and
         | can appear at most once in the MUGL file.
@@ -90,7 +89,6 @@
           |-->
     </icon>
   </legend>
-
   <background>
     <!--|
         | The <background> element controls how Multigraph draws the graph's background
@@ -121,7 +119,6 @@
           |-->
     </img>
   </background>
-
   <plotarea
       marginbottom="INTEGER(35)"
       marginleft="INTEGER(38)"
@@ -133,7 +130,7 @@
     <!--|
         | The <plotarea> element specifies the size and appearance of the plot area.  The
         | element is optional and can appear at most once in the MUGL file.
-        |   
+        |
         |  marginbottom, marginleft, margintop, marginright: these attributes give the
         |      margin amounts for the plot area, in pixels
         |  border: the thickness, in pixels, of a border to draw around the plot area; a
@@ -147,7 +144,6 @@
         |      <background> element shows through.
         |-->
   </plotarea>
-
   <title
       base="POINT(0 1)"
       anchor="POINT(0 1)"
@@ -166,7 +162,7 @@
         | indicates the text of the title.
         |
         | NOTE: at the time of this writing, the title element is not fully implemented in
-        |       Multigraph 4.0.  A better way to implement a graph title is to do it outside   
+        |       Multigraph 4.0.  A better way to implement a graph title is to do it outside
         |       of Multigraph: create a <div> element outside of the Multigraph <div>, and use
         |       CSS to style and position it as desired.  (You can even position it to appear
         |       as though it's inside the graph, by using relative or absolute positioning.)
@@ -183,7 +179,6 @@
         |    fontsize: the size of the font to use for the title
         |-->
   </title>
-
   <horizontalaxis
       id="STRING"
       type="DATATYPE(number)"
@@ -201,13 +196,15 @@
       tickmax="INTEGER(3)"
       tickcolor="COLOR(black)">
     <!--|
-        | The <horizontalaxis> element specifies a horizontal axis element for the graph.
-        | Every graph has at least one horizontal axis, but the <horizontalaxis> element
-        | is optional in the MUGL file; if it is absent, a horizontal axis with all
-        | the default values is implied.
+        | The <horizontalaxis> and <verticalaxis> elements specify axes for the graph.
+        | Every graph has at least one horizontal axis and at least one vertical axis,
+        | but the <horizontalaxis> and <verticalaxis> elements are optional in the MUGL
+        | file; if either is absent, an axis of that orientation with all the default
+        | values is implied.
         |
         | id: the id of the axis.  If this attribute is missing, an id of "x" is used for
-        |     the first horizontal axis, "x1" for the second, and so on.
+        |     the first horizontal axis, "x1" for the second, and so on.  For vertical axes,
+        |     the default ids are "y", "y1", etc.
         | type: the data type of the axis
         | length: the length of the axis, as a DISPLACEMENT, where A is a number between 0
         |     and 1 representing a fraction of the width of the plot area, and B is a number
@@ -241,97 +238,227 @@
         |     the axis
         | tickcolor: the color to use when drawing the axis tick marks
         |-->
-    
-    
-    <title
-        position="POINT"
-        anchor="POINT"
-        angle="DOUBLE(0)">
-      <!--|
-          | The <title> subelement of <horizontalaxis>...
-          |-->
-      <!--
-          "position-horizontal-top"    : function () { return new window.multigraph.math.Point(0, 15); },
-          "position-horizontal-bottom" : function () { return new window.multigraph.math.Point(0, -18); },
-          "position-vertical-right"    : function () { return new window.multigraph.math.Point(33, 0); },
-          "position-vertical-left"     : function () { return new window.multigraph.math.Point(-25, 0); },
-          
-          "anchor-horizontal-top"      : function () { return new window.multigraph.math.Point(0, -1); },
-          "anchor-horizontal-bottom"   : function () { return new window.multigraph.math.Point(0, 1); },
-          "anchor-vertical-right"      : function () { return new window.multigraph.math.Point(-1, 0); },
-          "anchor-vertical-left"       : function () { return new window.multigraph.math.Point(1, 0); },
-      -->
-    </title>
-    
     <labels
         format="STRING"
-        start="STRING(0)"
-        angle="DOUBLE(0.0)"
-        position="POINT(0 0)"
-        anchor="POINT(0 0)"
+        start="DATAVALUE(0)"
+        angle="DOUBLE(0)"
+        position="POINT"
+        anchor="POINT"
         color="COLOR(black)"
         spacing="STRING"
         densityfactor="DOUBLE(1.0)">
       <!--|
-          | The <labels> subelement of <horizontalaxis>...
+          | The <labels> subelement of the axis elements indicates how and where tick marks
+          | and labels should be drawn along the axis.
+          |
+          | format: the format string to use for the labels; defaults to "%.1f" for number
+          |     axes, and to "%Y-%M-%D %H:%i" for datetime axes
+          | start: a data value that indicates how the tickmarks and labels should be aligned
+          |     along the axis.  The alignment will be chosen so that a tick mark would be drawn
+          |     at the location specified by the start value.  Note that this does not necessarily
+          |     mean that labeling will actually start at this value; labeling will start at whatever
+          |     multiple of the chosen spacing, aligned at the start value, occurs at or after the
+          |     left endpoint of the axis.  In future versions of MUGL this attribute might be better
+          |     renamed to "align".
+          | position, anchor, angle: specifies the position of the label associated with each tick
+          |     mark.  The "base" value for each label's positioning is the point along the axis
+          |     corresonding to the value being labeled (i.e. the location of the tick mark along the axis).
+          |     The default value for the angle is 0; the default values for the position and anchor depend
+          |     on the orientation and location of the axis:
+          |
+          |                          bottom half, or left              top half, or right
+          |                          half, of plot area                half, of plot area
+          |
+          |         horizontal         position: (0,-5)                 position: (0, 5)
+          |                            anchor: (0,1)                    anchor: (0, -1)
+          |
+          |         vertical           position: (-8, 0)                position: (5, 0)
+          |                            anchor: (1, 0)                   anchor: (-1, 0)
+          |
+          | color: the color to use when drawing labels
+          | spacing: a space-separated list of spacings, where each spacing is a DATAMEASURE.  Multigraph will
+          |     choose from among these spacings when deciding how many labels to draw; it will chose the
+          |     spacing that results in the "optimal" density of labels along the axis.  The default for number
+          |     axes is
+          |         "10000 5000 2000 1000 500 200 100 50 20 10 5 2 1 0.1 0.01 0.001"
+          |     and the default for datetime axes is
+          |         "1000Y 500Y 200Y 100Y 50Y 20Y 10Y 5Y 2Y 1Y 6M 3M 2M 1M 7D 3D 2D 1D 12H 6H 3H 2H 1H"
+          | densityfactor: this is a factor that can be used to tweak Multigraph's concept what what
+          |     constitutes an "optimal" density of labels along the axis.  It should be a positive number;
+          |     Values greater than one result in more labels, and values less than one result in fewer
+          |     labels.  Note that this attribute is not yet fully implemented in Multigraph 4.0.
+          |
           |-->
-      <!-- 10000 5000 2000 1000 500 200 100 50 20 10 5 2 1 0.1 0.01 0.001 -->
-      <!-- 1000Y 500Y 200Y 100Y 50Y 20Y 10Y 5Y 2Y 1Y 6M 3M 2M 1M 7D 3D 2D 1D 12H 6H 3H 2H 1H -->
       <label
           format="STRING"
           start="STRING"
           angle="DOUBLE"
           position="POINT"
           anchor="POINT"
-          spacing="STRING REQUIRED"
+          spacing="STRING"
           densityfactor="DOUBLE">
         <!--|
-            | The <label> subelement of <labels>...
+            | The <labels> element may contain one or more <label> subelements.
+            |
+            | If no <label> subelements are present, the labeling rules for the axis are determined by
+            | the attributes of the <labels> element (or their default values, for any that are not specified).
+            |
+            | If there are any <label> subelements, each one specifies an addiontal list of spacings,
+            | possibly with custom values of other attributes to go with those spacings.  Each <label>
+            | subelement must have a "spacing" attribute, and may optionally also include values for any
+            | of the other attributes allowed for the <labels> tag.  Any attributes not specified with a
+            | a <label> subelement inherit their values from the corresponding attribute on the enclosing
+            | <labels> tag, or the default value.
             |-->
       </label>
     </labels>
-    
+    <title
+        base="DOUBLE(0)"
+        anchor="POINT"
+        position="POINT"
+        angle="DOUBLE(0)">
+      <!--|
+          | The <title> subelement of the axis elements gives a title to display with the axis.  The text
+          | of the element gives the title text.  If the element is missing, the id of the axis is used
+          | as the title text.  To prevent a title from being displayed at all, include an empty <title/>
+          | element.
+          |
+          |   base: the base point of the title's position; this is a number between -1 and 1, and
+          |       indicates a point along the axis
+          |   angle: the angle, in degrees, of the title text; the default is 0 which means horizontal
+          |   position, anchor: these positioning values have the following defaults, depending on
+          |       whether the axis is horizontal or vertical, and on which half of the plot area it
+          |       is positioned in:
+          |
+          |                          bottom half, or left              top half, or right
+          |                          half, of plot area                half, of plot area
+          |
+          |         horizontal         position: (0, -18)               position: (0, 15)
+          |                              anchor: (0, 1)                   anchor: (0, -1)
+          |
+          |         vertical           position: (-25, 0)               position: (33, 0)
+          |                              anchor: (1, 0)                   anchor: (-1, 0)
+          |-->
+    </title>
     <grid
         color="COLOR(0xeeeeee)"
         visible="BOOLEAN(false)">
       <!--|
-          | The <grid> subelement of <horizontalaxis>...
+          | The <grid> subelement of the axis elements can be used to cause Multigraph to draw a "grid" in the background
+          | of the plot area, with grid lines at the locations of the tick marks along the axes.  The <grid> subelement
+          | of an axis element controls the grid lines corresponding to tick marks on that axis.
+          |
+          |   visible: indicates whether grid lines should be drawn for this axis
+          |   color: the color to use for this axis's grid lines
           |-->
-    </grid>      
-    
+    </grid>
     <pan
-        allowed="Boolean(yes)"
-        min="DataValue"
-        max="DataValue">
+        allowed="BOOLEAN(yes)"
+        min="DATAVALUE"
+        max="DATAVALUE">
       <!--|
-          | The <pan> subelement of <horizontalaxis>...
+          | The <pan> subelement of the axis elements can be used to limit possible pan motions allowed in the graph.
+          |
+          |   allowed: whether panning is allowed at all
+          |   min: panning will be restricted to never go below this value.  If the min attribute is not specified,
+          |       panning in the negative direction is unrestricted
+          |   max: panning will be restricted to never go above this value.  If the max attribute is not specified,
+          |       panning in the positive direction is unrestricted
           |-->
     </pan>
-    
     <zoom
-        allowed="Boolean(yes)"
-        min="DataValue"
-        max="DataValue"
-        anchor="DataValue">
+        allowed="BOOLEAN(yes)"
+        min="DATAMEASURE"
+        max="DATAMEASURE"
+        anchor="DATAVALUE">
       <!--|
-          | The <zoom> subelement of <horizontalaxis>...
+          | The <zoom> subelement of the axis elements can be used to limit possible zoom motions allowed in the graph.
+          |
+          |   allowed: whether zooming is allowed at all
+          |   min: restricts how far "in" the user can zoom along this axis; if this attribute is present, Multigraph
+          |       will restrict zooming along this axis so that the length of the axis, measured in the data units
+          |       of the axis, is always greater than or equal to this "min" value.  If this attribute is not present,
+          |       zooming in is unrestricted.
+          |   min: restricts how far "out" the user can zoom along this axis; if this attribute is present, Multigraph
+          |       will restrict zooming along this axis so that the length of the axis, measured in the data units
+          |       of the axis, is always less than or equal to this "min" value.  If this attribute is not present,
+          |       zooming out is unrestricted.
+          |   anchor: indicates a fixed point about which zooming should always occur.  If this attribute is not
+          |       present, zooming occurs about the point on the axis closest to the location of the mouse cursor.
+          |       (Note that in this case, the "anchor" attribute is not related to positioning, in contract to
+          |       other "anchor" attributes elsewhere in the MUGL specification.)
           |-->
     </zoom>
-    
     <binding
-        id="required"
-        min="DataValue REQUIRED"
-        max="DataValue REQUIRED">
+        id="STRING"
+        min="DATAVALUE"
+        max="DATAVALUE">
       <!--|
-          | The <binding> subelement of <horizontalaxis>...
+          | The <binding> subelement of the axis elements can be used to "bind" multiple axes together.
+          | Each "binding" has a unique "id" attribute, which can be any string and which serves to identify
+          | that binding.  When any one axis associated with a particular binding changes scale due to panning
+          | or zooming, the other axes associated with that binding change their scales to match.
+          |
+          | id: (REQUIRED) the id of the binding
+          | min, max: (REQUIRED) the two data points that indicate how this axis takes part in the binding; this
+          |     axis will be scaled so that its min/max values will be tied to the min/max values of the other
+          |     axes in the same binding.
+          |
+          | Example: a pair of fahrenheit/celsius temperature axes can be created as follows:
+          |
+          |     <verticalaxis id="fahrenheit" min="15" max="90">
+          |        <binding id="tempbinding" min="32" max="212"/>
+          |     </verticalaxis>
+          |     <verticalaxis id="celsius">
+          |        <binding id="tempbinding" min="0" max="100"/>
+          |     </verticalaxis>
+          |
+          | Note that the min/max attribute values for the binding are completely different from the min/max attributes
+          | on the axes themselves.  The min/max values for the binding indicate the linear relationship between the data
+          | values of the axes.  The min/max values for the axes themselves indicate the initial scale that should be
+          | displayed along the axis.  Note also that there is a potential conflict between the min/max axis attribute
+          | settings of the axes that participate in a binding, because the scale of the axis is indicatd both by
+          | that axis's min/max attributes, and by the linear relationship enforced by its binding. For this reason, it's
+          | best to only give min/max attributes values for ONE of the axis in a binding, as is the case for the fahrenheit
+          | axis in the example above.  In a situation where min/max axis values are specified for more than one axis
+          | in a binding, Multigraph will favor enforcing the binding, by choosing the min/max values from one of the
+          | axes in the binding that specifies them, and adjusting the min/max values of the other axes in the binding
+          | accordingly.
+          |
           |-->
     </binding>
-    
   </horizontalaxis>
-  
-  <element name="verticalaxis"   type="Axis"           minOccurs="0" maxOccurs="unbounded"/>
+
+  <verticalaxis>
+    <!--|
+        | The <verticalaxis> element indicates a vertical axis; its syntax is exactly the same
+        | as for the <horizontalaxis> element.  See the documentation for <horizontalaxis> above
+        | for details.
+        |-->
+  </verticalaxis>
+
   <element name="plot"           type="Plot"           minOccurs="0" maxOccurs="unbounded"/>
   <element name="data"           type="Data"           minOccurs="0" maxOccurs="unbounded"/>
 
+  <plot...>
+    <horizontalaxis...>
+      <variable.../>
+    </horizontalaxis>
+    <verticalaxis...>
+      <variable.../>
+    </verticalaxis>
+    <renderer...>
+      <option.../>
+    </renderer>
+  </plot>
+  <data...>
+    <variables...>
+      <variable.../>
+    </variables>
+    <values.../>
+    <csv.../>
+    <service.../>
+  </data>
+</mugl>
 
 </mugl>
