@@ -126,7 +126,7 @@ sys("git submodule update --recursive");
 # build the example pages for this release
 #
 message("building mugl example pages");
-sys("./build-examples");
+sys("./build-site");
 
 #
 # copy the mugl-schema xsd file for this release into place

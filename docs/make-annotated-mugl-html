@@ -1,0 +1,92 @@
+#! /usr/bin/perl
+
+sub escape {
+    my $s = shift;
+    $s =~ s/</&lt;/g;
+    $s =~ s/>/&gt;/g;
+    return $s;
+}
+
+print qq!---
+siteroot: ../..
+layout: master
+menu-documentation: selected
+title: Multigraph - Annotated MUGL
+headers: |
+  <script type="text/javascript" src="annotated-mugl.js"></script>
+  <link rel="stylesheet" href="annotated-mugl.css"></link>  
+---
+
+<h1>Annotated MUGL File</h2>
+
+Click on an element to expand and see documentation for it.
+
+<div class="highlight"><pre><code class="xml">
+!
+    ;
+
+open(IN, "<annotated-mugl.xml");
+my $in_comment = 0;
+while (chomp($line = <IN>)) {
+    if ($in_comment) {
+        if ( ($indent, $comment) = ($line =~ m|^(\s*)(\S*-->)\s*$|) ) {
+            # close comment
+            printf("<span class=\"c\">%s%s</span>\n", $indent, escape($comment));
+            $in_comment = 0;
+        } else {
+            # comment line
+            printf("<span class=\"c\">%s</span>\n", escape($line));
+        }
+    } else {
+        if ( ($indent, $comment) = ($line =~ m|^(\s*)(<!--.*)$|) ) {
+            # open comment
+            printf("<span class=\"c\">%s%s</span>\n", $indent, escape($comment));
+            $in_comment = 1;
+        } elsif ( ($indent, $tag) = ($line =~ m|^(\s*)<([^\s>]+)\s*$|) ) {
+            # open tag of the form "<tag"
+            printf("<span class=\"element\"><span class=\"collapsed\">%s<span class=\"target\">+ <span class=\"nt\">&lt;%s.../&gt;</span></span></span>",
+                   $indent,
+                   $tag);
+            printf("<span class=\"expanded\">%s<span class=\"target\">- <span class=\"nt\">&lt;%s</span></span>\n",
+                   $indent,
+                   $tag);
+        } elsif ( ($indent, $tag) = ($line =~ m|^(\s*)</([^\s>]+)>\s*$|) ) {
+            # close tag
+            if ($tag eq "mugl") {
+                printf("%s<span class=\"nt\">&lt;/%s&gt;</span>\n",
+                       $indent,
+                       $tag);
+            } else {
+                printf("$indent<span class=\"nt\">&lt;/%s&gt;</span></span></span>\n",
+                       $tag);
+            }
+        } elsif ( ($indent, $tag) = ($line =~ m|^(\s*)<([^\s>]+)>\s*$|) ) {
+            # open tag of the form "<tag>"
+            if ($tag eq "mugl") {
+                printf("%s<span class=\"nt\">&lt;%s&gt;</span>\n",
+                       $indent,
+                       $tag);
+            } else {
+                printf("<span class=\"element\"><span class=\"collapsed\">%s<span class=\"target\">+ <span class=\"nt\">&lt;%s.../&gt;</span></span></span>",
+                       $indent,
+                       $tag);
+                printf("<span class=\"expanded\">%s<span class=\"target\">- <span class=\"nt\">&lt;%s&gt;</span></span>\n",
+                       $indent,
+                       $tag);
+            }
+        } else {
+            $line = escape($line);
+            $line =~ s|([a-z0-9_-]+)\s*=\s*"([^\"]*)"|<span class="na">$1=</span><span class="s">&quot;$2&quot;</span>|ig;
+            print "$line\n";
+        }
+    }
+
+
+
+}
+close(IN);
+
+print <<EOF
+</code></pre></div>
+EOF
+    ;
