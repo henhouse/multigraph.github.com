@@ -44,10 +44,10 @@ while (chomp($line = <IN>)) {
             $in_comment = 1;
         } elsif ( ($indent, $tag) = ($line =~ m|^(\s*)<([^\s>]+)\s*$|) ) {
             # open tag of the form "<tag"
-            printf("<span class=\"element\"><span class=\"collapsed\">%s<span class=\"target\">+ <span class=\"nt\">&lt;%s.../&gt;</span></span></span>",
+            printf("<span class=\"element\"><span class=\"collapsed\">%s<span class=\"target\"><span class=\"tagprefix\">+</span><span class=\"nt\">&lt;%s.../&gt;</span></span></span>",
                    $indent,
                    $tag);
-            printf("<span class=\"expanded\">%s<span class=\"target\">- <span class=\"nt\">&lt;%s</span></span>\n",
+            printf("<span class=\"expanded\">%s<span class=\"target\"><span class=\"tagprefix\">-</span><span class=\"nt\">&lt;%s</span></span>\n",
                    $indent,
                    $tag);
         } elsif ( ($indent, $tag) = ($line =~ m|^(\s*)</([^\s>]+)>\s*$|) ) {
@@ -57,7 +57,7 @@ while (chomp($line = <IN>)) {
                        $indent,
                        $tag);
             } else {
-                printf("$indent<span class=\"nt\">&lt;/%s&gt;</span></span></span>\n",
+                printf("$indent<span class=\"tagprefix\"></span><span class=\"nt\">&lt;/%s&gt;</span></span></span>\n",
                        $tag);
             }
         } elsif ( ($indent, $tag) = ($line =~ m|^(\s*)<([^\s>]+)>\s*$|) ) {
@@ -67,10 +67,10 @@ while (chomp($line = <IN>)) {
                        $indent,
                        $tag);
             } else {
-                printf("<span class=\"element\"><span class=\"collapsed\">%s<span class=\"target\">+ <span class=\"nt\">&lt;%s.../&gt;</span></span></span>",
+                printf("<span class=\"element\"><span class=\"collapsed\">%s<span class=\"target\"><span class=\"tagprefix\">+</span><span class=\"nt\">&lt;%s.../&gt;</span></span></span>",
                        $indent,
                        $tag);
-                printf("<span class=\"expanded\">%s<span class=\"target\">- <span class=\"nt\">&lt;%s&gt;</span></span>\n",
+                printf("<span class=\"expanded\">%s<span class=\"target\"><span class=\"tagprefix\">-</span><span class=\"nt\">&lt;%s&gt;</span></span>\n",
                        $indent,
                        $tag);
             }

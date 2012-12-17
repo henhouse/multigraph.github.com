@@ -435,38 +435,109 @@
         |-->
   </verticalaxis>
   <plot>
+    <!--|
+        | Each <plot> element in a MUGL file corresponds to one collection of variables from
+        | a <data> section plotted against a specified pair of axes (one horizontal and one vertical),
+        | using a specified plot style.  A MUGL file can have any number of <plot> elements; if
+        | no <plot> elements are present, a single plot is inferred, with all the default settings.
+        |-->
     <legend
-        visible="Boolean"
-        label="xsd:string">
+        visible="BOOLEAN"
+        label="STRING">
+      <!--|
+          | The <plot> element may contain an optional <legend> element that controls that plot's
+          | entry in the graph's legend.  Note that the graph's legend must be configured to be
+          | visible in the first place in order for these plot-specific settings to have any effect;
+          | see the top-level <legend> element for details on this.
+          |
+          |   visible: whether this plot has an entry in the legend
+          |   label: the label to use for this plot's entry in the legend; by default, the id
+          |       of the plot's second variable is used
+          |-->
     </legend>
     <horizontalaxis
-        ref="xsd:string REQUIRED">
+        ref="STRING">
+      <!--|
+          | The <horizontalaxis> subelement indicates which horizontal axis this plot should use.
+          | If the plot does not contain a <horizontalaxis> subelement, it is assumed to use the
+          | first <horizontalaxis> in the MUGL file.
+          |
+          | ref: (required) the id of a horizontal axis; this value must match the id attribute
+          |     of a top-level <horizontalaxis> element in the MUGL file
+          |-->
       <variable
-          ref="xsd:string REQUIRED"
-          legendlabel="xsd:string"
-          factor="">
+          ref="xsd:string REQUIRED">
+        <!--|
+            | The <variable> subelement of the plot's <horizontalaxis> element indicates which variable
+            | should be plotted relative to the plot's horizontal axis.  If there is no <variable> subelement,
+            | the first variable in the MUGL file's first <data> section is assumed.
+            |
+            |     ref: (required) the id of a variable from one of this MUGL file's <data> sections
+            |-->
+      </variable>
+    </horizontalaxis>
+    <verticalaxis
+        ref="STRING">
+      <!--|
+          | The <verticalaxis> subelement indicates which vertical axis this plot should use.
+          | If the plot does not contain a <verticalaxis> subelement, it is assumed to use the
+          | first <verticalaxis> in the MUGL file.
+          |
+          | ref: (required) the id of a vertical axis; this value must match the id attribute
+          |     of a top-level <verticalaxis> element in the MUGL file
+          |-->
+      <variable
+          ref="xsd:string REQUIRED">
+        <!--|
+            | The <variable> subelement of the plot's <verticalaxis> element indicates which variable(s)
+            | should be plotted relative to the plot's vertical axis.  A plot's <verticalaxis> element may
+            | contain any number of <variable> subelements.  If there is no <variable> subelement, the
+            | second variable in the MUGL file's first <data> section is assumed.
+            |
+            |     ref: (required) the id of a variable from one of this MUGL file's <data> sections
+            |
+            | NOTE: all of the variables mentioned in a plot, whether in the <horizontalaxis> or <verticalaxis>
+            |     subelements, must come from the same <data> section in the MUGL file.
+            |-->
       </variable>
       <constant
-          value="xsd:string REQUIRED"
-          legendlabel="xsd:string">
+          value="DATAVALUE">
+        <!--|
+            | The <constant> subelement of the plot's <verticalaxis> subelement is used to indicate a constant
+            | plot.  If the <constant> subelement is present, no <variable> subelements may be present, and the plot
+            | will consist of a constant value extending across the entire plot area.
+            |
+            |     value: the height at which the constant value should be plotted
+            |-->
       </constant>
-    </horizontalaxis>
-    <verticalaxis>
     </verticalaxis>
     <filter
-        type="xsd:string">
+        type="STRING">
+      <!--|
+          | The <filter> subelement of the <plot> element is intended to provide support for applying various
+          | filters to data
+          |-->
       <option
-          name="xsd:string"
-          value="xsd:string">
+          name="STRING"
+          value="STRING">
+        <!--|
+            | 
+            |-->
       </option>
     </filter>
     <renderer
         type="RendererType REQUIRED">
+      <!--|
+          | 
+          |-->
       <option
           name="xsd:string REQUIRED"
           value="xsd:string REQUIRED"
           min="DataValue"
           max="DataValue">
+        <!--|
+            | 
+            |-->
       </option>
     </renderer>
     <datatips
@@ -476,8 +547,14 @@
         border="xsd:integer"
         bordercolor="RGBColor"
         pad="xsd:integer">
+      <!--|
+          | 
+          |-->
       <variable
           format="xsd:string">
+        <!--|
+            | 
+            |-->
       </variable>
     </datatips>
   </plot>
