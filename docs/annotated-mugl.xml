@@ -434,4 +434,51 @@
         | for details.
         |-->
   </verticalaxis>
+  <plot>
+    <legend
+        visible="Boolean"
+        label="xsd:string">
+    </legend>
+    <horizontalaxis
+        ref="xsd:string REQUIRED">
+      <variable
+          ref="xsd:string REQUIRED"
+          legendlabel="xsd:string"
+          factor="">
+      </variable>
+      <constant
+          value="xsd:string REQUIRED"
+          legendlabel="xsd:string">
+      </constant>
+    </horizontalaxis>
+    <verticalaxis>
+    </verticalaxis>
+    <filter
+        type="xsd:string">
+      <option
+          name="xsd:string"
+          value="xsd:string">
+      </option>
+    </filter>
+    <renderer
+        type="RendererType REQUIRED">
+      <option
+          name="xsd:string REQUIRED"
+          value="xsd:string REQUIRED"
+          min="DataValue"
+          max="DataValue">
+      </option>
+    </renderer>
+    <datatips
+        format="xsd:string"
+        bgcolor="RGBColor"
+        bgalpha="xsd:double"
+        border="xsd:integer"
+        bordercolor="RGBColor"
+        pad="xsd:integer">
+      <variable
+          format="xsd:string">
+      </variable>
+    </datatips>
+  </plot>
 </mugl>
