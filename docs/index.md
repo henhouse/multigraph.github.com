@@ -12,7 +12,7 @@ For an overview of how to create a Multigraph in a web page, see the
 [multigraph.github.com home page](..).  For more detailed information,
 the following documentation resources are also available:
 
-* [Annotated MUGL file](annotated-mugl.html)
+* [Annotated MUGL file](annotated-mugl)
 
   This is an interactive page containing a MUGL document that includes every
   possible tag and attribute, with comments explaining their meaning.

@@ -1,0 +1,40 @@
+pre {
+  font-size: 12pt;
+}
+
+span.target {
+  cursor: pointer;
+  cursor: hand;
+}
+
+span.tagprefix {
+  display: inline-block;
+  text-align: left;
+  width: 16px;
+}
+
+span.tipped-type {
+  cursor: pointer;
+  cursor: hand;
+}
+
+#tooltip {
+	position: absolute;
+    width: 400px;
+	z-index: 3000;
+	border: 1px solid #111;
+	background-color: #fff;
+	padding: 5px;
+	opacity: 1.0;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+}
+#tooltip h3, #tooltip div { margin: 0; }
+
+#tooltip p:first-child {
+  margin-top: 2px;
+}
+#tooltip p:last-child {
+  margin-bottom: 2px;
+}

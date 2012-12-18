@@ -1,3 +1,47 @@
+<!--!
+    ! type: INTEGER
+    !    The value of this attribute should be an integer.
+    ! type: COLOR
+    !    The value of this attribute should either be an expression of the form 0xRRGGBB, where RRGGBB
+    !    is a 6-digit hex color code, or one of the strings: black, red, green, blue, yellow, magenta,
+    !    cyan, or white.
+    ! type: POINT
+    !    The value of this attribute should be a pair of numbers separated by either a space, or a comma.
+    ! type: BOOLEAN
+    !    The value of this attribute should be one of the strings: "yes", "no", "true", or "false".
+    ! type: FRAME
+    !    The value of this attribute should be one of the strings: "padding" or "plot".
+    ! type: DOUBLE
+    !    The value of this attribute should be a floating point number.
+    ! type: STRING
+    !    The value of this attribute can be any string.
+    ! type: DATATYPE
+    !    The value of this attribute should be one of the strings: "number", or "datetime"
+    ! type: RELPOS
+    !    The value of this attribute should be an expression of one of the forms "A", "A+B", or "A-B",
+    !    where A is a floating point number in the range [-1,1] that represents a relative position
+    !    along a line segment, and +B or -B is a pixel offset from that position.
+    ! type: RELLEN
+    !    The value of this attribute should be an expression of one of the forms "A", "A+B", or "A-B",
+    !    where A is a floating point number in the range [0,1] that represents a fraction of a length,
+    !    and +B or -B is a pixel amount to add or subtract from that length.
+    ! type: DATAVALUE
+    !    The value of this attribute should be either a floating point number, or a datetime expression,
+    !    depending on whether the attribute corresponds to a variable of type number or datetime.
+    !    Datetimes are expressed by a sequence of digits matching one of the following patterns:
+    !    YYYY, YYYYMM, YYYYMMDD, YYYYMMDDHH, YYYYMMDDHHmm, YYYYMMDDHHmmss, or YYYYMMDDHHmmss.fff,
+    !    depending on the degree of precision desired.
+    ! type: DATAVALUEORAUTO
+    !    The value of this attribute should be either a floating point number, or a datetime expression,
+    !    or the special value "auto".
+    ! type: DATAMEASURE
+    !    The value of this attribute should be a measure of length in the data type of the associated
+    !    variable.  A length measure for a number data type is represented simply by a number, and a length
+    !    measure for a datetime data type is represented by an integer followed by one of the following
+    !    unit abbreviations: 'Y', 'M', 'D', 'H', 'm', 'i', or 'ms'.
+    ! type: RENDERERTYPE
+    !    The value of this attribute should be the name of one of Multigraph's renderer types.
+    !-->
 <mugl>
   <window
       width="INTEGER"
@@ -98,7 +142,7 @@
         |   color: a solid color to fill the background with
         |-->
     <img
-        src="STRING"
+        src="STRING!"
         anchor="POINT(-1 -1)"
         base="POINT(-1 -1)"
         position="POINT(0 0)"
@@ -112,7 +156,6 @@
           |
           |   src: the URL of the image to be drawn.  If this is a relative
           |       URL, it is interpreted relative to the URL of the MUGL file.
-          |       This attribute is required.
           |   anchor, base, position, frame:  specify the positioning
           |       of the image
           |-->
@@ -181,14 +224,14 @@
   <horizontalaxis
       id="STRING"
       type="DATATYPE(number)"
-      length="DISPLACEMENT(1.0)"
+      length="RELLEN(1.0)"
       base="POINT(-1,1)"
       anchor="DOUBLE(-1)"
       position="POINT(0,0)"
       min="DATAVALUEORAUTO(auto)"
       max="DATAVALUEORAUTO(auto)"
-      minposition="DISPLACEMENT(-1.0)"
-      maxposition="DISPLACEMENT(1.0)"
+      minposition="RELPOS(-1.0)"
+      maxposition="RELPOS(1.0)"
       color="COLOR(black)"
       linewidth="INTEGER(1)"
       tickmin="INTEGER(-3)"
@@ -205,9 +248,8 @@
         |     the first horizontal axis, "x1" for the second, and so on.  For vertical axes,
         |     the default ids are "y", "y1", etc.
         | type: the data type of the axis
-        | length: the length of the axis, as a DISPLACEMENT, where A is a number between 0
-        |     and 1 representing a fraction of the width of the plot area, and B is a number
-        |     of pixels to be added to that length
+        | length: the length of the axis, as a RELLEN representing a fraction of the width
+        |     (or height, for a vertical axis) of the plot area, plus or minus a pixel offset.
         | base: a POINT in the range (-1,-1) to (1,1) giving the location in the plot area
         |     of the base point for the axis's location
         | position: a POINT value giving the position offset for the location of the axis,
@@ -219,16 +261,10 @@
         |     with the left endpoint of the axis, but see "minposition" below.
         | max: the maximum data value for the axis; this is typically the value associated
         |     with the right endpoint of the axis, but see "maxposition" below.
-        | minposition: the location on the axis that corresponds to the minimum data value;
-        |     this is a DISPLACEMENT value, in which A is number in the range [-1,1], with -1
-        |     corresponding to the left endpoint, and 1 corresponding to the right endpoint.
-        |     The value B is a pixel offset from the location determined by A.  The default
-        |     value of minposition is "-1", which corresponds to the left endpoint of the axis.
-        | maxposition: the location on the axis that corresponds to the maximum data value;
-        |     this is a DISPLACEMENT value, in which A is number in the range [-1,1], with -1
-        |     corresponding to the left endpoint, and 1 corresponding to the right endpoint.
-        |     The value B is a pixel offset from the location determined by A.  The default
-        |     value of minposition is "1", which corresponds to the right endpoint of the axis.
+        | minposition: the location on the axis that corresponds to the minimum data value,
+        |     as a RELPOS.
+        | maxposition: the location on the axis that corresponds to the maximum data value,
+        |     as a RELPOS.
         | color: the color of the line to draw for the axis
         | linewidth: the pixel thickness of the line to draw for the axis
         | tickmin: the length, in pixels, of the part of the axis tick marks that extends below
@@ -389,17 +425,17 @@
           |-->
     </zoom>
     <binding
-        id="STRING"
-        min="DATAVALUE"
-        max="DATAVALUE">
+        id="STRING!"
+        min="DATAVALUE!"
+        max="DATAVALUE!">
       <!--|
           | The <binding> subelement of the axis elements can be used to "bind" multiple axes together.
           | Each "binding" has a unique "id" attribute, which can be any string and which serves to identify
           | that binding.  When any one axis associated with a particular binding changes scale due to panning
           | or zooming, the other axes associated with that binding change their scales to match.
           |
-          | id: (REQUIRED) the id of the binding
-          | min, max: (REQUIRED) the two data points that indicate how this axis takes part in the binding; this
+          | id: the id of the binding
+          | min, max: the two data points that indicate how this axis takes part in the binding; this
           |     axis will be scaled so that its min/max values will be tied to the min/max values of the other
           |     axes in the same binding.
           |
@@ -456,45 +492,45 @@
           |-->
     </legend>
     <horizontalaxis
-        ref="STRING">
+        ref="STRING!">
       <!--|
           | The <horizontalaxis> subelement indicates which horizontal axis this plot should use.
           | If the plot does not contain a <horizontalaxis> subelement, it is assumed to use the
           | first <horizontalaxis> in the MUGL file.
           |
-          | ref: (required) the id of a horizontal axis; this value must match the id attribute
+          | ref: the id of a horizontal axis; this value must match the id attribute
           |     of a top-level <horizontalaxis> element in the MUGL file
           |-->
       <variable
-          ref="xsd:string REQUIRED">
+          ref="STRING!">
         <!--|
             | The <variable> subelement of the plot's <horizontalaxis> element indicates which variable
             | should be plotted relative to the plot's horizontal axis.  If there is no <variable> subelement,
             | the first variable in the MUGL file's first <data> section is assumed.
             |
-            |     ref: (required) the id of a variable from one of this MUGL file's <data> sections
+            |     ref: the id of a variable from one of this MUGL file's <data> sections
             |-->
       </variable>
     </horizontalaxis>
     <verticalaxis
-        ref="STRING">
+        ref="STRING!">
       <!--|
           | The <verticalaxis> subelement indicates which vertical axis this plot should use.
           | If the plot does not contain a <verticalaxis> subelement, it is assumed to use the
           | first <verticalaxis> in the MUGL file.
           |
-          | ref: (required) the id of a vertical axis; this value must match the id attribute
+          | ref: the id of a vertical axis; this value must match the id attribute
           |     of a top-level <verticalaxis> element in the MUGL file
           |-->
       <variable
-          ref="xsd:string REQUIRED">
+          ref="STRING">
         <!--|
             | The <variable> subelement of the plot's <verticalaxis> element indicates which variable(s)
             | should be plotted relative to the plot's vertical axis.  A plot's <verticalaxis> element may
             | contain any number of <variable> subelements.  If there is no <variable> subelement, the
             | second variable in the MUGL file's first <data> section is assumed.
             |
-            |     ref: (required) the id of a variable from one of this MUGL file's <data> sections
+            |     ref: the id of a variable from one of this MUGL file's <data> sections
             |
             | NOTE: all of the variables mentioned in a plot, whether in the <horizontalaxis> or <verticalaxis>
             |     subelements, must come from the same <data> section in the MUGL file.
@@ -511,49 +547,100 @@
             |-->
       </constant>
     </verticalaxis>
-    <filter
-        type="STRING">
-      <!--|
-          | The <filter> subelement of the <plot> element is intended to provide support for applying various
-          | filters to data
-          |-->
-      <option
-          name="STRING"
-          value="STRING">
-        <!--|
-            | 
-            |-->
-      </option>
-    </filter>
     <renderer
-        type="RendererType REQUIRED">
+        type="RENDERERTYPE">
       <!--|
-          | 
+          | The <renderer> element indicates the renderer, or plot style, that Multigraph should use to draw
+          | this plot.  A <plot> element can have at most one <renderer> subelement.  If no <renderer> subelement
+          | is present, a renderer of type "line", with the default options, is assumed.
+          |
+          |   type: the name of the renderer to use
           |-->
       <option
-          name="xsd:string REQUIRED"
-          value="xsd:string REQUIRED"
-          min="DataValue"
-          max="DataValue">
+          name="STRING!"
+          value="STRING!"
+          min="DATAVALUE"
+          max="DATAVALUE">
         <!--|
-            | 
+            | A <renderer> element can have any number of <option> subelements which customize the appearance
+            | of the plot.  Associated with each <option> subelement is the name of an option (the "name" attribute),
+            | a value for that option (the "value" attribute), and optionally, an "applicability range" of data
+            | values for which that value should be used.  The applicability range is indicated by the "min" and
+            | "max" attributes.  If the "min" attribute is present, it specifies a lower endpoint for the applicability
+            | range, and analogously, the "max" attribute specifies an upper endpoint. If either of these attributes
+            | is omitted, the applicability range is unlimited in the corresponding direction.
+            |
+            | For example:
+            |
+            |     <option name="color" value="blue" max="0">
+            |
+            | would cause data points less than 0 to be plotted in blue,
+            |
+            |     <option name="color" value="green" min="0" min="10">
+            |
+            | would cause data points between 0 and 10 to be plotted in green,
+            |
+            |     <option name="color" value="red" min="10">
+            |
+            | would cause data points greater than 10 to be plotted in red, and
+            |
+            |     <option name="color" value="cyan">
+            |
+            | would cause all data points, regardless of their value, to be plotted
+            | in cyan.
+            |
+            |   name: the name of the option
+            |   value: the value of the option
+            |   min: minimum data value for this option setting
+            |   max: maximum data value for this option setting
             |-->
       </option>
     </renderer>
     <datatips
-        format="xsd:string"
-        bgcolor="RGBColor"
-        bgalpha="xsd:double"
-        border="xsd:integer"
-        bordercolor="RGBColor"
-        pad="xsd:integer">
+        format="STRING!"
+        bgcolor="COLOR"
+        bgalpha="DOUBLE"
+        border="INTEGER"
+        bordercolor="COLOR"
+        pad="INTEGER">
       <!--|
-          | 
+          | NOTE: the <datatips> element is not yet implemented in Multigraph 4.0.
+          |
+          | The <datatips> subelement of the <plot> element tells Multigraph to display "tooltip"-style popups
+          | as the user moves the mouse over individual data points, and indicates the format to use for those
+          | popups.  The <datatips> subelement is optional, and if it is omitted, no datatips are displayed.
+          |
+          |  format: a string that gives the text to be displayed in each datatip popup.  Within
+          |      this string, expressions of the form {0}, {1}, etc will be replaced with the values of the
+          |      corresponding variable from the plot (with {0} being the first variable, {1} the second, and
+          |      so on).
+          |  bgcolor: the color to use for the background color of the datatip
+          |  bgalpha: the alpha (transparency) value to use for the background of the datatip
+          |  border: the thickness of a border to draw around the outline of the tooptip rectangle
+          |  bordercolor: the color to use for the border
+          |  pad: an amount (pixels) of space to leave around the text
+          |
           |-->
       <variable
-          format="xsd:string">
+          format="STRING!">
         <!--|
-            | 
+            | Each <variable> subelement of the <datatips> element indicates a format string to be used
+            | when formatting the values of a variable to be used in constructing the datatip.
+            |
+            |   format: the format string to be used for the variable
+            |
+            | For example, imagine a plot in which the first variable is of type datetime, and the second
+            | variable is of type number.  Then
+            |
+            |     <datatips format="{0}: {1}">
+            |       <variable format="%d %n %Y"/>
+            |       <variable format="%.2f"/>
+            |     </datatips>
+            |
+            | would create datatips in which the first variable, {0}, would be formatted according to
+            | the format string "%d %n %Y", and the second variable, {1}, would be formatted according
+            | to the string "%.2f".  So, for example, the data value ("20121203", "13.1") would be formatted
+            | as "3 Dec 2012: 13.1".
             |-->
       </variable>
     </datatips>
