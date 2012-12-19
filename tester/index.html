@@ -3,11 +3,41 @@ siteroot: ..
 layout: master
 menu-tester: selected
 title: Multigraph - Tester
-headers: <link type="text/css" href="../lib/js-multigraph-tester/src/tester.css" rel="stylesheet" media="screen"/><script type="text/javascript" src="../lib/js-multigraph-tester/src/tester.js"></script>
+headers: |
+    <link type="text/css" href="../lib/js-multigraph-tester/src/tester.css" rel="stylesheet" media="screen"/>
+    <script type="text/javascript" src="../lib/js-multigraph-tester/src/tester.js"></script>
+    <script type="text/javascript">
+      urlParams = function() {
+        var match,
+            pl     = /\+/g,  // Regex for replacing addition symbol with a space
+            search = /([^&=]+)=?([^&]*)/g,
+            decode = function (s) { return decodeURIComponent(s.replace(pl, " ")); },
+            query  = window.location.search.substring(1),
+            params = {};
+
+          while (match = search.exec(query)) {
+            params[decode(match[1])] = decode(match[2]);
+          }
+          return params;
+      };
+
+      $(document).ready(function () {
+          $("#tester").jsMultigraphTester();
+          var params = urlParams();
+          if (params.muglurl) {
+            $.ajax({ url      : params.muglurl,
+                     dataType : "text",
+                     success  : function(data) {
+                       $("#tester").jsMultigraphTester('setMugl', data);
+                   }});
+          }
+      });
+    </script>
 ---
+
+<p>
+Use this page to experiment with creating graphs with MUGL files; enter or edit a MUGL document below,
+and click the "refresh" button to see the results.
+</p>
+
 <div id="tester"></div>
-<script type="text/javascript">
-  $(document).ready(function () {
-      $("#tester").jsMultigraphTester();
-  });
-</script>
