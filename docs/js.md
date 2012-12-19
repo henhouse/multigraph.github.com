@@ -100,7 +100,7 @@ object are:
 * <code>muglString</code> 
 
   this should be a string which contains the MUGL XML to be loaded
-  (the actual XML document, as a string  not the URL or name of a
+  (the actual XML document, as a string, not the URL or name of a
   file containing it).  Exactly one of <code>mugl</code> or
   <code>muglString</code> must be present.
   

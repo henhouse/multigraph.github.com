@@ -1,0 +1,725 @@
+---
+siteroot: ../../..
+layout: master
+menu-documentation: selected
+title: Multigraph - Annotated MUGL
+headers: |
+  <script type="text/javascript" src="jquery.tooltip.min.js"></script>
+  <script type="text/javascript" src="annotated-mugl.js"></script>
+  <link rel="stylesheet" href="annotated-mugl.css"></link>  
+---
+
+<h1>Annotated MUGL File</h2>
+
+<p>
+This is an interactive MUGL file which is annotated with comments
+documenting every element and attribute in the MUGL specification.
+Click on an element to expand it; hover over an attribute to see more
+documentation for it.  You can download this entire annotated MUGL
+file, as a valid XML document, here: <a
+href="annotated-mugl.xml">annotated-mugl.xml</a>.  Note that although
+this file is a valid XML document, and it conveys the structure of
+MUGL by example, it is not actually a valid MUGL file; don't try
+loading this file into Multigraph.  It is intended for documentation
+of the MUGL specification only.  A formal XSD document that defines
+the MUGL specification is <a href="../mugl-schema.html">also
+available</a>.
+</p>
+
+<div class="highlight"><pre><code class="xml"><span class="nt">&lt;mugl&gt;</span>
+<span class="element"><span class="collapsed">  <span class="target"><span class="tagprefix">+</span><span class="nt">&lt;window.../&gt;</span></span></span><span class="expanded">  <span class="target"><span class="tagprefix">-</span><span class="nt">&lt;window</span></span>
+      <span class="tipped-type" id="type-tooltip-1"><span class="na">width=</span><span class="s">&quot;INTEGER&quot;</span></span>
+<script type="text/javascript">$('document').ready(function() {$('#type-tooltip-1').tooltip({track: true,showURL: false,opacity: 1.0,left: 25,top: -50,bodyHandler : function() {return $('<div class="tooltip"><p>Optional attribute <code>width</code></p><p>Type: INTEGER</p></div>');}});});</script>      <span class="tipped-type" id="type-tooltip-2"><span class="na">height=</span><span class="s">&quot;INTEGER&quot;</span></span>
+<script type="text/javascript">$('document').ready(function() {$('#type-tooltip-2').tooltip({track: true,showURL: false,opacity: 1.0,left: 25,top: -50,bodyHandler : function() {return $('<div class="tooltip"><p>Optional attribute <code>height</code></p><p>Type: INTEGER</p></div>');}});});</script>      <span class="tipped-type" id="type-tooltip-3"><span class="na">border=</span><span class="s">&quot;INTEGER(2)&quot;</span></span>
+<script type="text/javascript">$('document').ready(function() {$('#type-tooltip-3').tooltip({track: true,showURL: false,opacity: 1.0,left: 25,top: -50,bodyHandler : function() {return $('<div class="tooltip"><p>Optional attribute <code>border</code>; default value: "2"</p><p>Type: INTEGER</p></div>');}});});</script>      <span class="tipped-type" id="type-tooltip-4"><span class="na">bordercolor=</span><span class="s">&quot;COLOR(black)&quot;</span></span>
+<script type="text/javascript">$('document').ready(function() {$('#type-tooltip-4').tooltip({track: true,showURL: false,opacity: 1.0,left: 25,top: -50,bodyHandler : function() {return $('<div class="tooltip"><p>Optional attribute <code>bordercolor</code>; default value: "black"</p><p>Type: COLOR - either an expression of the form 0xRRGGBB, where RRGGBB is a 6-digit hex color code, or one of the strings: black, red, green, blue, yellow, magenta, cyan, or white.</p></div>');}});});</script>      <span class="tipped-type" id="type-tooltip-5"><span class="na">margin=</span><span class="s">&quot;INTEGER(2)&quot;</span></span>
+<script type="text/javascript">$('document').ready(function() {$('#type-tooltip-5').tooltip({track: true,showURL: false,opacity: 1.0,left: 25,top: -50,bodyHandler : function() {return $('<div class="tooltip"><p>Optional attribute <code>margin</code>; default value: "2"</p><p>Type: INTEGER</p></div>');}});});</script>      <span class="tipped-type" id="type-tooltip-6"><span class="na">padding=</span><span class="s">&quot;INTEGER(5)&quot;</span></span>>
+<script type="text/javascript">$('document').ready(function() {$('#type-tooltip-6').tooltip({track: true,showURL: false,opacity: 1.0,left: 25,top: -50,bodyHandler : function() {return $('<div class="tooltip"><p>Optional attribute <code>padding</code>; default value: "5"</p><p>Type: INTEGER</p></div>');}});});</script><span class="c">    &lt;!--| The &lt;window&gt; element specifies the following things related to the graph's</span>
+<span class="c">        | margin, border, and padding area.  The &lt;window&gt; element is optional and</span>
+<span class="c">        | can appear at most once in the MUGL file.</span>
+<span class="c">        |</span>
+<span class="c">        |   width: width of the graph, in pixels</span>
+<span class="c">        |   height: height of the graph, in pixels</span>
+<span class="c">        |       The width and height attributes are</span>
+<span class="c">        |       usually are omitted, in which case they default to the size</span>
+<span class="c">        |       specified when the graph is created, either with the</span>
+<span class="c">        |       "data-width" and "data-height" attributes if the graph is</span>
+<span class="c">        |       created using HTML5 markup, or with CSS attributes on the</span>
+<span class="c">        |       div element that contains the graph, or with options passed</span>
+<span class="c">        |       to the Multigraph constructor in JavaScript code.</span>
+<span class="c">        |   border:  thickness, in pixels, of the border to draw around the graph.</span>
+<span class="c">        |       A value of 0 causes no border to be drawn.</span>
+<span class="c">        |   bordercolor: color to use for the border.</span>
+<span class="c">        |   margin: amount of margin to leave outside all four sides of the border.</span>
+<span class="c">        |   padding: amount of padding to leave inside all four sides of the border</span>
+<span class="c">        |--&gt;</span>
+  <span class="tagprefix"></span><span class="nt">&lt;/window&gt;</span></span></span>
+<span class="element"><span class="collapsed">  <span class="target"><span class="tagprefix">+</span><span class="nt">&lt;legend.../&gt;</span></span></span><span class="expanded">  <span class="target"><span class="tagprefix">-</span><span class="nt">&lt;legend</span></span>
+      <span class="tipped-type" id="type-tooltip-7"><span class="na">visible=</span><span class="s">&quot;BOOLEAN&quot;</span></span>
+<script type="text/javascript">$('document').ready(function() {$('#type-tooltip-7').tooltip({track: true,showURL: false,opacity: 1.0,left: 25,top: -50,bodyHandler : function() {return $('<div class="tooltip"><p>Optional attribute <code>visible</code></p><p>Type: BOOLEAN - one of the strings: \"yes\", \"no\", \"true\", or \"false\".</p></div>');}});});</script>      <span class="tipped-type" id="type-tooltip-8"><span class="na">base=</span><span class="s">&quot;POINT(1,1)&quot;</span></span>
+<script type="text/javascript">$('document').ready(function() {$('#type-tooltip-8').tooltip({track: true,showURL: false,opacity: 1.0,left: 25,top: -50,bodyHandler : function() {return $('<div class="tooltip"><p>Optional attribute <code>base</code>; default value: "1,1"</p><p>Type: POINT - a pair of numbers (either floating point or integer), separated by either a space or a comma.</p></div>');}});});</script>      <span class="tipped-type" id="type-tooltip-9"><span class="na">anchor=</span><span class="s">&quot;POINT(1,1)&quot;</span></span>
+<script type="text/javascript">$('document').ready(function() {$('#type-tooltip-9').tooltip({track: true,showURL: false,opacity: 1.0,left: 25,top: -50,bodyHandler : function() {return $('<div class="tooltip"><p>Optional attribute <code>anchor</code>; default value: "1,1"</p><p>Type: POINT - a pair of numbers (either floating point or integer), separated by either a space or a comma.</p></div>');}});});</script>      <span class="tipped-type" id="type-tooltip-10"><span class="na">position=</span><span class="s">&quot;POINT(0,0)&quot;</span></span>
+<script type="text/javascript">$('document').ready(function() {$('#type-tooltip-10').tooltip({track: true,showURL: false,opacity: 1.0,left: 25,top: -50,bodyHandler : function() {return $('<div class="tooltip"><p>Optional attribute <code>position</code>; default value: "0,0"</p><p>Type: POINT - a pair of numbers (either floating point or integer), separated by either a space or a comma.</p></div>');}});});</script>      <span class="tipped-type" id="type-tooltip-11"><span class="na">frame=</span><span class="s">&quot;FRAME(padding)&quot;</span></span>
+<script type="text/javascript">$('document').ready(function() {$('#type-tooltip-11').tooltip({track: true,showURL: false,opacity: 1.0,left: 25,top: -50,bodyHandler : function() {return $('<div class="tooltip"><p>Optional attribute <code>frame</code>; default value: "padding"</p><p>Type: FRAME - one of the strings \"padding\" or \"plot\"; it indicates which box - either the padding box or the plot box - this element\'s <code>base</code> attribute is relative to.</p></div>');}});});</script>      <span class="tipped-type" id="type-tooltip-12"><span class="na">color=</span><span class="s">&quot;COLOR(white)&quot;</span></span>
+<script type="text/javascript">$('document').ready(function() {$('#type-tooltip-12').tooltip({track: true,showURL: false,opacity: 1.0,left: 25,top: -50,bodyHandler : function() {return $('<div class="tooltip"><p>Optional attribute <code>color</code>; default value: "white"</p><p>Type: COLOR - either an expression of the form 0xRRGGBB, where RRGGBB is a 6-digit hex color code, or one of the strings: black, red, green, blue, yellow, magenta, cyan, or white.</p></div>');}});});</script>      <span class="tipped-type" id="type-tooltip-13"><span class="na">opacity=</span><span class="s">&quot;DOUBLE(1.0)&quot;</span></span>
+<script type="text/javascript">$('document').ready(function() {$('#type-tooltip-13').tooltip({track: true,showURL: false,opacity: 1.0,left: 25,top: -50,bodyHandler : function() {return $('<div class="tooltip"><p>Optional attribute <code>opacity</code>; default value: "1.0"</p><p>Type: DOUBLE - simply a floating point number.</p></div>');}});});</script>      <span class="tipped-type" id="type-tooltip-14"><span class="na">border=</span><span class="s">&quot;INTEGER(1)&quot;</span></span>
+<script type="text/javascript">$('document').ready(function() {$('#type-tooltip-14').tooltip({track: true,showURL: false,opacity: 1.0,left: 25,top: -50,bodyHandler : function() {return $('<div class="tooltip"><p>Optional attribute <code>border</code>; default value: "1"</p><p>Type: INTEGER</p></div>');}});});</script>      <span class="tipped-type" id="type-tooltip-15"><span class="na">bordercolor=</span><span class="s">&quot;COLOR(black)&quot;</span></span>
+<script type="text/javascript">$('document').ready(function() {$('#type-tooltip-15').tooltip({track: true,showURL: false,opacity: 1.0,left: 25,top: -50,bodyHandler : function() {return $('<div class="tooltip"><p>Optional attribute <code>bordercolor</code>; default value: "black"</p><p>Type: COLOR - either an expression of the form 0xRRGGBB, where RRGGBB is a 6-digit hex color code, or one of the strings: black, red, green, blue, yellow, magenta, cyan, or white.</p></div>');}});});</script>      <span class="tipped-type" id="type-tooltip-16"><span class="na">rows=</span><span class="s">&quot;INTEGER&quot;</span></span>
+<script type="text/javascript">$('document').ready(function() {$('#type-tooltip-16').tooltip({track: true,showURL: false,opacity: 1.0,left: 25,top: -50,bodyHandler : function() {return $('<div class="tooltip"><p>Optional attribute <code>rows</code></p><p>Type: INTEGER</p></div>');}});});</script>      <span class="tipped-type" id="type-tooltip-17"><span class="na">columns=</span><span class="s">&quot;INTEGER&quot;</span></span>
+<script type="text/javascript">$('document').ready(function() {$('#type-tooltip-17').tooltip({track: true,showURL: false,opacity: 1.0,left: 25,top: -50,bodyHandler : function() {return $('<div class="tooltip"><p>Optional attribute <code>columns</code></p><p>Type: INTEGER</p></div>');}});});</script>      <span class="tipped-type" id="type-tooltip-18"><span class="na">cornerradius=</span><span class="s">&quot;INTEGER(0)&quot;</span></span>
+<script type="text/javascript">$('document').ready(function() {$('#type-tooltip-18').tooltip({track: true,showURL: false,opacity: 1.0,left: 25,top: -50,bodyHandler : function() {return $('<div class="tooltip"><p>Optional attribute <code>cornerradius</code>; default value: "0"</p><p>Type: INTEGER</p></div>');}});});</script>      <span class="tipped-type" id="type-tooltip-19"><span class="na">padding=</span><span class="s">&quot;INTEGER(0)&quot;</span></span>>
+<script type="text/javascript">$('document').ready(function() {$('#type-tooltip-19').tooltip({track: true,showURL: false,opacity: 1.0,left: 25,top: -50,bodyHandler : function() {return $('<div class="tooltip"><p>Optional attribute <code>padding</code>; default value: "0"</p><p>Type: INTEGER</p></div>');}});});</script><span class="c">    &lt;!--| The &lt;legend&gt; element controls whether and how Multigraph creates a legend</span>
+<span class="c">        | for the graph.   The &lt;legend&gt; element is optional and</span>
+<span class="c">        | can appear at most once in the MUGL file.</span>
+<span class="c">        |</span>
+<span class="c">        |   visible: whether the legend should be drawn or not; the default is "false"</span>
+<span class="c">        |       if there is only one plot in the graph, and "true" if there are more</span>
+<span class="c">        |       than one plot</span>
+<span class="c">        |   base, anchor, position, frame: specify the location of the legend in the</span>
+<span class="c">        |       graph</span>
+<span class="c">        |   color: color of the legend background</span>
+<span class="c">        |   opacity: opacity of the legend background; a value of 0 causes no</span>
+<span class="c">        |       background to be drawn behind the legend.  This opacity value only</span>
+<span class="c">        |       affects the legend background; it does not affect the text or icons</span>
+<span class="c">        |       inside the legend</span>
+<span class="c">        |   border: thickness, in pixels, of the border drawn around the legend; a</span>
+<span class="c">        |       value of 0 causes no border to be drawn</span>
+<span class="c">        |   bordercolor: color of border around the legend</span>
+<span class="c">        |   rows, columns: the legend is layed out in a grid, with an icon and text</span>
+<span class="c">        |       label corresponding to a single plot in each grid cell.  These attributes</span>
+<span class="c">        |       determine how many rows and/or columns are in the grid.</span>
+<span class="c">        |       If neither rows nor columns is specified, columns defaults to 1,</span>
+<span class="c">        |       and there will be one row for each plots</span>
+<span class="c">        |       in the graph.  If only one of rows/columns is specified, the other</span>
+<span class="c">        |       will be computed to be whatever it needs to be so that rows X columns</span>
+<span class="c">        |       is greater than or equal to the number of plots.  If both rows and columns</span>
+<span class="c">        |       are specified, the legend is layed out in a grid of that size.</span>
+<span class="c">        |   cornerradius: the radius, in pixels, of rounding to apply to the corners of</span>
+<span class="c">        |       the legend box</span>
+<span class="c">        |   padding: an amount of space, in pixels, to leave inside the border of the legend</span>
+<span class="c">        |--&gt;</span>
+<span class="element"><span class="collapsed">    <span class="target"><span class="tagprefix">+</span><span class="nt">&lt;icon.../&gt;</span></span></span><span class="expanded">    <span class="target"><span class="tagprefix">-</span><span class="nt">&lt;icon</span></span>
+        <span class="tipped-type" id="type-tooltip-20"><span class="na">width=</span><span class="s">&quot;INTEGER(40)&quot;</span></span>
+<script type="text/javascript">$('document').ready(function() {$('#type-tooltip-20').tooltip({track: true,showURL: false,opacity: 1.0,left: 25,top: -50,bodyHandler : function() {return $('<div class="tooltip"><p>Optional attribute <code>width</code>; default value: "40"</p><p>Type: INTEGER</p></div>');}});});</script>        <span class="tipped-type" id="type-tooltip-21"><span class="na">height=</span><span class="s">&quot;INTEGER(30)&quot;</span></span>
+<script type="text/javascript">$('document').ready(function() {$('#type-tooltip-21').tooltip({track: true,showURL: false,opacity: 1.0,left: 25,top: -50,bodyHandler : function() {return $('<div class="tooltip"><p>Optional attribute <code>height</code>; default value: "30"</p><p>Type: INTEGER</p></div>');}});});</script>        <span class="tipped-type" id="type-tooltip-22"><span class="na">border=</span><span class="s">&quot;INTEGER(1)&quot;</span></span>>
+<script type="text/javascript">$('document').ready(function() {$('#type-tooltip-22').tooltip({track: true,showURL: false,opacity: 1.0,left: 25,top: -50,bodyHandler : function() {return $('<div class="tooltip"><p>Optional attribute <code>border</code>; default value: "1"</p><p>Type: INTEGER</p></div>');}});});</script><span class="c">      &lt;!--|</span>
+<span class="c">          | The &lt;icon&gt; subelement of &lt;legend&gt; controls the shape and appearance of the</span>
+<span class="c">          | little icons that Mulitgraph draws for each plot in the legend.  This subelement</span>
+<span class="c">          | is optional and may appear at most once inside the &lt;legend&gt; element.</span>
+<span class="c">          |</span>
+<span class="c">          |   width: the width, in pixels, of the icon</span>
+<span class="c">          |   height: the height, in pixels, of the icon</span>
+<span class="c">          |   horder: the thickness, in pixels, of the border to be drawn around each</span>
+<span class="c">          |       plot icon</span>
+<span class="c">          |--&gt;</span>
+    <span class="tagprefix"></span><span class="nt">&lt;/icon&gt;</span></span></span>
+  <span class="tagprefix"></span><span class="nt">&lt;/legend&gt;</span></span></span>
+<span class="element"><span class="collapsed">  <span class="target"><span class="tagprefix">+</span><span class="nt">&lt;background.../&gt;</span></span></span><span class="expanded">  <span class="target"><span class="tagprefix">-</span><span class="nt">&lt;background</span></span>
+    <span class="tipped-type" id="type-tooltip-23"><span class="na">color=</span><span class="s">&quot;COLOR(white)&quot;</span></span>>
+<script type="text/javascript">$('document').ready(function() {$('#type-tooltip-23').tooltip({track: true,showURL: false,opacity: 1.0,left: 25,top: -50,bodyHandler : function() {return $('<div class="tooltip"><p>Optional attribute <code>color</code>; default value: "white"</p><p>Type: COLOR - either an expression of the form 0xRRGGBB, where RRGGBB is a 6-digit hex color code, or one of the strings: black, red, green, blue, yellow, magenta, cyan, or white.</p></div>');}});});</script><span class="c">    &lt;!--| The &lt;background&gt; element controls how Multigraph draws the graph's background</span>
+<span class="c">        | (the area inside the border).     The &lt;background&gt; element is optional and can</span>
+<span class="c">        | appear at most once in the MUGL file.</span>
+<span class="c">        |</span>
+<span class="c">        |   color: a solid color to fill the background with</span>
+<span class="c">        |--&gt;</span>
+<span class="element"><span class="collapsed">    <span class="target"><span class="tagprefix">+</span><span class="nt">&lt;img.../&gt;</span></span></span><span class="expanded">    <span class="target"><span class="tagprefix">-</span><span class="nt">&lt;img</span></span>
+        <span class="tipped-type" id="type-tooltip-24"><span class="na">src=</span><span class="s">&quot;STRING!&quot;</span></span>
+<script type="text/javascript">$('document').ready(function() {$('#type-tooltip-24').tooltip({track: true,showURL: false,opacity: 1.0,left: 25,top: -50,bodyHandler : function() {return $('<div class="tooltip"><p>Required attribute <code>src</code></p><p>Type: STRING - any sequence of characters.</p></div>');}});});</script>        <span class="tipped-type" id="type-tooltip-25"><span class="na">anchor=</span><span class="s">&quot;POINT(-1,-1)&quot;</span></span>
+<script type="text/javascript">$('document').ready(function() {$('#type-tooltip-25').tooltip({track: true,showURL: false,opacity: 1.0,left: 25,top: -50,bodyHandler : function() {return $('<div class="tooltip"><p>Optional attribute <code>anchor</code>; default value: "-1,-1"</p><p>Type: POINT - a pair of numbers (either floating point or integer), separated by either a space or a comma.</p></div>');}});});</script>        <span class="tipped-type" id="type-tooltip-26"><span class="na">base=</span><span class="s">&quot;POINT(-1,-1)&quot;</span></span>
+<script type="text/javascript">$('document').ready(function() {$('#type-tooltip-26').tooltip({track: true,showURL: false,opacity: 1.0,left: 25,top: -50,bodyHandler : function() {return $('<div class="tooltip"><p>Optional attribute <code>base</code>; default value: "-1,-1"</p><p>Type: POINT - a pair of numbers (either floating point or integer), separated by either a space or a comma.</p></div>');}});});</script>        <span class="tipped-type" id="type-tooltip-27"><span class="na">position=</span><span class="s">&quot;POINT(0,0)&quot;</span></span>
+<script type="text/javascript">$('document').ready(function() {$('#type-tooltip-27').tooltip({track: true,showURL: false,opacity: 1.0,left: 25,top: -50,bodyHandler : function() {return $('<div class="tooltip"><p>Optional attribute <code>position</code>; default value: "0,0"</p><p>Type: POINT - a pair of numbers (either floating point or integer), separated by either a space or a comma.</p></div>');}});});</script>        <span class="tipped-type" id="type-tooltip-28"><span class="na">frame=</span><span class="s">&quot;FRAME(padding)&quot;</span></span>>
+<script type="text/javascript">$('document').ready(function() {$('#type-tooltip-28').tooltip({track: true,showURL: false,opacity: 1.0,left: 25,top: -50,bodyHandler : function() {return $('<div class="tooltip"><p>Optional attribute <code>frame</code>; default value: "padding"</p><p>Type: FRAME - one of the strings \"padding\" or \"plot\"; it indicates which box - either the padding box or the plot box - this element\'s <code>base</code> attribute is relative to.</p></div>');}});});</script><span class="c">      &lt;!--| The &lt;img&gt; subelement of &lt;background&gt; specifies an image to draw in</span>
+<span class="c">          | the background.  This subelement is optional and can appear at most</span>
+<span class="c">          | once.  If it is present, the image is drawn after the background is</span>
+<span class="c">          | filled with the background color, but before anything else is drawn,</span>
+<span class="c">          | so the image will appear underneath everything.</span>
+<span class="c">          |</span>
+<span class="c">          |   src: the URL of the image to be drawn.  If this is a relative</span>
+<span class="c">          |       URL, it is interpreted relative to the URL of the MUGL file.</span>
+<span class="c">          |   anchor, base, position, frame:  specify the positioning</span>
+<span class="c">          |       of the image</span>
+<span class="c">          |--&gt;</span>
+    <span class="tagprefix"></span><span class="nt">&lt;/img&gt;</span></span></span>
+  <span class="tagprefix"></span><span class="nt">&lt;/background&gt;</span></span></span>
+<span class="element"><span class="collapsed">  <span class="target"><span class="tagprefix">+</span><span class="nt">&lt;plotarea.../&gt;</span></span></span><span class="expanded">  <span class="target"><span class="tagprefix">-</span><span class="nt">&lt;plotarea</span></span>
+      <span class="tipped-type" id="type-tooltip-29"><span class="na">marginbottom=</span><span class="s">&quot;INTEGER(35)&quot;</span></span>
+<script type="text/javascript">$('document').ready(function() {$('#type-tooltip-29').tooltip({track: true,showURL: false,opacity: 1.0,left: 25,top: -50,bodyHandler : function() {return $('<div class="tooltip"><p>Optional attribute <code>marginbottom</code>; default value: "35"</p><p>Type: INTEGER</p></div>');}});});</script>      <span class="tipped-type" id="type-tooltip-30"><span class="na">marginleft=</span><span class="s">&quot;INTEGER(38)&quot;</span></span>
+<script type="text/javascript">$('document').ready(function() {$('#type-tooltip-30').tooltip({track: true,showURL: false,opacity: 1.0,left: 25,top: -50,bodyHandler : function() {return $('<div class="tooltip"><p>Optional attribute <code>marginleft</code>; default value: "38"</p><p>Type: INTEGER</p></div>');}});});</script>      <span class="tipped-type" id="type-tooltip-31"><span class="na">margintop=</span><span class="s">&quot;INTEGER(10)&quot;</span></span>
+<script type="text/javascript">$('document').ready(function() {$('#type-tooltip-31').tooltip({track: true,showURL: false,opacity: 1.0,left: 25,top: -50,bodyHandler : function() {return $('<div class="tooltip"><p>Optional attribute <code>margintop</code>; default value: "10"</p><p>Type: INTEGER</p></div>');}});});</script>      <span class="tipped-type" id="type-tooltip-32"><span class="na">marginright=</span><span class="s">&quot;INTEGER(35)&quot;</span></span>
+<script type="text/javascript">$('document').ready(function() {$('#type-tooltip-32').tooltip({track: true,showURL: false,opacity: 1.0,left: 25,top: -50,bodyHandler : function() {return $('<div class="tooltip"><p>Optional attribute <code>marginright</code>; default value: "35"</p><p>Type: INTEGER</p></div>');}});});</script>      <span class="tipped-type" id="type-tooltip-33"><span class="na">border=</span><span class="s">&quot;INTEGER(0)&quot;</span></span>
+<script type="text/javascript">$('document').ready(function() {$('#type-tooltip-33').tooltip({track: true,showURL: false,opacity: 1.0,left: 25,top: -50,bodyHandler : function() {return $('<div class="tooltip"><p>Optional attribute <code>border</code>; default value: "0"</p><p>Type: INTEGER</p></div>');}});});</script>      <span class="tipped-type" id="type-tooltip-34"><span class="na">bordercolor=</span><span class="s">&quot;COLOR(0xeeeeee)&quot;</span></span>
+<script type="text/javascript">$('document').ready(function() {$('#type-tooltip-34').tooltip({track: true,showURL: false,opacity: 1.0,left: 25,top: -50,bodyHandler : function() {return $('<div class="tooltip"><p>Optional attribute <code>bordercolor</code>; default value: "0xeeeeee"</p><p>Type: COLOR - either an expression of the form 0xRRGGBB, where RRGGBB is a 6-digit hex color code, or one of the strings: black, red, green, blue, yellow, magenta, cyan, or white.</p></div>');}});});</script>      <span class="tipped-type" id="type-tooltip-35"><span class="na">color=</span><span class="s">&quot;COLOR&quot;</span></span>>
+<script type="text/javascript">$('document').ready(function() {$('#type-tooltip-35').tooltip({track: true,showURL: false,opacity: 1.0,left: 25,top: -50,bodyHandler : function() {return $('<div class="tooltip"><p>Optional attribute <code>color</code></p><p>Type: COLOR - either an expression of the form 0xRRGGBB, where RRGGBB is a 6-digit hex color code, or one of the strings: black, red, green, blue, yellow, magenta, cyan, or white.</p></div>');}});});</script><span class="c">    &lt;!--| The &lt;plotarea&gt; element specifies the size and appearance of the plot area.  The</span>
+<span class="c">        | element is optional and can appear at most once in the MUGL file.</span>
+<span class="c">        |</span>
+<span class="c">        |  marginbottom, marginleft, margintop, marginright: these attributes give the</span>
+<span class="c">        |      margin amounts for the plot area, in pixels</span>
+<span class="c">        |  border: the thickness, in pixels, of a border to draw around the plot area; a</span>
+<span class="c">        |      value of 0 means that no border is drawn</span>
+<span class="c">        |  bordercolor: the color to use for the border</span>
+<span class="c">        |  color: a color to fill the background of the plot area with.  If the attribute is</span>
+<span class="c">        |      present, the plot area is filled with this color after any background color</span>
+<span class="c">        |      and/or background image from the &lt;background&gt; element are drawn.  The default</span>
+<span class="c">        |      behavior, if this attribute is not specified, is that no fill is applied</span>
+<span class="c">        |      to the plot area, so that whatever color and/or image was drawn for the</span>
+<span class="c">        |      &lt;background&gt; element shows through.</span>
+<span class="c">        |--&gt;</span>
+  <span class="tagprefix"></span><span class="nt">&lt;/plotarea&gt;</span></span></span>
+<span class="element"><span class="collapsed">  <span class="target"><span class="tagprefix">+</span><span class="nt">&lt;title.../&gt;</span></span></span><span class="expanded">  <span class="target"><span class="tagprefix">-</span><span class="nt">&lt;title</span></span>
+      <span class="tipped-type" id="type-tooltip-36"><span class="na">base=</span><span class="s">&quot;POINT(0,1)&quot;</span></span>
+<script type="text/javascript">$('document').ready(function() {$('#type-tooltip-36').tooltip({track: true,showURL: false,opacity: 1.0,left: 25,top: -50,bodyHandler : function() {return $('<div class="tooltip"><p>Optional attribute <code>base</code>; default value: "0,1"</p><p>Type: POINT - a pair of numbers (either floating point or integer), separated by either a space or a comma.</p></div>');}});});</script>      <span class="tipped-type" id="type-tooltip-37"><span class="na">anchor=</span><span class="s">&quot;POINT(0,1)&quot;</span></span>
+<script type="text/javascript">$('document').ready(function() {$('#type-tooltip-37').tooltip({track: true,showURL: false,opacity: 1.0,left: 25,top: -50,bodyHandler : function() {return $('<div class="tooltip"><p>Optional attribute <code>anchor</code>; default value: "0,1"</p><p>Type: POINT - a pair of numbers (either floating point or integer), separated by either a space or a comma.</p></div>');}});});</script>      <span class="tipped-type" id="type-tooltip-38"><span class="na">position=</span><span class="s">&quot;POINT(0,0)&quot;</span></span>
+<script type="text/javascript">$('document').ready(function() {$('#type-tooltip-38').tooltip({track: true,showURL: false,opacity: 1.0,left: 25,top: -50,bodyHandler : function() {return $('<div class="tooltip"><p>Optional attribute <code>position</code>; default value: "0,0"</p><p>Type: POINT - a pair of numbers (either floating point or integer), separated by either a space or a comma.</p></div>');}});});</script>      <span class="tipped-type" id="type-tooltip-39"><span class="na">frame=</span><span class="s">&quot;FRAME(padding)&quot;</span></span>
+<script type="text/javascript">$('document').ready(function() {$('#type-tooltip-39').tooltip({track: true,showURL: false,opacity: 1.0,left: 25,top: -50,bodyHandler : function() {return $('<div class="tooltip"><p>Optional attribute <code>frame</code>; default value: "padding"</p><p>Type: FRAME - one of the strings \"padding\" or \"plot\"; it indicates which box - either the padding box or the plot box - this element\'s <code>base</code> attribute is relative to.</p></div>');}});});</script>      <span class="tipped-type" id="type-tooltip-40"><span class="na">color=</span><span class="s">&quot;COLOR(white)&quot;</span></span>
+<script type="text/javascript">$('document').ready(function() {$('#type-tooltip-40').tooltip({track: true,showURL: false,opacity: 1.0,left: 25,top: -50,bodyHandler : function() {return $('<div class="tooltip"><p>Optional attribute <code>color</code>; default value: "white"</p><p>Type: COLOR - either an expression of the form 0xRRGGBB, where RRGGBB is a 6-digit hex color code, or one of the strings: black, red, green, blue, yellow, magenta, cyan, or white.</p></div>');}});});</script>      <span class="tipped-type" id="type-tooltip-41"><span class="na">opacity=</span><span class="s">&quot;DOUBLE(1.0)&quot;</span></span>
+<script type="text/javascript">$('document').ready(function() {$('#type-tooltip-41').tooltip({track: true,showURL: false,opacity: 1.0,left: 25,top: -50,bodyHandler : function() {return $('<div class="tooltip"><p>Optional attribute <code>opacity</code>; default value: "1.0"</p><p>Type: DOUBLE - simply a floating point number.</p></div>');}});});</script>      <span class="tipped-type" id="type-tooltip-42"><span class="na">border=</span><span class="s">&quot;INTEGER(0)&quot;</span></span>
+<script type="text/javascript">$('document').ready(function() {$('#type-tooltip-42').tooltip({track: true,showURL: false,opacity: 1.0,left: 25,top: -50,bodyHandler : function() {return $('<div class="tooltip"><p>Optional attribute <code>border</code>; default value: "0"</p><p>Type: INTEGER</p></div>');}});});</script>      <span class="tipped-type" id="type-tooltip-43"><span class="na">bordercolor=</span><span class="s">&quot;COLOR(black)&quot;</span></span>
+<script type="text/javascript">$('document').ready(function() {$('#type-tooltip-43').tooltip({track: true,showURL: false,opacity: 1.0,left: 25,top: -50,bodyHandler : function() {return $('<div class="tooltip"><p>Optional attribute <code>bordercolor</code>; default value: "black"</p><p>Type: COLOR - either an expression of the form 0xRRGGBB, where RRGGBB is a 6-digit hex color code, or one of the strings: black, red, green, blue, yellow, magenta, cyan, or white.</p></div>');}});});</script>      <span class="tipped-type" id="type-tooltip-44"><span class="na">padding=</span><span class="s">&quot;INTEGER(0)&quot;</span></span>
+<script type="text/javascript">$('document').ready(function() {$('#type-tooltip-44').tooltip({track: true,showURL: false,opacity: 1.0,left: 25,top: -50,bodyHandler : function() {return $('<div class="tooltip"><p>Optional attribute <code>padding</code>; default value: "0"</p><p>Type: INTEGER</p></div>');}});});</script>      <span class="tipped-type" id="type-tooltip-45"><span class="na">cornerradius=</span><span class="s">&quot;INTEGER(15)&quot;</span></span>
+<script type="text/javascript">$('document').ready(function() {$('#type-tooltip-45').tooltip({track: true,showURL: false,opacity: 1.0,left: 25,top: -50,bodyHandler : function() {return $('<div class="tooltip"><p>Optional attribute <code>cornerradius</code>; default value: "15"</p><p>Type: INTEGER</p></div>');}});});</script>      <span class="tipped-type" id="type-tooltip-46"><span class="na">fontsize=</span><span class="s">&quot;INTEGER&quot;</span></span>>
+<script type="text/javascript">$('document').ready(function() {$('#type-tooltip-46').tooltip({track: true,showURL: false,opacity: 1.0,left: 25,top: -50,bodyHandler : function() {return $('<div class="tooltip"><p>Optional attribute <code>fontsize</code></p><p>Type: INTEGER</p></div>');}});});</script><span class="c">    &lt;!--| The &lt;title&gt; element indicates a title to be displayed in the graph.  If the &lt;title&gt;</span>
+<span class="c">        | element is not present, no title is drawn.  If it is present, the text of the element</span>
+<span class="c">        | indicates the text of the title.</span>
+<span class="c">        |</span>
+<span class="c">        | NOTE: at the time of this writing, the title element is not fully implemented in</span>
+<span class="c">        |       Multigraph 4.0.  A better way to implement a graph title is to do it outside</span>
+<span class="c">        |       of Multigraph: create a &lt;div&gt; element outside of the Multigraph &lt;div&gt;, and use</span>
+<span class="c">        |       CSS to style and position it as desired.  (You can even position it to appear</span>
+<span class="c">        |       as though it's inside the graph, by using relative or absolute positioning.)</span>
+<span class="c">        |</span>
+<span class="c">        |    anchor, base, position, frame:  specify the position of the title</span>
+<span class="c">        |    color: color of the background rectangle to be drawn behind the title</span>
+<span class="c">        |    opacity: opacity of the title background</span>
+<span class="c">        |    border: thickness, in pixels, of the border drawn around the title; a</span>
+<span class="c">        |        value of 0 causes no border to be drawn</span>
+<span class="c">        |    bordercolor: color of border around the title</span>
+<span class="c">        |    padding: an amount of space, in pixels, to leave inside the border of the title</span>
+<span class="c">        |    cornerradius: the radius, in pixels, of rounding to apply to the corners of</span>
+<span class="c">        |        the title box</span>
+<span class="c">        |    fontsize: the size of the font to use for the title</span>
+<span class="c">        |--&gt;</span>
+  <span class="tagprefix"></span><span class="nt">&lt;/title&gt;</span></span></span>
+<span class="element"><span class="collapsed">  <span class="target"><span class="tagprefix">+</span><span class="nt">&lt;horizontalaxis.../&gt;</span></span></span><span class="expanded">  <span class="target"><span class="tagprefix">-</span><span class="nt">&lt;horizontalaxis</span></span>
+      <span class="tipped-type" id="type-tooltip-47"><span class="na">id=</span><span class="s">&quot;STRING&quot;</span></span>
+<script type="text/javascript">$('document').ready(function() {$('#type-tooltip-47').tooltip({track: true,showURL: false,opacity: 1.0,left: 25,top: -50,bodyHandler : function() {return $('<div class="tooltip"><p>Optional attribute <code>id</code></p><p>Type: STRING - any sequence of characters.</p></div>');}});});</script>      <span class="tipped-type" id="type-tooltip-48"><span class="na">type=</span><span class="s">&quot;DATATYPE(number)&quot;</span></span>
+<script type="text/javascript">$('document').ready(function() {$('#type-tooltip-48').tooltip({track: true,showURL: false,opacity: 1.0,left: 25,top: -50,bodyHandler : function() {return $('<div class="tooltip"><p>Optional attribute <code>type</code>; default value: "number"</p><p>Type: DATATYPE - one of the strings \"number\" or \"datetime\".</p></div>');}});});</script>      <span class="tipped-type" id="type-tooltip-49"><span class="na">length=</span><span class="s">&quot;RELLEN(1.0)&quot;</span></span>
+<script type="text/javascript">$('document').ready(function() {$('#type-tooltip-49').tooltip({track: true,showURL: false,opacity: 1.0,left: 25,top: -50,bodyHandler : function() {return $('<div class="tooltip"><p>Optional attribute <code>length</code>; default value: "1.0"</p><p>Type: RELLEN - an expression of one of the forms \"A\", \"A+B\", or \"A-B\", where A is a number in the range [0,1] that represents a fraction of a length, and +B or -B is a pixel amount to add or subtract from that length.</p></div>');}});});</script>      <span class="tipped-type" id="type-tooltip-50"><span class="na">base=</span><span class="s">&quot;POINT(-1,1)&quot;</span></span>
+<script type="text/javascript">$('document').ready(function() {$('#type-tooltip-50').tooltip({track: true,showURL: false,opacity: 1.0,left: 25,top: -50,bodyHandler : function() {return $('<div class="tooltip"><p>Optional attribute <code>base</code>; default value: "-1,1"</p><p>Type: POINT - a pair of numbers (either floating point or integer), separated by either a space or a comma.</p></div>');}});});</script>      <span class="tipped-type" id="type-tooltip-51"><span class="na">anchor=</span><span class="s">&quot;DOUBLE(-1)&quot;</span></span>
+<script type="text/javascript">$('document').ready(function() {$('#type-tooltip-51').tooltip({track: true,showURL: false,opacity: 1.0,left: 25,top: -50,bodyHandler : function() {return $('<div class="tooltip"><p>Optional attribute <code>anchor</code>; default value: "-1"</p><p>Type: DOUBLE - simply a floating point number.</p></div>');}});});</script>      <span class="tipped-type" id="type-tooltip-52"><span class="na">position=</span><span class="s">&quot;POINT(0,0)&quot;</span></span>
+<script type="text/javascript">$('document').ready(function() {$('#type-tooltip-52').tooltip({track: true,showURL: false,opacity: 1.0,left: 25,top: -50,bodyHandler : function() {return $('<div class="tooltip"><p>Optional attribute <code>position</code>; default value: "0,0"</p><p>Type: POINT - a pair of numbers (either floating point or integer), separated by either a space or a comma.</p></div>');}});});</script>      <span class="tipped-type" id="type-tooltip-53"><span class="na">min=</span><span class="s">&quot;DATAVALUEORAUTO(auto)&quot;</span></span>
+<script type="text/javascript">$('document').ready(function() {$('#type-tooltip-53').tooltip({track: true,showURL: false,opacity: 1.0,left: 25,top: -50,bodyHandler : function() {return $('<div class="tooltip"><p>Optional attribute <code>min</code>; default value: "auto"</p><p>Type: DATAVALUEORAUTO - either a floating point number, or a datetime expression, or the special value \"auto\".</p></div>');}});});</script>      <span class="tipped-type" id="type-tooltip-54"><span class="na">max=</span><span class="s">&quot;DATAVALUEORAUTO(auto)&quot;</span></span>
+<script type="text/javascript">$('document').ready(function() {$('#type-tooltip-54').tooltip({track: true,showURL: false,opacity: 1.0,left: 25,top: -50,bodyHandler : function() {return $('<div class="tooltip"><p>Optional attribute <code>max</code>; default value: "auto"</p><p>Type: DATAVALUEORAUTO - either a floating point number, or a datetime expression, or the special value \"auto\".</p></div>');}});});</script>      <span class="tipped-type" id="type-tooltip-55"><span class="na">minposition=</span><span class="s">&quot;RELPOS(-1.0)&quot;</span></span>
+<script type="text/javascript">$('document').ready(function() {$('#type-tooltip-55').tooltip({track: true,showURL: false,opacity: 1.0,left: 25,top: -50,bodyHandler : function() {return $('<div class="tooltip"><p>Optional attribute <code>minposition</code>; default value: "-1.0"</p><p>Type: RELPOS - an expression of one of the forms \"A\", \"A+B\", or \"A-B\", where A is a number in the range [-1,1] that represents a relative position along a line segment, and +B or -B is a pixel offset from that position.</p></div>');}});});</script>      <span class="tipped-type" id="type-tooltip-56"><span class="na">maxposition=</span><span class="s">&quot;RELPOS(1.0)&quot;</span></span>
+<script type="text/javascript">$('document').ready(function() {$('#type-tooltip-56').tooltip({track: true,showURL: false,opacity: 1.0,left: 25,top: -50,bodyHandler : function() {return $('<div class="tooltip"><p>Optional attribute <code>maxposition</code>; default value: "1.0"</p><p>Type: RELPOS - an expression of one of the forms \"A\", \"A+B\", or \"A-B\", where A is a number in the range [-1,1] that represents a relative position along a line segment, and +B or -B is a pixel offset from that position.</p></div>');}});});</script>      <span class="tipped-type" id="type-tooltip-57"><span class="na">color=</span><span class="s">&quot;COLOR(black)&quot;</span></span>
+<script type="text/javascript">$('document').ready(function() {$('#type-tooltip-57').tooltip({track: true,showURL: false,opacity: 1.0,left: 25,top: -50,bodyHandler : function() {return $('<div class="tooltip"><p>Optional attribute <code>color</code>; default value: "black"</p><p>Type: COLOR - either an expression of the form 0xRRGGBB, where RRGGBB is a 6-digit hex color code, or one of the strings: black, red, green, blue, yellow, magenta, cyan, or white.</p></div>');}});});</script>      <span class="tipped-type" id="type-tooltip-58"><span class="na">linewidth=</span><span class="s">&quot;INTEGER(1)&quot;</span></span>
+<script type="text/javascript">$('document').ready(function() {$('#type-tooltip-58').tooltip({track: true,showURL: false,opacity: 1.0,left: 25,top: -50,bodyHandler : function() {return $('<div class="tooltip"><p>Optional attribute <code>linewidth</code>; default value: "1"</p><p>Type: INTEGER</p></div>');}});});</script>      <span class="tipped-type" id="type-tooltip-59"><span class="na">tickmin=</span><span class="s">&quot;INTEGER(-3)&quot;</span></span>
+<script type="text/javascript">$('document').ready(function() {$('#type-tooltip-59').tooltip({track: true,showURL: false,opacity: 1.0,left: 25,top: -50,bodyHandler : function() {return $('<div class="tooltip"><p>Optional attribute <code>tickmin</code>; default value: "-3"</p><p>Type: INTEGER</p></div>');}});});</script>      <span class="tipped-type" id="type-tooltip-60"><span class="na">tickmax=</span><span class="s">&quot;INTEGER(3)&quot;</span></span>
+<script type="text/javascript">$('document').ready(function() {$('#type-tooltip-60').tooltip({track: true,showURL: false,opacity: 1.0,left: 25,top: -50,bodyHandler : function() {return $('<div class="tooltip"><p>Optional attribute <code>tickmax</code>; default value: "3"</p><p>Type: INTEGER</p></div>');}});});</script>      <span class="tipped-type" id="type-tooltip-61"><span class="na">tickcolor=</span><span class="s">&quot;COLOR(black)&quot;</span></span>>
+<script type="text/javascript">$('document').ready(function() {$('#type-tooltip-61').tooltip({track: true,showURL: false,opacity: 1.0,left: 25,top: -50,bodyHandler : function() {return $('<div class="tooltip"><p>Optional attribute <code>tickcolor</code>; default value: "black"</p><p>Type: COLOR - either an expression of the form 0xRRGGBB, where RRGGBB is a 6-digit hex color code, or one of the strings: black, red, green, blue, yellow, magenta, cyan, or white.</p></div>');}});});</script><span class="c">    &lt;!--| The &lt;horizontalaxis&gt; and &lt;verticalaxis&gt; elements specify axes for the graph.</span>
+<span class="c">        | Every graph has at least one horizontal axis and at least one vertical axis,</span>
+<span class="c">        | but the &lt;horizontalaxis&gt; and &lt;verticalaxis&gt; elements are optional in the MUGL</span>
+<span class="c">        | file; if either is absent, an axis of that orientation with all the default</span>
+<span class="c">        | values is implied.</span>
+<span class="c">        |</span>
+<span class="c">        | id: the id of the axis.  If this attribute is missing, an id of "x" is used for</span>
+<span class="c">        |     the first horizontal axis, "x1" for the second, and so on.  For vertical axes,</span>
+<span class="c">        |     the default ids are "y", "y1", etc.</span>
+<span class="c">        | type: the data type of the axis</span>
+<span class="c">        | length: the length of the axis, as a RELLEN representing a fraction of the width</span>
+<span class="c">        |     (or height, for a vertical axis) of the plot area, plus or minus a pixel offset.</span>
+<span class="c">        | base: a POINT in the range (-1,-1) to (1,1) giving the location in the plot area</span>
+<span class="c">        |     of the base point for the axis's location</span>
+<span class="c">        | position: a POINT value giving the position offset for the location of the axis,</span>
+<span class="c">        |     relative to the base point</span>
+<span class="c">        | anchor: a single number in the range [-1,1] indicating the location of the</span>
+<span class="c">        |     anchor point along the axis.  -1 corresponds to the left endpoint, and 1</span>
+<span class="c">        |     corresponds to the right endpoint.</span>
+<span class="c">        | min: the minimum data value for the axis; this is typically the value associated</span>
+<span class="c">        |     with the left endpoint of the axis, but see "minposition" below.</span>
+<span class="c">        | max: the maximum data value for the axis; this is typically the value associated</span>
+<span class="c">        |     with the right endpoint of the axis, but see "maxposition" below.</span>
+<span class="c">        | minposition: the location on the axis that corresponds to the minimum data value,</span>
+<span class="c">        |     as a RELPOS.</span>
+<span class="c">        | maxposition: the location on the axis that corresponds to the maximum data value,</span>
+<span class="c">        |     as a RELPOS.</span>
+<span class="c">        | color: the color of the line to draw for the axis</span>
+<span class="c">        | linewidth: the pixel thickness of the line to draw for the axis</span>
+<span class="c">        | tickmin: the length, in pixels, of the part of the axis tick marks that extends below</span>
+<span class="c">        |     the axis</span>
+<span class="c">        | tickmax: the length, in pixels, of the part of the axis tick marks that extends above</span>
+<span class="c">        |     the axis</span>
+<span class="c">        | tickcolor: the color to use when drawing the axis tick marks</span>
+<span class="c">        |--&gt;</span>
+<span class="element"><span class="collapsed">    <span class="target"><span class="tagprefix">+</span><span class="nt">&lt;labels.../&gt;</span></span></span><span class="expanded">    <span class="target"><span class="tagprefix">-</span><span class="nt">&lt;labels</span></span>
+        <span class="tipped-type" id="type-tooltip-62"><span class="na">format=</span><span class="s">&quot;STRING&quot;</span></span>
+<script type="text/javascript">$('document').ready(function() {$('#type-tooltip-62').tooltip({track: true,showURL: false,opacity: 1.0,left: 25,top: -50,bodyHandler : function() {return $('<div class="tooltip"><p>Optional attribute <code>format</code></p><p>Type: STRING - any sequence of characters.</p></div>');}});});</script>        <span class="tipped-type" id="type-tooltip-63"><span class="na">start=</span><span class="s">&quot;DATAVALUE(0)&quot;</span></span>
+<script type="text/javascript">$('document').ready(function() {$('#type-tooltip-63').tooltip({track: true,showURL: false,opacity: 1.0,left: 25,top: -50,bodyHandler : function() {return $('<div class="tooltip"><p>Optional attribute <code>start</code>; default value: "0"</p><p>Type: DATAVALUE - either a number, for values of data type number, or a datetime expression, for values of type datetime. Datetimes are expressed by a sequence of digits matching one of the following patterns: YYYY, YYYYMM, YYYYMMDD, YYYYMMDDHH, YYYYMMDDHHmm, YYYYMMDDHHmmss, or YYYYMMDDHHmmss.fff, depending on the degree of precision desired.</p></div>');}});});</script>        <span class="tipped-type" id="type-tooltip-64"><span class="na">angle=</span><span class="s">&quot;DOUBLE(0)&quot;</span></span>
+<script type="text/javascript">$('document').ready(function() {$('#type-tooltip-64').tooltip({track: true,showURL: false,opacity: 1.0,left: 25,top: -50,bodyHandler : function() {return $('<div class="tooltip"><p>Optional attribute <code>angle</code>; default value: "0"</p><p>Type: DOUBLE - simply a floating point number.</p></div>');}});});</script>        <span class="tipped-type" id="type-tooltip-65"><span class="na">position=</span><span class="s">&quot;POINT&quot;</span></span>
+<script type="text/javascript">$('document').ready(function() {$('#type-tooltip-65').tooltip({track: true,showURL: false,opacity: 1.0,left: 25,top: -50,bodyHandler : function() {return $('<div class="tooltip"><p>Optional attribute <code>position</code></p><p>Type: POINT - a pair of numbers (either floating point or integer), separated by either a space or a comma.</p></div>');}});});</script>        <span class="tipped-type" id="type-tooltip-66"><span class="na">anchor=</span><span class="s">&quot;POINT&quot;</span></span>
+<script type="text/javascript">$('document').ready(function() {$('#type-tooltip-66').tooltip({track: true,showURL: false,opacity: 1.0,left: 25,top: -50,bodyHandler : function() {return $('<div class="tooltip"><p>Optional attribute <code>anchor</code></p><p>Type: POINT - a pair of numbers (either floating point or integer), separated by either a space or a comma.</p></div>');}});});</script>        <span class="tipped-type" id="type-tooltip-67"><span class="na">color=</span><span class="s">&quot;COLOR(black)&quot;</span></span>
+<script type="text/javascript">$('document').ready(function() {$('#type-tooltip-67').tooltip({track: true,showURL: false,opacity: 1.0,left: 25,top: -50,bodyHandler : function() {return $('<div class="tooltip"><p>Optional attribute <code>color</code>; default value: "black"</p><p>Type: COLOR - either an expression of the form 0xRRGGBB, where RRGGBB is a 6-digit hex color code, or one of the strings: black, red, green, blue, yellow, magenta, cyan, or white.</p></div>');}});});</script>        <span class="tipped-type" id="type-tooltip-68"><span class="na">spacing=</span><span class="s">&quot;STRING&quot;</span></span>
+<script type="text/javascript">$('document').ready(function() {$('#type-tooltip-68').tooltip({track: true,showURL: false,opacity: 1.0,left: 25,top: -50,bodyHandler : function() {return $('<div class="tooltip"><p>Optional attribute <code>spacing</code></p><p>Type: STRING - any sequence of characters.</p></div>');}});});</script>        <span class="tipped-type" id="type-tooltip-69"><span class="na">densityfactor=</span><span class="s">&quot;DOUBLE(1.0)&quot;</span></span>>
+<script type="text/javascript">$('document').ready(function() {$('#type-tooltip-69').tooltip({track: true,showURL: false,opacity: 1.0,left: 25,top: -50,bodyHandler : function() {return $('<div class="tooltip"><p>Optional attribute <code>densityfactor</code>; default value: "1.0"</p><p>Type: DOUBLE - simply a floating point number.</p></div>');}});});</script><span class="c">      &lt;!--| The &lt;labels&gt; subelement of the axis elements indicates how and where tick marks</span>
+<span class="c">          | and labels should be drawn along the axis.</span>
+<span class="c">          |</span>
+<span class="c">          | format: the format string to use for the labels; defaults to "%.1f" for number</span>
+<span class="c">          |     axes, and to "%Y-%M-%D %H:%i" for datetime axes</span>
+<span class="c">          | start: a data value that indicates how the tickmarks and labels should be aligned</span>
+<span class="c">          |     along the axis.  The alignment will be chosen so that a tick mark would be drawn</span>
+<span class="c">          |     at the location specified by the start value.  Note that this does not necessarily</span>
+<span class="c">          |     mean that labeling will actually start at this value; labeling will start at whatever</span>
+<span class="c">          |     multiple of the chosen spacing, aligned at the start value, occurs at or after the</span>
+<span class="c">          |     left endpoint of the axis.  In future versions of MUGL this attribute might be better</span>
+<span class="c">          |     renamed to "align".</span>
+<span class="c">          | position, anchor, angle: specifies the position of the label associated with each tick</span>
+<span class="c">          |     mark.  The "base" value for each label's positioning is the point along the axis</span>
+<span class="c">          |     corresonding to the value being labeled (i.e. the location of the tick mark along the axis).</span>
+<span class="c">          |     The default value for the angle is 0; the default values for the position and anchor depend</span>
+<span class="c">          |     on the orientation and location of the axis:</span>
+<span class="c">          |</span>
+<span class="c">          |                          bottom half, or left              top half, or right</span>
+<span class="c">          |                          half, of plot area                half, of plot area</span>
+<span class="c">          |</span>
+<span class="c">          |         horizontal         position: (0,-5)                 position: (0, 5)</span>
+<span class="c">          |                            anchor: (0,1)                    anchor: (0, -1)</span>
+<span class="c">          |</span>
+<span class="c">          |         vertical           position: (-8, 0)                position: (5, 0)</span>
+<span class="c">          |                            anchor: (1, 0)                   anchor: (-1, 0)</span>
+<span class="c">          |</span>
+<span class="c">          | color: the color to use when drawing labels</span>
+<span class="c">          | spacing: a space-separated list of spacings, where each spacing is a DATAMEASURE.  Multigraph will</span>
+<span class="c">          |     choose from among these spacings when deciding how many labels to draw; it will chose the</span>
+<span class="c">          |     spacing that results in the "optimal" density of labels along the axis.  The default for number</span>
+<span class="c">          |     axes is</span>
+<span class="c">          |         "10000 5000 2000 1000 500 200 100 50 20 10 5 2 1 0.1 0.01 0.001"</span>
+<span class="c">          |     and the default for datetime axes is</span>
+<span class="c">          |         "1000Y 500Y 200Y 100Y 50Y 20Y 10Y 5Y 2Y 1Y 6M 3M 2M 1M 7D 3D 2D 1D 12H 6H 3H 2H 1H"</span>
+<span class="c">          | densityfactor: this is a factor that can be used to tweak Multigraph's concept what what</span>
+<span class="c">          |     constitutes an "optimal" density of labels along the axis.  It should be a positive number;</span>
+<span class="c">          |     Values greater than one result in more labels, and values less than one result in fewer</span>
+<span class="c">          |     labels.  Note that this attribute is not yet fully implemented in Multigraph 4.0.</span>
+<span class="c">          |</span>
+<span class="c">          |--&gt;</span>
+<span class="element"><span class="collapsed">      <span class="target"><span class="tagprefix">+</span><span class="nt">&lt;label.../&gt;</span></span></span><span class="expanded">      <span class="target"><span class="tagprefix">-</span><span class="nt">&lt;label</span></span>
+          <span class="tipped-type" id="type-tooltip-70"><span class="na">format=</span><span class="s">&quot;STRING&quot;</span></span>
+<script type="text/javascript">$('document').ready(function() {$('#type-tooltip-70').tooltip({track: true,showURL: false,opacity: 1.0,left: 25,top: -50,bodyHandler : function() {return $('<div class="tooltip"><p>Optional attribute <code>format</code></p><p>Type: STRING - any sequence of characters.</p></div>');}});});</script>          <span class="tipped-type" id="type-tooltip-71"><span class="na">start=</span><span class="s">&quot;STRING&quot;</span></span>
+<script type="text/javascript">$('document').ready(function() {$('#type-tooltip-71').tooltip({track: true,showURL: false,opacity: 1.0,left: 25,top: -50,bodyHandler : function() {return $('<div class="tooltip"><p>Optional attribute <code>start</code></p><p>Type: STRING - any sequence of characters.</p></div>');}});});</script>          <span class="tipped-type" id="type-tooltip-72"><span class="na">angle=</span><span class="s">&quot;DOUBLE&quot;</span></span>
+<script type="text/javascript">$('document').ready(function() {$('#type-tooltip-72').tooltip({track: true,showURL: false,opacity: 1.0,left: 25,top: -50,bodyHandler : function() {return $('<div class="tooltip"><p>Optional attribute <code>angle</code></p><p>Type: DOUBLE - simply a floating point number.</p></div>');}});});</script>          <span class="tipped-type" id="type-tooltip-73"><span class="na">position=</span><span class="s">&quot;POINT&quot;</span></span>
+<script type="text/javascript">$('document').ready(function() {$('#type-tooltip-73').tooltip({track: true,showURL: false,opacity: 1.0,left: 25,top: -50,bodyHandler : function() {return $('<div class="tooltip"><p>Optional attribute <code>position</code></p><p>Type: POINT - a pair of numbers (either floating point or integer), separated by either a space or a comma.</p></div>');}});});</script>          <span class="tipped-type" id="type-tooltip-74"><span class="na">anchor=</span><span class="s">&quot;POINT&quot;</span></span>
+<script type="text/javascript">$('document').ready(function() {$('#type-tooltip-74').tooltip({track: true,showURL: false,opacity: 1.0,left: 25,top: -50,bodyHandler : function() {return $('<div class="tooltip"><p>Optional attribute <code>anchor</code></p><p>Type: POINT - a pair of numbers (either floating point or integer), separated by either a space or a comma.</p></div>');}});});</script>          <span class="tipped-type" id="type-tooltip-75"><span class="na">spacing=</span><span class="s">&quot;STRING&quot;</span></span>
+<script type="text/javascript">$('document').ready(function() {$('#type-tooltip-75').tooltip({track: true,showURL: false,opacity: 1.0,left: 25,top: -50,bodyHandler : function() {return $('<div class="tooltip"><p>Optional attribute <code>spacing</code></p><p>Type: STRING - any sequence of characters.</p></div>');}});});</script>          <span class="tipped-type" id="type-tooltip-76"><span class="na">densityfactor=</span><span class="s">&quot;DOUBLE&quot;</span></span>>
+<script type="text/javascript">$('document').ready(function() {$('#type-tooltip-76').tooltip({track: true,showURL: false,opacity: 1.0,left: 25,top: -50,bodyHandler : function() {return $('<div class="tooltip"><p>Optional attribute <code>densityfactor</code></p><p>Type: DOUBLE - simply a floating point number.</p></div>');}});});</script><span class="c">        &lt;!--| The &lt;labels&gt; element may contain one or more &lt;label&gt; subelements.</span>
+<span class="c">            |</span>
+<span class="c">            | If no &lt;label&gt; subelements are present, the labeling rules for the axis are determined by</span>
+<span class="c">            | the attributes of the &lt;labels&gt; element (or their default values, for any that are not specified).</span>
+<span class="c">            |</span>
+<span class="c">            | If there are any &lt;label&gt; subelements, each one specifies an addiontal list of spacings,</span>
+<span class="c">            | possibly with custom values of other attributes to go with those spacings.  Each &lt;label&gt;</span>
+<span class="c">            | subelement must have a "spacing" attribute, and may optionally also include values for any</span>
+<span class="c">            | of the other attributes allowed for the &lt;labels&gt; tag.  Any attributes not specified with a</span>
+<span class="c">            | a &lt;label&gt; subelement inherit their values from the corresponding attribute on the enclosing</span>
+<span class="c">            | &lt;labels&gt; tag, or the default value.</span>
+<span class="c">            |--&gt;</span>
+      <span class="tagprefix"></span><span class="nt">&lt;/label&gt;</span></span></span>
+    <span class="tagprefix"></span><span class="nt">&lt;/labels&gt;</span></span></span>
+<span class="element"><span class="collapsed">    <span class="target"><span class="tagprefix">+</span><span class="nt">&lt;title.../&gt;</span></span></span><span class="expanded">    <span class="target"><span class="tagprefix">-</span><span class="nt">&lt;title</span></span>
+        <span class="tipped-type" id="type-tooltip-77"><span class="na">base=</span><span class="s">&quot;DOUBLE(0)&quot;</span></span>
+<script type="text/javascript">$('document').ready(function() {$('#type-tooltip-77').tooltip({track: true,showURL: false,opacity: 1.0,left: 25,top: -50,bodyHandler : function() {return $('<div class="tooltip"><p>Optional attribute <code>base</code>; default value: "0"</p><p>Type: DOUBLE - simply a floating point number.</p></div>');}});});</script>        <span class="tipped-type" id="type-tooltip-78"><span class="na">anchor=</span><span class="s">&quot;POINT&quot;</span></span>
+<script type="text/javascript">$('document').ready(function() {$('#type-tooltip-78').tooltip({track: true,showURL: false,opacity: 1.0,left: 25,top: -50,bodyHandler : function() {return $('<div class="tooltip"><p>Optional attribute <code>anchor</code></p><p>Type: POINT - a pair of numbers (either floating point or integer), separated by either a space or a comma.</p></div>');}});});</script>        <span class="tipped-type" id="type-tooltip-79"><span class="na">position=</span><span class="s">&quot;POINT&quot;</span></span>
+<script type="text/javascript">$('document').ready(function() {$('#type-tooltip-79').tooltip({track: true,showURL: false,opacity: 1.0,left: 25,top: -50,bodyHandler : function() {return $('<div class="tooltip"><p>Optional attribute <code>position</code></p><p>Type: POINT - a pair of numbers (either floating point or integer), separated by either a space or a comma.</p></div>');}});});</script>        <span class="tipped-type" id="type-tooltip-80"><span class="na">angle=</span><span class="s">&quot;DOUBLE(0)&quot;</span></span>>
+<script type="text/javascript">$('document').ready(function() {$('#type-tooltip-80').tooltip({track: true,showURL: false,opacity: 1.0,left: 25,top: -50,bodyHandler : function() {return $('<div class="tooltip"><p>Optional attribute <code>angle</code>; default value: "0"</p><p>Type: DOUBLE - simply a floating point number.</p></div>');}});});</script><span class="c">      &lt;!--| The &lt;title&gt; subelement of the axis elements gives a title to display with the axis.  The text</span>
+<span class="c">          | of the element gives the title text.  If the element is missing, the id of the axis is used</span>
+<span class="c">          | as the title text.  To prevent a title from being displayed at all, include an empty &lt;title/&gt;</span>
+<span class="c">          | element.</span>
+<span class="c">          |</span>
+<span class="c">          |   base: the base point of the title's position; this is a number between -1 and 1, and</span>
+<span class="c">          |       indicates a point along the axis</span>
+<span class="c">          |   angle: the angle, in degrees, of the title text; the default is 0 which means horizontal</span>
+<span class="c">          |   position, anchor: these positioning values have the following defaults, depending on</span>
+<span class="c">          |       whether the axis is horizontal or vertical, and on which half of the plot area it</span>
+<span class="c">          |       is positioned in:</span>
+<span class="c">          |</span>
+<span class="c">          |                          bottom half, or left              top half, or right</span>
+<span class="c">          |                          half, of plot area                half, of plot area</span>
+<span class="c">          |</span>
+<span class="c">          |         horizontal         position: (0, -18)               position: (0, 15)</span>
+<span class="c">          |                              anchor: (0, 1)                   anchor: (0, -1)</span>
+<span class="c">          |</span>
+<span class="c">          |         vertical           position: (-25, 0)               position: (33, 0)</span>
+<span class="c">          |                              anchor: (1, 0)                   anchor: (-1, 0)</span>
+<span class="c">          |--&gt;</span>
+    <span class="tagprefix"></span><span class="nt">&lt;/title&gt;</span></span></span>
+<span class="element"><span class="collapsed">    <span class="target"><span class="tagprefix">+</span><span class="nt">&lt;grid.../&gt;</span></span></span><span class="expanded">    <span class="target"><span class="tagprefix">-</span><span class="nt">&lt;grid</span></span>
+        <span class="tipped-type" id="type-tooltip-81"><span class="na">color=</span><span class="s">&quot;COLOR(0xeeeeee)&quot;</span></span>
+<script type="text/javascript">$('document').ready(function() {$('#type-tooltip-81').tooltip({track: true,showURL: false,opacity: 1.0,left: 25,top: -50,bodyHandler : function() {return $('<div class="tooltip"><p>Optional attribute <code>color</code>; default value: "0xeeeeee"</p><p>Type: COLOR - either an expression of the form 0xRRGGBB, where RRGGBB is a 6-digit hex color code, or one of the strings: black, red, green, blue, yellow, magenta, cyan, or white.</p></div>');}});});</script>        <span class="tipped-type" id="type-tooltip-82"><span class="na">visible=</span><span class="s">&quot;BOOLEAN(false)&quot;</span></span>>
+<script type="text/javascript">$('document').ready(function() {$('#type-tooltip-82').tooltip({track: true,showURL: false,opacity: 1.0,left: 25,top: -50,bodyHandler : function() {return $('<div class="tooltip"><p>Optional attribute <code>visible</code>; default value: "false"</p><p>Type: BOOLEAN - one of the strings: \"yes\", \"no\", \"true\", or \"false\".</p></div>');}});});</script><span class="c">      &lt;!--| The &lt;grid&gt; subelement of the axis elements can be used to cause Multigraph to draw a "grid" in the background</span>
+<span class="c">          | of the plot area, with grid lines at the locations of the tick marks along the axes.  The &lt;grid&gt; subelement</span>
+<span class="c">          | of an axis element controls the grid lines corresponding to tick marks on that axis.</span>
+<span class="c">          |</span>
+<span class="c">          |   visible: indicates whether grid lines should be drawn for this axis</span>
+<span class="c">          |   color: the color to use for this axis's grid lines</span>
+<span class="c">          |--&gt;</span>
+    <span class="tagprefix"></span><span class="nt">&lt;/grid&gt;</span></span></span>
+<span class="element"><span class="collapsed">    <span class="target"><span class="tagprefix">+</span><span class="nt">&lt;pan.../&gt;</span></span></span><span class="expanded">    <span class="target"><span class="tagprefix">-</span><span class="nt">&lt;pan</span></span>
+        <span class="tipped-type" id="type-tooltip-83"><span class="na">allowed=</span><span class="s">&quot;BOOLEAN(yes)&quot;</span></span>
+<script type="text/javascript">$('document').ready(function() {$('#type-tooltip-83').tooltip({track: true,showURL: false,opacity: 1.0,left: 25,top: -50,bodyHandler : function() {return $('<div class="tooltip"><p>Optional attribute <code>allowed</code>; default value: "yes"</p><p>Type: BOOLEAN - one of the strings: \"yes\", \"no\", \"true\", or \"false\".</p></div>');}});});</script>        <span class="tipped-type" id="type-tooltip-84"><span class="na">min=</span><span class="s">&quot;DATAVALUE&quot;</span></span>
+<script type="text/javascript">$('document').ready(function() {$('#type-tooltip-84').tooltip({track: true,showURL: false,opacity: 1.0,left: 25,top: -50,bodyHandler : function() {return $('<div class="tooltip"><p>Optional attribute <code>min</code></p><p>Type: DATAVALUE - either a number, for values of data type number, or a datetime expression, for values of type datetime. Datetimes are expressed by a sequence of digits matching one of the following patterns: YYYY, YYYYMM, YYYYMMDD, YYYYMMDDHH, YYYYMMDDHHmm, YYYYMMDDHHmmss, or YYYYMMDDHHmmss.fff, depending on the degree of precision desired.</p></div>');}});});</script>        <span class="tipped-type" id="type-tooltip-85"><span class="na">max=</span><span class="s">&quot;DATAVALUE&quot;</span></span>>
+<script type="text/javascript">$('document').ready(function() {$('#type-tooltip-85').tooltip({track: true,showURL: false,opacity: 1.0,left: 25,top: -50,bodyHandler : function() {return $('<div class="tooltip"><p>Optional attribute <code>max</code></p><p>Type: DATAVALUE - either a number, for values of data type number, or a datetime expression, for values of type datetime. Datetimes are expressed by a sequence of digits matching one of the following patterns: YYYY, YYYYMM, YYYYMMDD, YYYYMMDDHH, YYYYMMDDHHmm, YYYYMMDDHHmmss, or YYYYMMDDHHmmss.fff, depending on the degree of precision desired.</p></div>');}});});</script><span class="c">      &lt;!--| The &lt;pan&gt; subelement of the axis elements can be used to limit possible pan motions allowed in the graph.</span>
+<span class="c">          |</span>
+<span class="c">          |   allowed: whether panning is allowed at all</span>
+<span class="c">          |   min: panning will be restricted to never go below this value.  If the min attribute is not specified,</span>
+<span class="c">          |       panning in the negative direction is unrestricted</span>
+<span class="c">          |   max: panning will be restricted to never go above this value.  If the max attribute is not specified,</span>
+<span class="c">          |       panning in the positive direction is unrestricted</span>
+<span class="c">          |--&gt;</span>
+    <span class="tagprefix"></span><span class="nt">&lt;/pan&gt;</span></span></span>
+<span class="element"><span class="collapsed">    <span class="target"><span class="tagprefix">+</span><span class="nt">&lt;zoom.../&gt;</span></span></span><span class="expanded">    <span class="target"><span class="tagprefix">-</span><span class="nt">&lt;zoom</span></span>
+        <span class="tipped-type" id="type-tooltip-86"><span class="na">allowed=</span><span class="s">&quot;BOOLEAN(yes)&quot;</span></span>
+<script type="text/javascript">$('document').ready(function() {$('#type-tooltip-86').tooltip({track: true,showURL: false,opacity: 1.0,left: 25,top: -50,bodyHandler : function() {return $('<div class="tooltip"><p>Optional attribute <code>allowed</code>; default value: "yes"</p><p>Type: BOOLEAN - one of the strings: \"yes\", \"no\", \"true\", or \"false\".</p></div>');}});});</script>        <span class="tipped-type" id="type-tooltip-87"><span class="na">min=</span><span class="s">&quot;DATAMEASURE&quot;</span></span>
+<script type="text/javascript">$('document').ready(function() {$('#type-tooltip-87').tooltip({track: true,showURL: false,opacity: 1.0,left: 25,top: -50,bodyHandler : function() {return $('<div class="tooltip"><p>Optional attribute <code>min</code></p><p>Type: DATAMEASURE - an expression that represents a measure of length for the data type of the associated variable.  For number types this is simply a number; for datetime types it is an integer followed by one of the unit abbreviations: \'Y\', \'M\', \'D\', \'H\', \'m\', \'i\', or \'ms\'.</p></div>');}});});</script>        <span class="tipped-type" id="type-tooltip-88"><span class="na">max=</span><span class="s">&quot;DATAMEASURE&quot;</span></span>
+<script type="text/javascript">$('document').ready(function() {$('#type-tooltip-88').tooltip({track: true,showURL: false,opacity: 1.0,left: 25,top: -50,bodyHandler : function() {return $('<div class="tooltip"><p>Optional attribute <code>max</code></p><p>Type: DATAMEASURE - an expression that represents a measure of length for the data type of the associated variable.  For number types this is simply a number; for datetime types it is an integer followed by one of the unit abbreviations: \'Y\', \'M\', \'D\', \'H\', \'m\', \'i\', or \'ms\'.</p></div>');}});});</script>        <span class="tipped-type" id="type-tooltip-89"><span class="na">anchor=</span><span class="s">&quot;DATAVALUE&quot;</span></span>>
+<script type="text/javascript">$('document').ready(function() {$('#type-tooltip-89').tooltip({track: true,showURL: false,opacity: 1.0,left: 25,top: -50,bodyHandler : function() {return $('<div class="tooltip"><p>Optional attribute <code>anchor</code></p><p>Type: DATAVALUE - either a number, for values of data type number, or a datetime expression, for values of type datetime. Datetimes are expressed by a sequence of digits matching one of the following patterns: YYYY, YYYYMM, YYYYMMDD, YYYYMMDDHH, YYYYMMDDHHmm, YYYYMMDDHHmmss, or YYYYMMDDHHmmss.fff, depending on the degree of precision desired.</p></div>');}});});</script><span class="c">      &lt;!--| The &lt;zoom&gt; subelement of the axis elements can be used to limit possible zoom motions allowed in the graph.</span>
+<span class="c">          |</span>
+<span class="c">          |   allowed: whether zooming is allowed at all</span>
+<span class="c">          |   min: restricts how far "in" the user can zoom along this axis; if this attribute is present, Multigraph</span>
+<span class="c">          |       will restrict zooming along this axis so that the length of the axis, measured in the data units</span>
+<span class="c">          |       of the axis, is always greater than or equal to this "min" value.  If this attribute is not present,</span>
+<span class="c">          |       zooming in is unrestricted.</span>
+<span class="c">          |   min: restricts how far "out" the user can zoom along this axis; if this attribute is present, Multigraph</span>
+<span class="c">          |       will restrict zooming along this axis so that the length of the axis, measured in the data units</span>
+<span class="c">          |       of the axis, is always less than or equal to this "min" value.  If this attribute is not present,</span>
+<span class="c">          |       zooming out is unrestricted.</span>
+<span class="c">          |   anchor: indicates a fixed point about which zooming should always occur.  If this attribute is not</span>
+<span class="c">          |       present, zooming occurs about the point on the axis closest to the location of the mouse cursor.</span>
+<span class="c">          |       (Note that in this case, the "anchor" attribute is not related to positioning, in contract to</span>
+<span class="c">          |       other "anchor" attributes elsewhere in the MUGL specification.)</span>
+<span class="c">          |--&gt;</span>
+    <span class="tagprefix"></span><span class="nt">&lt;/zoom&gt;</span></span></span>
+<span class="element"><span class="collapsed">    <span class="target"><span class="tagprefix">+</span><span class="nt">&lt;binding.../&gt;</span></span></span><span class="expanded">    <span class="target"><span class="tagprefix">-</span><span class="nt">&lt;binding</span></span>
+        <span class="tipped-type" id="type-tooltip-90"><span class="na">id=</span><span class="s">&quot;STRING!&quot;</span></span>
+<script type="text/javascript">$('document').ready(function() {$('#type-tooltip-90').tooltip({track: true,showURL: false,opacity: 1.0,left: 25,top: -50,bodyHandler : function() {return $('<div class="tooltip"><p>Required attribute <code>id</code></p><p>Type: STRING - any sequence of characters.</p></div>');}});});</script>        <span class="tipped-type" id="type-tooltip-91"><span class="na">min=</span><span class="s">&quot;DATAVALUE!&quot;</span></span>
+<script type="text/javascript">$('document').ready(function() {$('#type-tooltip-91').tooltip({track: true,showURL: false,opacity: 1.0,left: 25,top: -50,bodyHandler : function() {return $('<div class="tooltip"><p>Required attribute <code>min</code></p><p>Type: DATAVALUE - either a number, for values of data type number, or a datetime expression, for values of type datetime. Datetimes are expressed by a sequence of digits matching one of the following patterns: YYYY, YYYYMM, YYYYMMDD, YYYYMMDDHH, YYYYMMDDHHmm, YYYYMMDDHHmmss, or YYYYMMDDHHmmss.fff, depending on the degree of precision desired.</p></div>');}});});</script>        <span class="tipped-type" id="type-tooltip-92"><span class="na">max=</span><span class="s">&quot;DATAVALUE!&quot;</span></span>>
+<script type="text/javascript">$('document').ready(function() {$('#type-tooltip-92').tooltip({track: true,showURL: false,opacity: 1.0,left: 25,top: -50,bodyHandler : function() {return $('<div class="tooltip"><p>Required attribute <code>max</code></p><p>Type: DATAVALUE - either a number, for values of data type number, or a datetime expression, for values of type datetime. Datetimes are expressed by a sequence of digits matching one of the following patterns: YYYY, YYYYMM, YYYYMMDD, YYYYMMDDHH, YYYYMMDDHHmm, YYYYMMDDHHmmss, or YYYYMMDDHHmmss.fff, depending on the degree of precision desired.</p></div>');}});});</script><span class="c">      &lt;!--| The &lt;binding&gt; subelement of the axis elements can be used to "bind" multiple axes together.</span>
+<span class="c">          | Each "binding" has a unique "id" attribute, which can be any string and which serves to identify</span>
+<span class="c">          | that binding.  When any one axis associated with a particular binding changes scale due to panning</span>
+<span class="c">          | or zooming, the other axes associated with that binding change their scales to match.</span>
+<span class="c">          |</span>
+<span class="c">          | id: the id of the binding</span>
+<span class="c">          | min, max: the two data points that indicate how this axis takes part in the binding; this</span>
+<span class="c">          |     axis will be scaled so that its min/max values will be tied to the min/max values of the other</span>
+<span class="c">          |     axes in the same binding.</span>
+<span class="c">          |</span>
+<span class="c">          | Example: a pair of fahrenheit/celsius temperature axes can be created as follows:</span>
+<span class="c">          |</span>
+<span class="c">          |     &lt;verticalaxis id="fahrenheit" min="15" max="90"&gt;</span>
+<span class="c">          |        &lt;binding id="tempbinding" min="32" max="212"/&gt;</span>
+<span class="c">          |     &lt;/verticalaxis&gt;</span>
+<span class="c">          |     &lt;verticalaxis id="celsius"&gt;</span>
+<span class="c">          |        &lt;binding id="tempbinding" min="0" max="100"/&gt;</span>
+<span class="c">          |     &lt;/verticalaxis&gt;</span>
+<span class="c">          |</span>
+<span class="c">          | Note that the min/max attribute values for the binding are completely different from the min/max attributes</span>
+<span class="c">          | on the axes themselves.  The min/max values for the binding indicate the linear relationship between the data</span>
+<span class="c">          | values of the axes.  The min/max values for the axes themselves indicate the initial scale that should be</span>
+<span class="c">          | displayed along the axis.  Note also that there is a potential conflict between the min/max axis attribute</span>
+<span class="c">          | settings of the axes that participate in a binding, because the scale of the axis is indicatd both by</span>
+<span class="c">          | that axis's min/max attributes, and by the linear relationship enforced by its binding. For this reason, it's</span>
+<span class="c">          | best to only give min/max attributes values for ONE of the axis in a binding, as is the case for the fahrenheit</span>
+<span class="c">          | axis in the example above.  In a situation where min/max axis values are specified for more than one axis</span>
+<span class="c">          | in a binding, Multigraph will favor enforcing the binding, by choosing the min/max values from one of the</span>
+<span class="c">          | axes in the binding that specifies them, and adjusting the min/max values of the other axes in the binding</span>
+<span class="c">          | accordingly.</span>
+<span class="c">          |</span>
+<span class="c">          |--&gt;</span>
+    <span class="tagprefix"></span><span class="nt">&lt;/binding&gt;</span></span></span>
+  <span class="tagprefix"></span><span class="nt">&lt;/horizontalaxis&gt;</span></span></span>
+<span class="element"><span class="collapsed">  <span class="target"><span class="tagprefix">+</span><span class="nt">&lt;verticalaxis.../&gt;</span></span></span><span class="expanded">  <span class="target"><span class="tagprefix">-</span><span class="nt">&lt;verticalaxis&gt;</span></span>
+<span class="c">    &lt;!--| The &lt;verticalaxis&gt; element indicates a vertical axis; its syntax is exactly the same</span>
+<span class="c">        | as for the &lt;horizontalaxis&gt; element.  See the documentation for &lt;horizontalaxis&gt; above</span>
+<span class="c">        | for details.</span>
+<span class="c">        |--&gt;</span>
+  <span class="tagprefix"></span><span class="nt">&lt;/verticalaxis&gt;</span></span></span>
+<span class="element"><span class="collapsed">  <span class="target"><span class="tagprefix">+</span><span class="nt">&lt;plot.../&gt;</span></span></span><span class="expanded">  <span class="target"><span class="tagprefix">-</span><span class="nt">&lt;plot&gt;</span></span>
+<span class="c">    &lt;!--| Each &lt;plot&gt; element in a MUGL file corresponds to one collection of variables from</span>
+<span class="c">        | a &lt;data&gt; section plotted against a specified pair of axes (one horizontal and one vertical),</span>
+<span class="c">        | using a specified plot style.  A MUGL file can have any number of &lt;plot&gt; elements; if</span>
+<span class="c">        | no &lt;plot&gt; elements are present, a single plot is inferred, with all the default settings.</span>
+<span class="c">        |--&gt;</span>
+<span class="element"><span class="collapsed">    <span class="target"><span class="tagprefix">+</span><span class="nt">&lt;legend.../&gt;</span></span></span><span class="expanded">    <span class="target"><span class="tagprefix">-</span><span class="nt">&lt;legend</span></span>
+        <span class="tipped-type" id="type-tooltip-93"><span class="na">visible=</span><span class="s">&quot;BOOLEAN&quot;</span></span>
+<script type="text/javascript">$('document').ready(function() {$('#type-tooltip-93').tooltip({track: true,showURL: false,opacity: 1.0,left: 25,top: -50,bodyHandler : function() {return $('<div class="tooltip"><p>Optional attribute <code>visible</code></p><p>Type: BOOLEAN - one of the strings: \"yes\", \"no\", \"true\", or \"false\".</p></div>');}});});</script>        <span class="tipped-type" id="type-tooltip-94"><span class="na">label=</span><span class="s">&quot;STRING&quot;</span></span>>
+<script type="text/javascript">$('document').ready(function() {$('#type-tooltip-94').tooltip({track: true,showURL: false,opacity: 1.0,left: 25,top: -50,bodyHandler : function() {return $('<div class="tooltip"><p>Optional attribute <code>label</code></p><p>Type: STRING - any sequence of characters.</p></div>');}});});</script><span class="c">      &lt;!--| The &lt;plot&gt; element may contain an optional &lt;legend&gt; element that controls that plot's</span>
+<span class="c">          | entry in the graph's legend.  Note that the graph's legend must be configured to be</span>
+<span class="c">          | visible in the first place in order for these plot-specific settings to have any effect;</span>
+<span class="c">          | see the top-level &lt;legend&gt; element for details on this.</span>
+<span class="c">          |</span>
+<span class="c">          |   visible: whether this plot has an entry in the legend</span>
+<span class="c">          |   label: the label to use for this plot's entry in the legend; by default, the id</span>
+<span class="c">          |       of the plot's second variable is used</span>
+<span class="c">          |--&gt;</span>
+    <span class="tagprefix"></span><span class="nt">&lt;/legend&gt;</span></span></span>
+<span class="element"><span class="collapsed">    <span class="target"><span class="tagprefix">+</span><span class="nt">&lt;horizontalaxis.../&gt;</span></span></span><span class="expanded">    <span class="target"><span class="tagprefix">-</span><span class="nt">&lt;horizontalaxis</span></span>
+        <span class="tipped-type" id="type-tooltip-95"><span class="na">ref=</span><span class="s">&quot;STRING!&quot;</span></span>>
+<script type="text/javascript">$('document').ready(function() {$('#type-tooltip-95').tooltip({track: true,showURL: false,opacity: 1.0,left: 25,top: -50,bodyHandler : function() {return $('<div class="tooltip"><p>Required attribute <code>ref</code></p><p>Type: STRING - any sequence of characters.</p></div>');}});});</script><span class="c">      &lt;!--| The &lt;horizontalaxis&gt; subelement indicates which horizontal axis this plot should use.</span>
+<span class="c">          | If the plot does not contain a &lt;horizontalaxis&gt; subelement, it is assumed to use the</span>
+<span class="c">          | first &lt;horizontalaxis&gt; in the MUGL file.</span>
+<span class="c">          |</span>
+<span class="c">          | ref: the id of a horizontal axis; this value must match the id attribute</span>
+<span class="c">          |     of a top-level &lt;horizontalaxis&gt; element in the MUGL file</span>
+<span class="c">          |--&gt;</span>
+<span class="element"><span class="collapsed">      <span class="target"><span class="tagprefix">+</span><span class="nt">&lt;variable.../&gt;</span></span></span><span class="expanded">      <span class="target"><span class="tagprefix">-</span><span class="nt">&lt;variable</span></span>
+          <span class="tipped-type" id="type-tooltip-96"><span class="na">ref=</span><span class="s">&quot;STRING!&quot;</span></span>>
+<script type="text/javascript">$('document').ready(function() {$('#type-tooltip-96').tooltip({track: true,showURL: false,opacity: 1.0,left: 25,top: -50,bodyHandler : function() {return $('<div class="tooltip"><p>Required attribute <code>ref</code></p><p>Type: STRING - any sequence of characters.</p></div>');}});});</script><span class="c">        &lt;!--| The &lt;variable&gt; subelement of the plot's &lt;horizontalaxis&gt; element indicates which variable</span>
+<span class="c">            | should be plotted relative to the plot's horizontal axis.  If there is no &lt;variable&gt; subelement,</span>
+<span class="c">            | the first variable in the MUGL file's first &lt;data&gt; section is assumed.</span>
+<span class="c">            |</span>
+<span class="c">            |     ref: the id of a variable from one of this MUGL file's &lt;data&gt; sections</span>
+<span class="c">            |--&gt;</span>
+      <span class="tagprefix"></span><span class="nt">&lt;/variable&gt;</span></span></span>
+    <span class="tagprefix"></span><span class="nt">&lt;/horizontalaxis&gt;</span></span></span>
+<span class="element"><span class="collapsed">    <span class="target"><span class="tagprefix">+</span><span class="nt">&lt;verticalaxis.../&gt;</span></span></span><span class="expanded">    <span class="target"><span class="tagprefix">-</span><span class="nt">&lt;verticalaxis</span></span>
+        <span class="tipped-type" id="type-tooltip-97"><span class="na">ref=</span><span class="s">&quot;STRING!&quot;</span></span>>
+<script type="text/javascript">$('document').ready(function() {$('#type-tooltip-97').tooltip({track: true,showURL: false,opacity: 1.0,left: 25,top: -50,bodyHandler : function() {return $('<div class="tooltip"><p>Required attribute <code>ref</code></p><p>Type: STRING - any sequence of characters.</p></div>');}});});</script><span class="c">      &lt;!--| The &lt;verticalaxis&gt; subelement indicates which vertical axis this plot should use.</span>
+<span class="c">          | If the plot does not contain a &lt;verticalaxis&gt; subelement, it is assumed to use the</span>
+<span class="c">          | first &lt;verticalaxis&gt; in the MUGL file.</span>
+<span class="c">          |</span>
+<span class="c">          | ref: the id of a vertical axis; this value must match the id attribute</span>
+<span class="c">          |     of a top-level &lt;verticalaxis&gt; element in the MUGL file</span>
+<span class="c">          |--&gt;</span>
+<span class="element"><span class="collapsed">      <span class="target"><span class="tagprefix">+</span><span class="nt">&lt;variable.../&gt;</span></span></span><span class="expanded">      <span class="target"><span class="tagprefix">-</span><span class="nt">&lt;variable</span></span>
+          <span class="tipped-type" id="type-tooltip-98"><span class="na">ref=</span><span class="s">&quot;STRING&quot;</span></span>>
+<script type="text/javascript">$('document').ready(function() {$('#type-tooltip-98').tooltip({track: true,showURL: false,opacity: 1.0,left: 25,top: -50,bodyHandler : function() {return $('<div class="tooltip"><p>Optional attribute <code>ref</code></p><p>Type: STRING - any sequence of characters.</p></div>');}});});</script><span class="c">        &lt;!--| The &lt;variable&gt; subelement of the plot's &lt;verticalaxis&gt; element indicates which variable(s)</span>
+<span class="c">            | should be plotted relative to the plot's vertical axis.  A plot's &lt;verticalaxis&gt; element may</span>
+<span class="c">            | contain any number of &lt;variable&gt; subelements.  If there is no &lt;variable&gt; subelement, the</span>
+<span class="c">            | second variable in the MUGL file's first &lt;data&gt; section is assumed.</span>
+<span class="c">            |</span>
+<span class="c">            |     ref: the id of a variable from one of this MUGL file's &lt;data&gt; sections</span>
+<span class="c">            |</span>
+<span class="c">            | NOTE: all of the variables mentioned in a plot, whether in the &lt;horizontalaxis&gt; or &lt;verticalaxis&gt;</span>
+<span class="c">            |     subelements, must come from the same &lt;data&gt; section in the MUGL file.</span>
+<span class="c">            |--&gt;</span>
+      <span class="tagprefix"></span><span class="nt">&lt;/variable&gt;</span></span></span>
+<span class="element"><span class="collapsed">      <span class="target"><span class="tagprefix">+</span><span class="nt">&lt;constant.../&gt;</span></span></span><span class="expanded">      <span class="target"><span class="tagprefix">-</span><span class="nt">&lt;constant</span></span>
+          <span class="tipped-type" id="type-tooltip-99"><span class="na">value=</span><span class="s">&quot;DATAVALUE&quot;</span></span>>
+<script type="text/javascript">$('document').ready(function() {$('#type-tooltip-99').tooltip({track: true,showURL: false,opacity: 1.0,left: 25,top: -50,bodyHandler : function() {return $('<div class="tooltip"><p>Optional attribute <code>value</code></p><p>Type: DATAVALUE - either a number, for values of data type number, or a datetime expression, for values of type datetime. Datetimes are expressed by a sequence of digits matching one of the following patterns: YYYY, YYYYMM, YYYYMMDD, YYYYMMDDHH, YYYYMMDDHHmm, YYYYMMDDHHmmss, or YYYYMMDDHHmmss.fff, depending on the degree of precision desired.</p></div>');}});});</script><span class="c">        &lt;!--| The &lt;constant&gt; subelement of the plot's &lt;verticalaxis&gt; subelement is used to indicate a constant</span>
+<span class="c">            | plot.  If the &lt;constant&gt; subelement is present, no &lt;variable&gt; subelements may be present, and the plot</span>
+<span class="c">            | will consist of a constant value extending across the entire plot area.</span>
+<span class="c">            |</span>
+<span class="c">            |     value: the height at which the constant value should be plotted</span>
+<span class="c">            |--&gt;</span>
+      <span class="tagprefix"></span><span class="nt">&lt;/constant&gt;</span></span></span>
+    <span class="tagprefix"></span><span class="nt">&lt;/verticalaxis&gt;</span></span></span>
+<span class="element"><span class="collapsed">    <span class="target"><span class="tagprefix">+</span><span class="nt">&lt;renderer.../&gt;</span></span></span><span class="expanded">    <span class="target"><span class="tagprefix">-</span><span class="nt">&lt;renderer</span></span>
+        <span class="tipped-type" id="type-tooltip-100"><span class="na">type=</span><span class="s">&quot;RENDERERTYPE(line)&quot;</span></span>>
+<script type="text/javascript">$('document').ready(function() {$('#type-tooltip-100').tooltip({track: true,showURL: false,opacity: 1.0,left: 25,top: -50,bodyHandler : function() {return $('<div class="tooltip"><p>Optional attribute <code>type</code>; default value: "line"</p><p>Type: RENDERERTYPE - the name of one of Multigraph\'s renderer types.</p></div>');}});});</script><span class="c">      &lt;!--| The &lt;renderer&gt; element indicates the renderer, or plot style, that Multigraph should use to draw</span>
+<span class="c">          | this plot.  A &lt;plot&gt; element can have at most one &lt;renderer&gt; subelement.  If no &lt;renderer&gt; subelement</span>
+<span class="c">          | is present, a renderer of type "line", with the default options, is assumed.</span>
+<span class="c">          |</span>
+<span class="c">          |   type: the name of the renderer to use</span>
+<span class="c">          |--&gt;</span>
+<span class="element"><span class="collapsed">      <span class="target"><span class="tagprefix">+</span><span class="nt">&lt;option.../&gt;</span></span></span><span class="expanded">      <span class="target"><span class="tagprefix">-</span><span class="nt">&lt;option</span></span>
+          <span class="tipped-type" id="type-tooltip-101"><span class="na">name=</span><span class="s">&quot;STRING!&quot;</span></span>
+<script type="text/javascript">$('document').ready(function() {$('#type-tooltip-101').tooltip({track: true,showURL: false,opacity: 1.0,left: 25,top: -50,bodyHandler : function() {return $('<div class="tooltip"><p>Required attribute <code>name</code></p><p>Type: STRING - any sequence of characters.</p></div>');}});});</script>          <span class="tipped-type" id="type-tooltip-102"><span class="na">value=</span><span class="s">&quot;STRING!&quot;</span></span>
+<script type="text/javascript">$('document').ready(function() {$('#type-tooltip-102').tooltip({track: true,showURL: false,opacity: 1.0,left: 25,top: -50,bodyHandler : function() {return $('<div class="tooltip"><p>Required attribute <code>value</code></p><p>Type: STRING - any sequence of characters.</p></div>');}});});</script>          <span class="tipped-type" id="type-tooltip-103"><span class="na">min=</span><span class="s">&quot;DATAVALUE&quot;</span></span>
+<script type="text/javascript">$('document').ready(function() {$('#type-tooltip-103').tooltip({track: true,showURL: false,opacity: 1.0,left: 25,top: -50,bodyHandler : function() {return $('<div class="tooltip"><p>Optional attribute <code>min</code></p><p>Type: DATAVALUE - either a number, for values of data type number, or a datetime expression, for values of type datetime. Datetimes are expressed by a sequence of digits matching one of the following patterns: YYYY, YYYYMM, YYYYMMDD, YYYYMMDDHH, YYYYMMDDHHmm, YYYYMMDDHHmmss, or YYYYMMDDHHmmss.fff, depending on the degree of precision desired.</p></div>');}});});</script>          <span class="tipped-type" id="type-tooltip-104"><span class="na">max=</span><span class="s">&quot;DATAVALUE&quot;</span></span>>
+<script type="text/javascript">$('document').ready(function() {$('#type-tooltip-104').tooltip({track: true,showURL: false,opacity: 1.0,left: 25,top: -50,bodyHandler : function() {return $('<div class="tooltip"><p>Optional attribute <code>max</code></p><p>Type: DATAVALUE - either a number, for values of data type number, or a datetime expression, for values of type datetime. Datetimes are expressed by a sequence of digits matching one of the following patterns: YYYY, YYYYMM, YYYYMMDD, YYYYMMDDHH, YYYYMMDDHHmm, YYYYMMDDHHmmss, or YYYYMMDDHHmmss.fff, depending on the degree of precision desired.</p></div>');}});});</script><span class="c">        &lt;!--| A &lt;renderer&gt; element can have any number of &lt;option&gt; subelements which customize the appearance</span>
+<span class="c">            | of the plot.  Associated with each &lt;option&gt; subelement is the name of an option (the "name" attribute),</span>
+<span class="c">            | a value for that option (the "value" attribute), and optionally, an "applicability range" of data</span>
+<span class="c">            | values for which that value should be used.  The applicability range is indicated by the "min" and</span>
+<span class="c">            | "max" attributes.  If the "min" attribute is present, it specifies a lower endpoint for the applicability</span>
+<span class="c">            | range, and analogously, the "max" attribute specifies an upper endpoint. If either of these attributes</span>
+<span class="c">            | is omitted, the applicability range is unlimited in the corresponding direction.</span>
+<span class="c">            |</span>
+<span class="c">            | For example:</span>
+<span class="c">            |</span>
+<span class="c">            |     &lt;option name="color" value="blue" max="0"&gt;</span>
+<span class="c">            |</span>
+<span class="c">            | would cause data points less than 0 to be plotted in blue,</span>
+<span class="c">            |</span>
+<span class="c">            |     &lt;option name="color" value="green" min="0" min="10"&gt;</span>
+<span class="c">            |</span>
+<span class="c">            | would cause data points between 0 and 10 to be plotted in green,</span>
+<span class="c">            |</span>
+<span class="c">            |     &lt;option name="color" value="red" min="10"&gt;</span>
+<span class="c">            |</span>
+<span class="c">            | would cause data points greater than 10 to be plotted in red, and</span>
+<span class="c">            |</span>
+<span class="c">            |     &lt;option name="color" value="cyan"&gt;</span>
+<span class="c">            |</span>
+<span class="c">            | would cause all data points, regardless of their value, to be plotted</span>
+<span class="c">            | in cyan.</span>
+<span class="c">            |</span>
+<span class="c">            |   name: the name of the option</span>
+<span class="c">            |   value: the value of the option</span>
+<span class="c">            |   min: minimum data value for this option setting</span>
+<span class="c">            |   max: maximum data value for this option setting</span>
+<span class="c">            |--&gt;</span>
+      <span class="tagprefix"></span><span class="nt">&lt;/option&gt;</span></span></span>
+    <span class="tagprefix"></span><span class="nt">&lt;/renderer&gt;</span></span></span>
+<span class="element"><span class="collapsed">    <span class="target"><span class="tagprefix">+</span><span class="nt">&lt;datatips.../&gt;</span></span></span><span class="expanded">    <span class="target"><span class="tagprefix">-</span><span class="nt">&lt;datatips</span></span>
+        <span class="tipped-type" id="type-tooltip-105"><span class="na">format=</span><span class="s">&quot;STRING!&quot;</span></span>
+<script type="text/javascript">$('document').ready(function() {$('#type-tooltip-105').tooltip({track: true,showURL: false,opacity: 1.0,left: 25,top: -50,bodyHandler : function() {return $('<div class="tooltip"><p>Required attribute <code>format</code></p><p>Type: STRING - any sequence of characters.</p></div>');}});});</script>        <span class="tipped-type" id="type-tooltip-106"><span class="na">bgcolor=</span><span class="s">&quot;COLOR&quot;</span></span>
+<script type="text/javascript">$('document').ready(function() {$('#type-tooltip-106').tooltip({track: true,showURL: false,opacity: 1.0,left: 25,top: -50,bodyHandler : function() {return $('<div class="tooltip"><p>Optional attribute <code>bgcolor</code></p><p>Type: COLOR - either an expression of the form 0xRRGGBB, where RRGGBB is a 6-digit hex color code, or one of the strings: black, red, green, blue, yellow, magenta, cyan, or white.</p></div>');}});});</script>        <span class="tipped-type" id="type-tooltip-107"><span class="na">bgalpha=</span><span class="s">&quot;DOUBLE&quot;</span></span>
+<script type="text/javascript">$('document').ready(function() {$('#type-tooltip-107').tooltip({track: true,showURL: false,opacity: 1.0,left: 25,top: -50,bodyHandler : function() {return $('<div class="tooltip"><p>Optional attribute <code>bgalpha</code></p><p>Type: DOUBLE - simply a floating point number.</p></div>');}});});</script>        <span class="tipped-type" id="type-tooltip-108"><span class="na">border=</span><span class="s">&quot;INTEGER&quot;</span></span>
+<script type="text/javascript">$('document').ready(function() {$('#type-tooltip-108').tooltip({track: true,showURL: false,opacity: 1.0,left: 25,top: -50,bodyHandler : function() {return $('<div class="tooltip"><p>Optional attribute <code>border</code></p><p>Type: INTEGER</p></div>');}});});</script>        <span class="tipped-type" id="type-tooltip-109"><span class="na">bordercolor=</span><span class="s">&quot;COLOR&quot;</span></span>
+<script type="text/javascript">$('document').ready(function() {$('#type-tooltip-109').tooltip({track: true,showURL: false,opacity: 1.0,left: 25,top: -50,bodyHandler : function() {return $('<div class="tooltip"><p>Optional attribute <code>bordercolor</code></p><p>Type: COLOR - either an expression of the form 0xRRGGBB, where RRGGBB is a 6-digit hex color code, or one of the strings: black, red, green, blue, yellow, magenta, cyan, or white.</p></div>');}});});</script>        <span class="tipped-type" id="type-tooltip-110"><span class="na">pad=</span><span class="s">&quot;INTEGER&quot;</span></span>>
+<script type="text/javascript">$('document').ready(function() {$('#type-tooltip-110').tooltip({track: true,showURL: false,opacity: 1.0,left: 25,top: -50,bodyHandler : function() {return $('<div class="tooltip"><p>Optional attribute <code>pad</code></p><p>Type: INTEGER</p></div>');}});});</script><span class="c">      &lt;!--| NOTE: the &lt;datatips&gt; element is not yet implemented in Multigraph 4.0.</span>
+<span class="c">          |</span>
+<span class="c">          | The &lt;datatips&gt; subelement of the &lt;plot&gt; element tells Multigraph to display "tooltip"-style popups</span>
+<span class="c">          | as the user moves the mouse over individual data points, and indicates the format to use for those</span>
+<span class="c">          | popups.  The &lt;datatips&gt; subelement is optional, and if it is omitted, no datatips are displayed.</span>
+<span class="c">          |</span>
+<span class="c">          |  format: a string that gives the text to be displayed in each datatip popup.  Within</span>
+<span class="c">          |      this string, expressions of the form {0}, {1}, etc will be replaced with the values of the</span>
+<span class="c">          |      corresponding variable from the plot (with {0} being the first variable, {1} the second, and</span>
+<span class="c">          |      so on).</span>
+<span class="c">          |  bgcolor: the color to use for the background color of the datatip</span>
+<span class="c">          |  bgalpha: the alpha (transparency) value to use for the background of the datatip</span>
+<span class="c">          |  border: the thickness of a border to draw around the outline of the tooptip rectangle</span>
+<span class="c">          |  bordercolor: the color to use for the border</span>
+<span class="c">          |  pad: an amount (pixels) of space to leave around the text</span>
+<span class="c">          |</span>
+<span class="c">          |--&gt;</span>
+<span class="element"><span class="collapsed">      <span class="target"><span class="tagprefix">+</span><span class="nt">&lt;variable.../&gt;</span></span></span><span class="expanded">      <span class="target"><span class="tagprefix">-</span><span class="nt">&lt;variable</span></span>
+          <span class="tipped-type" id="type-tooltip-111"><span class="na">format=</span><span class="s">&quot;STRING!&quot;</span></span>>
+<script type="text/javascript">$('document').ready(function() {$('#type-tooltip-111').tooltip({track: true,showURL: false,opacity: 1.0,left: 25,top: -50,bodyHandler : function() {return $('<div class="tooltip"><p>Required attribute <code>format</code></p><p>Type: STRING - any sequence of characters.</p></div>');}});});</script><span class="c">        &lt;!--| Each &lt;variable&gt; subelement of the &lt;datatips&gt; element indicates a format string to be used</span>
+<span class="c">            | when formatting the values of a variable to be used in constructing the datatip.</span>
+<span class="c">            |</span>
+<span class="c">            |   format: the format string to be used for the variable</span>
+<span class="c">            |</span>
+<span class="c">            | For example, imagine a plot in which the first variable is of type datetime, and the second</span>
+<span class="c">            | variable is of type number.  Then</span>
+<span class="c">            |</span>
+<span class="c">            |     &lt;datatips format="{0}: {1}"&gt;</span>
+<span class="c">            |       &lt;variable format="%d %n %Y"/&gt;</span>
+<span class="c">            |       &lt;variable format="%.2f"/&gt;</span>
+<span class="c">            |     &lt;/datatips&gt;</span>
+<span class="c">            |</span>
+<span class="c">            | would create datatips in which the first variable, {0}, would be formatted according to</span>
+<span class="c">            | the format string "%d %n %Y", and the second variable, {1}, would be formatted according</span>
+<span class="c">            | to the string "%.2f".  So, for example, the data value ("20121203", "13.1") would be formatted</span>
+<span class="c">            | as "3 Dec 2012: 13.1".</span>
+<span class="c">            |--&gt;</span>
+      <span class="tagprefix"></span><span class="nt">&lt;/variable&gt;</span></span></span>
+    <span class="tagprefix"></span><span class="nt">&lt;/datatips&gt;</span></span></span>
+  <span class="tagprefix"></span><span class="nt">&lt;/plot&gt;</span></span></span>
+<span class="element"><span class="collapsed">  <span class="target"><span class="tagprefix">+</span><span class="nt">&lt;data.../&gt;</span></span></span><span class="expanded">  <span class="target"><span class="tagprefix">-</span><span class="nt">&lt;data&gt;</span></span>
+<span class="c">    &lt;!--| A MUGL file should contain one or more &lt;data&gt; elements.  Each &lt;data&gt; element provides a source</span>
+<span class="c">        | of data that is available to be plotted in the graph.  The data for each &lt;data&gt;</span>
+<span class="c">        | element can be thought of as a collection of data points, where each point</span>
+<span class="c">        | is an ordered sequence of N values.  Within the same &lt;data&gt; element, all data points</span>
+<span class="c">        | must contain the same number of values - i.e. the value of N must be the same for</span>
+<span class="c">        | every point in the data source.</span>
+<span class="c">        |</span>
+<span class="c">        | Sometimes the N values that each point in a data source contains are called "columns",</span>
+<span class="c">        | and the data points themselves are called "rows".</span>
+<span class="c">        |</span>
+<span class="c">        | Each column has a data type, either "number" or "datetime", associatd with it,</span>
+<span class="c">        | and the value of that column is assumed to be of that type for every row.</span>
+<span class="c">        |</span>
+<span class="c">        | There are three different types of &lt;data&gt; elements:</span>
+<span class="c">        |</span>
+<span class="c">        |    * &lt;data&gt; elements that include their data directly in the MUGL file in a &lt;values&gt; subelement</span>
+<span class="c">        |    * &lt;data&gt; elements that refer to data in an external file via a &lt;csv&gt; subelement</span>
+<span class="c">        |    * &lt;data&gt; elements that instruct Multigraph to pull data dynamically</span>
+<span class="c">        |      from a RESTful web service via a &lt;service&gt; subelement</span>
+<span class="c">        |</span>
+<span class="c">        | Each &lt;data&gt; element should have exactly one of these three subelements; it is an error</span>
+<span class="c">        | for a &lt;data&gt; element to contain more than one of these.  Note that a MUGL file can contain</span>
+<span class="c">        | a unlimited number of &lt;data&gt; elements, though, and these &lt;data&gt; elements do not need to</span>
+<span class="c">        | be of the same type.</span>
+<span class="c">        |--&gt;</span>
+<span class="element"><span class="collapsed">    <span class="target"><span class="tagprefix">+</span><span class="nt">&lt;variables.../&gt;</span></span></span><span class="expanded">    <span class="target"><span class="tagprefix">-</span><span class="nt">&lt;variables</span></span>
+        <span class="tipped-type" id="type-tooltip-112"><span class="na">missingvalue=</span><span class="s">&quot;DATAVALUE&quot;</span></span>
+<script type="text/javascript">$('document').ready(function() {$('#type-tooltip-112').tooltip({track: true,showURL: false,opacity: 1.0,left: 25,top: -50,bodyHandler : function() {return $('<div class="tooltip"><p>Optional attribute <code>missingvalue</code></p><p>Type: DATAVALUE - either a number, for values of data type number, or a datetime expression, for values of type datetime. Datetimes are expressed by a sequence of digits matching one of the following patterns: YYYY, YYYYMM, YYYYMMDD, YYYYMMDDHH, YYYYMMDDHHmm, YYYYMMDDHHmmss, or YYYYMMDDHHmmss.fff, depending on the degree of precision desired.</p></div>');}});});</script>        <span class="tipped-type" id="type-tooltip-113"><span class="na">missingop=</span><span class="s">&quot;COMPARATOR&quot;</span></span>>
+<script type="text/javascript">$('document').ready(function() {$('#type-tooltip-113').tooltip({track: true,showURL: false,opacity: 1.0,left: 25,top: -50,bodyHandler : function() {return $('<div class="tooltip"><p>Optional attribute <code>missingop</code></p><p>Type: COMPARATOR - one of the strings \'lt\', \'le\', \'eq\', \'ge\', or \'gt\'.</p></div>');}});});</script><span class="c">      &lt;!--| The &lt;variables&gt; subelement provides information about the variables, or columns, that</span>
+<span class="c">          | this data source contains.</span>
+<span class="c">          |</span>
+<span class="c">          |   missingvalue: a DATAVALUE that Multigraph should use in checking for missing</span>
+<span class="c">          |       values for a variable.  This attribute is optional.  If it is present,</span>
+<span class="c">          |       it is used as the default missingvalue for any &lt;variable&gt; subelments</span>
+<span class="c">          |       in this &lt;variables&gt; element that do no explicity include their own</span>
+<span class="c">          |       value for the missingvalue attribute.   The default is that there is</span>
+<span class="c">          |       no missingvalue, which means that &lt;variable&gt; subelements that do not</span>
+<span class="c">          |       explicitly set one do not inherit a value for it.</span>
+<span class="c">          |   missingop: a COMPARATOR (one of the strings 'lt', 'le', 'eq', 'ge', or 'gt')</span>
+<span class="c">          |       that indicates the operation that should be used to compare each data</span>
+<span class="c">          |       value to the specified missingvalue to determine whether it should be</span>
+<span class="c">          |       taken to be a missing value.  The default is 'eq', so that values are</span>
+<span class="c">          |       considered missing if they are equal to the specified missingvalue, but</span>
+<span class="c">          |       note that no values are considered missing unless a value is specified</span>
+<span class="c">          |       for the missingvalue attribute.</span>
+<span class="c">          |--&gt;</span>
+<span class="element"><span class="collapsed">      <span class="target"><span class="tagprefix">+</span><span class="nt">&lt;variable.../&gt;</span></span></span><span class="expanded">      <span class="target"><span class="tagprefix">-</span><span class="nt">&lt;variable</span></span>
+          <span class="tipped-type" id="type-tooltip-114"><span class="na">id=</span><span class="s">&quot;STRING!&quot;</span></span>
+<script type="text/javascript">$('document').ready(function() {$('#type-tooltip-114').tooltip({track: true,showURL: false,opacity: 1.0,left: 25,top: -50,bodyHandler : function() {return $('<div class="tooltip"><p>Required attribute <code>id</code></p><p>Type: STRING - any sequence of characters.</p></div>');}});});</script>          <span class="tipped-type" id="type-tooltip-115"><span class="na">column=</span><span class="s">&quot;INTEGER&quot;</span></span>
+<script type="text/javascript">$('document').ready(function() {$('#type-tooltip-115').tooltip({track: true,showURL: false,opacity: 1.0,left: 25,top: -50,bodyHandler : function() {return $('<div class="tooltip"><p>Optional attribute <code>column</code></p><p>Type: INTEGER</p></div>');}});});</script>          <span class="tipped-type" id="type-tooltip-116"><span class="na">type=</span><span class="s">&quot;DATATYPE(number)&quot;</span></span>
+<script type="text/javascript">$('document').ready(function() {$('#type-tooltip-116').tooltip({track: true,showURL: false,opacity: 1.0,left: 25,top: -50,bodyHandler : function() {return $('<div class="tooltip"><p>Optional attribute <code>type</code>; default value: "number"</p><p>Type: DATATYPE - one of the strings \"number\" or \"datetime\".</p></div>');}});});</script>          <span class="tipped-type" id="type-tooltip-117"><span class="na">missingvalue=</span><span class="s">&quot;STRING&quot;</span></span>
+<script type="text/javascript">$('document').ready(function() {$('#type-tooltip-117').tooltip({track: true,showURL: false,opacity: 1.0,left: 25,top: -50,bodyHandler : function() {return $('<div class="tooltip"><p>Optional attribute <code>missingvalue</code></p><p>Type: STRING - any sequence of characters.</p></div>');}});});</script>          <span class="tipped-type" id="type-tooltip-118"><span class="na">missingop=</span><span class="s">&quot;COMPARATOR&quot;</span></span>>
+<script type="text/javascript">$('document').ready(function() {$('#type-tooltip-118').tooltip({track: true,showURL: false,opacity: 1.0,left: 25,top: -50,bodyHandler : function() {return $('<div class="tooltip"><p>Optional attribute <code>missingop</code></p><p>Type: COMPARATOR - one of the strings \'lt\', \'le\', \'eq\', \'ge\', or \'gt\'.</p></div>');}});});</script><span class="c">        &lt;!--| The &lt;variable&gt; subelement provides information about one column of data for</span>
+<span class="c">            | this data source.</span>
+<span class="c">            |</span>
+<span class="c">            |   id: the id to assign to this column; this id is used by the ref attribute</span>
+<span class="c">            |       in the &lt;plot&gt; element's axis &lt;variable&gt; element.  The id attribute</span>
+<span class="c">            |       is required for the &lt;variable&gt; element, but if one or more columns of</span>
+<span class="c">            |       the data source have no &lt;variable&gt; element present, Multigraph uses</span>
+<span class="c">            |       the default id values of "x", "y", "y1", "y2", ..., in that order.</span>
+<span class="c">            |   column: an integer indicating the column number that this &lt;variable&gt; element</span>
+<span class="c">            |       describes.  Columns are numbered starting with 0.   The default value</span>
+<span class="c">            |       for the column attribute depends on the order of the group of &lt;variable&gt;</span>
+<span class="c">            |       elements in an enclosing &lt;variables&gt; element; &lt;variable&gt; elements with no</span>
+<span class="c">            |       column attribute are assigned values, in order of appearance, from</span>
+<span class="c">            |       the set of column numbers not specifically indicated by other &lt;variable&gt;</span>
+<span class="c">            |       elements in the group.</span>
+<span class="c">            |   type: the DATATYPE of the column</span>
+<span class="c">            |   missingvalue, missingop: these attributes have the same meaning and type</span>
+<span class="c">            |       as for the &lt;variables&gt; element, but they apply only to this particular</span>
+<span class="c">            |       &lt;variable&gt; element.  If either of these attributes is not specified</span>
+<span class="c">            |       for this &lt;variable&gt; element, its value is inherited from the</span>
+<span class="c">            |       value of the same attribute on the enclosing &lt;variables&gt; tag, if there</span>
+<span class="c">            |       is one there.</span>
+<span class="c">            |--&gt;</span>
+      <span class="tagprefix"></span><span class="nt">&lt;/variable&gt;</span></span></span>
+    <span class="tagprefix"></span><span class="nt">&lt;/variables&gt;</span></span></span>
+<span class="element"><span class="collapsed">    <span class="target"><span class="tagprefix">+</span><span class="nt">&lt;values.../&gt;</span></span></span><span class="expanded">    <span class="target"><span class="tagprefix">-</span><span class="nt">&lt;values&gt;</span></span>
+<span class="c">      &lt;!--| The &lt;values&gt; subelement allows data value to be specified directly in the MUGL</span>
+<span class="c">          | file.  This element takes no attributs, and its text value should be a newline-separated</span>
+<span class="c">          | list of data values, with each line consisting of N comma-separated values.</span>
+<span class="c">          |--&gt;</span>
+    <span class="tagprefix"></span><span class="nt">&lt;/values&gt;</span></span></span>
+<span class="element"><span class="collapsed">    <span class="target"><span class="tagprefix">+</span><span class="nt">&lt;csv.../&gt;</span></span></span><span class="expanded">    <span class="target"><span class="tagprefix">-</span><span class="nt">&lt;csv</span></span>
+        <span class="tipped-type" id="type-tooltip-119"><span class="na">location=</span><span class="s">&quot;STRING!&quot;</span></span>>
+<script type="text/javascript">$('document').ready(function() {$('#type-tooltip-119').tooltip({track: true,showURL: false,opacity: 1.0,left: 25,top: -50,bodyHandler : function() {return $('<div class="tooltip"><p>Required attribute <code>location</code></p><p>Type: STRING - any sequence of characters.</p></div>');}});});</script><span class="c">      &lt;!--| The &lt;csv&gt; subelement indicates a data source coming from an external CSV file.</span>
+<span class="c">          | The CSV file should contain a newline-separated list of data values, with each</span>
+<span class="c">          | line consisting of N comma-separated values.</span>
+<span class="c">          |</span>
+<span class="c">          |   location: the URL of the CSV file containing the data.  If this URL is relative,</span>
+<span class="c">          |       it is interpreted to be relative to the location of the MUGL file.</span>
+<span class="c">          |--&gt;</span>
+    <span class="tagprefix"></span><span class="nt">&lt;/csv&gt;</span></span></span>
+<span class="element"><span class="collapsed">    <span class="target"><span class="tagprefix">+</span><span class="nt">&lt;service.../&gt;</span></span></span><span class="expanded">    <span class="target"><span class="tagprefix">-</span><span class="nt">&lt;service</span></span>
+        <span class="tipped-type" id="type-tooltip-120"><span class="na">location=</span><span class="s">&quot;STRING!&quot;</span></span>
+<script type="text/javascript">$('document').ready(function() {$('#type-tooltip-120').tooltip({track: true,showURL: false,opacity: 1.0,left: 25,top: -50,bodyHandler : function() {return $('<div class="tooltip"><p>Required attribute <code>location</code></p><p>Type: STRING - any sequence of characters.</p></div>');}});});</script>        <span class="tipped-type" id="type-tooltip-121"><span class="na">format=</span><span class="s">&quot;STRING&quot;</span></span>>
+<script type="text/javascript">$('document').ready(function() {$('#type-tooltip-121').tooltip({track: true,showURL: false,opacity: 1.0,left: 25,top: -50,bodyHandler : function() {return $('<div class="tooltip"><p>Optional attribute <code>format</code></p><p>Type: STRING - any sequence of characters.</p></div>');}});});</script><span class="c">      &lt;!--| The &lt;service&gt; subelement indicates a data source corresponding to a RESTful web service;</span>
+<span class="c">          | Multigraph will fetch ranges of data from the web service as needed, as the user pans/zooms</span>
+<span class="c">          | around in the graph.</span>
+<span class="c">          |</span>
+<span class="c">          | There are two possible forms that the URL for the web service can take:</span>
+<span class="c">          |   1. The URL is a string containing the substrings "$min" and "$max"</span>
+<span class="c">          |   2. The URL is a string that does NOT contain the substrings "$min" and "$max"</span>
+<span class="c">          | In the first case, Multigraph forms URLs for data requests by replacing "$min"</span>
+<span class="c">          | and "$max" with the minimum and maximum values of the data source's first</span>
+<span class="c">          | variable for the requested range.  In the second case, Multigraph internally</span>
+<span class="c">          | appends the expression "$min,$max" to the given URL, and then forms request URLs</span>
+<span class="c">          | as described for the first case.</span>
+<span class="c">          |</span>
+<span class="c">          | location: the service URL.  </span>
+<span class="c">          | format: a format string to be used in formatting the data values that will be</span>
+<span class="c">          |     substituted for $min and $max in constructing request URLs as described above.</span>
+<span class="c">          |     The default, if the format attribute is not specified, is "%f" if the first column</span>
+<span class="c">          |     of the data source is of type number, or "%Y%M%D%H%i%s" if it is of type datetime.</span>
+<span class="c">          |--&gt;</span>
+    <span class="tagprefix"></span><span class="nt">&lt;/service&gt;</span></span></span>
+  <span class="tagprefix"></span><span class="nt">&lt;/data&gt;</span></span></span>
+<span class="nt">&lt;/mugl&gt;</span>
+</code></pre></div>

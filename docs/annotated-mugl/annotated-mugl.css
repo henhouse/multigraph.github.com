@@ -1,0 +1,51 @@
+pre {
+  font-size: 12pt;
+}
+
+span.target {
+  cursor: pointer;
+  cursor: hand;
+}
+
+span.tagprefix {
+  display: inline-block;
+  text-align: left;
+  width: 16px;
+}
+
+span.tipped-type {
+/*
+  text-decoration: underline;
+  cursor: pointer;
+  cursor: hand;
+*/
+}
+span.tipped-type:hover {
+  font-weight: bold;
+}
+
+#tooltip {
+	position: absolute;
+    width: 500px;
+	z-index: 3000;
+	border: 2px solid #111;
+	background-color: #fff;
+	padding: 5px;
+	opacity: 1.0;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+#tooltip h3, #tooltip div { margin: 0; }
+
+#tooltip code {
+  font-size: 12pt;
+  font-weight: bold;
+}
+
+#tooltip p:first-child {
+  margin-top: 2px;
+}
+#tooltip p:last-child {
+  margin-bottom: 2px;
+}
