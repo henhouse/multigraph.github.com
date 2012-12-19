@@ -16,6 +16,18 @@ the following documentation resources are also available:
 
   This is an interactive page containing a MUGL document that includes every
   possible tag and attribute, with comments explaining their meaning.
+  
+* [Examples](../examples)
+
+  A collection of example MUGL files that demonstrate most of Multigraph's
+  features.
+
+* [Tester](../tester)
+
+  Use this interactive tester to experiment with writing or editing MUGL
+  files.  You can also easily load any of the MUGL files from the
+  [examples](../examples) into the tester by clicking on its "Open in Tester"
+  link.
 
 * [Mugl File Reference](http://www.multigraph.org/userguide/mugl-files)
 
