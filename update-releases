@@ -133,6 +133,7 @@ sys("./build-site");
 #
 message("copying lib/js-multigraph/mugl-schema/mugl.xsd");
 sys("cp lib/js-multigraph/mugl-schema/mugl.xsd _includes");
+sys("cp lib/js-multigraph/mugl-schema/mugl.xsd docs");
 
 #
 # copy the LICENSE.txt file for this release into place

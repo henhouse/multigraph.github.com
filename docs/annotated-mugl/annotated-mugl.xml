@@ -1,47 +1,72 @@
-<!--!
-    ! type: INTEGER
-    !    The value of this attribute should be an integer.
-    ! type: COLOR
-    !    The value of this attribute should either be an expression of the form 0xRRGGBB, where RRGGBB
-    !    is a 6-digit hex color code, or one of the strings: black, red, green, blue, yellow, magenta,
-    !    cyan, or white.
-    ! type: POINT
-    !    The value of this attribute should be a pair of numbers separated by either a space, or a comma.
-    ! type: BOOLEAN
-    !    The value of this attribute should be one of the strings: "yes", "no", "true", or "false".
-    ! type: FRAME
-    !    The value of this attribute should be one of the strings: "padding" or "plot".
-    ! type: DOUBLE
-    !    The value of this attribute should be a floating point number.
-    ! type: STRING
-    !    The value of this attribute can be any string.
-    ! type: DATATYPE
-    !    The value of this attribute should be one of the strings: "number", or "datetime"
-    ! type: RELPOS
-    !    The value of this attribute should be an expression of one of the forms "A", "A+B", or "A-B",
-    !    where A is a floating point number in the range [-1,1] that represents a relative position
-    !    along a line segment, and +B or -B is a pixel offset from that position.
-    ! type: RELLEN
-    !    The value of this attribute should be an expression of one of the forms "A", "A+B", or "A-B",
-    !    where A is a floating point number in the range [0,1] that represents a fraction of a length,
-    !    and +B or -B is a pixel amount to add or subtract from that length.
-    ! type: DATAVALUE
-    !    The value of this attribute should be either a floating point number, or a datetime expression,
-    !    depending on whether the attribute corresponds to a variable of type number or datetime.
-    !    Datetimes are expressed by a sequence of digits matching one of the following patterns:
-    !    YYYY, YYYYMM, YYYYMMDD, YYYYMMDDHH, YYYYMMDDHHmm, YYYYMMDDHHmmss, or YYYYMMDDHHmmss.fff,
-    !    depending on the degree of precision desired.
-    ! type: DATAVALUEORAUTO
-    !    The value of this attribute should be either a floating point number, or a datetime expression,
-    !    or the special value "auto".
-    ! type: DATAMEASURE
-    !    The value of this attribute should be a measure of length in the data type of the associated
-    !    variable.  A length measure for a number data type is represented simply by a number, and a length
-    !    measure for a datetime data type is represented by an integer followed by one of the following
-    !    unit abbreviations: 'Y', 'M', 'D', 'H', 'm', 'i', or 'ms'.
-    ! type: RENDERERTYPE
-    !    The value of this attribute should be the name of one of Multigraph's renderer types.
-    !-->
+<!--~
+    ~ annotated-mugl.xml
+    ~
+    ~ This XML document contains every possible MUGL element and attribute, with comments that document them.
+    ~ Note that although this file is a valid XML document, and it conveys the structure of MUGL
+    ~ by example, it is not actually a valid MUGL file; don't try loading this file into Multigraph.   It is
+    ~ intended for documentation of the MUGL specification only.
+    ~
+    ~ Attribute values in this file are given using a keyword that indicates the type of value
+    ~ that the attribute can take.  The type keywords are:
+    ~
+    ~     type: INTEGER
+    ~     type: COLOR
+    ~         either an expression of the form 0xRRGGBB, where RRGGBB
+    ~         is a 6-digit hex color code, or one of the strings: black, red, green, blue, yellow, magenta,
+    ~         cyan, or white.
+    ~     type: POINT
+    ~         a pair of numbers (either floating point or integer), separated by
+    ~         either a space or a comma.
+    ~     type: BOOLEAN
+    ~         one of the strings: "yes", "no", "true", or "false".
+    ~     type: FRAME
+    ~         one of the strings "padding" or "plot"; it indicates which box - either
+    ~         the padding box or the plot box - this element's <code>base</code> attribute is relative to.
+    ~     type: DOUBLE
+    ~         simply a floating point number.
+    ~     type: STRING
+    ~         any sequence of characters.
+    ~     type: DATATYPE
+    ~         one of the strings "number" or "datetime".
+    ~     type: RELPOS
+    ~         an expression of one of the forms "A", "A+B", or "A-B",
+    ~         where A is a number in the range [-1,1] that represents a relative position
+    ~         along a line segment, and +B or -B is a pixel offset from that position.
+    ~     type: RELLEN
+    ~         an expression of one of the forms "A", "A+B", or "A-B",
+    ~         where A is a number in the range [0,1] that represents a fraction of a length,
+    ~         and +B or -B is a pixel amount to add or subtract from that length.
+    ~     type: DATAVALUE
+    ~         either a number, for values of data type number, or a datetime expression,
+    ~         for values of type datetime.
+    ~         Datetimes are expressed by a sequence of digits matching one of the following patterns:
+    ~         YYYY, YYYYMM, YYYYMMDD, YYYYMMDDHH, YYYYMMDDHHmm, YYYYMMDDHHmmss, or YYYYMMDDHHmmss.fff,
+    ~         depending on the degree of precision desired.
+    ~     type: DATAVALUEORAUTO
+    ~         either a floating point number, or a datetime expression, or the special value "auto".
+    ~     type: DATAMEASURE
+    ~         an expression that represents a measure of length for the data type of the associated
+    ~         variable.  For number types this is simply a number; for datetime types it is
+    ~         an integer followed by one of the unit abbreviations: 'Y', 'M', 'D', 'H', 'm', 'i', or 'ms'.
+    ~     type: RENDERERTYPE
+    ~         the name of one of Multigraph's renderer types.
+    ~     type: COMPARATOR
+    ~         one of the strings 'lt', 'le', 'eq', 'ge', or 'gt'.
+    ~
+    ~
+    ~ An exclaimation mark "!" after a type keyword indicates that the attribute is required; if there
+    ~ is no exclaimation mark, the attribute is optional.  A value in parentheses "()" after a type
+    ~ keyword indicates a default value.  For example:
+    ~
+    ~     border="INTEGER(2)"
+    ~
+    ~ indicates an optional attribute named "border" which take integer values, and whose default
+    ~ value is 2, whereas
+    ~
+    ~     min="DATAVALUE!"
+    ~ 
+    ~ indicates a required attribute named "min" of type DATAVALUE.
+    ~-->
 <mugl>
   <window
       width="INTEGER"
@@ -50,8 +75,7 @@
       bordercolor="COLOR(black)"
       margin="INTEGER(2)"
       padding="INTEGER(5)">
-    <!--|
-        | The <window> element specifies the following things related to the graph's
+    <!--| The <window> element specifies the following things related to the graph's
         | margin, border, and padding area.  The <window> element is optional and
         | can appear at most once in the MUGL file.
         |
@@ -85,8 +109,7 @@
       columns="INTEGER"
       cornerradius="INTEGER(0)"
       padding="INTEGER(0)">
-    <!--|
-        | The <legend> element controls whether and how Multigraph creates a legend
+    <!--| The <legend> element controls whether and how Multigraph creates a legend
         | for the graph.   The <legend> element is optional and
         | can appear at most once in the MUGL file.
         |
@@ -134,8 +157,7 @@
   </legend>
   <background
     color="COLOR(white)">
-    <!--|
-        | The <background> element controls how Multigraph draws the graph's background
+    <!--| The <background> element controls how Multigraph draws the graph's background
         | (the area inside the border).     The <background> element is optional and can
         | appear at most once in the MUGL file.
         |
@@ -143,12 +165,11 @@
         |-->
     <img
         src="STRING!"
-        anchor="POINT(-1 -1)"
-        base="POINT(-1 -1)"
-        position="POINT(0 0)"
+        anchor="POINT(-1,-1)"
+        base="POINT(-1,-1)"
+        position="POINT(0,0)"
         frame="FRAME(padding)">
-      <!--|
-          | The <img> subelement of <background> specifies an image to draw in
+      <!--| The <img> subelement of <background> specifies an image to draw in
           | the background.  This subelement is optional and can appear at most
           | once.  If it is present, the image is drawn after the background is
           | filled with the background color, but before anything else is drawn,
@@ -169,8 +190,7 @@
       border="INTEGER(0)"
       bordercolor="COLOR(0xeeeeee)"
       color="COLOR">
-    <!--|
-        | The <plotarea> element specifies the size and appearance of the plot area.  The
+    <!--| The <plotarea> element specifies the size and appearance of the plot area.  The
         | element is optional and can appear at most once in the MUGL file.
         |
         |  marginbottom, marginleft, margintop, marginright: these attributes give the
@@ -187,9 +207,9 @@
         |-->
   </plotarea>
   <title
-      base="POINT(0 1)"
-      anchor="POINT(0 1)"
-      position="POINT(0 0)"
+      base="POINT(0,1)"
+      anchor="POINT(0,1)"
+      position="POINT(0,0)"
       frame="FRAME(padding)"
       color="COLOR(white)"
       opacity="DOUBLE(1.0)"
@@ -198,8 +218,7 @@
       padding="INTEGER(0)"
       cornerradius="INTEGER(15)"
       fontsize="INTEGER">
-    <!--|
-        | The <title> element indicates a title to be displayed in the graph.  If the <title>
+    <!--| The <title> element indicates a title to be displayed in the graph.  If the <title>
         | element is not present, no title is drawn.  If it is present, the text of the element
         | indicates the text of the title.
         |
@@ -237,8 +256,7 @@
       tickmin="INTEGER(-3)"
       tickmax="INTEGER(3)"
       tickcolor="COLOR(black)">
-    <!--|
-        | The <horizontalaxis> and <verticalaxis> elements specify axes for the graph.
+    <!--| The <horizontalaxis> and <verticalaxis> elements specify axes for the graph.
         | Every graph has at least one horizontal axis and at least one vertical axis,
         | but the <horizontalaxis> and <verticalaxis> elements are optional in the MUGL
         | file; if either is absent, an axis of that orientation with all the default
@@ -282,8 +300,7 @@
         color="COLOR(black)"
         spacing="STRING"
         densityfactor="DOUBLE(1.0)">
-      <!--|
-          | The <labels> subelement of the axis elements indicates how and where tick marks
+      <!--| The <labels> subelement of the axis elements indicates how and where tick marks
           | and labels should be drawn along the axis.
           |
           | format: the format string to use for the labels; defaults to "%.1f" for number
@@ -332,8 +349,7 @@
           anchor="POINT"
           spacing="STRING"
           densityfactor="DOUBLE">
-        <!--|
-            | The <labels> element may contain one or more <label> subelements.
+        <!--| The <labels> element may contain one or more <label> subelements.
             |
             | If no <label> subelements are present, the labeling rules for the axis are determined by
             | the attributes of the <labels> element (or their default values, for any that are not specified).
@@ -352,8 +368,7 @@
         anchor="POINT"
         position="POINT"
         angle="DOUBLE(0)">
-      <!--|
-          | The <title> subelement of the axis elements gives a title to display with the axis.  The text
+      <!--| The <title> subelement of the axis elements gives a title to display with the axis.  The text
           | of the element gives the title text.  If the element is missing, the id of the axis is used
           | as the title text.  To prevent a title from being displayed at all, include an empty <title/>
           | element.
@@ -378,8 +393,7 @@
     <grid
         color="COLOR(0xeeeeee)"
         visible="BOOLEAN(false)">
-      <!--|
-          | The <grid> subelement of the axis elements can be used to cause Multigraph to draw a "grid" in the background
+      <!--| The <grid> subelement of the axis elements can be used to cause Multigraph to draw a "grid" in the background
           | of the plot area, with grid lines at the locations of the tick marks along the axes.  The <grid> subelement
           | of an axis element controls the grid lines corresponding to tick marks on that axis.
           |
@@ -391,8 +405,7 @@
         allowed="BOOLEAN(yes)"
         min="DATAVALUE"
         max="DATAVALUE">
-      <!--|
-          | The <pan> subelement of the axis elements can be used to limit possible pan motions allowed in the graph.
+      <!--| The <pan> subelement of the axis elements can be used to limit possible pan motions allowed in the graph.
           |
           |   allowed: whether panning is allowed at all
           |   min: panning will be restricted to never go below this value.  If the min attribute is not specified,
@@ -406,8 +419,7 @@
         min="DATAMEASURE"
         max="DATAMEASURE"
         anchor="DATAVALUE">
-      <!--|
-          | The <zoom> subelement of the axis elements can be used to limit possible zoom motions allowed in the graph.
+      <!--| The <zoom> subelement of the axis elements can be used to limit possible zoom motions allowed in the graph.
           |
           |   allowed: whether zooming is allowed at all
           |   min: restricts how far "in" the user can zoom along this axis; if this attribute is present, Multigraph
@@ -428,8 +440,7 @@
         id="STRING!"
         min="DATAVALUE!"
         max="DATAVALUE!">
-      <!--|
-          | The <binding> subelement of the axis elements can be used to "bind" multiple axes together.
+      <!--| The <binding> subelement of the axis elements can be used to "bind" multiple axes together.
           | Each "binding" has a unique "id" attribute, which can be any string and which serves to identify
           | that binding.  When any one axis associated with a particular binding changes scale due to panning
           | or zooming, the other axes associated with that binding change their scales to match.
@@ -464,15 +475,13 @@
     </binding>
   </horizontalaxis>
   <verticalaxis>
-    <!--|
-        | The <verticalaxis> element indicates a vertical axis; its syntax is exactly the same
+    <!--| The <verticalaxis> element indicates a vertical axis; its syntax is exactly the same
         | as for the <horizontalaxis> element.  See the documentation for <horizontalaxis> above
         | for details.
         |-->
   </verticalaxis>
   <plot>
-    <!--|
-        | Each <plot> element in a MUGL file corresponds to one collection of variables from
+    <!--| Each <plot> element in a MUGL file corresponds to one collection of variables from
         | a <data> section plotted against a specified pair of axes (one horizontal and one vertical),
         | using a specified plot style.  A MUGL file can have any number of <plot> elements; if
         | no <plot> elements are present, a single plot is inferred, with all the default settings.
@@ -480,8 +489,7 @@
     <legend
         visible="BOOLEAN"
         label="STRING">
-      <!--|
-          | The <plot> element may contain an optional <legend> element that controls that plot's
+      <!--| The <plot> element may contain an optional <legend> element that controls that plot's
           | entry in the graph's legend.  Note that the graph's legend must be configured to be
           | visible in the first place in order for these plot-specific settings to have any effect;
           | see the top-level <legend> element for details on this.
@@ -493,8 +501,7 @@
     </legend>
     <horizontalaxis
         ref="STRING!">
-      <!--|
-          | The <horizontalaxis> subelement indicates which horizontal axis this plot should use.
+      <!--| The <horizontalaxis> subelement indicates which horizontal axis this plot should use.
           | If the plot does not contain a <horizontalaxis> subelement, it is assumed to use the
           | first <horizontalaxis> in the MUGL file.
           |
@@ -503,8 +510,7 @@
           |-->
       <variable
           ref="STRING!">
-        <!--|
-            | The <variable> subelement of the plot's <horizontalaxis> element indicates which variable
+        <!--| The <variable> subelement of the plot's <horizontalaxis> element indicates which variable
             | should be plotted relative to the plot's horizontal axis.  If there is no <variable> subelement,
             | the first variable in the MUGL file's first <data> section is assumed.
             |
@@ -514,8 +520,7 @@
     </horizontalaxis>
     <verticalaxis
         ref="STRING!">
-      <!--|
-          | The <verticalaxis> subelement indicates which vertical axis this plot should use.
+      <!--| The <verticalaxis> subelement indicates which vertical axis this plot should use.
           | If the plot does not contain a <verticalaxis> subelement, it is assumed to use the
           | first <verticalaxis> in the MUGL file.
           |
@@ -524,8 +529,7 @@
           |-->
       <variable
           ref="STRING">
-        <!--|
-            | The <variable> subelement of the plot's <verticalaxis> element indicates which variable(s)
+        <!--| The <variable> subelement of the plot's <verticalaxis> element indicates which variable(s)
             | should be plotted relative to the plot's vertical axis.  A plot's <verticalaxis> element may
             | contain any number of <variable> subelements.  If there is no <variable> subelement, the
             | second variable in the MUGL file's first <data> section is assumed.
@@ -538,8 +542,7 @@
       </variable>
       <constant
           value="DATAVALUE">
-        <!--|
-            | The <constant> subelement of the plot's <verticalaxis> subelement is used to indicate a constant
+        <!--| The <constant> subelement of the plot's <verticalaxis> subelement is used to indicate a constant
             | plot.  If the <constant> subelement is present, no <variable> subelements may be present, and the plot
             | will consist of a constant value extending across the entire plot area.
             |
@@ -548,9 +551,8 @@
       </constant>
     </verticalaxis>
     <renderer
-        type="RENDERERTYPE">
-      <!--|
-          | The <renderer> element indicates the renderer, or plot style, that Multigraph should use to draw
+        type="RENDERERTYPE(line)">
+      <!--| The <renderer> element indicates the renderer, or plot style, that Multigraph should use to draw
           | this plot.  A <plot> element can have at most one <renderer> subelement.  If no <renderer> subelement
           | is present, a renderer of type "line", with the default options, is assumed.
           |
@@ -561,8 +563,7 @@
           value="STRING!"
           min="DATAVALUE"
           max="DATAVALUE">
-        <!--|
-            | A <renderer> element can have any number of <option> subelements which customize the appearance
+        <!--| A <renderer> element can have any number of <option> subelements which customize the appearance
             | of the plot.  Associated with each <option> subelement is the name of an option (the "name" attribute),
             | a value for that option (the "value" attribute), and optionally, an "applicability range" of data
             | values for which that value should be used.  The applicability range is indicated by the "min" and
@@ -603,8 +604,7 @@
         border="INTEGER"
         bordercolor="COLOR"
         pad="INTEGER">
-      <!--|
-          | NOTE: the <datatips> element is not yet implemented in Multigraph 4.0.
+      <!--| NOTE: the <datatips> element is not yet implemented in Multigraph 4.0.
           |
           | The <datatips> subelement of the <plot> element tells Multigraph to display "tooltip"-style popups
           | as the user moves the mouse over individual data points, and indicates the format to use for those
@@ -623,8 +623,7 @@
           |-->
       <variable
           format="STRING!">
-        <!--|
-            | Each <variable> subelement of the <datatips> element indicates a format string to be used
+        <!--| Each <variable> subelement of the <datatips> element indicates a format string to be used
             | when formatting the values of a variable to be used in constructing the datatip.
             |
             |   format: the format string to be used for the variable
@@ -645,4 +644,122 @@
       </variable>
     </datatips>
   </plot>
+  <data>
+    <!--| A MUGL file should contain one or more <data> elements.  Each <data> element provides a source
+        | of data that is available to be plotted in the graph.  The data for each <data>
+        | element can be thought of as a collection of data points, where each point
+        | is an ordered sequence of N values.  Within the same <data> element, all data points
+        | must contain the same number of values - i.e. the value of N must be the same for
+        | every point in the data source.
+        |
+        | Sometimes the N values that each point in a data source contains are called "columns",
+        | and the data points themselves are called "rows".
+        |
+        | Each column has a data type, either "number" or "datetime", associatd with it,
+        | and the value of that column is assumed to be of that type for every row.
+        |
+        | There are three different types of <data> elements:
+        |
+        |    * <data> elements that include their data directly in the MUGL file in a <values> subelement
+        |    * <data> elements that refer to data in an external file via a <csv> subelement
+        |    * <data> elements that instruct Multigraph to pull data dynamically
+        |      from a RESTful web service via a <service> subelement
+        |
+        | Each <data> element should have exactly one of these three subelements; it is an error
+        | for a <data> element to contain more than one of these.  Note that a MUGL file can contain
+        | a unlimited number of <data> elements, though, and these <data> elements do not need to
+        | be of the same type.
+        |-->
+    <variables
+        missingvalue="DATAVALUE"
+        missingop="COMPARATOR">
+      <!--| The <variables> subelement provides information about the variables, or columns, that
+          | this data source contains.
+          |
+          |   missingvalue: a DATAVALUE that Multigraph should use in checking for missing
+          |       values for a variable.  This attribute is optional.  If it is present,
+          |       it is used as the default missingvalue for any <variable> subelments
+          |       in this <variables> element that do no explicity include their own
+          |       value for the missingvalue attribute.   The default is that there is
+          |       no missingvalue, which means that <variable> subelements that do not
+          |       explicitly set one do not inherit a value for it.
+          |   missingop: a COMPARATOR (one of the strings 'lt', 'le', 'eq', 'ge', or 'gt')
+          |       that indicates the operation that should be used to compare each data
+          |       value to the specified missingvalue to determine whether it should be
+          |       taken to be a missing value.  The default is 'eq', so that values are
+          |       considered missing if they are equal to the specified missingvalue, but
+          |       note that no values are considered missing unless a value is specified
+          |       for the missingvalue attribute.
+          |-->
+      <variable
+          id="STRING!"
+          column="INTEGER"
+          type="DATATYPE(number)"
+          missingvalue="STRING"
+          missingop="COMPARATOR">
+        <!--| The <variable> subelement provides information about one column of data for
+            | this data source.
+            |
+            |   id: the id to assign to this column; this id is used by the ref attribute
+            |       in the <plot> element's axis <variable> element.  The id attribute
+            |       is required for the <variable> element, but if one or more columns of
+            |       the data source have no <variable> element present, Multigraph uses
+            |       the default id values of "x", "y", "y1", "y2", ..., in that order.
+            |   column: an integer indicating the column number that this <variable> element
+            |       describes.  Columns are numbered starting with 0.   The default value
+            |       for the column attribute depends on the order of the group of <variable>
+            |       elements in an enclosing <variables> element; <variable> elements with no
+            |       column attribute are assigned values, in order of appearance, from
+            |       the set of column numbers not specifically indicated by other <variable>
+            |       elements in the group.
+            |   type: the DATATYPE of the column
+            |   missingvalue, missingop: these attributes have the same meaning and type
+            |       as for the <variables> element, but they apply only to this particular
+            |       <variable> element.  If either of these attributes is not specified
+            |       for this <variable> element, its value is inherited from the
+            |       value of the same attribute on the enclosing <variables> tag, if there
+            |       is one there.
+            |-->
+      </variable>
+    </variables>
+    <values>
+      <!--| The <values> subelement allows data value to be specified directly in the MUGL
+          | file.  This element takes no attributs, and its text value should be a newline-separated
+          | list of data values, with each line consisting of N comma-separated values.
+          |-->
+    </values>
+    <csv
+        location="STRING!">
+      <!--| The <csv> subelement indicates a data source coming from an external CSV file.
+          | The CSV file should contain a newline-separated list of data values, with each
+          | line consisting of N comma-separated values.
+          |
+          |   location: the URL of the CSV file containing the data.  If this URL is relative,
+          |       it is interpreted to be relative to the location of the MUGL file.
+          |-->
+    </csv>
+    <service
+        location="STRING!"
+        format="STRING">
+      <!--| The <service> subelement indicates a data source corresponding to a RESTful web service;
+          | Multigraph will fetch ranges of data from the web service as needed, as the user pans/zooms
+          | around in the graph.
+          |
+          | There are two possible forms that the URL for the web service can take:
+          |   1. The URL is a string containing the substrings "$min" and "$max"
+          |   2. The URL is a string that does NOT contain the substrings "$min" and "$max"
+          | In the first case, Multigraph forms URLs for data requests by replacing "$min"
+          | and "$max" with the minimum and maximum values of the data source's first
+          | variable for the requested range.  In the second case, Multigraph internally
+          | appends the expression "$min,$max" to the given URL, and then forms request URLs
+          | as described for the first case.
+          |
+          | location: the service URL.  
+          | format: a format string to be used in formatting the data values that will be
+          |     substituted for $min and $max in constructing request URLs as described above.
+          |     The default, if the format attribute is not specified, is "%f" if the first column
+          |     of the data source is of type number, or "%Y%M%D%H%i%s" if it is of type datetime.
+          |-->
+    </service>
+  </data>
 </mugl>
