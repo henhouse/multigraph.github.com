@@ -108,7 +108,7 @@ CSS rules instead of using the <tt><span
 class="na">data-width</span></tt> and <tt><span
 class="na">data-height</span></tt> attributes, and it's also possible
 to create and manipulate graphs using JavaScript code instead of the
-above HTML markup; see the [documentation](documentation) for details.
+above HTML markup; see the [documentation](docs) for details.
 
 You can see lots of examples of graphs, and the MUGL files that
 generate them, in the [Examples](examples) section of this web site.
