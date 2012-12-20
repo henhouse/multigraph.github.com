@@ -762,4 +762,51 @@
           |-->
     </service>
   </data>
+  <throttle
+      pattern="STRING()"
+      requests="INTEGER(0)"
+      period="INTEGER(0)"
+      concurrent="INTEGER(0)">
+    <!--| The <throttle> element allows Multigraph to enforce constraints on the rate at which
+        | it initiates requests to fetch data for <csv> and/or <service> data sources.  A MUGL
+        | file can contain any number of <throttle> elements; each one specifies a regular
+        | expression pattern, and a set of constraint values.  Multigraph enforces that set of
+        | constraints to all URLs it fetches that match the regular expression.  If there are
+        | multiple <throttle> elements, Multigraph will choose the constraints in the first
+        | <throttle> element in the file whose pattern matches the fetched URL.
+        |
+        | If there are no <throttle> elements in a MUGL file, Multigraph will do no throttling.
+        |
+        | A <throttle> element with an empty pattern, or missing pattern attribute, will match
+        | any URL, so its constraints will be applied to every outgoing request, unless there
+        | is another <throttle> element before it with a pattern that also matches the request URL.
+        |
+        | The test for whether a request URL matches a <throttle> pattern is done on the
+        | original "location" value for the <csv> or <service> element.  For <service> elements,
+        | this is before any range values are inserted into the URL, and in both cases,
+        | the pattern is checked before a relative URL is rewritten to be relative to the
+        | location of the MUGL file.
+        |
+        | Throttling only applies to data fetched via a <csv> or <service> data source; it
+        | does not apply to any images retrieved by the <background> <img> element.
+        |
+        |   pattern: the regular expression (JavaScript syntax) for URLs that this
+        |       element's constraints should be applied to.  This regular expression should
+        |       *not* include delimiting '/' marks.
+        |   requests: an integer N
+        |   period: an integer P
+        |   concurrent: an integer M
+        |
+        | Requests whose URL matches the pattern will be limited in such a way that
+        |
+        |   * No more than N requests are initiated within P milliseconds of each other, AND
+        |   * No more than M concurrent (outstanding at the same time) requests are allowed
+        |
+        | If N or P is 0, there is no time period based constraint, and if M is 0, there
+        | is no constraint on the number of concurrent requests.
+        |
+        | The default is N=P=M=0, so a <throttle> element that doesn't specify any of
+        | requests, period, or concurrent will have no effect.
+        |-->
+  </throttle>
 </mugl>
