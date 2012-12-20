@@ -2410,7 +2410,7 @@
         },
         {
             "file": "src/core/multigraph.js",
-            "line": 121,
+            "line": 125,
             "description": "The busy spinner",
             "itemtype": "property",
             "name": "busySpinner",
@@ -2422,7 +2422,7 @@
         },
         {
             "file": "src/core/multigraph.js",
-            "line": 137,
+            "line": 141,
             "description": "Initializes the Multigraph's geometry by calling the `initializeGeometry` function of\neach of its graph children.",
             "itemtype": "method",
             "name": "initializeGeometry",
@@ -2450,7 +2450,7 @@
         },
         {
             "file": "src/core/multigraph.js",
-            "line": 154,
+            "line": 158,
             "description": "Convience function for registering callback functions for data becoming ready.",
             "itemtype": "method",
             "name": "registerCommonDataCallback",
@@ -2468,7 +2468,7 @@
         },
         {
             "file": "src/core/multigraph.js",
-            "line": 170,
+            "line": 174,
             "description": "Determines if the browser supports canvas elements.",
             "itemtype": "method",
             "name": "browserHasCanvasSupport",
@@ -2482,7 +2482,7 @@
         },
         {
             "file": "src/core/multigraph.js",
-            "line": 190,
+            "line": 194,
             "description": "Creates a Multigraph according to specified options. Returns a\njQuery `promise` which interacts with the multigraph through its\n`done` function.",
             "itemtype": "method",
             "name": "createGraph",
@@ -2536,7 +2536,7 @@
         },
         {
             "file": "src/core/multigraph.js",
-            "line": 323,
+            "line": 327,
             "description": "`window.multigraph.create` is an alias for `window.multigraph.core.Multigraph.createGraph`.",
             "itemtype": "method",
             "name": "window.multigraph.create",
@@ -2586,7 +2586,7 @@
         },
         {
             "file": "src/core/multigraph.js",
-            "line": 369,
+            "line": 373,
             "description": "Creates default error and warning functions for multigraph.",
             "itemtype": "method",
             "name": "createDefaultMessageHandlers",
