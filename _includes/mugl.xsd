@@ -52,6 +52,7 @@
         <xsd:element name="horizontalaxis" type="Axis"           minOccurs="0" maxOccurs="unbounded"/>
         <xsd:element name="verticalaxis"   type="Axis"           minOccurs="0" maxOccurs="unbounded"/>
         <xsd:element name="plot"           type="Plot"           minOccurs="0" maxOccurs="unbounded"/>
+        <xsd:element name="throttle"       type="Throttle"       minOccurs="0" maxOccurs="unbounded"/>
         <xsd:element name="data"           type="Data"           minOccurs="0" maxOccurs="unbounded"/>
       </xsd:choice>
     </xsd:sequence>
@@ -106,26 +107,26 @@
   <xsd:complexType name="MuglLegend">
     <xsd:sequence>
       <xsd:element name="icon" type="LegendIcon" minOccurs="0"/>
-    </xsd:sequence>
-    <xsd:attribute name="visible"/>
-    <xsd:attribute name="base"/>
-    <xsd:attribute name="anchor"/>
-    <xsd:attribute name="position"/>
-    <xsd:attribute name="frame"/>
-    <xsd:attribute name="color"/>
-    <xsd:attribute name="bordercolor"/>
-    <xsd:attribute name="opacity"      type="xsd:double"/>
-    <xsd:attribute name="border"       type="xsd:integer"/>
+    </xsd:sequence>  
+    <xsd:attribute name="visible"      type="Boolean"/>
+    <xsd:attribute name="base"         type="DPoint"          default="1 1"/>
+    <xsd:attribute name="anchor"       type="DPoint"          default="1 1"/>
+    <xsd:attribute name="position"     type="DPoint"          default="0 0"/>
+    <xsd:attribute name="frame"        type="Frame"           default="padding"/>
+    <xsd:attribute name="color"        type="RGBColor"        default="white"/>
+    <xsd:attribute name="bordercolor"  type="RGBColor"        default="black"/>
+    <xsd:attribute name="opacity"      type="xsd:double"      default="1.0"/>
+    <xsd:attribute name="border"       type="xsd:integer"     default="1"/>
     <xsd:attribute name="rows"         type="xsd:integer"/>
     <xsd:attribute name="columns"      type="xsd:integer"/>
-    <xsd:attribute name="cornerradius" type="xsd:integer"/>
-    <xsd:attribute name="padding"      type="xsd:integer"/>
+    <xsd:attribute name="cornerradius" type="xsd:integer"     default="0"/>
+    <xsd:attribute name="padding"      type="xsd:integer"     default="0"/>
   </xsd:complexType>
 
   <xsd:complexType name="LegendIcon">
-    <xsd:attribute name="height" type="xsd:integer"/>
-    <xsd:attribute name="width"  type="xsd:integer"/>
-    <xsd:attribute name="border" type="xsd:integer"/>
+    <xsd:attribute name="width"  type="xsd:integer" default="40"/>
+    <xsd:attribute name="height" type="xsd:integer" default="30"/>
+    <xsd:attribute name="border" type="xsd:integer" default="1"/>
   </xsd:complexType>
 
   <xsd:complexType name="Background">
@@ -137,10 +138,10 @@
 
   <xsd:complexType name="BackgroundImage">
     <xsd:attribute name="src"      type="xsd:string" use="required"/>
-    <xsd:attribute name="anchor"   type="xsd:string"/>
-    <xsd:attribute name="base"     type="xsd:string"/>
-    <xsd:attribute name="position" type="xsd:string"/>
-    <xsd:attribute name="frame"    type="xsd:string"/>
+    <xsd:attribute name="anchor"   type="DPoint" default="-1 -1"/>
+    <xsd:attribute name="base"     type="DPoint" default="-1 -1"/>
+    <xsd:attribute name="position" type="DPoint" default="0 0"/>
+    <xsd:attribute name="frame"    type="Frame"  default="padding"/>
   </xsd:complexType>
 
   <xsd:complexType name="Plotarea">
@@ -154,16 +155,18 @@
   </xsd:complexType>
 
   <xsd:complexType name="MuglTitle" mixed="true">
-    <xsd:attribute name="base"/>
-    <xsd:attribute name="border"/>
-    <xsd:attribute name="color"       type="RGBColor"/>
-    <xsd:attribute name="bordercolor" type="RGBColor"/>
-    <xsd:attribute name="opacity"/>
-    <xsd:attribute name="padding"/>
-    <xsd:attribute name="cornerradius"/>
-    <xsd:attribute name="position"/>
-    <xsd:attribute name="anchor"/>
-    <xsd:attribute name="fontsize" type="xsd:integer"/>
+    <xsd:attribute name="base"         type="DPoint"     default="0 1"/>
+    <xsd:attribute name="anchor"       type="DPoint"     default="0 1"/>
+    <xsd:attribute name="position"     type="DPoint"     default="0 0"/>
+    <xsd:attribute name="frame"        type="Frame"      default="padding"/>
+
+    <xsd:attribute name="border"       type="xsd:integer"  default="0"/>
+    <xsd:attribute name="color"        type="RGBColor"     default="0xffffff"/>
+    <xsd:attribute name="bordercolor"  type="RGBColor"     default="0x000000"/>
+    <xsd:attribute name="opacity"      type="xsd:double"   default="1.0"/>
+    <xsd:attribute name="padding"      type="xsd:integer"  default="0"/>
+    <xsd:attribute name="cornerradius" type="xsd:integer"  default="15"/>
+    <xsd:attribute name="fontsize"     type="xsd:integer"/>
   </xsd:complexType>
 
   <xsd:simpleType name="DPoint">
@@ -202,30 +205,34 @@
       <xsd:element name="pan"          type="Pan"          minOccurs="0"/>
       <xsd:element name="zoom"         type="Zoom"         minOccurs="0"/>
       <xsd:element name="binding"      type="Binding"      minOccurs="0"/>
-      <xsd:element name="axiscontrols" type="AxisControls" minOccurs="0"/>
+      <!-- deprecated: <xsd:element name="axiscontrols" type="AxisControls" minOccurs="0"/> -->
     </xsd:all>
     <xsd:attribute name="id"          type="xsd:string"/>
     <xsd:attribute name="type"        type="DataType"        default="number"/>
+
     <xsd:attribute name="length"      type="Displacement"    default="1.0"/>
+    <xsd:attribute name="base"        type="DPoint"          default="-1,1"/>
+    <xsd:attribute name="anchor"      type="xsd:double"      default="-1"/>
     <xsd:attribute name="position"    type="DPointOrNumber"  default="0,0"/>
-    <xsd:attribute name="pregap"/>
-    <xsd:attribute name="postgap"/>
-    <xsd:attribute name="anchor"/>
-    <xsd:attribute name="base"        type="DPoint"          default="-1 1"/>
-    <xsd:attribute name="min"         type="DataValueString" default="auto"/>
-    <xsd:attribute name="minoffset"/>
-    <xsd:attribute name="minposition"/>
-    <xsd:attribute name="max"         type="DataValueString" default="auto"/>
-    <xsd:attribute name="maxoffset"/>
-    <xsd:attribute name="maxposition"/>
-    <xsd:attribute name="positionbase"/>
+
+    <xsd:attribute name="min"         type="DataOrAutoValue" default="auto"/>
+    <xsd:attribute name="max"         type="DataOrAutoValue" default="auto"/>
+    <xsd:attribute name="minposition" type="Displacement"    default="-1.0"/>
+    <xsd:attribute name="maxposition" type="Displacement"    default="1.0"/>
+
     <xsd:attribute name="color"       type="RGBColor"        default="0x000000"/>
+    <xsd:attribute name="linewidth"   type="xsd:integer"     default="1"/>
     <xsd:attribute name="tickmin"     type="xsd:integer"     default="-3"/>
     <xsd:attribute name="tickmax"     type="xsd:integer"     default="3"/>
     <xsd:attribute name="tickcolor"   type="RGBColor"        default="0x000000"/>
-    <xsd:attribute name="highlightstyle"/>
-    <xsd:attribute name="linewidth"   type="xsd:integer"     default="1"/>
-    <xsd:attribute name="orientation" type="AxisOrientation" default="unknown"/>
+
+    <xsd:attribute name="orientation" type="AxisOrientation" default="unknown"/> <!-- not used -->
+    <xsd:attribute name="positionbase"/>    <!-- deprecated -->
+    <xsd:attribute name="pregap"/>          <!-- deprecated -->
+    <xsd:attribute name="postgap"/>         <!-- deprecated -->
+    <xsd:attribute name="minoffset"/>       <!-- deprecated -->
+    <xsd:attribute name="maxoffset"/>       <!-- deprecated -->
+    <xsd:attribute name="highlightstyle"/>  <!-- deprecated -->
   </xsd:complexType>
 
   <xsd:simpleType name="DataType">
@@ -243,16 +250,47 @@
     </xsd:restriction>
   </xsd:simpleType>
 
-  <xsd:simpleType name="DataValueString">
-    <xsd:annotation>
-      <xsd:appinfo>
-        <jxb:javaType name="org.multigraph.datatypes.string.StringValue"
-                      parseMethod="org.multigraph.datatypes.string.StringValue.parse"
-                      printMethod="org.multigraph.datatypes.string.StringValue.toString"/>
-      </xsd:appinfo>
-    </xsd:annotation>
+  <xsd:simpleType name="Frame">
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="plot"/>
+      <xsd:enumeration value="padding"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+
+  <xsd:simpleType name="DatetimeValue">
+    <xsd:restriction base="xsd:token">
+      <xsd:pattern value="[0-9:\s-]+"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+
+  <xsd:simpleType name="DataValue">
+    <xsd:union memberTypes="DatetimeValue xsd:double"/>
+  </xsd:simpleType>
+
+  <xsd:simpleType name="AutoValue">
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="auto"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+
+  <xsd:simpleType name="DataOrAutoValue">
+    <xsd:union memberTypes="DataValue AutoValue"/>
+  </xsd:simpleType>
+
+  <xsd:simpleType name="DataMeasure">
     <xsd:restriction base="xsd:string">
     </xsd:restriction>
+  </xsd:simpleType>
+
+  <xsd:simpleType name="YesNo">
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="yes"/>
+      <xsd:enumeration value="no"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+
+  <xsd:simpleType name="Boolean">
+    <xsd:union memberTypes="xsd:boolean YesNo"/>
   </xsd:simpleType>
 
   <xsd:simpleType name="Displacement">
@@ -261,7 +299,7 @@
         are both real numbers.
     -->
     <xsd:restriction base="xsd:token">
-      <xsd:pattern value="[0-9\.]+((\+|-)[0-9\.]+)?"/>
+      <xsd:pattern value="-?[0-9\.]+((\+|-)[0-9\.]+)?"/>
     </xsd:restriction>
   </xsd:simpleType>
 
@@ -281,14 +319,15 @@
   </xsd:simpleType>
 
   <xsd:complexType name="AxisTitle" mixed="true">
-    <xsd:attribute name="position"/>
-    <xsd:attribute name="anchor"/>
-    <xsd:attribute name="angle" type="xsd:double"/>
+    <xsd:attribute name="position" type="DPoint"/>
+    <xsd:attribute name="anchor"   type="DPoint"/>
+    <xsd:attribute name="base"     type="xsd:double" default="0"/>
+    <xsd:attribute name="angle"    type="xsd:double" default="0"/>
   </xsd:complexType>
 
   <xsd:complexType name="Grid">
     <xsd:attribute name="color"   type="RGBColor"    default="0xeeeeee"/>
-    <xsd:attribute name="visible" type="xsd:boolean" default="false"/>
+    <xsd:attribute name="visible" type="Boolean" default="false"/>
   </xsd:complexType>
 
   <xsd:complexType name="Labels">
@@ -296,7 +335,7 @@
       <xsd:element minOccurs="0" maxOccurs="unbounded" name="label" type="Label"/>
     </xsd:sequence>
     <xsd:attribute name="format"   type="xsd:string" default="%1d"/>
-    <xsd:attribute name="start"    type="xsd:string" default="0"/>
+    <xsd:attribute name="start"    type="DataValue"  default="0"/>
     <xsd:attribute name="angle"    type="xsd:double" default="0.0"/>
     <xsd:attribute name="position" type="DPoint"     default="0 0"/>
     <xsd:attribute name="anchor"   type="DPoint"     default="0 0"/>
@@ -304,13 +343,13 @@
     <xsd:attribute name="spacing"  type="xsd:string" default="10000 5000 2000 1000 500 200 100 50 20 10 5 2 1 0.1 0.01 0.001"/>
     <xsd:attribute name="defaultDatetimeSpacing" type="xsd:string"
                    fixed="1000Y 500Y 200Y 100Y 50Y 20Y 10Y 5Y 2Y 1Y 6M 3M 2M 1M 7D 3D 2D 1D 12H 6H 3H 2H 1H"/>
-    <xsd:attribute name="function"/>
-    <xsd:attribute name="densityfactor"/>
+<!--  WTF???  <xsd:attribute name="function"/>  -->
+    <xsd:attribute name="densityfactor" type="xsd:double" default="1.0"/>
   </xsd:complexType>
 
   <xsd:complexType name="Label">
     <xsd:attribute name="format"   type="xsd:string"/>
-    <xsd:attribute name="start"    type="xsd:string"/>
+    <xsd:attribute name="start"    type="DataValue"/>
     <xsd:attribute name="angle"    type="xsd:double"/>
     <xsd:attribute name="position" type="DPoint"/>
     <xsd:attribute name="anchor"   type="DPoint"/>
@@ -319,16 +358,16 @@
   </xsd:complexType>
 
   <xsd:complexType name="Pan">
-    <xsd:attribute name="allowed"/>
-    <xsd:attribute name="min"/>
-    <xsd:attribute name="max"/>
+    <xsd:attribute name="allowed" type="Boolean" default="yes"/>
+    <xsd:attribute name="min"     type="DataValue"/>
+    <xsd:attribute name="max"     type="DataValue"/>
   </xsd:complexType>
 
   <xsd:complexType name="Zoom">
-    <xsd:attribute name="allowed"/>
-    <xsd:attribute name="min"/>
-    <xsd:attribute name="max"/>
-    <xsd:attribute name="anchor"/>
+    <xsd:attribute name="allowed" type="Boolean" default="yes"/>
+    <xsd:attribute name="min"     type="DataMeasure"/>
+    <xsd:attribute name="max"     type="DataMeasure"/>
+    <xsd:attribute name="anchor"  type="DataValue"/>
   </xsd:complexType>
 
   <xsd:complexType name="Binding">
@@ -337,9 +376,11 @@
     <xsd:attribute name="max" use="required"/>
   </xsd:complexType>
 
-  <xsd:complexType name="AxisControls">
-    <xsd:attribute name="visible"/>
-  </xsd:complexType>
+  <!-- deprecated:
+     <xsd:complexType name="AxisControls">
+       <xsd:attribute name="visible"/>
+     </xsd:complexType>
+  -->
 
   <xsd:complexType name="Plot">
     <xsd:all minOccurs="0" maxOccurs="1">
@@ -362,13 +403,10 @@
 
   <xsd:complexType name="PlotVariable">
     <xsd:attribute name="ref" type="xsd:string" use="required"/>
-    <xsd:attribute name="legendlabel" type="xsd:string"/>
-    <xsd:attribute name="factor"/>
   </xsd:complexType>
 
   <xsd:complexType name="PlotConstant">
     <xsd:attribute name="value" type="xsd:string" use="required"/>
-    <xsd:attribute name="legendlabel" type="xsd:string"/>
   </xsd:complexType>
 
   <xsd:complexType name="Renderer">
@@ -402,41 +440,48 @@
   <xsd:complexType name="RendererOption">
     <xsd:attribute name="name"  type="xsd:string" use="required"/>
     <xsd:attribute name="value" type="xsd:string" use="required"/>
-    <xsd:attribute name="min"   type="xsd:double"/>
-    <xsd:attribute name="max"   type="xsd:double"/>
+    <xsd:attribute name="min"   type="DataValue"/>
+    <xsd:attribute name="max"   type="DataValue"/>
   </xsd:complexType>
 
   <xsd:complexType name="PlotFilter">
     <xsd:sequence>
       <xsd:element name="option" type="FilterOption" minOccurs="0" maxOccurs="unbounded"/>
     </xsd:sequence>
-    <xsd:attribute name="type"/>
+    <xsd:attribute name="type" type="xsd:string"/>
   </xsd:complexType>
 
   <xsd:complexType name="FilterOption">
-    <xsd:attribute name="name"/>
-    <xsd:attribute name="value"/>
+    <xsd:attribute name="name" type="xsd:string"/>
+    <xsd:attribute name="value" type="xsd:string"/>
   </xsd:complexType>
 
   <xsd:complexType name="PlotLegend">
-    <xsd:attribute name="visible"/>
-    <xsd:attribute name="label"/>
+    <xsd:attribute name="visible" type="Boolean"/>
+    <xsd:attribute name="label"   type="xsd:string"/>
   </xsd:complexType>
 
   <xsd:complexType name="Datatips">
     <xsd:sequence>
       <xsd:element name="variable" type="DatatipsVariable" minOccurs="0" maxOccurs="unbounded"/>
     </xsd:sequence>
-    <xsd:attribute name="format"/>
-    <xsd:attribute name="bgcolor"/>
-    <xsd:attribute name="bgalpha"/>
-    <xsd:attribute name="border"/>
-    <xsd:attribute name="bordercolor"/>
-    <xsd:attribute name="pad"/>
+    <xsd:attribute name="format"      type="xsd:string"/>
+    <xsd:attribute name="bgcolor"     type="RGBColor"/>
+    <xsd:attribute name="bgalpha"     type="xsd:double"/>
+    <xsd:attribute name="border"      type="xsd:integer"/>
+    <xsd:attribute name="bordercolor" type="RGBColor"/>
+    <xsd:attribute name="pad"         type="xsd:integer"/>
   </xsd:complexType>
 
   <xsd:complexType name="DatatipsVariable">
-    <xsd:attribute name="format"/>
+    <xsd:attribute name="format" type="xsd:string"/>
+  </xsd:complexType>
+
+  <xsd:complexType name="Throttle">
+    <xsd:attribute name="pattern"    type="xsd:string"/>
+    <xsd:attribute name="requests"   type="xsd:integer" default="0"/>
+    <xsd:attribute name="period"     type="xsd:integer" default="0"/>
+    <xsd:attribute name="concurrent" type="xsd:integer" default="0"/>
   </xsd:complexType>
 
   <xsd:complexType name="Data">
@@ -445,7 +490,7 @@
       <xsd:choice>
         <xsd:element name="values"  type="xsd:string"  minOccurs="0" maxOccurs="1"/>
         <xsd:element name="csv"     type="CSV"         minOccurs="0" maxOccurs="1"/>
-        <xsd:element name="service" type="Service" minOccurs="0" maxOccurs="1"/>
+        <xsd:element name="service" type="Service"     minOccurs="0" maxOccurs="1"/>
       </xsd:choice>
     </xsd:sequence>
   </xsd:complexType>
@@ -454,8 +499,8 @@
     <xsd:sequence>
       <xsd:element name="variable" type="Variable" minOccurs="0" maxOccurs="unbounded"/>
     </xsd:sequence>
-    <xsd:attribute name="missingvalue" type="xsd:string"/>
-    <xsd:attribute name="missingop"    type="xsd:string"/>
+    <xsd:attribute name="missingvalue" type="DataValue"/>
+    <xsd:attribute name="missingop"    type="Comparator" default="eq"/>
   </xsd:complexType>
 
   <xsd:complexType name="Variable">
@@ -466,12 +511,22 @@
     <xsd:attribute name="missingop"    type="xsd:string"/>
   </xsd:complexType>
 
+  <xsd:simpleType name="Comparator">
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="lt"/>
+      <xsd:enumeration value="le"/>
+      <xsd:enumeration value="eq"/>
+      <xsd:enumeration value="ge"/>
+      <xsd:enumeration value="gt"/>
+    </xsd:restriction>
+  </xsd:simpleType>  
+
   <xsd:complexType name="CSV">
-    <xsd:attribute name="location" type="xsd:string"/>
+    <xsd:attribute name="location" type="xsd:string" use="required"/>
   </xsd:complexType>
 
   <xsd:complexType name="Service">
-    <xsd:attribute name="location" type="xsd:string"/>
+    <xsd:attribute name="location" type="xsd:string" use="required"/>
     <xsd:attribute name="format" type="xsd:string"/>
   </xsd:complexType>
 

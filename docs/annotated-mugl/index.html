@@ -721,5 +721,52 @@ available</a>.
 <span class="c">          |--&gt;</span>
     <span class="tagprefix"></span><span class="nt">&lt;/service&gt;</span></span></span>
   <span class="tagprefix"></span><span class="nt">&lt;/data&gt;</span></span></span>
+<span class="element"><span class="collapsed">  <span class="target"><span class="tagprefix">+</span><span class="nt">&lt;throttle.../&gt;</span></span></span><span class="expanded">  <span class="target"><span class="tagprefix">-</span><span class="nt">&lt;throttle</span></span>
+      <span class="tipped-type" id="type-tooltip-122"><span class="na">pattern=</span><span class="s">&quot;STRING()&quot;</span></span>
+<script type="text/javascript">$('document').ready(function() {$('#type-tooltip-122').tooltip({track: true,showURL: false,opacity: 1.0,left: 25,top: -50,bodyHandler : function() {return $('<div class="tooltip"><p>Optional attribute <code>pattern</code>; default value: ""</p><p>Type: STRING - any sequence of characters.</p></div>');}});});</script>      <span class="tipped-type" id="type-tooltip-123"><span class="na">requests=</span><span class="s">&quot;INTEGER(0)&quot;</span></span>
+<script type="text/javascript">$('document').ready(function() {$('#type-tooltip-123').tooltip({track: true,showURL: false,opacity: 1.0,left: 25,top: -50,bodyHandler : function() {return $('<div class="tooltip"><p>Optional attribute <code>requests</code>; default value: "0"</p><p>Type: INTEGER</p></div>');}});});</script>      <span class="tipped-type" id="type-tooltip-124"><span class="na">period=</span><span class="s">&quot;INTEGER(0)&quot;</span></span>
+<script type="text/javascript">$('document').ready(function() {$('#type-tooltip-124').tooltip({track: true,showURL: false,opacity: 1.0,left: 25,top: -50,bodyHandler : function() {return $('<div class="tooltip"><p>Optional attribute <code>period</code>; default value: "0"</p><p>Type: INTEGER</p></div>');}});});</script>      <span class="tipped-type" id="type-tooltip-125"><span class="na">concurrent=</span><span class="s">&quot;INTEGER(0)&quot;</span></span>>
+<script type="text/javascript">$('document').ready(function() {$('#type-tooltip-125').tooltip({track: true,showURL: false,opacity: 1.0,left: 25,top: -50,bodyHandler : function() {return $('<div class="tooltip"><p>Optional attribute <code>concurrent</code>; default value: "0"</p><p>Type: INTEGER</p></div>');}});});</script><span class="c">    &lt;!--| The &lt;throttle&gt; element allows Multigraph to enforce constraints on the rate at which</span>
+<span class="c">        | it initiates requests to fetch data for &lt;csv&gt; and/or &lt;service&gt; data sources.  A MUGL</span>
+<span class="c">        | file can contain any number of &lt;throttle&gt; elements; each one specifies a regular</span>
+<span class="c">        | expression pattern, and a set of constraint values.  Multigraph enforces that set of</span>
+<span class="c">        | constraints to all URLs it fetches that match the regular expression.  If there are</span>
+<span class="c">        | multiple &lt;throttle&gt; elements, Multigraph will choose the constraints in the first</span>
+<span class="c">        | &lt;throttle&gt; element in the file whose pattern matches the fetched URL.</span>
+<span class="c">        |</span>
+<span class="c">        | If there are no &lt;throttle&gt; elements in a MUGL file, Multigraph will do no throttling.</span>
+<span class="c">        |</span>
+<span class="c">        | A &lt;throttle&gt; element with an empty pattern, or missing pattern attribute, will match</span>
+<span class="c">        | any URL, so its constraints will be applied to every outgoing request, unless there</span>
+<span class="c">        | is another &lt;throttle&gt; element before it with a pattern that also matches the request URL.</span>
+<span class="c">        |</span>
+<span class="c">        | The test for whether a request URL matches a &lt;throttle&gt; pattern is done on the</span>
+<span class="c">        | original "location" value for the &lt;csv&gt; or &lt;service&gt; element.  For &lt;service&gt; elements,</span>
+<span class="c">        | this is before any range values are inserted into the URL, and in both cases,</span>
+<span class="c">        | the pattern is checked before a relative URL is rewritten to be relative to the</span>
+<span class="c">        | location of the MUGL file.</span>
+<span class="c">        |</span>
+<span class="c">        | Throttling only applies to data fetched via a &lt;csv&gt; or &lt;service&gt; data source; it</span>
+<span class="c">        | does not apply to any images retrieved by the &lt;background&gt; &lt;img&gt; element.</span>
+<span class="c">        |</span>
+<span class="c">        |   pattern: the regular expression (JavaScript syntax) for URLs that this</span>
+<span class="c">        |       element's constraints should be applied to.  This regular expression should</span>
+<span class="c">        |       *not* include delimiting '/' marks.</span>
+<span class="c">        |   requests: an integer N</span>
+<span class="c">        |   period: an integer P</span>
+<span class="c">        |   concurrent: an integer M</span>
+<span class="c">        |</span>
+<span class="c">        | Requests whose URL matches the pattern will be limited in such a way that</span>
+<span class="c">        |</span>
+<span class="c">        |   * No more than N requests are initiated within P milliseconds of each other, AND</span>
+<span class="c">        |   * No more than M concurrent (outstanding at the same time) requests are allowed</span>
+<span class="c">        |</span>
+<span class="c">        | If N or P is 0, there is no time period based constraint, and if M is 0, there</span>
+<span class="c">        | is no constraint on the number of concurrent requests.</span>
+<span class="c">        |</span>
+<span class="c">        | The default is N=P=M=0, so a &lt;throttle&gt; element that doesn't specify any of</span>
+<span class="c">        | requests, period, or concurrent will have no effect.</span>
+<span class="c">        |--&gt;</span>
+  <span class="tagprefix"></span><span class="nt">&lt;/throttle&gt;</span></span></span>
 <span class="nt">&lt;/mugl&gt;</span>
 </code></pre></div>
