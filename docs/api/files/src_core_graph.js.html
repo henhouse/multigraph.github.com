@@ -145,7 +145,6 @@ window.multigraph.util.namespace(&quot;window.multigraph.core&quot;, function (n
     var defaultValues = window.multigraph.utilityFunctions.getDefaultValuesFromXSD(),
         attributes = window.multigraph.utilityFunctions.getKeys(defaultValues),
         Graph = new window.jermaine.Model( &quot;Graph&quot;, function () {
-
             &#x2F;**
              * Child model which controls the properties of the Graph&#x27;s Window.
              *
@@ -251,7 +250,7 @@ window.multigraph.util.namespace(&quot;window.multigraph.core&quot;, function (n
                 return val instanceof Box;
             });
             &#x2F;**
-             * Stores the computed width and height of the Graph&#x27;s plotBox.
+             * Stroes the computed width and height of the Graph&#x27;s plotBox.
              *
              * @property plotBox
              * @type {}
@@ -259,17 +258,6 @@ window.multigraph.util.namespace(&quot;window.multigraph.core&quot;, function (n
              *&#x2F;
             this.hasA(&quot;plotBox&quot;).which.validatesWith(function (val) {
                 return val instanceof Box;
-            });
-
-            &#x2F;**
-             * The containing Multigraph object
-             *
-             * @property multigraph
-             * @type {}
-             * @author mbp
-             *&#x2F;
-            this.hasA(&quot;multigraph&quot;).which.validatesWith(function (val) {
-                return val instanceof window.multigraph.core.Multigraph;
             });
             
             this.isBuiltWith(function () {
@@ -279,23 +267,6 @@ window.multigraph.util.namespace(&quot;window.multigraph.core&quot;, function (n
             });
 
             this.respondsTo(&quot;postParse&quot;, function () {
-                var i,
-                    that = this,
-                    handleAjaxEvent = function(event) {
-                        if (event.action === &#x27;start&#x27;) {
-                            if (that.multigraph()) {
-                                that.multigraph().busySpinnerLevel(1);
-                            }
-                        } else if (event.action === &#x27;complete&#x27;) {
-                            if (that.multigraph()) {
-                                that.multigraph().busySpinnerLevel(-1);
-                            }
-                        }
-                    };
-
-                for (i=0; i&lt;this.data().size(); ++i) {
-                    this.data().at(i).addListener(&quot;ajaxEvent&quot;, handleAjaxEvent);
-                }
             });
 
             &#x2F;**
