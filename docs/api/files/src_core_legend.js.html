@@ -313,7 +313,7 @@ window.multigraph.util.namespace(&quot;window.multigraph.core&quot;, function (n
          * @type {Plot}
          * @author jrfrimme
          *&#x2F;
-        this.hasMany(&quot;plots&quot;).which.validatesWith(function (plot) {
+        this.hasMany(&quot;plots&quot;).eachOfWhich.validateWith(function (plot) {
             return plot instanceof ns.Plot;
         });
 

@@ -206,7 +206,7 @@ window.multigraph.util.namespace(&quot;window.multigraph.core&quot;, function (n
              * @type {Axis}
              * @author jrfrimme
              *&#x2F;
-            this.hasMany(&quot;axes&quot;).which.validatesWith(function (axis) {
+            this.hasMany(&quot;axes&quot;).eachOfWhich.validateWith(function (axis) {
                 return axis instanceof ns.Axis;
             });
             &#x2F;**
@@ -216,7 +216,7 @@ window.multigraph.util.namespace(&quot;window.multigraph.core&quot;, function (n
              * @type {Plot}
              * @author jrfrimme
              *&#x2F;
-            this.hasMany(&quot;plots&quot;).which.validatesWith(function (plot) {
+            this.hasMany(&quot;plots&quot;).eachOfWhich.validateWith(function (plot) {
                 return plot instanceof ns.Plot;
             });
             &#x2F;**
@@ -226,7 +226,7 @@ window.multigraph.util.namespace(&quot;window.multigraph.core&quot;, function (n
              * @type {Data}
              * @author jrfrimme
              *&#x2F;
-            this.hasMany(&quot;data&quot;).which.validatesWith(function (data) {
+            this.hasMany(&quot;data&quot;).eachOfWhich.validateWith(function (data) {
                 return data instanceof ns.Data;
             });
 
@@ -419,37 +419,35 @@ window.multigraph.util.namespace(&quot;window.multigraph.core&quot;, function (n
                 return foundAxis;
             });
 
+            this.respondsTo(&quot;axisById&quot;, function (id) {
+                &#x2F;&#x2F; return a pointer to the axis for this graph that has the given id, if any
+                var axes = this.axes(),
+                    i;
+                for (i = 0; i &lt; axes.size(); ++i) {
+                    if (axes.at(i).id() === id) {
+                        return axes.at(i);
+                    }
+                }
+                return undefined;
+            });
+
+            this.respondsTo(&quot;variableById&quot;, function (id) {
+                &#x2F;&#x2F; return a pointer to the variable for this graph that has the given id, if any
+                var data = this.data(),
+                    i,
+                    j;
+                for (i = 0; i &lt; data.size(); ++i) {
+                    for (j = 0; j &lt; data.at(i).columns().size(); ++j) {
+                        if (data.at(i).columns().at(j).id() === id) {
+                            return data.at(i).columns().at(j);
+                        }
+                    }
+                }
+                return undefined;
+            });
+
             window.multigraph.utilityFunctions.insertDefaults(this, defaultValues, attributes);
         });
-
-    &#x2F;&#x2F;TODO: convert to &quot;respondsTo&quot; ???
-    Graph.prototype.axisById = function (id) {
-      &#x2F;&#x2F; return a pointer to the axis for this graph that has the given id, if any
-        var axes = this.axes(),
-            i;
-        for (i = 0; i &lt; axes.size(); ++i) {
-            if (axes.at(i).id() === id) {
-                return axes.at(i);
-            }
-        }
-        return undefined;
-    };
-
-    &#x2F;&#x2F;TODO: convert to &quot;respondsTo&quot; ???
-    Graph.prototype.variableById = function (id) {
-      &#x2F;&#x2F; return a pointer to the variable for this graph that has the given id, if any
-        var data = this.data(),
-            i,
-            j;
-        for (i = 0; i &lt; data.size(); ++i) {
-            for (j = 0; j &lt; data.at(i).columns().size(); ++j) {
-                if (data.at(i).columns().at(j).id() === id) {
-                    return data.at(i).columns().at(j);
-                }
-            }
-        }
-        return undefined;
-    };
 
     ns.Graph = Graph;
 

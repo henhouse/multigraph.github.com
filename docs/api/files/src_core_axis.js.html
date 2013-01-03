@@ -151,7 +151,7 @@ window.multigraph.util.namespace(&quot;window.multigraph.core&quot;, function (n
         this.hasA(&quot;title&quot;).which.validatesWith(function (title) {
             return title instanceof ns.AxisTitle;
         });
-        this.hasMany(&quot;labelers&quot;).which.validatesWith(function (labelers) {
+        this.hasMany(&quot;labelers&quot;).eachOfWhich.validateWith(function (labelers) {
             return labelers instanceof ns.Labeler;
         });
         this.hasA(&quot;grid&quot;).which.validatesWith(function (grid) {
@@ -166,9 +166,7 @@ window.multigraph.util.namespace(&quot;window.multigraph.core&quot;, function (n
         this.hasA(&quot;binding&quot;).which.validatesWith(function (binding) {
             return binding === null || binding instanceof ns.AxisBinding;
         });
-        this.hasAn(&quot;id&quot;).which.validatesWith(function (id) {
-            return typeof(id) === &quot;string&quot;;
-        });
+        this.hasAn(&quot;id&quot;).which.isA(&quot;string&quot;);
         this.hasA(&quot;type&quot;).which.isOneOf(ns.DataValue.types());
         this.hasA(&quot;length&quot;).which.validatesWith(function (length) {
             return length instanceof window.multigraph.math.Displacement;
@@ -257,10 +255,7 @@ window.multigraph.util.namespace(&quot;window.multigraph.core&quot;, function (n
         });
 
 
-        this.hasA(&quot;positionbase&quot;).which.validatesWith(function (positionbase) {
-            &#x2F;&#x2F;deprecated
-            return typeof(positionbase) === &quot;string&quot;;
-        });
+        this.hasA(&quot;positionbase&quot;).which.isA(&quot;string&quot;); &#x2F;&#x2F; deprecated
         this.hasA(&quot;color&quot;).which.validatesWith(function (color) {
             return color instanceof window.multigraph.math.RGBColor;
         });
@@ -274,11 +269,6 @@ window.multigraph.util.namespace(&quot;window.multigraph.core&quot;, function (n
         });
         this.hasA(&quot;linewidth&quot;).which.isA(&quot;integer&quot;);
         this.hasA(&quot;orientation&quot;).which.validatesWith(Orientation.isInstance);
-&#x2F;*
-        this.hasA(&quot;orientation&quot;).which.validatesWith(function (orientation) {
-            return (orientation === Axis.HORIZONTAL) || (orientation === Axis.VERTICAL);
-        });
-*&#x2F;
         this.isBuiltWith(&quot;orientation&quot;, function () {
             if (this.grid() === undefined) {
                 this.grid(new ns.Grid());

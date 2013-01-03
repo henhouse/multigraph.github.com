@@ -2,10 +2,20 @@
 siteroot: ..
 layout: master
 menu-download: selected
-title: Multigraph - Release Notes for version 4.0rc5
+title: Multigraph - Release Notes for version 4.0
 ---
 Release Notes
 =============
+
+Version 4.0 (2013-01-03)
+---------------------------
+
+* first official release!
+
+Version 4.0rc7 (2012-12-20)
+---------------------------
+
+* bugfix for <throttle>
 
 Version 4.0rc6 (2012-12-20)
 ---------------------------

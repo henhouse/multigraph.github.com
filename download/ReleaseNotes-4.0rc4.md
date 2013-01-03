@@ -7,6 +7,18 @@ title: Multigraph - Release Notes for version 4.0rc4
 Release Notes
 =============
 
+Version 4.0rc6 (2012-12-20)
+---------------------------
+
+* adds <throttle> mugl element for throttling ajax requests
+* a few very minor tweaks to MUGL spec and processing
+
+Version 4.0rc5 (2012-12-12)
+---------------------------
+
+* interpret relative URLs mentioned in MUGL files relative to the MUGL file URL itself
+* minor bugfixes
+
 Version 4.0rc4 (2012-12-11)
 ---------------------------
 

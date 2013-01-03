@@ -952,7 +952,7 @@
         },
         {
             "file": "src/core/axis.js",
-            "line": 58,
+            "line": 56,
             "description": "Stores the \"min\" value from the mugl file as a string, if there was one.",
             "itemtype": "property",
             "name": "min",
@@ -964,7 +964,7 @@
         },
         {
             "file": "src/core/axis.js",
-            "line": 67,
+            "line": 65,
             "description": "The current min DataValue for the axis.",
             "itemtype": "property",
             "name": "dataMin",
@@ -976,7 +976,7 @@
         },
         {
             "file": "src/core/axis.js",
-            "line": 77,
+            "line": 75,
             "description": "Convenience method for checking to see if dataMin has been set or not",
             "itemtype": "method",
             "name": "hasDataMin",
@@ -991,7 +991,7 @@
         },
         {
             "file": "src/core/axis.js",
-            "line": 94,
+            "line": 92,
             "description": "Stores the \"max\" value from the mugl file as a string, if there was one.",
             "itemtype": "property",
             "name": "max",
@@ -1003,7 +1003,7 @@
         },
         {
             "file": "src/core/axis.js",
-            "line": 103,
+            "line": 101,
             "description": "The current max DataValue for the axis.",
             "itemtype": "property",
             "name": "dataMax",
@@ -1015,7 +1015,7 @@
         },
         {
             "file": "src/core/axis.js",
-            "line": 113,
+            "line": 111,
             "description": "Convenience method for checking to see if dataMax has been set or not.",
             "itemtype": "method",
             "name": "hasDataMax",
@@ -1030,7 +1030,7 @@
         },
         {
             "file": "src/core/axis.js",
-            "line": 213,
+            "line": 203,
             "description": "Decides which labeler to use: take the one with the largest density <= 0.8.\nUnless all have density > 0.8, in which case we take the first one.  This assumes\nthat the labelers list is ordered in increasing order of label density.\nThis function sets the `currentLabeler` and `currentLabelDensity` attributes.",
             "itemtype": "method",
             "name": "prepareRender",
@@ -1048,7 +1048,7 @@
         },
         {
             "file": "src/core/axis.js",
-            "line": 377,
+            "line": 367,
             "description": "Compute the distance from an axis to a point.  The point\n(x,y) is expressed in pixel coordinates in the same\ncoordinate system as the axis.\n\nWe use two different kinds of computations depending on\nwhether the point lies inside or outside the region bounded\nby the two lines perpendicular to the axis through its\nendpoints.  If the point lies inside this region, the\ndistance is simply the difference in the perpendicular\ncoordinate of the point and the perpendicular coordinate of\nthe axis.\n\nIf the point lies outside the region, then the distance is\nthe L2 distance between the point and the closest endpoint\nof the axis.",
             "itemtype": "method",
             "name": "distanceToPoint",
@@ -1181,7 +1181,7 @@
         },
         {
             "file": "src/core/axis_binding.js",
-            "line": 208,
+            "line": 181,
             "itemtype": "method",
             "name": "getInstanceById",
             "static": 1,
@@ -1198,7 +1198,7 @@
         },
         {
             "file": "src/core/axis_binding.js",
-            "line": 220,
+            "line": 193,
             "itemtype": "method",
             "name": "findByIdOrCreateNew",
             "static": 1,
@@ -1215,7 +1215,7 @@
         },
         {
             "file": "src/core/axis_binding.js",
-            "line": 236,
+            "line": 209,
             "itemtype": "method",
             "name": "syncAllBindings",
             "static": 1,
@@ -1226,7 +1226,7 @@
         },
         {
             "file": "src/core/axis_binding.js",
-            "line": 250,
+            "line": 223,
             "itemtype": "method",
             "name": "forgetAllBindings",
             "static": 1,
