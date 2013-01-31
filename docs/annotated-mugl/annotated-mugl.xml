@@ -426,7 +426,7 @@
           |       will restrict zooming along this axis so that the length of the axis, measured in the data units
           |       of the axis, is always greater than or equal to this "min" value.  If this attribute is not present,
           |       zooming in is unrestricted.
-          |   min: restricts how far "out" the user can zoom along this axis; if this attribute is present, Multigraph
+          |   max: restricts how far "out" the user can zoom along this axis; if this attribute is present, Multigraph
           |       will restrict zooming along this axis so that the length of the axis, measured in the data units
           |       of the axis, is always less than or equal to this "min" value.  If this attribute is not present,
           |       zooming out is unrestricted.
