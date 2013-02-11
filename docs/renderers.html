@@ -1,0 +1,379 @@
+---
+siteroot: ..
+layout: master
+menu-documentation: selected
+title: Multigraph - Documentation
+---
+
+<pre>
+                                                                     
+                                             
+Name : band
+Description : Fills the region between two data lines with a solid color, and draws a line segment between consecutive data points in each line.
+Options : 
+ 
+    OPTION NAME:          linecolor
+    DESCRIPTION:          Color used for line segments. 
+    ACCEPTED VALUE:       color
+    DEFAULT VALUE:        black
+
+    OPTION NAME:          linewidth
+    DESCRIPTION:          Width, in pixels, of line segments.  A
+                          value of 0 means do not draw line segments.
+    ACCEPTED VALUE:       number
+    DEFAULT VALUE:        1
+
+    OPTION NAME:          line1color
+    DESCRIPTION:          Color used for line segments connecting the
+                          values of the first variable. If line1color is
+                          not specified, linecolor is used.
+    ACCEPTED VALUE:       color
+    DEFAULT VALUE:        (linecolor is used)
+
+    OPTION NAME:          line1width
+    DESCRIPTION:          Width, in pixels, of line segments connecting the
+                          values of the first variable.  A value of 0 means
+                          do not draw line segments. If line1width is not
+                          specified, linewidth is used.
+    ACCEPTED VALUE:       number
+    DEFAULT VALUE:        (linewidth is used)
+
+    OPTION NAME:          line2color
+    DESCRIPTION:          Color used for line segments connecting the
+                          values of variable 2. If line2color is not
+                          specified, linecolor is used.
+    ACCEPTED VALUE:       color
+    DEFAULT VALUE:        (linecolor is used)
+
+    OPTION NAME:          line2width
+    DESCRIPTION:          Width, in pixels, of line segments connecting the
+                          values of variable 2. A value of 0 means do not
+                          draw line segments. If line2width is not
+                          specified, linewidth is used.
+    ACCEPTED VALUE:       number
+    DEFAULT VALUE:        (linewidth is used)
+
+    OPTION NAME:          fillcolor
+    DESCRIPTION:          Color used for the fill area.
+    ACCEPTED VALUE:       color
+    DEFAULT VALUE:        dark gray (0x808080)
+
+    OPTION NAME:          fillopacity
+    DESCRIPTION:          The opactiy of the fill area, in the range 0-1.
+                          A value of 1 means completely opaque; a value of 0
+                          means completely invisible.
+    ACCEPTED VALUE:       number
+    DEFAULT VALUE:        1
+ 
+---
+
+Name: bar
+Description: A Bar Renderer.
+Options:
+ 
+    OPTION NAME:          barwidth
+    DESCRIPTION:          Width, in relative terms to the type of the
+                          axis the plot is on, of the bars.
+    ACCEPTED VALUE:       DataMeasure
+    DEFAULT VALUE:        none
+                          
+    OPTION NAME:          baroffset
+    DESCRIPTION:          The offset, in pixels, of the left edge of
+                          each bar from the corresponding data value.
+    ACCEPTED VALUE:       number
+    DEFAULT VALUE:        0
+                          
+    OPTION NAME:          barbase
+    DESCRIPTION:          The location, relative to the plot's
+                          vertical axis, of the bottom of the bar; if
+                          no barbase is specified, the bars will
+                          extend down to the bottom of the plot area.
+    ACCEPTED VALUE:       DataValue
+    DEFAULT VALUE:        none
+                          
+    OPTION NAME:          linecolor
+    DESCRIPTION:          The color to be used for the outline around
+                          each bar.
+    ACCEPTED VALUE:       color
+    DEFAULT VALUE:        black
+
+    OPTION NAME:          fillcolor
+    DESCRIPTION:          The color to be used for the fill inside
+                          each bar; if barbase is specified, this
+                          color is used only for bars that extend
+                          above the base.
+    ACCEPTED VALUE:       color
+    DEFAULT VALUE:        black
+
+    OPTION NAME:          fillopacity
+    DESCRIPTION:          The opactiy of the fill area inside each bar,
+                          in the range 0-1. A value of 1 means
+                          completely opaque; a value of 0 means
+                          completely invisible.
+    ACCEPTED VALUE:       number
+    DEFAULT VALUE:        1
+
+    OPTION NAME:          hidelines
+    DESCRIPTION:          Bars which are less wide, in pixels, than
+                          this number do not render their outlines.
+    ACCEPTED VALUE:       number
+    DEFAULT VALUE:        2
+
+---
+                           
+Name: fill
+Description: The Fill Renderer connects consecutive non-missing data points with line segments and draws a solid fill between the lines and the horizontal axis.
+Options:
+ 
+    OPTION NAME:          linecolor
+    DESCRIPTION:          Color used for line segments
+    ACCEPTED VALUE:       color
+    DEFAULT VALUE:        black
+
+    OPTION NAME:          linewidth
+    DESCRIPTION:          Width, in pixels, of line segments.  A
+                          value of 0 means do not draw line segments.
+    ACCEPTED VALUE:       number
+    DEFAULT VALUE:        1
+
+    OPTION NAME:          fillcolor
+    DESCRIPTION:          Color used for the fill area.
+    ACCEPTED VALUE:       color
+    DEFAULT VALUE:        dark grey (0x808080)
+
+    OPTION NAME:          fillopacity
+    DESCRIPTION:          The opactiy of the fill area, in the range 0-1.
+                          A value of 1 means completely opaque; a value of 0
+                          means completely invisible.
+    ACCEPTED VALUE:       number
+    DEFAULT VALUE:        1
+
+    OPTION NAME:          fillbase
+    DESCRIPTION:          The location along the plot's vertical axis
+                          of the horizontal line that defines the
+                          bottom (or top) of the filled region; if no
+                          fillbase is specified, the fill will extend
+                          down to the bottom of the plot area.
+    ACCEPTED VALUE:       DataValue
+    DEFAULT VALUE:        none
+
+    OPTION NAME:          downfillcolor
+    DESCRIPTION:          Color used for fill area that is below the
+                          fillbase, if a fillbase is specified. If no
+                          downfillcolor is specifed, fillcolor will
+                          be used for all fill areas.
+    ACCEPTED VALUE:       color
+    DEFAULT VALUE:        none
+
+---
+
+Name: line 
+Description: A Line Renderer
+Options:
+ 
+    OPTION NAME:          linewidth
+    DESCRIPTION:          Width, in pixels, of line segments.  A
+                          value of 0 means do not draw line segments.
+    ACCEPTED VALUE:       number
+    DEFAULT VALUE:        1
+
+    OPTION NAME:          linecolor
+    DESCRIPTION:          Color used for line segments
+    ACCEPTED VALUE:       color
+    DEFAULT VALUE:        black
+
+---
+
+Name: point
+Description: A Point Renderer.
+Options:
+ 
+    OPTION NAME:          pointsize
+    DESCRIPTION:          The radius of drawn points.  A value
+                          of 0 means do not draw points.
+    ACCEPTED VALUE:       number
+    DEFAULT VALUE:        0
+
+    OPTION NAME:          pointcolor
+    DESCRIPTION:          Color used for drawing points
+    ACCEPTED VALUE:       color
+    DEFAULT VALUE:        black
+
+    OPTION NAME:          pointshape
+    DESCRIPTION:          The shape to use for drawing points.
+    ACCEPTED VALUE:       One of the strings "circle", "square", "triangle",
+                          "diamond", "star", "plus", and "x".
+    DEFAULT VALUE:        "circle"
+
+    OPTION NAME:          pointopacity
+    DESCRIPTION:          The opactiy of the drawn points, in the range 0-1.
+                          A value of 1 means completely opaque; a value of 0
+                          means completely invisible.
+    ACCEPTED VALUE:       number
+    DEFAULT VALUE:        1.0
+
+    OPTION NAME:          pointoutlinewidth
+    DESCRIPTION:          The width, in pixels, of the outline to be drawn
+                          around each point.  A value of 0 means draw no
+                          outline.
+    ACCEPTED VALUE:       number
+    DEFAULT VALUE:        0
+
+    OPTION NAME:          pointoutlinecolor
+    DESCRIPTION:          The color to use for the outline around each point.
+    ACCEPTED VALUE:       color
+    DEFAULT VALUE:        black
+
+---
+
+Name: pointline
+Description: A Pointline Renderer.
+Options:
+ 
+    OPTION NAME:          linewidth
+    DESCRIPTION:          Width, in pixels, of line segments.  A
+                          value of 0 means do not draw line segments.
+    ACCEPTED VALUE:       number
+    DEFAULT VALUE:        1
+
+    OPTION NAME:          linecolor
+    DESCRIPTION:          Color used for line segments
+    ACCEPTED VALUE:       color
+    DEFAULT VALUE:        black
+
+    OPTION NAME:          pointsize
+    DESCRIPTION:          The radius of drawn points.  A value
+                          of 0 means do not draw points.
+    ACCEPTED VALUE:       number
+    DEFAULT VALUE:        0
+
+    OPTION NAME:          pointcolor
+    DESCRIPTION:          Color used for drawing points
+    ACCEPTED VALUE:       color
+    DEFAULT VALUE:        black
+
+    OPTION NAME:          pointshape
+    DESCRIPTION:          The shape to use for drawing points.
+    ACCEPTED VALUE:       One of the strings "circle", "square", "triangle",
+                          "diamond", "star", "plus", and "x".
+    DEFAULT VALUE:        "circle"
+
+    OPTION NAME:          pointopacity
+    DESCRIPTION:          The opactiy of the drawn points, in the range 0-1.
+                          A value of 1 means completely opaque; a value of 0
+                          means completely invisible.
+    ACCEPTED VALUE:       number
+    DEFAULT VALUE:        1.0
+
+    OPTION NAME:          pointoutlinewidth
+    DESCRIPTION:          The width, in pixels, of the outline to be drawn
+                          around each point.  A value of 0 means draw no
+                          outline.
+    ACCEPTED VALUE:       number
+    DEFAULT VALUE:        0
+
+    OPTION NAME:          pointoutlinecolor
+    DESCRIPTION:          The color to use for the outline around each point.
+    ACCEPTED VALUE:       color
+    DEFAULT VALUE:        black
+
+---
+
+Name: rangebar
+Description: The RangeBar Renderer draws a vertical bar between two data values, and an optional outline around the bars.
+Options:
+
+    OPTION NAME:          barwidth
+    DESCRIPTION:          Width, in relative terms to the type of the
+                          axis the plot is on, of the bars.
+    ACCEPTED VALUE:       DataMeasure
+    DEFAULT VALUE:        none
+                          
+    OPTION NAME:          baroffset
+    DESCRIPTION:          The offset of the left edge of each bar
+                          from the corresponding data value, as a
+                          fraction (0-1) of the barwidth.
+    ACCEPTED VALUE:       number
+    DEFAULT VALUE:        0
+
+    OPTION NAME:          fillcolor
+    DESCRIPTION:          Color used for filling the bars.
+    ACCEPTED VALUE:       color
+    DEFAULT VALUE:        0x808080 (dark gray)
+
+    OPTION NAME:          fillopacity
+    DESCRIPTION:          The opactiy of the fill area, in the range 0-1.
+                          A value of 1 means completely opaque; a value of 0
+                          means completely invisible.
+    ACCEPTED VALUE:       number
+    DEFAULT VALUE:        1
+
+    OPTION NAME:          linecolor
+    DESCRIPTION:          Color used for outlines around the bars.
+    ACCEPTED VALUE:       color
+    DEFAULT VALUE:        0x000000 (black)
+
+    OPTION NAME:          linewidth
+    DESCRIPTION:          Width, in pixels, of outlines around
+                          the bars.  A value of 0 (which is the
+                          default) means don't draw outlines.
+    ACCEPTED VALUE:       number
+    DEFAULT VALUE:        0
+
+    OPTION NAME:          hidelines
+    DESCRIPTION:          Bars which are less wide, in pixels, than
+                          this number do not render their outlines.
+    ACCEPTED VALUE:       number
+    DEFAULT VALUE:        2
+
+---
+
+Data Types:
+
+     DataValue:
+
+        Either a number or a datetime string.
+
+        With DataValues, a datetime string may be specified in the 17-character format YYYYMMDDHHmmssqqq, in which the letters have the following meanings:
+
+        Component   Meaning 
+        YYYY        4-digit year
+        MM          2-digit month (01--12)
+        DD          2-digit day of month (01--31)
+        HH          2-digit hour of day (00--23)
+        mm          2-digit minutes (00--59)
+        ss          2-digit seconds (00--59), or decimal seconds with millisecond precision
+        qqq         3-digit milliseconds (000--999; should only be present if ss does not contain a decimal)
+
+        Any number of these components may be omitted from the right-hand end of the string (except the year YYYY, which is always required), in which case the missing components are assumed to be zero (except MM or DD, which default to 01).
+
+     DataMeasure:
+        
+        Specifies the width of an area relative to the datatype of its axis. Either a number or a datetime string.
+
+        With DataMeasures, a datetime string may be specified in the format [NUMBER][CHARACTER-CODE]; in which the brackets are not included, NUMBER is any number and CHARACTER-CODE is one of the following
+
+        Code   Meaning 
+        Y      years
+        M      months
+        W      weeks
+        D      days
+        H      hours
+        m      minutes
+        s      seconds
+        ms     milliseconds
+  
+     color:
+
+        A color expressed as either a 6 digit hex code or one of the following strings
+
+        black
+        red
+        green
+        blue
+        yellow
+        magenta
+        cyan
+        white
+
+</pre>

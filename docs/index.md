@@ -17,6 +17,8 @@ the following documentation resources are also available:
   This is an interactive page containing a MUGL document that includes every
   possible tag and attribute, with comments explaining their meaning.
   
+* [List of Renderers](renderers)
+
 * [Examples](../examples)
 
   A collection of example MUGL files that demonstrate most of Multigraph's
