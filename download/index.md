@@ -13,7 +13,7 @@ in any web page by including something like the following in the
 <tt><span class="nt">&lt;head&gt;</span></tt> of your HTML page:
 
 {% highlight html %}
-<script type="text/javascript" src="http://multigraph.github.com/download/multigraph-min.js"></script>
+<script type="text/javascript" src="http://multigraph.github.io/download/multigraph-min.js"></script>
 {% endhighlight %}
 
 If you want to download your own copy, however, you can do so here:
@@ -26,9 +26,9 @@ row as <code>multigraph.js</code> /
 that include the version number.  These files are duplicates of each
 other; the version-numberless copies are simply for convenience, so
 that the URLs
-[http://multigraph.github.com/download/multigraph.js](http://multigraph.github.com/download/multigraph.js)
+[http://multigraph.github.io/download/multigraph.js](http://multigraph.github.io/download/multigraph.js)
 and
-[http://multigraph.github.com/download/multigraph-min.js](http://multigraph.github.com/download/multigraph-min.js)
+[http://multigraph.github.io/download/multigraph-min.js](http://multigraph.github.io/download/multigraph-min.js)
 always point to the most recent version.
 
 Older (pre-HTML5) Versions
@@ -39,7 +39,7 @@ application.  The Flash version of Multigraph was/is used in much the
 same way as the current HTML5/JavaScript.  The original
 [www.multigraph.org](http://www.multigraph.org) web site explains how
 to use the Flash version, and you can download all versions of it from
-[multigraph.github.com/archive](http://multigraph.github.com/archive).
+[multigraph.github.io/archive](http://multigraph.github.io/archive).
 
 Source Code / Development
 =========================
