@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Axis - js-Multigraph</title>
+    <title>ParsingFunctions - js-Multigraph</title>
     <link rel="stylesheet" href="http:&#x2F;&#x2F;yui.yahooapis.com&#x2F;3.7.0&#x2F;build&#x2F;cssgrids&#x2F;cssgrids-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/css/main.css" id="site_styles">
@@ -128,7 +128,7 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-                        <h1>Axis Class</h1>
+                        <h1>ParsingFunctions Class</h1>
 <div class="box meta">
     
 
@@ -136,13 +136,13 @@
 
     
         <div class="foundat">
-            Defined in: <a href="..&#x2F;files&#x2F;src_core_axis.js.html#l15"><code>src&#x2F;core&#x2F;axis.js:15</code></a>
+            Defined in: <a href="..&#x2F;files&#x2F;src_utility_functions_parsing_functions.js.html#l12"><code>src&#x2F;utility_functions&#x2F;parsing_functions.js:12</code></a>
         </div>
     
 
     
         
-            Module: <a href="../modules/core.html">core</a><br>
+            Module: <a href="../modules/utilityfunctions.html">utilityfunctions</a><br>
             Parent Module: <a href="../modules/multigraph.html">multigraph</a>
         
     
@@ -153,99 +153,9 @@
 
 
 <div class="box intro">
-    <p>Axis is a Jermaine model that controls Multigraph axes.</p>
+    <p>Functions which provide abstractions for the parser.</p>
 </div>
 
-
-    <div class="constructor">
-        <h2>Constructor</h2>
-        <div id="method_Axis" class="method item">
-    <h3 class="name"><code>Axis</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>Orientation</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="..&#x2F;files&#x2F;src_core_axis.js.html#l15"><code>src&#x2F;core&#x2F;axis.js:15</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">Orientation</code>
-                        <span class="type">AxisOrientation</span>
-                    
-
-                    
-
-                    <div class="param-description">
-                         
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-
-    
-</div>
-
-    </div>
 
 
 <div id="classdocs" class="tabview">
@@ -255,8 +165,6 @@
         
             <li class="api-class-tab methods"><a href="#methods">Methods</a></li>
         
-        
-            <li class="api-class-tab properties"><a href="#properties">Properties</a></li>
         
         
         
@@ -273,29 +181,55 @@
                     <ul class="index-list methods">
                         
                             <li class="index-item method">
-                                <a href="#method_distanceToPoint">distanceToPoint</a>
+                                <a href="#method_parseAttribute">parseAttribute</a>
 
+                                
+                                    <span class="flag static">static</span>
                                 
                                 
                             </li>
                         
                             <li class="index-item method">
-                                <a href="#method_hasDataMax">hasDataMax</a>
+                                <a href="#method_parseBoolean">parseBoolean</a>
 
+                                
+                                    <span class="flag static">static</span>
                                 
                                 
                             </li>
                         
                             <li class="index-item method">
-                                <a href="#method_hasDataMin">hasDataMin</a>
+                                <a href="#method_parseDataMeasure">parseDataMeasure</a>
 
+                                
+                                    <span class="flag static">static</span>
                                 
                                 
                             </li>
                         
                             <li class="index-item method">
-                                <a href="#method_prepareRender">prepareRender</a>
+                                <a href="#method_parseDataValue">parseDataValue</a>
 
+                                
+                                    <span class="flag static">static</span>
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_parseInteger">parseInteger</a>
+
+                                
+                                    <span class="flag static">static</span>
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_parseString">parseString</a>
+
+                                
+                                    <span class="flag static">static</span>
                                 
                                 
                             </li>
@@ -304,42 +238,6 @@
                 </div>
             
 
-            
-                <div class="index-section properties">
-                    <h3>Properties</h3>
-
-                    <ul class="index-list properties">
-                        
-                            <li class="index-item property">
-                                <a href="#property_dataMax">dataMax</a>
-
-                                
-                                
-                            </li>
-                        
-                            <li class="index-item property">
-                                <a href="#property_dataMin">dataMin</a>
-
-                                
-                                
-                            </li>
-                        
-                            <li class="index-item property">
-                                <a href="#property_max">max</a>
-
-                                
-                                
-                            </li>
-                        
-                            <li class="index-item property">
-                                <a href="#property_min">min</a>
-
-                                
-                                
-                            </li>
-                        
-                    </ul>
-                </div>
             
 
             
@@ -352,8 +250,8 @@
                 <h2 class="off-left">Methods</h2>
 
                 
-                    <div id="method_distanceToPoint" class="method item">
-    <h3 class="name"><code>distanceToPoint</code></h3>
+                    <div id="method_parseAttribute" class="method item">
+    <h3 class="name"><code>parseAttribute</code></h3>
 
     
         <div class="args">
@@ -361,124 +259,24 @@
             
                 <li class="arg">
                     
-                        <code>x</code>
+                        <code>value</code>
                     
                 </li>
             
                 <li class="arg">
                     
-                        <code>y</code>
+                        <code>attribute</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>preprocessor</code>
                     
                 </li>
             
             </ul><span class="paren">)</span>
         </div>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="..&#x2F;files&#x2F;src_core_axis.js.html#l432"><code>src&#x2F;core&#x2F;axis.js:432</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Compute the distance from an axis to a point.  The point
-(x,y) is expressed in pixel coordinates in the same
-coordinate system as the axis.</p>
-
-<p>We use two different kinds of computations depending on
-whether the point lies inside or outside the region bounded
-by the two lines perpendicular to the axis through its
-endpoints.  If the point lies inside this region, the
-distance is simply the difference in the perpendicular
-coordinate of the point and the perpendicular coordinate of
-the axis.</p>
-
-<p>If the point lies outside the region, then the distance is
-the L2 distance between the point and the closest endpoint
-of the axis.</p>
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">x</code>
-                        <span class="type">Object</span>
-                    
-
-                    
-
-                    <div class="param-description">
-                         
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">y</code>
-                        <span class="type">Object</span>
-                    
-
-                    
-
-                    <div class="param-description">
-                         
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="method_hasDataMax" class="method item">
-    <h3 class="name"><code>hasDataMax</code></h3>
-
-    
-        <span class="paren">()</span>
     
 
     
@@ -494,6 +292,8 @@ of the axis.</p>
     
 
     
+        <span class="flag static">static</span>
+    
 
     
 
@@ -510,7 +310,7 @@ of the axis.</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_core_axis.js.html#l108"><code>src&#x2F;core&#x2F;axis.js:108</code></a>
+        <a href="..&#x2F;files&#x2F;src_utility_functions_parsing_functions.js.html#l20"><code>src&#x2F;utility_functions&#x2F;parsing_functions.js:20</code></a>
         
         </p>
 
@@ -521,9 +321,64 @@ of the axis.</p>
     </div>
 
     <div class="description">
-        <p>Convenience method for checking to see if dataMax has been set or not.</p>
+        <p>Abstract function for parsing and setting jermaine attributes which do not require
+extremely complicated logic to determine their values. Any attributes which require
+complex logic to determine their proper values should be explicitly set in the parser.</p>
     </div>
 
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">value</code>
+                        <span class="type">String</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">attribute</code>
+                        <span class="type">Function</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">preprocessor</code>
+                        <span class="type">Function</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
     
 
     
@@ -544,11 +399,21 @@ of the axis.</p>
 </div>
 
                 
-                    <div id="method_hasDataMin" class="method item">
-    <h3 class="name"><code>hasDataMin</code></h3>
+                    <div id="method_parseBoolean" class="method item">
+    <h3 class="name"><code>parseBoolean</code></h3>
 
     
-        <span class="paren">()</span>
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>param</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
     
 
     
@@ -563,6 +428,8 @@ of the axis.</p>
 
     
 
+    
+        <span class="flag static">static</span>
     
 
     
@@ -580,7 +447,7 @@ of the axis.</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_core_axis.js.html#l74"><code>src&#x2F;core&#x2F;axis.js:74</code></a>
+        <a href="..&#x2F;files&#x2F;src_utility_functions_parsing_functions.js.html#l92"><code>src&#x2F;utility_functions&#x2F;parsing_functions.js:92</code></a>
         
         </p>
 
@@ -591,9 +458,34 @@ of the axis.</p>
     </div>
 
     <div class="description">
-        <p>Convenience method for checking to see if dataMin has been set or not</p>
+        <p>Parses the allowed Boolean Strings and returns the appropriate value. If the parameter
+is not one of the allowed values then the parameter is returned as an error might not
+need to be thrown immediately.</p>
     </div>
 
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">param</code>
+                        <span class="type">String</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
     
 
     
@@ -614,8 +506,8 @@ of the axis.</p>
 </div>
 
                 
-                    <div id="method_prepareRender" class="method item">
-    <h3 class="name"><code>prepareRender</code></h3>
+                    <div id="method_parseDataMeasure" class="method item">
+    <h3 class="name"><code>parseDataMeasure</code></h3>
 
     
         <div class="args">
@@ -623,7 +515,7 @@ of the axis.</p>
             
                 <li class="arg">
                     
-                        <code>graphicsContext</code>
+                        <code>type</code>
                     
                 </li>
             
@@ -632,13 +524,19 @@ of the axis.</p>
     
 
     
-
+        <span class="returns-inline">
+            <span class="type">Function</span>
+        </span>
     
 
     
 
     
 
+    
+
+    
+        <span class="flag static">static</span>
     
 
     
@@ -656,7 +554,7 @@ of the axis.</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_core_axis.js.html#l205"><code>src&#x2F;core&#x2F;axis.js:205</code></a>
+        <a href="..&#x2F;files&#x2F;src_utility_functions_parsing_functions.js.html#l78"><code>src&#x2F;utility_functions&#x2F;parsing_functions.js:78</code></a>
         
         </p>
 
@@ -667,10 +565,7 @@ of the axis.</p>
     </div>
 
     <div class="description">
-        <p>Decides which labeler to use: take the one with the largest density &lt;= 0.8.
-Unless all have density > 0.8, in which case we take the first one.  This assumes
-that the labelers list is ordered in increasing order of label density.
-This function sets the <code>currentLabeler</code> and <code>currentLabelDensity</code> attributes.</p>
+        <p>Returns a curried function that parses a value into a DataMeasure of the specified type.</p>
     </div>
 
     
@@ -681,8 +576,8 @@ This function sets the <code>currentLabeler</code> and <code>currentLabelDensity
             
                 <li class="param">
                     
-                        <code class="param-name">graphicsContext</code>
-                        <span class="type">Object</span>
+                        <code class="param-name">type</code>
+                        <span class="type">String</span>
                     
 
                     
@@ -699,6 +594,333 @@ This function sets the <code>currentLabeler</code> and <code>currentLabelDensity
     
 
     
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type">Function</span>:
+                    
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
+                    <div id="method_parseDataValue" class="method item">
+    <h3 class="name"><code>parseDataValue</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>type</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type">Function</span>
+        </span>
+    
+
+    
+
+    
+
+    
+
+    
+        <span class="flag static">static</span>
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;src_utility_functions_parsing_functions.js.html#l64"><code>src&#x2F;utility_functions&#x2F;parsing_functions.js:64</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Returns a curried function that parses a value into a DataValue of the specified type.</p>
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">type</code>
+                        <span class="type">String</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type">Function</span>:
+                    
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
+                    <div id="method_parseInteger" class="method item">
+    <h3 class="name"><code>parseInteger</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>value</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type">Integer</span>
+        </span>
+    
+
+    
+
+    
+
+    
+
+    
+        <span class="flag static">static</span>
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;src_utility_functions_parsing_functions.js.html#l52"><code>src&#x2F;utility_functions&#x2F;parsing_functions.js:52</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Parses a string argument with a radix of 10 and returns an integer.</p>
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">value</code>
+                        <span class="type">String</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type">Integer</span>:
+                    
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
+                    <div id="method_parseString" class="method item">
+    <h3 class="name"><code>parseString</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>value</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type">String</span>
+        </span>
+    
+
+    
+
+    
+
+    
+
+    
+        <span class="flag static">static</span>
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;src_utility_functions_parsing_functions.js.html#l40"><code>src&#x2F;utility_functions&#x2F;parsing_functions.js:40</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Parses String attributes.</p>
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">value</code>
+                        <span class="type">String</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type">String</span>:
+                    
+                
+            </div>
+        </div>
+    
 
     
 </div>
@@ -707,188 +929,6 @@ This function sets the <code>currentLabeler</code> and <code>currentLabelDensity
             </div>
         
 
-        
-            <div id="properties" class="api-class-tabpanel">
-                <h2 class="off-left">Properties</h2>
-
-                
-                    <div id="property_dataMax" class="property item">
-    <h3 class="name"><code>dataMax</code></h3>
-    <span class="type">DataValue</span>
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="..&#x2F;files&#x2F;src_core_axis.js.html#l100"><code>src&#x2F;core&#x2F;axis.js:100</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>The current max DataValue for the axis.</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property_dataMin" class="property item">
-    <h3 class="name"><code>dataMin</code></h3>
-    <span class="type">DataValue</span>
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="..&#x2F;files&#x2F;src_core_axis.js.html#l66"><code>src&#x2F;core&#x2F;axis.js:66</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>The current min DataValue for the axis.</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property_max" class="property item">
-    <h3 class="name"><code>max</code></h3>
-    <span class="type">String</span>
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="..&#x2F;files&#x2F;src_core_axis.js.html#l91"><code>src&#x2F;core&#x2F;axis.js:91</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Stores the "max" value from the mugl file as a string, if there was one.</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property_min" class="property item">
-    <h3 class="name"><code>min</code></h3>
-    <span class="type">String</span>
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="..&#x2F;files&#x2F;src_core_axis.js.html#l57"><code>src&#x2F;core&#x2F;axis.js:57</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Stores the "min" value from the mugl file as a string, if there was one.</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-            </div>
         
 
         
