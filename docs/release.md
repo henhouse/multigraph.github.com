@@ -53,9 +53,9 @@ Creating a Release of Multigraph
         git push origin master
         git push origin v4.1
 
-1. In the multigraph.github.com repo, run the <code>update-releases</code> script
+1. In the multigraph.github.io repo, run the <code>update-releases</code> script
 
-        cd multigraph-github.com
+        cd multigraph-github.io
         ./update-releases
 
    This script updates the files in the 'download' directory by
@@ -67,7 +67,7 @@ Creating a Release of Multigraph
    these files.
    
    Note that <code>update-releases</code> takes care of updating
-   the lib/js-multigraph submodule of multigraph.github.com, including
+   the lib/js-multigraph submodule of multigraph.github.io, including
    leaving it in a state with the latest release checked out.
    
 1. Preview the web site by running jekyll locally.  Be sure to especially
@@ -110,10 +110,10 @@ site, and prevents the <code>update-releases</code> script from ever including i
    Note that it's important to use the full release tag name; for example, if the
    bad tag is "v4.1", you should create a tag named "v4.1-bad", not "4.1-bad".
    
-1. In the multigraph.github.com repo, delete the download files associated with
+1. In the multigraph.github.io repo, delete the download files associated with
    the bad release, and re-run the <code>update-releases</code> script.
 
-        cd multigraph-github.com
+        cd multigraph-github.io
         git rm download/*-4.1.*
         ./update-releases
 
@@ -149,10 +149,10 @@ github since you created the release that you're deleting.
         git tag -d v4.1
         git push origin :refs/tags/v4.1
         
-1. In the multigraph.github.com repo, delete the download files associated with
+1. In the multigraph.github.io repo, delete the download files associated with
    the deleted release, and re-run the <code>update-releases</code> script.
 
-        cd multigraph-github.com
+        cd multigraph-github.io
         git rm download/*-4.1.*
         ./update-releases
 

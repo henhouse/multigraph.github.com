@@ -9,7 +9,7 @@ Documenation
 ============
 
 For an overview of how to create a Multigraph in a web page, see the
-[multigraph.github.com home page](..).  For more detailed information,
+[multigraph.github.io home page](..).  For more detailed information,
 the following documentation resources are also available:
 
 * [Annotated MUGL file](annotated-mugl)

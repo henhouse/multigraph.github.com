@@ -1,1 +1,1 @@
-This repository contains the multigraph.github.com web site.
+This repository contains the multigraph.github.io web site.

@@ -91,7 +91,7 @@ the data to be plotted.  You then put a line like the following in the
 <tt><span class="nt">&lt;head&gt;</span></tt> of your HTML document:
 
 {% highlight html %}
-<script type="text/javascript" src="http://multigraph.github.com/download/multigraph-min.js"></script>
+<script type="text/javascript" src="http://multigraph.github.io/download/multigraph-min.js"></script>
 {% endhighlight %}
 
 and a line like the following at the place in your document where you'd

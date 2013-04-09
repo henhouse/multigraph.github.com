@@ -49,7 +49,7 @@ reassign that value back to <code>$</code> if you want to use
 JQuery on your page without having to load it separately:
 
 {% highlight html %}
-<script type="text/javascript" src="http://multigraph.github.com/download/multigraph-min.js"></script>
+<script type="text/javascript" src="http://multigraph.github.io/download/multigraph-min.js"></script>
 <script type="text/javascript">
   $ = window.multigraph.jQuery;
   /* ... from this point on you can use $ to refer to jQuery as usual ... */
