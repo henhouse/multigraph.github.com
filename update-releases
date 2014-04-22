@@ -160,7 +160,7 @@ if (-f "lib/js-multigraph/LICENSE.txt") {
 # regenerate the api docs for this release and copy them to the docs/api directory
 #
 message("generating/copying api docs");
-sys("cd lib/js-multigraph; ant doc");
+sys("cd lib/js-multigraph; npm intall ; grunt yuidoc");
 sys("(cd lib/js-multigraph ; tar cf - api) | (cd docs ; tar xvf -)");
 
 #

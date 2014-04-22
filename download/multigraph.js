@@ -1,3 +1,12 @@
+/*! Multigraph - v4.3.0
+ * http://multigraph.github.io/
+ * Copyright (c) 2014 University of North Carolina at Asheville; Licensed MIT
+ *
+ * Multigraph includes the following projects
+ * jQuery v1.8.2 | jquery.org/license (jquery.com)
+ * jQuery.mousewheel.js v3.0.6 | (c) 2011 Brandon Aaron (http://brandonaaron.net)
+ * sprintf() for JavaScript v0.7-beta1 | (c) Alexandru Marasteanu <alexaholic [at) gmail (dot] com>)] (http://www.diveintojavascript.com/projects/javascript-sprintf)
+ */
 if (!Array.prototype.indexOf) {
     Array.prototype.indexOf = function (searchElement /*, fromIndex */ ) {
         "use strict";
@@ -1904,7 +1913,8 @@ window.multigraph.util.namespace("window.multigraph.utilityFunctions", function 
                         "angle": 0.0,
                         "spacing": undefined,
                         "densityfactor": 1.0,
-                        "color" : function () { return new window.multigraph.math.RGBColor.parse("0x000000"); }
+                        "color" : function () { return new window.multigraph.math.RGBColor.parse("0x000000"); },
+                        "visible" : true
 //                        "fontname": undefined,
 //                        "fontsize": undefined,
 //                        "fontcolor": undefined
@@ -1920,6 +1930,7 @@ window.multigraph.util.namespace("window.multigraph.utilityFunctions", function 
                     "position": function () { return new window.multigraph.math.Point(0,0); },
                     "anchor": function () { return new window.multigraph.math.Point(0,0); },
                     "color" : function () { return new window.multigraph.math.RGBColor.parse("0x000000"); },
+                    "visible" : true,
                     "defaultNumberSpacing": "10000 5000 2000 1000 500 200 100 50 20 10 5 2 1 0.1 0.01 0.001",
                     "defaultDatetimeSpacing": "1000Y 500Y 200Y 100Y 50Y 20Y 10Y 5Y 2Y 1Y 6M 3M 2M 1M 7D 3D 2D 1D 12H 6H 3H 2H 1H",
                     "function": undefined,
@@ -2440,8 +2451,7 @@ window.multigraph.util.namespace("window.multigraph.core", function (ns) {
 
     ns.DataMeasure = DataMeasure;
 
-});
-window.multigraph.util.namespace("window.multigraph.core", function (ns) {
+});window.multigraph.util.namespace("window.multigraph.core", function (ns) {
     "use strict";
     var DataFormatter = {};
     /*
@@ -4107,6 +4117,9 @@ window.multigraph.util.namespace("window.multigraph.core", function (ns) {
      * @param {AxisOrientation} Orientation
      */
     Axis = new window.jermaine.Model("Axis", function () {
+
+        this.isA(ns.EventEmitter);
+
         this.hasA("title").which.validatesWith(function (title) {
             return title instanceof ns.AxisTitle;
         });
@@ -4217,6 +4230,7 @@ window.multigraph.util.namespace("window.multigraph.core", function (ns) {
         this.hasA("tickcolor").which.validatesWith(function (color) {
             return color === null || color instanceof window.multigraph.math.RGBColor;
         });
+        this.hasA("tickwidth").which.isA("integer");
         this.hasA("tickmin").which.isA("integer");
         this.hasA("tickmax").which.isA("integer");
         this.hasA("highlightstyle").which.validatesWith(function (highlightstyle) {
@@ -4415,6 +4429,10 @@ window.multigraph.util.namespace("window.multigraph.core", function (ns) {
             if (dispatch === undefined) {
                 dispatch = true;
             }
+
+            this.emit({'type' : 'dataRangeSet',
+                       'min'  : dataValueMin,
+                       'max'  : dataValueMax});
 /*
             if (dispatch) {
                 //dispatchEvent(new AxisEvent(AxisEvent.CHANGE,min,max));  
@@ -6389,11 +6407,13 @@ window.multigraph.util.namespace("window.multigraph.core", function (ns) {
                 return anchor instanceof window.multigraph.math.Point;
             });
             this.hasA("spacing").which.validatesWith(ns.DataMeasure.isInstance);
-            this.hasA("densityfactor").which.isA("number");
+            this.hasA("densityfactor").which.isA("number").and.which.defaultsTo(1.0);
 
             this.hasA("color").which.validatesWith(function (color) {
                 return color instanceof window.multigraph.math.RGBColor;
             });
+
+            this.hasA("visible").which.isA("boolean").and.which.defaultsTo(true);
 
             this.isBuiltWith("axis", function () {
                 var labelsDefaults = defaultValues.horizontalaxis.labels;
@@ -6515,7 +6535,7 @@ window.multigraph.util.namespace("window.multigraph.core", function (ns) {
                         this.measureStringHeight(graphicsContext, representativeValueString)
                 );
                 // return the ratio -- the fraction of the spacing taken up by the formatted string
-                return pixelFormattedValue / pixelSpacing;
+                return pixelFormattedValue / ( pixelSpacing * this.densityfactor() );
             });
 
 
@@ -7264,6 +7284,10 @@ window.multigraph.util.namespace("window.multigraph.core", function (ns) {
             }
             // convert baseurl to a real base path, by eliminating any url args and
             // everything after the final '/'
+            if (!/^\//.test(baseurl)  && !/:\/\//.test(baseurl) && !/^\.\//.test(baseurl)) {
+                // first make sure that if baseurl is relative, it starts with './'
+                baseurl = './' + baseurl; 
+            }
             baseurl = baseurl.replace(/\?.*$/, ''); // remove everything after the first '?'
             baseurl = baseurl.replace(/\/[^\/]*$/, '/'); // remove everything after the last '/'
             return baseurl + url;
@@ -7406,6 +7430,17 @@ window.multigraph.util.namespace("window.multigraph.core", function (ns) {
         // if div is a string, assume it's an id, and convert it to the div element itself
         if (typeof(div) === "string") {
             div = $("#" + div)[0];
+        }
+
+        // Force the div to have the specific width or height given in the options, if any.
+        // I'm adding this code to resolve a problem with the div size sometimes not being
+        // available when src/graphics/canvas/multigraph.js:createCanvasGraphFromString()
+        // is used; see the notes in that file.
+        if (options.width !== undefined && options.width > 0) {
+            $(div).width(options.width);
+        }
+        if (options.height !== undefined && options.height > 0) {
+            $(div).height(options.height);
         }
 
         //
@@ -8970,7 +9005,7 @@ window.multigraph.util.namespace("window.multigraph.core", function (ns) {
                 success  : function (data) {
                     // if data contains a <values> tag, extract its text string value
                     if (data.indexOf("<values>") > 0) {
-                        data = window.multigraph.parser.jquery.stringToJQueryXMLObj(data).find("values").text();
+                        data = window.multigraph.parser.stringToJQueryXMLObj(data).find("values").text();
                     }
                     node.parseData(that.getColumns(), data);
 
@@ -9555,13 +9590,13 @@ window.multigraph.util.namespace("window.multigraph.core", function (ns) {
     ns.Zoom = Zoom;
 
 });
-window.multigraph.util.namespace("window.multigraph.parser.jquery", function (ns) {
+window.multigraph.util.namespace("window.multigraph.parser", function (ns) {
     "use strict";
 
     ns.mixin = new window.multigraph.core.Mixin();
 
 });
-window.multigraph.util.namespace("window.multigraph.parser.jquery", function (ns) {
+window.multigraph.util.namespace("window.multigraph.parser", function (ns) {
     "use strict";
 
     ns.mixin.add(function (ns, parse) {
@@ -9701,6 +9736,7 @@ window.multigraph.util.namespace("window.multigraph.parser.jquery", function (ns
                 parseAttribute(xml.attr("maxoffset"),      axis.maxoffset,      parseFloat);
                 parseAttribute(xml.attr("color"),          axis.color,          parseRGBColor);
                 parseAttribute(xml.attr("tickcolor"),      axis.tickcolor,      parseRGBColor);
+                parseAttribute(xml.attr("tickwidth"),      axis.tickwidth,      parseInteger);
                 parseAttribute(xml.attr("tickmin"),        axis.tickmin,        parseInteger);
                 parseAttribute(xml.attr("tickmax"),        axis.tickmax,        parseInteger);
                 parseAttribute(xml.attr("highlightstyle"), axis.highlightstyle, parseString);
@@ -9743,7 +9779,7 @@ window.multigraph.util.namespace("window.multigraph.parser.jquery", function (ns
     });
 
 });
-window.multigraph.util.namespace("window.multigraph.parser.jquery", function (ns) {
+window.multigraph.util.namespace("window.multigraph.parser", function (ns) {
     "use strict";
 
     ns.mixin.add(function (ns, parse) {
@@ -9755,7 +9791,13 @@ window.multigraph.util.namespace("window.multigraph.parser.jquery", function (ns
                 text,
                 parseTitleAttribute = function (value, attribute, preprocessor) {
                     if (ns.utilityFunctions.parseAttribute(value, attribute, preprocessor)) {
-                        nonEmptyTitle = true;
+                        // No.  Don't count the title as nonEmpty just because of attributes.
+                        // If a <title> tag has only attributes, and no content, this
+                        // function should return `undefined` so that the normalizer won't
+                        // come along later and populate the title content with the axis id.
+                        // Empty <title> content means don't draw a title at all, in which
+                        // case it's OK to just forget about any attributes that were set.
+                        //nonEmptyTitle = true;
                     }
                 };
 
@@ -9780,7 +9822,7 @@ window.multigraph.util.namespace("window.multigraph.parser.jquery", function (ns
     });
 
 });
-window.multigraph.util.namespace("window.multigraph.parser.jquery", function (ns) {
+window.multigraph.util.namespace("window.multigraph.parser", function (ns) {
     "use strict";
 
     ns.mixin.add(function (ns, parse) {
@@ -9801,7 +9843,7 @@ window.multigraph.util.namespace("window.multigraph.parser.jquery", function (ns
     });
 
 });
-window.multigraph.util.namespace("window.multigraph.parser.jquery", function (ns) {
+window.multigraph.util.namespace("window.multigraph.parser", function (ns) {
     "use strict";
 
     ns.mixin.add(function (ns, parse) {
@@ -9909,7 +9951,7 @@ window.multigraph.util.namespace("window.multigraph.parser.jquery", function (ns
     });
 
 });
-window.multigraph.util.namespace("window.multigraph.parser.jquery", function (ns) {
+window.multigraph.util.namespace("window.multigraph.parser", function (ns) {
     "use strict";
 
     ns.mixin.add(function (ns, parse) {
@@ -9934,7 +9976,7 @@ window.multigraph.util.namespace("window.multigraph.parser.jquery", function (ns
     });
 
 });
-window.multigraph.util.namespace("window.multigraph.parser.jquery", function (ns) {
+window.multigraph.util.namespace("window.multigraph.parser", function (ns) {
     "use strict";
 
     ns.mixin.add(function (ns, parse) {
@@ -9969,7 +10011,7 @@ window.multigraph.util.namespace("window.multigraph.parser.jquery", function (ns
     });
 
 });
-window.multigraph.util.namespace("window.multigraph.parser.jquery", function (ns) {
+window.multigraph.util.namespace("window.multigraph.parser", function (ns) {
     "use strict";
 
     ns.mixin.add(function (ns, parse) {
@@ -9987,7 +10029,7 @@ window.multigraph.util.namespace("window.multigraph.parser.jquery", function (ns
     });
 
 });
-window.multigraph.util.namespace("window.multigraph.parser.jquery", function (ns) {
+window.multigraph.util.namespace("window.multigraph.parser", function (ns) {
     "use strict";
 
     ns.mixin.add(function (ns, parse) {
@@ -10012,7 +10054,7 @@ window.multigraph.util.namespace("window.multigraph.parser.jquery", function (ns
     });
 
 });
-window.multigraph.util.namespace("window.multigraph.parser.jquery", function (ns) {
+window.multigraph.util.namespace("window.multigraph.parser", function (ns) {
     "use strict";
 
     ns.mixin.add(function (ns, parse) {
@@ -10029,7 +10071,7 @@ window.multigraph.util.namespace("window.multigraph.parser.jquery", function (ns
     });
 
 });
-window.multigraph.util.namespace("window.multigraph.parser.jquery", function (ns) {
+window.multigraph.util.namespace("window.multigraph.parser", function (ns) {
     "use strict";
 
     ns.mixin.add(function (ns, parse) {
@@ -10161,7 +10203,7 @@ window.multigraph.util.namespace("window.multigraph.parser.jquery", function (ns
 
 });
 
-window.multigraph.util.namespace("window.multigraph.parser.jquery", function (ns) {
+window.multigraph.util.namespace("window.multigraph.parser", function (ns) {
     "use strict";
 
     ns.mixin.add(function (ns, parse) {
@@ -10198,7 +10240,7 @@ window.multigraph.util.namespace("window.multigraph.parser.jquery", function (ns
     });
 
 });
-window.multigraph.util.namespace("window.multigraph.parser.jquery", function (ns) {
+window.multigraph.util.namespace("window.multigraph.parser", function (ns) {
     "use strict";
 
     ns.mixin.add(function (ns, parse) {
@@ -10228,7 +10270,7 @@ window.multigraph.util.namespace("window.multigraph.parser.jquery", function (ns
     });
 
 });
-window.multigraph.util.namespace("window.multigraph.parser.jquery", function (ns) {
+window.multigraph.util.namespace("window.multigraph.parser", function (ns) {
     "use strict";
 
     ns.mixin.add(function (ns, parse) {
@@ -10249,7 +10291,7 @@ window.multigraph.util.namespace("window.multigraph.parser.jquery", function (ns
     });
 
 });
-window.multigraph.util.namespace("window.multigraph.parser.jquery", function (ns) {
+window.multigraph.util.namespace("window.multigraph.parser", function (ns) {
     "use strict";
 
     ns.mixin.add(function (ns, parse) {
@@ -10278,7 +10320,7 @@ window.multigraph.util.namespace("window.multigraph.parser.jquery", function (ns
     });
 
 });
-window.multigraph.util.namespace("window.multigraph.parser.jquery", function (ns) {
+window.multigraph.util.namespace("window.multigraph.parser", function (ns) {
     "use strict";
 
     ns.mixin.add(function (ns, parse) {
@@ -10327,6 +10369,8 @@ window.multigraph.util.namespace("window.multigraph.parser.jquery", function (ns
                 parseLabelerAttribute(xml.attr("anchor"),        labeler.anchor,        parsePoint,                                   "anchor");
                 parseLabelerAttribute(xml.attr("densityfactor"), labeler.densityfactor, parseFloat,                                   "densityfactor");
                 parseLabelerAttribute(xml.attr("color"),         labeler.color,         math.RGBColor.parse,                          "color");
+                parseLabelerAttribute(xml.attr("visible"),       labeler.visible,       utilityFunctions.parseBoolean,                "visible");
+
             }
             return labeler;
         };
@@ -10334,7 +10378,7 @@ window.multigraph.util.namespace("window.multigraph.parser.jquery", function (ns
     });
 
 });
-window.multigraph.util.namespace("window.multigraph.parser.jquery", function (ns) {
+window.multigraph.util.namespace("window.multigraph.parser", function (ns) {
     "use strict";
 
     ns.mixin.add(function (ns, parse) {
@@ -10374,7 +10418,7 @@ window.multigraph.util.namespace("window.multigraph.parser.jquery", function (ns
     });
 
 });
-window.multigraph.util.namespace("window.multigraph.parser.jquery", function (ns) {
+window.multigraph.util.namespace("window.multigraph.parser", function (ns) {
     "use strict";
 
     ns.mixin.add(function (ns, parse) {
@@ -10403,7 +10447,7 @@ window.multigraph.util.namespace("window.multigraph.parser.jquery", function (ns
 
 });
 
-window.multigraph.util.namespace("window.multigraph.parser.jquery", function (ns) {
+window.multigraph.util.namespace("window.multigraph.parser", function (ns) {
     "use strict";
 
     ns.mixin.add(function (ns, parse) {
@@ -10424,17 +10468,22 @@ window.multigraph.util.namespace("window.multigraph.parser.jquery", function (ns
     });
 
 });
-window.multigraph.util.namespace("window.multigraph.parser.jquery", function (ns) {
+window.multigraph.util.namespace("window.multigraph.parser", function (ns) {
     "use strict";
 
-    ns.stringToJQueryXMLObj = function (string) {
-        var $ = window.multigraph.jQuery,
-            xml = $.parseXML(string);
+    // This function really does more than just convert a string to a jquery xml obj; it also works
+    // if the argument (thingy) is already a jquery xml obj, or a raw dom xml obj.
+    ns.stringToJQueryXMLObj = function (thingy) {
+        var $ = window.multigraph.jQuery;
+        if (typeof(thingy) !== "string") {
+            return $(thingy);
+        }
+        var xml = $.parseXML(thingy);
         return $($(xml).children()[0]);
     };
 
 });
-window.multigraph.util.namespace("window.multigraph.parser.jquery", function (ns) {
+window.multigraph.util.namespace("window.multigraph.parser", function (ns) {
     "use strict";
 
     ns.mixin.add(function (ns, parse) {
@@ -10548,7 +10597,7 @@ window.multigraph.util.namespace("window.multigraph.parser.jquery", function (ns
     });
 
 });
-window.multigraph.util.namespace("window.multigraph.parser.jquery", function (ns) {
+window.multigraph.util.namespace("window.multigraph.parser", function (ns) {
     "use strict";
 
     ns.mixin.add(function (ns, parse) {
@@ -10578,7 +10627,7 @@ window.multigraph.util.namespace("window.multigraph.parser.jquery", function (ns
     });
 
 });
-window.multigraph.util.namespace("window.multigraph.parser.jquery", function (ns) {
+window.multigraph.util.namespace("window.multigraph.parser", function (ns) {
     "use strict";
 
     ns.mixin.add(function (ns, parse) {
@@ -10605,7 +10654,7 @@ window.multigraph.util.namespace("window.multigraph.parser.jquery", function (ns
     });
 
 });
-window.multigraph.util.namespace("window.multigraph.parser.jquery", function (ns) {
+window.multigraph.util.namespace("window.multigraph.parser", function (ns) {
     "use strict";
 
     ns.mixin.add(function (ns, parse) {
@@ -10693,7 +10742,7 @@ window.multigraph.util.namespace("window.multigraph.parser.jquery", function (ns
     });
 
 });
-window.multigraph.util.namespace("window.multigraph.parser.jquery", function (ns) {
+window.multigraph.util.namespace("window.multigraph.parser", function (ns) {
     "use strict";
 
     ns.mixin.add(function (ns, parse) {
@@ -10735,7 +10784,7 @@ window.multigraph.util.namespace("window.multigraph.parser.jquery", function (ns
     });
 
 });
-window.multigraph.util.namespace("window.multigraph.parser.jquery", function (ns) {
+window.multigraph.util.namespace("window.multigraph.parser", function (ns) {
     "use strict";
 
     ns.mixin.add(function (ns, parse) {
@@ -11403,13 +11452,13 @@ window.multigraph.util.namespace("window.multigraph.normalizer", function (ns) {
     });
 
 });
-window.multigraph.util.namespace("window.multigraph.events.jquery.draggable", function (ns) {
+window.multigraph.util.namespace("window.multigraph.events.draggable", function (ns) {
     "use strict";
 
     ns.mixin = new window.multigraph.core.Mixin();
 
 });
-window.multigraph.util.namespace("window.multigraph.events.jquery.draggable", function (ns) {
+window.multigraph.util.namespace("window.multigraph.events.draggable", function (ns) {
     "use strict";
 
     ns.mixin.add(function (ns, errorHandler) {
@@ -11478,13 +11527,13 @@ window.multigraph.util.namespace("window.multigraph.events.jquery.draggable", fu
     });
 
 });
-window.multigraph.util.namespace("window.multigraph.events.jquery.mouse", function (ns) {
+window.multigraph.util.namespace("window.multigraph.events.mouse", function (ns) {
     "use strict";
 
     ns.mixin = new window.multigraph.core.Mixin();
 
 });
-window.multigraph.util.namespace("window.multigraph.events.jquery.mouse", function (ns) {
+window.multigraph.util.namespace("window.multigraph.events.mouse", function (ns) {
     "use strict";
 
     ns.mixin.add(function (ns, errorHandler) {
@@ -11521,7 +11570,7 @@ window.multigraph.util.namespace("window.multigraph.events.jquery.mouse", functi
     });
 
 });
-window.multigraph.util.namespace("window.multigraph.events.jquery.mouse", function (ns) {
+window.multigraph.util.namespace("window.multigraph.events.mouse", function (ns) {
     "use strict";
 
     ns.mixin.add(function (ns) {
@@ -11743,13 +11792,13 @@ window.multigraph.util.namespace("window.multigraph.events.jquery.mouse", functi
     });
 
 }(window.multigraph.jQuery));
-window.multigraph.util.namespace("window.multigraph.events.jquery.touch", function (ns) {
+window.multigraph.util.namespace("window.multigraph.events.touch", function (ns) {
     "use strict";
 
     ns.mixin = new window.multigraph.core.Mixin();
 
  });
-window.multigraph.util.namespace("window.multigraph.events.jquery.touch", function (ns) {
+window.multigraph.util.namespace("window.multigraph.events.touch", function (ns) {
     "use strict";
 
     ns.mixin.add(function (ns, errorHandler) {
@@ -11794,7 +11843,7 @@ window.multigraph.util.namespace("window.multigraph.events.jquery.touch", functi
     });
 
 });
-window.multigraph.util.namespace("window.multigraph.events.jquery.touch", function (ns) {
+window.multigraph.util.namespace("window.multigraph.events.touch", function (ns) {
     "use strict";
 
     ns.mixin.add(function (ns) {
@@ -17820,8 +17869,7 @@ window.Raphael.vml && function (R) {
             };
         })(method);
     }
-}(window.Raphael);
-window.multigraph.util.namespace("window.multigraph.graphics.raphael", function (ns) {
+}(window.Raphael);window.multigraph.util.namespace("window.multigraph.graphics.raphael", function (ns) {
     "use strict";
 
     /**
@@ -18075,14 +18123,15 @@ window.multigraph.util.namespace("window.multigraph.graphics.raphael", function 
         AxisTitle.hasAn("elem");
 
         var computePixelBasePoint = function (labeler) {
-            var axis = labeler.axis(),
-                axisBase = (labeler.base() + 1) * (axis.pixelLength() / 2) + axis.minoffset() + axis.parallelOffset(),
-                Point = window.multigraph.math.Point;
+            var axis       = labeler.axis(),
+                axisBase   = (labeler.base() + 1) * (axis.pixelLength() / 2) + axis.minoffset() + axis.parallelOffset(),
+                perpOffset = axis.perpOffset(),
+                Point      = window.multigraph.math.Point;
 
             if (axis.orientation() === ns.Axis.HORIZONTAL) {
-                return new Point(axisBase, axis.perpOffset());
+                return new Point(axisBase, perpOffset);
             } else {
-                return new Point(axis.perpOffset(), axisBase);
+                return new Point(perpOffset, axisBase);
             }
         };
 
@@ -18097,22 +18146,21 @@ window.multigraph.util.namespace("window.multigraph.graphics.raphael", function 
          * @author jrfrimme
          */
         AxisTitle.respondsTo("render", function (paper, set) {
-            var content = this.content(),
-                h = content.origHeight(),
-                w = content.origWidth(),
-                ax = 0.5 * w * this.anchor().x(),
-                ay = 0.5 * h * this.anchor().y(),
-                base = computePixelBasePoint(this),
-                transformString = "t" + base.x() + "," + base.y() +
-                    "s1,-1" +
-                    "t" + this.position().x() + "," + (-this.position().y()) +
-                    "r" + (-this.angle()) +
-                    "t" + (-ax) + "," + ay;
+            var title        = this.content(),
+                storedAnchor = this.anchor(),
+                base         = computePixelBasePoint(this),
+                pixelAnchor,
+                elem;
+
+            pixelAnchor  = new window.multigraph.math.Point(
+                0.5 * title.origWidth()  * storedAnchor.x(),
+                0.5 * title.origHeight() * storedAnchor.y()
+            );
 
             this.previousBase(base);
 
-            var elem = paper.text(0, 0, content.string())
-                .transform(transformString);
+            elem = title.drawText(paper, pixelAnchor, base, this.position(), this.angle());
+
             this.elem(elem);
             set.push(elem);
         });
@@ -18373,19 +18421,22 @@ window.multigraph.util.namespace("window.multigraph.graphics.raphael", function 
         Title.hasA("previousBase");
 
         var computeTitlePixelBase = function (title) {
-            var graph = title.graph(),
-                base  = title.base(),
-                Point = window.multigraph.math.Point;
+            var graph          = title.graph(),
+                base           = title.base(),
+                paddingBox     = graph.paddingBox(),
+                plotBox        = graph.plotBox(),
+                plotareaMargin = graph.plotarea().margin(),
+                Point          = window.multigraph.math.Point;
 
             if (title.frame() === "padding") {
                 return new Point(
-                    (base.x() + 1) * (graph.paddingBox().width() / 2) -  graph.plotarea().margin().left(),
-                    (base.y() + 1) * (graph.paddingBox().height() / 2) - graph.plotarea().margin().bottom()
+                    (base.x() + 1) * (paddingBox.width() / 2) -  plotareaMargin.left(),
+                    (base.y() + 1) * (paddingBox.height() / 2) - plotareaMargin.bottom()
                 );
             } else {
                 return new Point(
-                    (base.x() + 1) * (graph.plotBox().width() / 2),
-                    (base.y() + 1) * (graph.plotBox().height() / 2)
+                    (base.x() + 1) * (plotBox.width() / 2),
+                    (base.y() + 1) * (plotBox.height() / 2)
                 );
             }
         };
@@ -18401,19 +18452,24 @@ window.multigraph.util.namespace("window.multigraph.graphics.raphael", function 
          * @author jrfrimme
          */
         Title.respondsTo("render", function (paper, set) {
-            var anchor  = this.anchor(),
-                border  = this.border(),
-                padding = this.padding(),
-                text    = this.text(),
+            var Point = window.multigraph.math.Point,
+                storedAnchor = this.anchor(),
+                border       = this.border(),
+                position     = this.position(),
+                padding      = this.padding(),
+                text         = this.text(),
                 w = text.origWidth(),
                 h = text.origHeight(),
-                ax = (0.5 * w + padding + border) * (anchor.x() + 1),
-                ay = (0.5 * h + padding + border) * (anchor.y() + 1),
                 base = computeTitlePixelBase(this),
-                transformString = "t" + base.x() + "," + base.y() +
-                    "s1,-1" +
-                    "t" + this.position().x() + "," + (-this.position().y()) +
-                    "t" + (-ax) + "," + ay;
+                transformString,
+                pixelAnchor;
+
+            pixelAnchor = new Point(
+                (0.5 * w + padding + border) * (storedAnchor.x() + 1),
+                (0.5 * h + padding + border) * (storedAnchor.y() + 1)
+            );
+
+            transformString = text.computeTransform(pixelAnchor, base, position, 0);
 
             this.previousBase(base);
 
@@ -18440,9 +18496,12 @@ window.multigraph.util.namespace("window.multigraph.graphics.raphael", function 
             set.push(backgroundElem);
 
             // text
-            var textElem = paper.text(border + padding + w/2, border + padding + h/2, text.string())
-                .transform(transformString)
-                .attr({"font-size" : this.fontSize()});
+            var textPosition = new Point(
+                position.x() + border + padding + w/2,
+                position.y() + border + padding + h/2
+            ),
+                textElem = text.drawText(paper, pixelAnchor, base, textPosition, 0)
+                    .attr({"font-size" : this.fontSize()});
 
             this.textElem(textElem);
             set.push(textElem);
@@ -18635,18 +18694,34 @@ window.multigraph.util.namespace("window.multigraph.graphics.raphael", function 
         });
 
         Labeler.respondsTo("renderLabel", function (graphicsContext, value) {
-            var formattedString = new ns.Text(this.formatter().format(value)),
-                basePoint = computePixelBasePoint(this.axis(), value);
+            var anchor = this.anchor(),
+                angle  = this.angle(),
+                formattedString = new ns.Text(this.formatter().format(value)),
+                basePoint = computePixelBasePoint(this.axis(), value),
+                pixelAnchor,
+                transformString,
+                elem;
 
             formattedString.initializeGeometry({
                     "elem"  : graphicsContext.textElem,
                     "angle" : this.angle()
                 });
 
+            pixelAnchor = new window.multigraph.math.Point(
+                0.5 * formattedString.origWidth() * anchor.x(),
+                0.5 * formattedString.origHeight() * anchor.y()
+            );
+
+            elem = formattedString.drawText(graphicsContext.paper, pixelAnchor, basePoint, this.position(), this.angle())
+                .attr("fill", this.color().getHexString("#"));
+
             this.elems().push({
-                "elem" : drawText(formattedString, graphicsContext, basePoint, this.anchor(), this.position(), this.angle(), this.color()),
+                "elem" : elem,
                 "base" : basePoint
             });
+            graphicsContext.set.push(
+                elem
+            );
         });
 
         Labeler.respondsTo("redraw", function (graph, paper, values) {
@@ -18716,7 +18791,7 @@ window.multigraph.util.namespace("window.multigraph.graphics.raphael", function 
                         x : function () { return ax; },
                         y : function () { return ay; }
                     },
-                    transformString = computeTransformString(basePoint, pixelAnchor, this.position(), this.angle());
+                    transformString = formattedString.computeTransform(pixelAnchor, basePoint, this.position(), this.angle());
 
                 elem.transform(graph.transformString() + transformString);
 
@@ -18953,16 +19028,16 @@ window.multigraph.util.namespace("window.multigraph.graphics.raphael", function 
     });
 
     var applyMixins = function (options) {
-        window.multigraph.parser.jquery.mixin.apply(window.multigraph, "parseXML");
+        window.multigraph.parser.mixin.apply(window.multigraph, "parseXML");
         ns.mixin.apply(window.multigraph.core);
         window.multigraph.normalizer.mixin.apply(window.multigraph.core);
-        window.multigraph.events.jquery.draggable.mixin.apply(window.multigraph);
-        window.multigraph.events.jquery.mouse.mixin.apply(window.multigraph);
-        window.multigraph.events.jquery.touch.mixin.apply(window.multigraph);
+        window.multigraph.events.draggable.mixin.apply(window.multigraph);
+        window.multigraph.events.mouse.mixin.apply(window.multigraph);
+        window.multigraph.events.touch.mixin.apply(window.multigraph);
     };
 
     var generateInitialGraph = function (mugl, options) {
-        var multigraph = window.multigraph.core.Multigraph.parseXML( window.multigraph.parser.jquery.stringToJQueryXMLObj(mugl), options.mugl, options.messageHandler );
+        var multigraph = window.multigraph.core.Multigraph.parseXML( window.multigraph.parser.stringToJQueryXMLObj(mugl), options.mugl, options.messageHandler );
         multigraph.normalize();
         multigraph.div(options.div);
         window.multigraph.jQuery(options.div).css({
@@ -20319,7 +20394,22 @@ window.multigraph.util.namespace("window.multigraph.graphics.raphael", function 
             elem.attr("text", this.string());
             return elem.getBBox().height;
         });
+
+        Text.respondsTo("computeTransform", function (anchor, base, position, angle) {
+            return "t" + base.x() + "," + base.y() +
+                "s1,-1" +
+                "t" + position.x() + "," + (-position.y()) +
+                "r" + (-angle) +
+                "t" + (-anchor.x()) + "," + anchor.y();
+        });
+
+        Text.respondsTo("drawText", function (paper, anchor, base, position, angle) {
+            return paper.text(0, 0, this.string())
+                .transform(this.computeTransform(anchor, base, position, angle));
+        });
+
     });
+
 });
 window.multigraph.util.namespace("window.multigraph.graphics.raphael", function (ns) {
     "use strict";
@@ -20419,26 +20509,32 @@ window.multigraph.util.namespace("window.multigraph.graphics.canvas", function (
             //      below are relative to the coordinate system of that box.
 
             //
-            // Render the axis line itself
-            //
-            context.beginPath();
-            if (axisIsHorizontal) {
-                context.moveTo(parallelOffset, perpOffset);
-                context.lineTo(parallelOffset + pixelLength, perpOffset);
-            } else {
-                context.moveTo(perpOffset, parallelOffset);
-                context.lineTo(perpOffset, parallelOffset + pixelLength);
-            }
+            // Render the axis line itself, unless its linewidth() property is 0.
+            // TODO: modify this so that it correctly draws a line with the given
+            // linewidth().  At the moment, it only makes a distinction between
+            // lines of width 0, which aren't drawn at all, and lines with width > 0,
+            // which are drawn with width 1.
+            if (this.linewidth() > 0) {
+                context.beginPath();
+                if (axisIsHorizontal) {
+                    context.moveTo(parallelOffset, perpOffset);
+                    context.lineTo(parallelOffset + pixelLength, perpOffset);
+                } else {
+                    context.moveTo(perpOffset, parallelOffset);
+                    context.lineTo(perpOffset, parallelOffset + pixelLength);
+                }
 
-            context.strokeStyle = this.color().getHexString("#");
-            context.stroke();
+                context.strokeStyle = this.color().getHexString("#");
+                context.stroke();
+            }
 
             //
             // Render the tick marks and labels
             //
             if (this.hasDataMin() && this.hasDataMax()) { // but skip if we don't yet have data values
-                if (currentLabeler) {
-                    var tickmin   = this.tickmin(),
+                if (currentLabeler && currentLabeler.visible()) { // also skip if we have no current labeler, or
+                    var tickwidth = this.tickwidth(),             //   if we do but its `visible` property is false
+                        tickmin   = this.tickmin(),
                         tickmax   = this.tickmax(),
                         tickcolor = this.tickcolor();
                     context.beginPath();
@@ -20447,18 +20543,20 @@ window.multigraph.util.namespace("window.multigraph.graphics.canvas", function (
                     while (currentLabeler.hasNext()) {
                         var v = currentLabeler.next(),
                             a = this.dataValueToAxisValue(v);
-                        if (tickcolor !== undefined && tickcolor !== null) {
-                            context.strokeStyle = tickcolor.getHexString('#');
-                        }
-                        if (axisIsHorizontal) {
-                            context.moveTo(a, perpOffset+tickmax);
-                            context.lineTo(a, perpOffset+tickmin);
-                        } else {
-                            context.moveTo(perpOffset+tickmin, a);
-                            context.lineTo(perpOffset+tickmax, a);
-                        }
-                        if (tickcolor !== undefined && tickcolor !== null) {
-                            context.restore();
+                        if (tickwidth > 0) {
+                            if (tickcolor !== undefined && tickcolor !== null) {
+                                context.strokeStyle = tickcolor.getHexString('#');
+                            }
+                            if (axisIsHorizontal) {
+                                context.moveTo(a, perpOffset+tickmax);
+                                context.lineTo(a, perpOffset+tickmin);
+                            } else {
+                                context.moveTo(perpOffset+tickmin, a);
+                                context.lineTo(perpOffset+tickmax, a);
+                            }
+                            if (tickcolor !== undefined && tickcolor !== null) {
+                                context.restore();
+                            }
                         }
                         currentLabeler.renderLabel(context, v);
                     }
@@ -20497,28 +20595,29 @@ window.multigraph.util.namespace("window.multigraph.graphics.canvas", function (
          * @author jrfrimme
          */
         ns.AxisTitle.respondsTo("render", function (context) {
-            var axis = this.axis(),
-                h = this.content().origHeight(),
-                w = this.content().origWidth(),
-                ax = 0.5 * w * (this.anchor().x() + 1),
-                ay = 0.5 * h * (this.anchor().y() + 1),
-                storedBase = (this.base() + 1) * (axis.pixelLength() / 2) + axis.minoffset() + axis.parallelOffset(),
-                base;
+            var Point       = window.multigraph.math.Point,
+                axis        = this.axis(),
+                title       = this.content(),
+                anchor      = this.anchor(),
+                perpOffset  = axis.perpOffset(),
+                h           = title.origHeight(),
+                w           = title.origWidth(),
+                pixelAnchor = new Point(
+                    0.5 * w * (anchor.x() + 1),
+                    0.5 * h * (anchor.y() + 1)
+                ),
+                storedBase  = (this.base() + 1) * (axis.pixelLength() / 2) + axis.minoffset() + axis.parallelOffset(),
+                pixelBase;
 
-            if (this.axis().orientation() === ns.Axis.HORIZONTAL) {
-                base = new window.multigraph.math.Point(storedBase, axis.perpOffset());
+            if (axis.orientation() === ns.Axis.HORIZONTAL) {
+                pixelBase = new Point(storedBase, perpOffset);
             } else {
-                base = new window.multigraph.math.Point(axis.perpOffset(), storedBase);
+                pixelBase = new Point(perpOffset, storedBase);
             }
 
             context.save();
             context.fillStyle = "rgba(0, 0, 0, 1)";
-            context.transform(1, 0, 0, -1, 0, 2 * base.y());
-            context.transform(1, 0, 0, 1, base.x(), base.y());
-            context.transform(1, 0, 0, 1, this.position().x(), -this.position().y());
-            context.rotate(-this.angle() * Math.PI/180.0);
-            context.transform(1, 0, 0, 1, -ax, ay);
-            context.fillText(this.content().string(), 0, 0);
+            title.drawText(context, pixelAnchor, pixelBase, this.position(), this.angle());
             context.restore();
         });
 
@@ -20615,43 +20714,44 @@ window.multigraph.util.namespace("window.multigraph.graphics.canvas", function (
          * @author jrfrimme
          */
         ns.Title.respondsTo("render", function (context) {
-            var Point = window.multigraph.math.Point,
-                graph     = this.graph(),
-                border    = this.border(),
-                padding   = this.padding(),
-                pointBase = this.base(),
-                text      = this.text(),
+            var Point           = window.multigraph.math.Point,
+                graph           = this.graph(),
+                border          = this.border(),
+                padding         = this.padding(),
+                storedAnchor    = this.anchor(),
+                storedBase      = this.base(),
+                position        = this.position(),
+                title           = this.text(),
                 backgroundColor = this.color().toRGBA(this.opacity()),
-                h = text.origHeight(),
-                w = text.origWidth(),
-                ax = (0.5 * w + padding + border) * (this.anchor().x() + 1),
-                ay = (0.5 * h + padding + border) * (this.anchor().y() + 1),
-            
-                base;
+                paddingBox      = graph.paddingBox(),
+                plotBox         = graph.plotBox(),
+                plotareaMargin  = graph.plotarea().margin(),
+                h = title.origHeight(),
+                w = title.origWidth(),
+                pixelAnchor = new Point(
+                    (0.5 * w + padding + border) * (storedAnchor.x() + 1),
+                    (0.5 * h + padding + border) * (storedAnchor.y() + 1)
+                ),
+                pixelBase;
 
             if (this.frame() === "padding") {
-                base = new Point(
-                    (pointBase.x() + 1) * (graph.paddingBox().width() / 2) - graph.plotarea().margin().left(),
-                    (pointBase.y() + 1) * (graph.paddingBox().height() / 2) - graph.plotarea().margin().bottom()
+                pixelBase = new Point(
+                    (storedBase.x() + 1) * (paddingBox.width() / 2)  - plotareaMargin.left(),
+                    (storedBase.y() + 1) * (paddingBox.height() / 2) - plotareaMargin.bottom()
                 );
             } else {
-                base = new Point(
-                    (pointBase.x() + 1) * (graph.plotBox().width() / 2),
-                    (pointBase.y() + 1) * (graph.plotBox().height() / 2)
+                pixelBase = new Point(
+                    (storedBase.x() + 1) * (plotBox.width() / 2),
+                    (storedBase.y() + 1) * (plotBox.height() / 2)
                 );
             }
 
             context.save();
-            context.fillStyle = "rgba(0, 0, 0, 1)";
-            context.transform(1, 0, 0, -1, 0, 2 * base.y());
-            context.transform(1, 0, 0, 1, base.x(), base.y());
-            context.transform(1, 0, 0, 1, this.position().x(), -this.position().y());
-            context.transform(1, 0, 0, 1, -ax, ay);
+            title.setTransform(context, pixelAnchor, pixelBase, position, 0);
+            context.transform(1, 0, 0, -1, 0, 0);
 
             // border
             if (border > 0) {
-                context.save();
-                context.transform(1, 0, 0, -1, 0, 0);
                 context.strokeStyle = this.bordercolor().toRGBA();
                 context.lineWidth = border;
                 context.strokeRect(
@@ -20660,13 +20760,9 @@ window.multigraph.util.namespace("window.multigraph.graphics.canvas", function (
                     w + (2 * padding) + border,
                     h + (2 * padding) + border
                 );
-                context.restore();
             }
 
             // background
-            context.save();
-            context.transform(1, 0, 0, -1, 0, 0);
-            context.strokeStyle = backgroundColor;
             context.fillStyle = backgroundColor;
             context.fillRect(
                 border,
@@ -20677,8 +20773,14 @@ window.multigraph.util.namespace("window.multigraph.graphics.canvas", function (
             context.restore();
 
             // text
+            context.save();
+            var textPosition = new Point(
+                position.x() + border + padding,
+                position.y() + border + padding
+            );
             context.font = this.fontSize() + " sans-serif";
-            context.fillText(text.string(), border + padding, -(border + padding));
+            context.fillStyle = "rgba(0, 0, 0, 1)";
+            title.drawText(context, pixelAnchor, pixelBase, textPosition, 0);
             context.restore();
         });
 
@@ -20757,24 +20859,6 @@ window.multigraph.util.namespace("window.multigraph.graphics.canvas", function (
     ns.mixin.add(function (ns) {
 
         var Labeler = ns.Labeler;
-        var drawText = function (text, context, base, anchor, position, angle, color) {
-            var h = text.origHeight(),
-                w = text.origWidth(),
-                ax = 0.5 * w * (anchor.x() + 1),
-                ay = 0.5 * h * (anchor.y() + 1);
-
-            context.save();
-            context.fillStyle = color.getHexString("#");
-            //TODO: later on, once we're sure this is doing the correct thing, combine these 4 transformations
-            //      into a single one for efficiency:
-            context.transform(1,0,0,-1,0,2*base.y());
-            context.transform(1,0,0,1,base.x(),base.y());
-            context.transform(1,0,0,1,position.x(),-position.y());
-            context.rotate(-angle*Math.PI/180.0);
-            context.transform(1,0,0,1,-ax,ay);
-            context.fillText(text.string(), 0, 0);
-            context.restore();
-        };
 
         Labeler.respondsTo("measureStringWidth", function (context, string) {
             return (new ns.Text(string)).initializeGeometry({
@@ -20791,23 +20875,37 @@ window.multigraph.util.namespace("window.multigraph.graphics.canvas", function (
         });
 
         Labeler.respondsTo("renderLabel", function (context, value) {
-            var Point = window.multigraph.math.Point,
-                axis = this.axis(),
+            var Point           = window.multigraph.math.Point,
+                axis            = this.axis(),
+                storedAnchor    = this.anchor(),
+                angle           = this.angle(),
+                perpOffset      = axis.perpOffset(),
+                a               = axis.dataValueToAxisValue(value),
                 formattedString = new ns.Text(this.formatter().format(value)),
-                a = axis.dataValueToAxisValue(value),
+                pixelAnchor,
                 base;
 
             formattedString.initializeGeometry({
                     "context" : context,
-                    "angle"   : this.angle()
+                    "angle"   : angle
                 });
 
+            pixelAnchor = new Point(
+                0.5 * formattedString.origWidth() * (storedAnchor.x() + 1),
+                0.5 * formattedString.origHeight() * (storedAnchor.y() + 1)
+            );
+
             if (axis.orientation() === ns.Axis.HORIZONTAL) {
-                base = new Point(a, axis.perpOffset());
+                base = new Point(a, perpOffset);
             } else {
-                base = new Point(axis.perpOffset(), a);
+                base = new Point(perpOffset, a);
             }
-            drawText(formattedString, context, base, this.anchor(), this.position(), this.angle(), this.color());
+
+
+            context.save();
+            context.fillStyle = this.color().getHexString("#");
+            formattedString.drawText(context, pixelAnchor, base, this.position(), angle);
+            context.restore();
         });
 
     });
@@ -20926,16 +21024,17 @@ window.multigraph.util.namespace("window.multigraph.graphics.canvas", function (
 
     var applyMixins = function (options) {
         var errorHandler = options.messageHandler.error;
-        window.multigraph.parser.jquery.mixin.apply(window.multigraph, "parseXML");
+        window.multigraph.parser.mixin.apply(window.multigraph, "parseXML");
         ns.mixin.apply(window.multigraph.core);
-        window.multigraph.events.jquery.draggable.mixin.apply(window.multigraph, errorHandler);
-        window.multigraph.events.jquery.mouse.mixin.apply(window.multigraph, errorHandler);
-        window.multigraph.events.jquery.touch.mixin.apply(window.multigraph, errorHandler);
+        window.multigraph.events.draggable.mixin.apply(window.multigraph, errorHandler);
+        window.multigraph.events.mouse.mixin.apply(window.multigraph, errorHandler);
+        window.multigraph.events.touch.mixin.apply(window.multigraph, errorHandler);
         window.multigraph.normalizer.mixin.apply(window.multigraph.core);
     };
 
     var generateInitialGraph = function (mugl, options) {
-        var multigraph = window.multigraph.core.Multigraph.parseXML( window.multigraph.parser.jquery.stringToJQueryXMLObj(mugl), options.mugl, options.messageHandler );
+        var xmlObj = window.multigraph.parser.stringToJQueryXMLObj(mugl);
+        var multigraph = window.multigraph.core.Multigraph.parseXML( xmlObj, options.mugl, options.messageHandler );
         multigraph.normalize();
         multigraph.div(options.div);
         $(options.div).css("cursor" , "pointer");
@@ -20950,7 +21049,7 @@ window.multigraph.util.namespace("window.multigraph.graphics.canvas", function (
     window.multigraph.core.Multigraph.createCanvasGraph = function (options) {
         var muglPromise,
             deferred;
-        
+
         try {
             applyMixins(options);
             muglPromise = $.ajax({
@@ -20965,6 +21064,7 @@ window.multigraph.util.namespace("window.multigraph.graphics.canvas", function (
 
         muglPromise.done(function (data) {
             try {
+                // TODO: div size IS available here; see below.  What's going on???!!!
                 var multigraph = generateInitialGraph(data, options);
                 deferred.resolve(multigraph);
             } catch (e) {
@@ -20981,6 +21081,13 @@ window.multigraph.util.namespace("window.multigraph.graphics.canvas", function (
         try {
             applyMixins(options);
             deferred = $.Deferred();
+            // TODO: figure this out!  div size is not available here?  Apparently, at this point in
+            // code execution, the browser hasn't laid things out enough for the div to have been
+            // assigned a size, at least sometimes???  But it IS available at the corresponding place in
+            // createCanvasGraph above?  This is worked around by the code in
+            // src/core/multigraph.js:createGraph() that forces the div to have the size specified in
+            // the options --- so we can work around the problem by passing an explicit size in the
+            // options.  But we need to really figure out what's going on and resolve it.
             var multigraph = generateInitialGraph(options.muglString, options);
             deferred.resolve(multigraph);
         } catch (e) {
@@ -22016,7 +22123,23 @@ window.multigraph.util.namespace("window.multigraph.graphics.canvas", function (
                 newlineCount = this.string().match(/\n/g);
             return (newlineCount !== null ? (newlineCount.length + 1) : 1) * metrics.width;
         });
+
+        Text.respondsTo("setTransform", function (context, anchor, base, position, angle) {
+            context.transform(1, 0, 0, -1, 0, 2 * base.y());
+            context.transform(1, 0, 0, 1, base.x(), base.y());
+            context.transform(1, 0, 0, 1, position.x(), -position.y());
+            context.rotate(-angle * Math.PI/180.0);
+            context.transform(1, 0, 0, 1, -anchor.x(), anchor.y());
+        });
+
+        Text.respondsTo("drawText", function (context, anchor, base, position, angle) {
+            context.save();
+            this.setTransform(context, anchor, base, position, angle);
+            context.fillText(this.string(), 0, 0);
+            context.restore();
+        });
     });
+
 });
 window.multigraph.util.namespace("window.multigraph.graphics.canvas", function (ns) {
     "use strict";

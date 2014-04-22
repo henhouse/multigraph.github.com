@@ -7,6 +7,21 @@ title: Multigraph - Release Notes for version 4.1
 Release Notes
 =============
 
+Version 4.3rc1 (2014-04-22)
+---------------------------
+
+* converts from ant to grunt for building
+* includes various features added for use in global climate dashboard
+
+Version 4.2 (2013-04-08)
+---------------------------
+
+* codebase modified so the minified version is about 3% (12K) smaller
+* bugfix in parser. correctly handles `<labels>` tags without spacing attributes.
+* csv_adapter defaults to use ArrayData
+* bugfix in canvas fill renderer with downfill colors
+* busy spinner moved to center of the graph
+
 Version 4.1 (2013-03-21)
 ---------------------------
 
