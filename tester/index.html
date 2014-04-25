@@ -1,11 +1,14 @@
 ---
-siteroot: ..
-layout: master
-menu-tester: selected
-title: Multigraph - Tester
-headers: |
-    <link type="text/css" href="../lib/js-multigraph-tester/src/tester.css" rel="stylesheet" media="screen"/>
-    <script type="text/javascript" src="../lib/js-multigraph-tester/src/tester.js"></script>
+title: Tester
+other: selected
+tester: selected
+---
+
+{% include header.html %}
+{% include inc.multigraph.html %}
+
+    <script type="text/javascript">$ = window.multigraph.jQuery;</script>
+    <script type="text/javascript" src="/js/site-tester.js"></script>
     <script type="text/javascript">
       urlParams = function() {
         var match,
@@ -33,12 +36,20 @@ headers: |
           }
       });
     </script>
----
 
-<p>
-Use this page to experiment with Multigraph; you can switch back
-and forth between editing a MUGL document in the <b>MUGL</b> tab, and viewing the
-corresponding graph in the <b>Graph</b> tab below.
-</p>
+{% include content.html %}
 
-<div id="tester"></div>
+        <p>Use this page to experiment with Multigraph; you can switch back
+        and forth between editing a MUGL document in the <strong>MUGL</strong> tab, and viewing the
+        corresponding graph in the <strong>Graph</strong> tab below.</p><br />
+
+        <div id="tester"></div>
+
+        <footer>
+              <a href="//github.com/multigraph/js-multigraph" class="icon"><i class="fa fa-github fa-3x"></i></a><br />
+              <p>&copy; 2014 <a href="//nemac.org"><abbr title="National Environmental Modeling & Analysis Center">NEMAC</abbr></a></p>
+        </footer>
+
+        <script src="/js/bootstrap.min.js"></script>
+    </body>
+</html>

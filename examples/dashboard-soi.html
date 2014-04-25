@@ -1,88 +1,85 @@
 ---
-siteroot: ..
-layout: example
-menu-examples: selected
-title: Multigraph - Examples - dashboard-soi.xml
+title: Examples - dashboard-soi.xml
+examples: selected
 example-dashboard-soi: selected
 mugl: dashboard-soi.xml
-autogen: true
+layout: example
 ---
-<div class="title">{{page.mugl}}</div>
-<div class="multigraph" data-src="{{ page.siteroot }}/lib/js-multigraph/spec/mugl/{{page.mugl}}"></div>
 
-<table width="100%"><tr>
-<td align="left">Download mugl: <a href="../lib/js-multigraph/spec/mugl/dashboard-soi.xml">dashboard-soi.xml</a></td>
-<td align="right"><a href="../tester/?muglurl=../lib/js-multigraph/spec/mugl/dashboard-soi.xml">Open in Tester</a></td>
-</tr></table>
+<h3 class="example-title">{{page.mugl}}</h3>
 
-<div class="mugl">
-{% highlight xml %}
-<mugl>
-  <window border="0" margin="0" padding="0"/>
-  <ui eventhandler="saui"/>
-  <legend visible="false"/>
-  <plotarea marginbottom="50" marginleft="60" marginright="25" margintop="10"/>
+<div class="multigraph" data-src="graphs/{{page.mugl}}"></div>
 
-  <horizontalaxis highlightstyle="labels" id="x" linewidth="0" max="201207" min="200601" tickmax="0" tickmin="-4" type="datetime">
-    <labels>
-      <label format="%Y" spacing="100Y 50Y 20Y 10Y 5Y 2Y 1Y "/>
-      <label format="%n %y" spacing="6M 3M 2M 1M"/>
-    </labels>
-    <title anchor="0 5" position="-15 0">Month/Year</title>
-    <grid color="0xeeeeee"/>
-    <pan min="1950" max="2013"/>
-  </horizontalaxis>
+<span class="example-download">Download mugl: <a href="graphs/{{page.mugl}}">{{page.mugl}}</a></span>
+<span class="example-open"><a href="/tester/?muglurl=/examples/graphs/{{page.mugl}}">Open in Tester</a></span>
 
-  <verticalaxis highlightstyle="labels" id="y" linewidth="0" max="5.5" min="-5.5" tickmax="0" tickmin="-4">
-    <labels>
-      <label densityfactor="0.3" format="%1d" spacing="20 10 5 2 1"/>
-      <label densityfactor="0.3" format="%.1f" spacing="0.5 0.2 0.1"/>
-    </labels>
-    <title anchor="0 -4" angle="90" position="-15 0">Southern Oscillation Index</title>
+<pre class="example prettyprint">
+&lt;mugl&gt;
+  &lt;window border="0" margin="0" padding="0"/&gt;
+  &lt;ui eventhandler="saui"/&gt;
+  &lt;legend visible="false"/&gt;
+  &lt;plotarea marginbottom="50" marginleft="60" marginright="25" margintop="10"/&gt;
+
+  &lt;horizontalaxis highlightstyle="labels" id="x" linewidth="0" max="201207" min="200601" tickmax="0" tickmin="-4" type="datetime"&gt;
+    &lt;labels&gt;
+      &lt;label format="%Y" spacing="100Y 50Y 20Y 10Y 5Y 2Y 1Y "/&gt;
+      &lt;label format="%n %y" spacing="6M 3M 2M 1M"/&gt;
+    &lt;/labels&gt;
+    &lt;title anchor="0 5" position="-15 0"&gt;Month/Year&lt;/title&gt;
+    &lt;grid color="0xeeeeee"/&gt;
+    &lt;pan min="1950" max="2013"/&gt;
+  &lt;/horizontalaxis&gt;
+
+  &lt;verticalaxis highlightstyle="labels" id="y" linewidth="0" max="5.5" min="-5.5" tickmax="0" tickmin="-4"&gt;
+    &lt;labels&gt;
+      &lt;label densityfactor="0.3" format="%1d" spacing="20 10 5 2 1"/&gt;
+      &lt;label densityfactor="0.3" format="%.1f" spacing="0.5 0.2 0.1"/&gt;
+    &lt;/labels&gt;
+    &lt;title anchor="0 -4" angle="90" position="-15 0"&gt;Southern Oscillation Index&lt;/title&gt;
     
     
     
-  </verticalaxis>
+  &lt;/verticalaxis&gt;
 
-  <plot>
-    <legend visible="false"/>
-    <verticalaxis ref="y"><constant value="0"/></verticalaxis>
-    <renderer type="line">
-      <option name="linecolor" value="0x999999"/>
-      <option name="linewidth" value="1"/>
-    </renderer>
-  </plot>
+  &lt;plot&gt;
+    &lt;legend visible="false"/&gt;
+    &lt;verticalaxis ref="y"&gt;&lt;constant value="0"/&gt;&lt;/verticalaxis&gt;
+    &lt;renderer type="line"&gt;
+      &lt;option name="linecolor" value="0x999999"/&gt;
+      &lt;option name="linewidth" value="1"/&gt;
+    &lt;/renderer&gt;
+  &lt;/plot&gt;
 
-  <plot>
-    <legend label="Yearly average"/>
-    <horizontalaxis ref="x"><variable ref="datetime"/></horizontalaxis>
-    <verticalaxis ref="y"><variable ref="number"/></verticalaxis>
-    <renderer type="bar">
+  &lt;plot&gt;
+    &lt;legend label="Yearly average"/&gt;
+    &lt;horizontalaxis ref="x"&gt;&lt;variable ref="datetime"/&gt;&lt;/horizontalaxis&gt;
+    &lt;verticalaxis ref="y"&gt;&lt;variable ref="number"/&gt;&lt;/verticalaxis&gt;
+    &lt;renderer type="bar"&gt;
       
       
       
-      <option max="0.5" name="fillcolor" value="0xFFCC33"/>
-      <option max="0.5" min="0.0" name="fillcolor" value="0x888888"/>
-      <option max="0.0" min="-0.5" name="fillcolor" value="0x888888"/>
-      <option min="-0.5" name="fillcolor" value="0x66CCFF"/>		
-      <option name="linecolor" value="0x000000"/>
+      &lt;option max="0.5" name="fillcolor" value="0xFFCC33"/&gt;
+      &lt;option max="0.5" min="0.0" name="fillcolor" value="0x888888"/&gt;
+      &lt;option max="0.0" min="-0.5" name="fillcolor" value="0x888888"/&gt;
+      &lt;option min="-0.5" name="fillcolor" value="0x66CCFF"/&gt;		
+      &lt;option name="linecolor" value="0x000000"/&gt;
 
-      <option name="barwidth" value="1M"/>
-      <option name="baroffset" value="0"/>
-      <option name="barbase" value="0"/>
-    </renderer>
-    <datatips format="{0}: {1}">
-      <variable format="%n '%y"/>
-      <variable format="%.2f"/>
-    </datatips>
+      &lt;option name="barwidth" value="1M"/&gt;
+      &lt;option name="baroffset" value="0"/&gt;
+      &lt;option name="barbase" value="0"/&gt;
+    &lt;/renderer&gt;
+    &lt;datatips format="{0}: {1}"&gt;
+      &lt;variable format="%n '%y"/&gt;
+      &lt;variable format="%.2f"/&gt;
+    &lt;/datatips&gt;
 
-  </plot>
-  <data>
-    <variables>
-      <variable column="0" id="datetime" type="datetime"/>
-      <variable column="1" id="number" type="number"/>
-    </variables>
-    <values>195101,1.700
+  &lt;/plot&gt;
+  &lt;data&gt;
+    &lt;variables&gt;
+      &lt;variable column="0" id="datetime" type="datetime"/&gt;
+      &lt;variable column="1" id="number" type="number"/&gt;
+    &lt;/variables&gt;
+    &lt;values&gt;195101,1.700
     195102,0.600
     195103,-0.800
     195104,-0.600
@@ -822,9 +819,7 @@ autogen: true
     201206,-0.400
     201207,0.000
     201208,-0.200
-  </values>
-</data>
-</mugl>
-
-{% endhighlight %}
-</div>
+  &lt;/values&gt;
+&lt;/data&gt;
+&lt;/mugl&gt;
+</pre>

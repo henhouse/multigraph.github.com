@@ -1,50 +1,47 @@
 ---
-siteroot: ..
-layout: example
-menu-examples: selected
-title: Multigraph - Examples - ndvi.xml
+title: Examples - ndvi.xml
+examples: selected
 example-ndvi: selected
 mugl: ndvi.xml
-autogen: true
+layout: example
 ---
-<div class="title">{{page.mugl}}</div>
-<div class="multigraph" data-src="{{ page.siteroot }}/lib/js-multigraph/spec/mugl/{{page.mugl}}"></div>
 
-<table width="100%"><tr>
-<td align="left">Download mugl: <a href="../lib/js-multigraph/spec/mugl/ndvi.xml">ndvi.xml</a></td>
-<td align="right"><a href="../tester/?muglurl=../lib/js-multigraph/spec/mugl/ndvi.xml">Open in Tester</a></td>
-</tr></table>
+<h3 class="example-title">{{page.mugl}}</h3>
 
-<div class="mugl">
-{% highlight xml %}
-<mugl>
-  <horizontalaxis id="datetime" type="datetime" min="20000101" max="20120731">
-    <labels format="%m/%d/%y" spacing="1Y 6M 4M 2M 1M 16D 8D 1D"/>
-    <title>Date/Time</title>
-    <grid color="0xcccccc"/>
-  </horizontalaxis>
-  <verticalaxis id="value" min="0" max="100">
-    <title angle="90" position="-37 0">NDVI</title>
-  </verticalaxis>
-  <plot>
-    <horizontalaxis ref="datetime">
-      <variable ref="datetime"/>
-    </horizontalaxis>
-    <verticalaxis ref="value">
-      <variable ref="value"/>
-    </verticalaxis>
-    <renderer type="pointline">
-      <option name="linecolor" value="black"/>
-      <option name="pointcolor" value="blue"/>
-      <option name="pointsize" value="1.5"/>
-    </renderer>
-  </plot>
-  <data>
-    <variables>
-      <variable column="0" type="datetime" id="datetime"/>
-      <variable column="1" id="value"/>
-    </variables>
-    <values>
+<div class="multigraph" data-src="graphs/{{page.mugl}}"></div>
+
+<span class="example-download">Download mugl: <a href="graphs/{{page.mugl}}">{{page.mugl}}</a></span>
+<span class="example-open"><a href="/tester/?muglurl=/examples/graphs/{{page.mugl}}">Open in Tester</a></span>
+
+<pre class="example prettyprint">
+&lt;mugl&gt;
+  &lt;horizontalaxis id="datetime" type="datetime" min="20000101" max="20120731"&gt;
+    &lt;labels format="%m/%d/%y" spacing="1Y 6M 4M 2M 1M 16D 8D 1D"/&gt;
+    &lt;title&gt;Date/Time&lt;/title&gt;
+    &lt;grid color="0xcccccc"/&gt;
+  &lt;/horizontalaxis&gt;
+  &lt;verticalaxis id="value" min="0" max="100"&gt;
+    &lt;title angle="90" position="-37 0"&gt;NDVI&lt;/title&gt;
+  &lt;/verticalaxis&gt;
+  &lt;plot&gt;
+    &lt;horizontalaxis ref="datetime"&gt;
+      &lt;variable ref="datetime"/&gt;
+    &lt;/horizontalaxis&gt;
+    &lt;verticalaxis ref="value"&gt;
+      &lt;variable ref="value"/&gt;
+    &lt;/verticalaxis&gt;
+    &lt;renderer type="pointline"&gt;
+      &lt;option name="linecolor" value="black"/&gt;
+      &lt;option name="pointcolor" value="blue"/&gt;
+      &lt;option name="pointsize" value="1.5"/&gt;
+    &lt;/renderer&gt;
+  &lt;/plot&gt;
+  &lt;data&gt;
+    &lt;variables&gt;
+      &lt;variable column="0" type="datetime" id="datetime"/&gt;
+      &lt;variable column="1" id="value"/&gt;
+    &lt;/variables&gt;
+    &lt;values&gt;
 20000108,55
 20000116,54
 20000124,56
@@ -623,9 +620,7 @@ autogen: true
 20120710,86
 20120718,85
 20120726,84
-    </values>
-  </data>
-</mugl>
-
-{% endhighlight %}
-</div>
+    &lt;/values&gt;
+  &lt;/data&gt;
+&lt;/mugl&gt;
+</pre>

@@ -1,54 +1,51 @@
 ---
-siteroot: ..
-layout: example
-menu-examples: selected
-title: Multigraph - Examples - axisbinding-tempgraph.xml
+title: Examples - axisbinding-tempgraph.xml
+examples: selected
 example-axisbinding-tempgraph: selected
 mugl: axisbinding-tempgraph.xml
-autogen: true
+layout: example
 ---
-<div class="title">{{page.mugl}}</div>
-<div class="multigraph" data-src="{{ page.siteroot }}/lib/js-multigraph/spec/mugl/{{page.mugl}}"></div>
 
-<table width="100%"><tr>
-<td align="left">Download mugl: <a href="../lib/js-multigraph/spec/mugl/axisbinding-tempgraph.xml">axisbinding-tempgraph.xml</a></td>
-<td align="right"><a href="../tester/?muglurl=../lib/js-multigraph/spec/mugl/axisbinding-tempgraph.xml">Open in Tester</a></td>
-</tr></table>
+<h3 class="example-title">{{page.mugl}}</h3>
 
-<div class="mugl">
-{% highlight xml %}
-<mugl>
-    <horizontalaxis id="x"  min="0" max="10"/>
-    <verticalaxis   id="y"  min="0" max="10">
-      <binding id="ybinding" min="0" max="10"/>
-    </verticalaxis>
-    <verticalaxis   id="y2" min="0" max="100" base="1 -1">
-      <binding id="ybinding" min="0" max="100"/>
-    </verticalaxis>
-    <plot>
-      <horizontalaxis ref="x">
-        <variable ref="x"/>
-      </horizontalaxis>
-      <verticalaxis ref="y">
-        <variable ref="y"/>
-      </verticalaxis>
-      <renderer type="pointline">
-        <option name="linecolor" value="0xff00ff"/>
-        <option name="linewidth" value="3"/>
-        <option name="pointshape" value="circle"/>
-        <option name="pointoutlinewidth" value="2"/>
-        <option name="pointoutlinecolor" value="0x000000"/>
-        <option name="pointcolor" value="0xffffff"/>
-        <option name="pointopacity" value="1.0"/>
-        <option name="pointsize" value="3"/>
-      </renderer>
-    </plot>
-    <data>
-      <variables>
-        <variable column="0" id="x"/>
-        <variable column="1" id="y"/>
-      </variables>
-      <values>
+<div class="multigraph" data-src="graphs/{{page.mugl}}"></div>
+
+<span class="example-download">Download mugl: <a href="graphs/{{page.mugl}}">{{page.mugl}}</a></span>
+<span class="example-open"><a href="/tester/?muglurl=/examples/graphs/{{page.mugl}}">Open in Tester</a></span>
+
+<pre class="example prettyprint">
+&lt;mugl&gt;
+    &lt;horizontalaxis id="x"  min="0" max="10"/&gt;
+    &lt;verticalaxis   id="y"  min="0" max="10"&gt;
+      &lt;binding id="ybinding" min="0" max="10"/&gt;
+    &lt;/verticalaxis&gt;
+    &lt;verticalaxis   id="y2" min="0" max="100" base="1 -1"&gt;
+      &lt;binding id="ybinding" min="0" max="100"/&gt;
+    &lt;/verticalaxis&gt;
+    &lt;plot&gt;
+      &lt;horizontalaxis ref="x"&gt;
+        &lt;variable ref="x"/&gt;
+      &lt;/horizontalaxis&gt;
+      &lt;verticalaxis ref="y"&gt;
+        &lt;variable ref="y"/&gt;
+      &lt;/verticalaxis&gt;
+      &lt;renderer type="pointline"&gt;
+        &lt;option name="linecolor" value="0xff00ff"/&gt;
+        &lt;option name="linewidth" value="3"/&gt;
+        &lt;option name="pointshape" value="circle"/&gt;
+        &lt;option name="pointoutlinewidth" value="2"/&gt;
+        &lt;option name="pointoutlinecolor" value="0x000000"/&gt;
+        &lt;option name="pointcolor" value="0xffffff"/&gt;
+        &lt;option name="pointopacity" value="1.0"/&gt;
+        &lt;option name="pointsize" value="3"/&gt;
+      &lt;/renderer&gt;
+    &lt;/plot&gt;
+    &lt;data&gt;
+      &lt;variables&gt;
+        &lt;variable column="0" id="x"/&gt;
+        &lt;variable column="1" id="y"/&gt;
+      &lt;/variables&gt;
+      &lt;values&gt;
 0,1
 1,3
 2,2
@@ -60,9 +57,8 @@ autogen: true
 8,2
 9,6
 10,7
-      </values>
-    </data>
-</mugl>
+      &lt;/values&gt;
+    &lt;/data&gt;
+&lt;/mugl&gt;
 
-{% endhighlight %}
-</div>
+</pre>

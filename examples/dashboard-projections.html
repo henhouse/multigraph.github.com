@@ -1,178 +1,175 @@
 ---
-siteroot: ..
-layout: example
-menu-examples: selected
-title: Multigraph - Examples - dashboard-projections.xml
+title: Examples - dashboard-projections.xml
+examples: selected
 example-dashboard-projections: selected
 mugl: dashboard-projections.xml
-autogen: true
+layout: example
 ---
-<div class="title">{{page.mugl}}</div>
-<div class="multigraph" data-src="{{ page.siteroot }}/lib/js-multigraph/spec/mugl/{{page.mugl}}"></div>
 
-<table width="100%"><tr>
-<td align="left">Download mugl: <a href="../lib/js-multigraph/spec/mugl/dashboard-projections.xml">dashboard-projections.xml</a></td>
-<td align="right"><a href="../tester/?muglurl=../lib/js-multigraph/spec/mugl/dashboard-projections.xml">Open in Tester</a></td>
-</tr></table>
+<h3 class="example-title">{{page.mugl}}</h3>
 
-<div class="mugl">
-{% highlight xml %}
-<mugl>
-  <legend visible="false"/>
-  <horizontalaxis id="year" max="2100" min="1990" type="datetime">
-    <title>Year</title>
-    <labels>
-      <label format="%Y" spacing="100Y 50Y 20Y 10Y 5Y 2Y 1Y"/>
-      <label format="%n %y" spacing="6M 3M 2M 1M"/>
-    </labels>
-  </horizontalaxis>
+<div class="multigraph" data-src="graphs/{{page.mugl}}"></div>
 
-<!--
-  <verticalaxis id="tempf" type="number">
-    <title anchor="0 -1" angle="90" position="-20 0">Temperature Change from 1971-1999 Average (°F)</title>
+<span class="example-download">Download mugl: <a href="graphs/{{page.mugl}}">{{page.mugl}}</a></span>
+<span class="example-open"><a href="/tester/?muglurl=/examples/graphs/{{page.mugl}}">Open in Tester</a></span>
 
-    <binding id="ProjTempBinding" max="1.8" min="0"/>
-    <labels fontcolor="0x666666"/>
-  </verticalaxis>
--->
-  <verticalaxis base="1 -1" id="temp" max="4.5" min="-0.5" type="number">
-    <title anchor="0 -1" angle="90" position="28 0">Temperature Change from 1971-1999 Average (°C)</title>
-    <pan max="6" min="-2"/>
-    <binding id="ProjTempBinding" max="1" min="0"/>
-    <labels color="0x666666"/>
-  </verticalaxis>
+<pre class="example prettyprint">
+&lt;mugl&gt;
+  &lt;legend visible="false"/&gt;
+  &lt;horizontalaxis id="year" max="2100" min="1990" type="datetime"&gt;
+    &lt;title&gt;Year&lt;/title&gt;
+    &lt;labels&gt;
+      &lt;label format="%Y" spacing="100Y 50Y 20Y 10Y 5Y 2Y 1Y"/&gt;
+      &lt;label format="%n %y" spacing="6M 3M 2M 1M"/&gt;
+    &lt;/labels&gt;
+  &lt;/horizontalaxis&gt;
 
-  <plot>
-    <horizontalaxis ref="year">
-      <variable ref="year_20c3m"/>
-    </horizontalaxis>
-    <verticalaxis ref="temp">
-      <variable ref="min_20c3m"/>
-      <variable ref="max_20c3m"/>
-    </verticalaxis>
-    <renderer type="band">
-      <option name="fillcolor" value="0xCCCCCC"/>
-      <option name="fillopacity" value="0.5"/>
-      <option name="linewidth" value="0"/>
-    </renderer>
-  </plot>
-  <plot>
-    <horizontalaxis ref="year">
-      <variable ref="year_a2"/>
-    </horizontalaxis>
-    <verticalaxis ref="temp">
-      <variable ref="min_a2"/>
-      <variable ref="max_a2"/>
-    </verticalaxis>
-    <renderer type="band">
-      <option name="fillcolor" value="0xFFCCCC"/>
-      <option name="fillopacity" value="0.5"/>
-      <option name="linewidth" value="0"/>
-    </renderer>
-  </plot>
+&lt;!--
+  &lt;verticalaxis id="tempf" type="number"&gt;
+    &lt;title anchor="0 -1" angle="90" position="-20 0"&gt;Temperature Change from 1971-1999 Average (°F)&lt;/title&gt;
 
-  <plot>
-    <horizontalaxis ref="year">
-      <variable ref="year_a1b"/>
-    </horizontalaxis>
-    <verticalaxis ref="temp">
-      <variable ref="min_a1b"/>
-      <variable ref="max_a1b"/>
-    </verticalaxis>
-    <renderer type="band">
-      <option name="fillcolor" value="0xCCFFCC"/>
-      <option name="fillopacity" value="0.5"/>
-      <option name="linewidth" value="0"/>
-    </renderer>
-  </plot>
-  <plot>
-    <horizontalaxis ref="year">
-      <variable ref="year_b1"/>
-    </horizontalaxis>
-    <verticalaxis ref="temp">
-      <variable ref="min_b1"/>
-      <variable ref="max_b1"/>
-    </verticalaxis>
-    <renderer type="band">
-      <option name="fillcolor" value="0xCCCCFF"/>
-      <option name="fillopacity" value="0.5"/>
-      <option name="linewidth" value="0"/>
-    </renderer>
-  </plot>
+    &lt;binding id="ProjTempBinding" max="1.8" min="0"/&gt;
+    &lt;labels fontcolor="0x666666"/&gt;
+  &lt;/verticalaxis&gt;
+--&gt;
+  &lt;verticalaxis base="1 -1" id="temp" max="4.5" min="-0.5" type="number"&gt;
+    &lt;title anchor="0 -1" angle="90" position="28 0"&gt;Temperature Change from 1971-1999 Average (°C)&lt;/title&gt;
+    &lt;pan max="6" min="-2"/&gt;
+    &lt;binding id="ProjTempBinding" max="1" min="0"/&gt;
+    &lt;labels color="0x666666"/&gt;
+  &lt;/verticalaxis&gt;
 
-  <plot>
-    <horizontalaxis ref="year">
-      <variable ref="year_20c3m"/>
-    </horizontalaxis>
-    <verticalaxis ref="temp">
-      <variable ref="temp_20c3m"/>
-    </verticalaxis>
-    <renderer type="line">
-      <option name="linecolor" value="0x000000"/>
-      <option name="linewidth" value="2"/>
-    </renderer>
-    <datatips format="{0}: {1}">
-      <variable format="%Y"/>
-      <variable format="%.1f °C"/>
-    </datatips>
-  </plot>
-  <plot>
-    <horizontalaxis ref="year">
-      <variable ref="year_a2"/>
-    </horizontalaxis>
-    <verticalaxis ref="temp">
-      <variable ref="temp_a2"/>
-    </verticalaxis>
-    <renderer type="line">
-      <option name="linecolor" value="0x990000"/>
-      <option name="linewidth" value="2"/>
-    </renderer>
-    <datatips format="{0}: {1}">
-      <variable format="%Y A2"/>
-      <variable format="%.1f °C"/>
-    </datatips>
-  </plot>
+  &lt;plot&gt;
+    &lt;horizontalaxis ref="year"&gt;
+      &lt;variable ref="year_20c3m"/&gt;
+    &lt;/horizontalaxis&gt;
+    &lt;verticalaxis ref="temp"&gt;
+      &lt;variable ref="min_20c3m"/&gt;
+      &lt;variable ref="max_20c3m"/&gt;
+    &lt;/verticalaxis&gt;
+    &lt;renderer type="band"&gt;
+      &lt;option name="fillcolor" value="0xCCCCCC"/&gt;
+      &lt;option name="fillopacity" value="0.5"/&gt;
+      &lt;option name="linewidth" value="0"/&gt;
+    &lt;/renderer&gt;
+  &lt;/plot&gt;
+  &lt;plot&gt;
+    &lt;horizontalaxis ref="year"&gt;
+      &lt;variable ref="year_a2"/&gt;
+    &lt;/horizontalaxis&gt;
+    &lt;verticalaxis ref="temp"&gt;
+      &lt;variable ref="min_a2"/&gt;
+      &lt;variable ref="max_a2"/&gt;
+    &lt;/verticalaxis&gt;
+    &lt;renderer type="band"&gt;
+      &lt;option name="fillcolor" value="0xFFCCCC"/&gt;
+      &lt;option name="fillopacity" value="0.5"/&gt;
+      &lt;option name="linewidth" value="0"/&gt;
+    &lt;/renderer&gt;
+  &lt;/plot&gt;
 
-  <plot>
-    <horizontalaxis ref="year">
-      <variable ref="year_a1b"/>
-    </horizontalaxis>
-    <verticalaxis ref="temp">
-      <variable ref="temp_a1b"/>
-    </verticalaxis>
-    <renderer type="line">
-      <option name="linecolor" value="0x009900"/>
-      <option name="linewidth" value="2"/>
-    </renderer>
-    <datatips format="{0}: {1}">
-      <variable format="%Y A1B"/>
-      <variable format="%.1f °C"/>
-    </datatips>
-  </plot>
-  <plot>
-    <horizontalaxis ref="year">
-      <variable ref="year_b1"/>
-    </horizontalaxis>
-    <verticalaxis ref="temp">
-      <variable ref="temp_b1"/>
-    </verticalaxis>
-    <renderer type="line">
-      <option name="linecolor" value="0x000099"/>
-      <option name="linewidth" value="2"/>
-    </renderer>
-    <datatips format="{0}: {1}">
-      <variable format="%Y B1"/>
-      <variable format="%.1f °C"/>
-    </datatips>
-  </plot>
-  <data>
-    <variables>
-      <variable column="0" id="year_20c3m" type="datetime"/>
-      <variable column="1" id="min_20c3m"/>
-      <variable column="2" id="temp_20c3m"/>
-      <variable column="3" id="max_20c3m"/>
-    </variables>
-    <values>1900,-0.710738,-0.501011,-0.291284
+  &lt;plot&gt;
+    &lt;horizontalaxis ref="year"&gt;
+      &lt;variable ref="year_a1b"/&gt;
+    &lt;/horizontalaxis&gt;
+    &lt;verticalaxis ref="temp"&gt;
+      &lt;variable ref="min_a1b"/&gt;
+      &lt;variable ref="max_a1b"/&gt;
+    &lt;/verticalaxis&gt;
+    &lt;renderer type="band"&gt;
+      &lt;option name="fillcolor" value="0xCCFFCC"/&gt;
+      &lt;option name="fillopacity" value="0.5"/&gt;
+      &lt;option name="linewidth" value="0"/&gt;
+    &lt;/renderer&gt;
+  &lt;/plot&gt;
+  &lt;plot&gt;
+    &lt;horizontalaxis ref="year"&gt;
+      &lt;variable ref="year_b1"/&gt;
+    &lt;/horizontalaxis&gt;
+    &lt;verticalaxis ref="temp"&gt;
+      &lt;variable ref="min_b1"/&gt;
+      &lt;variable ref="max_b1"/&gt;
+    &lt;/verticalaxis&gt;
+    &lt;renderer type="band"&gt;
+      &lt;option name="fillcolor" value="0xCCCCFF"/&gt;
+      &lt;option name="fillopacity" value="0.5"/&gt;
+      &lt;option name="linewidth" value="0"/&gt;
+    &lt;/renderer&gt;
+  &lt;/plot&gt;
+
+  &lt;plot&gt;
+    &lt;horizontalaxis ref="year"&gt;
+      &lt;variable ref="year_20c3m"/&gt;
+    &lt;/horizontalaxis&gt;
+    &lt;verticalaxis ref="temp"&gt;
+      &lt;variable ref="temp_20c3m"/&gt;
+    &lt;/verticalaxis&gt;
+    &lt;renderer type="line"&gt;
+      &lt;option name="linecolor" value="0x000000"/&gt;
+      &lt;option name="linewidth" value="2"/&gt;
+    &lt;/renderer&gt;
+    &lt;datatips format="{0}: {1}"&gt;
+      &lt;variable format="%Y"/&gt;
+      &lt;variable format="%.1f °C"/&gt;
+    &lt;/datatips&gt;
+  &lt;/plot&gt;
+  &lt;plot&gt;
+    &lt;horizontalaxis ref="year"&gt;
+      &lt;variable ref="year_a2"/&gt;
+    &lt;/horizontalaxis&gt;
+    &lt;verticalaxis ref="temp"&gt;
+      &lt;variable ref="temp_a2"/&gt;
+    &lt;/verticalaxis&gt;
+    &lt;renderer type="line"&gt;
+      &lt;option name="linecolor" value="0x990000"/&gt;
+      &lt;option name="linewidth" value="2"/&gt;
+    &lt;/renderer&gt;
+    &lt;datatips format="{0}: {1}"&gt;
+      &lt;variable format="%Y A2"/&gt;
+      &lt;variable format="%.1f °C"/&gt;
+    &lt;/datatips&gt;
+  &lt;/plot&gt;
+
+  &lt;plot&gt;
+    &lt;horizontalaxis ref="year"&gt;
+      &lt;variable ref="year_a1b"/&gt;
+    &lt;/horizontalaxis&gt;
+    &lt;verticalaxis ref="temp"&gt;
+      &lt;variable ref="temp_a1b"/&gt;
+    &lt;/verticalaxis&gt;
+    &lt;renderer type="line"&gt;
+      &lt;option name="linecolor" value="0x009900"/&gt;
+      &lt;option name="linewidth" value="2"/&gt;
+    &lt;/renderer&gt;
+    &lt;datatips format="{0}: {1}"&gt;
+      &lt;variable format="%Y A1B"/&gt;
+      &lt;variable format="%.1f °C"/&gt;
+    &lt;/datatips&gt;
+  &lt;/plot&gt;
+  &lt;plot&gt;
+    &lt;horizontalaxis ref="year"&gt;
+      &lt;variable ref="year_b1"/&gt;
+    &lt;/horizontalaxis&gt;
+    &lt;verticalaxis ref="temp"&gt;
+      &lt;variable ref="temp_b1"/&gt;
+    &lt;/verticalaxis&gt;
+    &lt;renderer type="line"&gt;
+      &lt;option name="linecolor" value="0x000099"/&gt;
+      &lt;option name="linewidth" value="2"/&gt;
+    &lt;/renderer&gt;
+    &lt;datatips format="{0}: {1}"&gt;
+      &lt;variable format="%Y B1"/&gt;
+      &lt;variable format="%.1f °C"/&gt;
+    &lt;/datatips&gt;
+  &lt;/plot&gt;
+  &lt;data&gt;
+    &lt;variables&gt;
+      &lt;variable column="0" id="year_20c3m" type="datetime"/&gt;
+      &lt;variable column="1" id="min_20c3m"/&gt;
+      &lt;variable column="2" id="temp_20c3m"/&gt;
+      &lt;variable column="3" id="max_20c3m"/&gt;
+    &lt;/variables&gt;
+    &lt;values&gt;1900,-0.710738,-0.501011,-0.291284
     1901,-0.709837,-0.488806,-0.267776
     1902,-0.738885,-0.505620,-0.272355
     1903,-0.822017,-0.591622,-0.361227
@@ -273,16 +270,16 @@ autogen: true
     1998,0.120801,0.230066,0.339330
     1999,0.137926,0.285747,0.433567
     2000,0.166130,0.310955,0.455780
-    </values>
-  </data>
-  <data>
-    <variables>
-      <variable column="0" id="year_a1b" type="datetime"/>
-      <variable column="1" id="min_a1b"/>
-      <variable column="2" id="temp_a1b"/>
-      <variable column="3" id="max_a1b"/>
-    </variables>
-    <values>2000,0.145627,0.291885,0.438144
+    &lt;/values&gt;
+  &lt;/data&gt;
+  &lt;data&gt;
+    &lt;variables&gt;
+      &lt;variable column="0" id="year_a1b" type="datetime"/&gt;
+      &lt;variable column="1" id="min_a1b"/&gt;
+      &lt;variable column="2" id="temp_a1b"/&gt;
+      &lt;variable column="3" id="max_a1b"/&gt;
+    &lt;/variables&gt;
+    &lt;values&gt;2000,0.145627,0.291885,0.438144
     2001,0.200560,0.347025,0.493491
     2002,0.234579,0.396154,0.557728
     2003,0.171510,0.350560,0.529610
@@ -383,16 +380,16 @@ autogen: true
     2098,2.320413,2.914630,3.508847
     2099,2.347624,2.916784,3.485944
     2100,2.737245,3.120802,3.504359
-    </values>
-  </data>
-  <data>
-    <variables>
-      <variable column="0" id="year_a2" type="datetime"/>
-      <variable column="1" id="min_a2"/>
-      <variable column="2" id="temp_a2"/>
-      <variable column="3" id="max_a2"/>
-    </variables>
-    <values>2000,0.165646,0.329046,0.492446
+    &lt;/values&gt;
+  &lt;/data&gt;
+  &lt;data&gt;
+    &lt;variables&gt;
+      &lt;variable column="0" id="year_a2" type="datetime"/&gt;
+      &lt;variable column="1" id="min_a2"/&gt;
+      &lt;variable column="2" id="temp_a2"/&gt;
+      &lt;variable column="3" id="max_a2"/&gt;
+    &lt;/variables&gt;
+    &lt;values&gt;2000,0.165646,0.329046,0.492446
     2001,0.214887,0.360918,0.506949
     2002,0.256888,0.371929,0.486971
     2003,0.248045,0.373018,0.497991
@@ -493,16 +490,16 @@ autogen: true
     2098,3.207975,3.693051,4.178126
     2099,3.245118,3.740233,4.235348
     2100,3.0,4.099390,5.0
-    </values>
-  </data>
-  <data>
-    <variables>
-      <variable column="0" id="year_b1" type="datetime"/>
-      <variable column="1" id="min_b1"/>
-      <variable column="2" id="temp_b1"/>
-      <variable column="3" id="max_b1"/>
-    </variables>
-    <values>2000,0.106485,0.293151,0.479818
+    &lt;/values&gt;
+  &lt;/data&gt;
+  &lt;data&gt;
+    &lt;variables&gt;
+      &lt;variable column="0" id="year_b1" type="datetime"/&gt;
+      &lt;variable column="1" id="min_b1"/&gt;
+      &lt;variable column="2" id="temp_b1"/&gt;
+      &lt;variable column="3" id="max_b1"/&gt;
+    &lt;/variables&gt;
+    &lt;values&gt;2000,0.106485,0.293151,0.479818
     2001,0.187834,0.346060,0.504286
     2002,0.142559,0.330877,0.519194
     2003,0.162613,0.377274,0.591934
@@ -603,10 +600,8 @@ autogen: true
     2098,1.513645,1.975499,2.437354
     2099,1.525836,1.960674,2.395511
     2100,1.481352,1.873689,2.266026
-    </values>
-  </data>
+    &lt;/values&gt;
+  &lt;/data&gt;
 
-</mugl>
-
-{% endhighlight %}
-</div>
+&lt;/mugl&gt;
+</pre>

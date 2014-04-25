@@ -1,11 +1,10 @@
----
-layout : master
----
-<table width="100%"><tr>
-    <td valign="top" width="300">
-      {% include example-menu.html %}
-    </td>
-    <td valign="top" align="center">
-      {{ content }}
-    </td>
-</tr></table>
+{% include header.html %}
+{% include inc.multigraph.html %}
+{% include inc.prettify.html %}
+{% include content.html %}
+
+{% include example-menu.html %}
+        <div class="example-content">
+            {{ content }}
+        </div>
+{% include end.html %}

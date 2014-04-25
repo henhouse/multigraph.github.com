@@ -1,77 +1,74 @@
 ---
-siteroot: ..
-layout: example
-menu-examples: selected
-title: Multigraph - Examples - dewpoint.xml
+title: Examples - dewpoint.xml
+examples: selected
 example-dewpoint: selected
 mugl: dewpoint.xml
-autogen: true
+layout: example
 ---
-<div class="title">{{page.mugl}}</div>
-<div class="multigraph" data-src="{{ page.siteroot }}/lib/js-multigraph/spec/mugl/{{page.mugl}}"></div>
 
-<table width="100%"><tr>
-<td align="left">Download mugl: <a href="../lib/js-multigraph/spec/mugl/dewpoint.xml">dewpoint.xml</a></td>
-<td align="right"><a href="../tester/?muglurl=../lib/js-multigraph/spec/mugl/dewpoint.xml">Open in Tester</a></td>
-</tr></table>
+<h3 class="example-title">{{page.mugl}}</h3>
 
-<div class="mugl">
-{% highlight xml %}
-<mugl>
-  <window height="500" margin="2" padding="5" width="600"/>
-  <plotarea marginbottom="100" marginleft="50" marginright="50" margintop="70"/>
-  <horizontalaxis id="haxis" max="20090601000036" min="20090101000036" type="datetime">
-    <labels anchor="1 0" angle="90" format="%Y %M %D %H:%i" spacing="10Y 5Y 1Y 4M 1M 7D 3D 1D 12H 6H 4H 2H 1H"/>
-    <title position="0 -80">Date/Time</title>
-  </horizontalaxis>
-  <legend anchor="0 1" base="0 1" border="0" bordercolor="0x000000" color="0xFFFFFF" opacity="0.8" position="0 40" rows="2" visible="true">
-    <icon border="0" height="20" width="20"/>
-  </legend>
-  <verticalaxis id="temp" max="100.0" maxoffset="10" min="0.0" minoffset="5" position="0" postgap="0" pregap="0" type="number">
-    <title anchor="0 0" angle="90" position="-40 0">Mean Temperature (F)</title>
-    <labels anchor="1 0" angle="0" position="-5 0" spacing="100000 20000 10000 5000 1000 500 200 100 50 20 10 5 2 1 0.5 0.05" start="0"/>
-  </verticalaxis>
-  <verticalaxis id="dewp" max="100.0" maxoffset="10" min="0.0" minoffset="5" position="0" positionbase="right" postgap="0" pregap="0" type="number">
-    <title anchor="0 0" angle="90" position="40 0">Mean Dew Point (F)</title>
-    <labels anchor="-1 0" angle="0" position="5 0" spacing="100000 20000 10000 5000 1000 500 200 100 50 20 10 5 2 1 0.5 0.05" start="0"/>
-  </verticalaxis>
-  <plot>
-    <legend label="Mean Temperature"/>
-    <horizontalaxis ref="haxis">
-      <variable ref="time"/>
-    </horizontalaxis>
-    <verticalaxis ref="temp">
-      <variable ref="temp"/>
-    </verticalaxis>
-    <renderer type="line">
-      <option name="linecolor" value="orange"/>
-      <option name="linewidth" value="2"/>
-      <option name="missingvalue" value="-9999.9999"/>
-      <option name="missingop" value="EQ"/>
-    </renderer>
-  </plot>
-  <plot>
-    <legend label="Mean Dew Point"/>
-    <horizontalaxis ref="haxis">
-      <variable ref="time"/>
-    </horizontalaxis>
-    <verticalaxis ref="dewp">
-      <variable ref="dewp"/>
-    </verticalaxis>
-    <renderer type="line">
-      <option name="linecolor" value="magenta"/>
-      <option name="linewidth" value="2"/>
-      <option name="missingvalue" value="-9999.9999"/>
-      <option name="missingop" value="EQ"/>
-    </renderer>
-  </plot>
-  <data>
-    <variables>
-      <variable id="time" type="datetime"/>
-      <variable id="temp"/>
-      <variable id="dewp"/>
-    </variables>
-    <values>
+<div class="multigraph" data-src="graphs/{{page.mugl}}"></div>
+
+<span class="example-download">Download mugl: <a href="graphs/{{page.mugl}}">{{page.mugl}}</a></span>
+<span class="example-open"><a href="/tester/?muglurl=/examples/graphs/{{page.mugl}}">Open in Tester</a></span>
+
+<pre class="example prettyprint">
+&lt;mugl&gt;
+  &lt;window height="500" margin="2" padding="5" width="600"/&gt;
+  &lt;plotarea marginbottom="100" marginleft="50" marginright="50" margintop="70"/&gt;
+  &lt;horizontalaxis id="haxis" max="20090601000036" min="20090101000036" type="datetime"&gt;
+    &lt;labels anchor="1 0" angle="90" format="%Y %M %D %H:%i" spacing="10Y 5Y 1Y 4M 1M 7D 3D 1D 12H 6H 4H 2H 1H"/&gt;
+    &lt;title position="0 -80"&gt;Date/Time&lt;/title&gt;
+  &lt;/horizontalaxis&gt;
+  &lt;legend anchor="0 1" base="0 1" border="0" bordercolor="0x000000" color="0xFFFFFF" opacity="0.8" position="0 40" rows="2" visible="true"&gt;
+    &lt;icon border="0" height="20" width="20"/&gt;
+  &lt;/legend&gt;
+  &lt;verticalaxis id="temp" max="100.0" maxoffset="10" min="0.0" minoffset="5" position="0" postgap="0" pregap="0" type="number"&gt;
+    &lt;title anchor="0 0" angle="90" position="-40 0"&gt;Mean Temperature (F)&lt;/title&gt;
+    &lt;labels anchor="1 0" angle="0" position="-5 0" spacing="100000 20000 10000 5000 1000 500 200 100 50 20 10 5 2 1 0.5 0.05" start="0"/&gt;
+  &lt;/verticalaxis&gt;
+  &lt;verticalaxis id="dewp" max="100.0" maxoffset="10" min="0.0" minoffset="5" position="0" positionbase="right" postgap="0" pregap="0" type="number"&gt;
+    &lt;title anchor="0 0" angle="90" position="40 0"&gt;Mean Dew Point (F)&lt;/title&gt;
+    &lt;labels anchor="-1 0" angle="0" position="5 0" spacing="100000 20000 10000 5000 1000 500 200 100 50 20 10 5 2 1 0.5 0.05" start="0"/&gt;
+  &lt;/verticalaxis&gt;
+  &lt;plot&gt;
+    &lt;legend label="Mean Temperature"/&gt;
+    &lt;horizontalaxis ref="haxis"&gt;
+      &lt;variable ref="time"/&gt;
+    &lt;/horizontalaxis&gt;
+    &lt;verticalaxis ref="temp"&gt;
+      &lt;variable ref="temp"/&gt;
+    &lt;/verticalaxis&gt;
+    &lt;renderer type="line"&gt;
+      &lt;option name="linecolor" value="orange"/&gt;
+      &lt;option name="linewidth" value="2"/&gt;
+      &lt;option name="missingvalue" value="-9999.9999"/&gt;
+      &lt;option name="missingop" value="EQ"/&gt;
+    &lt;/renderer&gt;
+  &lt;/plot&gt;
+  &lt;plot&gt;
+    &lt;legend label="Mean Dew Point"/&gt;
+    &lt;horizontalaxis ref="haxis"&gt;
+      &lt;variable ref="time"/&gt;
+    &lt;/horizontalaxis&gt;
+    &lt;verticalaxis ref="dewp"&gt;
+      &lt;variable ref="dewp"/&gt;
+    &lt;/verticalaxis&gt;
+    &lt;renderer type="line"&gt;
+      &lt;option name="linecolor" value="magenta"/&gt;
+      &lt;option name="linewidth" value="2"/&gt;
+      &lt;option name="missingvalue" value="-9999.9999"/&gt;
+      &lt;option name="missingop" value="EQ"/&gt;
+    &lt;/renderer&gt;
+  &lt;/plot&gt;
+  &lt;data&gt;
+    &lt;variables&gt;
+      &lt;variable id="time" type="datetime"/&gt;
+      &lt;variable id="temp"/&gt;
+      &lt;variable id="dewp"/&gt;
+    &lt;/variables&gt;
+    &lt;values&gt;
       20080101000000, 41.1, 24.3 
       20080102000000, 23.6, 8.9 
       20080103000000, 20.8, 8.7 
@@ -954,9 +951,7 @@ autogen: true
       20100529000000, 70.2, 63.4 
       20100530000000, 73.6, 67.0 
       20100531000000, 73.1, 66.4
-    </values>
-  </data>
-</mugl>
-
-{% endhighlight %}
-</div>
+    &lt;/values&gt;
+  &lt;/data&gt;
+&lt;/mugl&gt;
+</pre>
