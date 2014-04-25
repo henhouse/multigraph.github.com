@@ -1,65 +1,62 @@
 ---
-siteroot: ..
-layout: example
-menu-examples: selected
-title: Multigraph - Examples - periodic-temp.xml
+title: Examples - periodic-temp.xml
+examples: selected
 example-periodic-temp: selected
 mugl: periodic-temp.xml
-autogen: true
+layout: example
 ---
-<div class="title">{{page.mugl}}</div>
-<div class="multigraph" data-src="{{ page.siteroot }}/lib/js-multigraph/spec/mugl/{{page.mugl}}"></div>
 
-<table width="100%"><tr>
-<td align="left">Download mugl: <a href="../lib/js-multigraph/spec/mugl/periodic-temp.xml">periodic-temp.xml</a></td>
-<td align="right"><a href="../tester/?muglurl=../lib/js-multigraph/spec/mugl/periodic-temp.xml">Open in Tester</a></td>
-</tr></table>
+<h3 class="example-title">{{page.mugl}}</h3>
 
-<div class="mugl">
-{% highlight xml %}
-<mugl>
-  <plotarea margintop="18"/>
-  <legend rows="1" border="0" opacity="0.0" base="0 1" anchor="0 1" position="0 25">
-    <icon border="0" width="30" height="30"/>
-  </legend>
-  <horizontalaxis id="date"
+<div class="multigraph" data-src="graphs/{{page.mugl}}"></div>
+
+<span class="example-download">Download mugl: <a href="graphs/{{page.mugl}}">{{page.mugl}}</a></span>
+<span class="example-open"><a href="/tester/?muglurl=/examples/graphs/{{page.mugl}}">Open in Tester</a></span>
+
+<pre class="example prettyprint">
+&lt;mugl&gt;
+  &lt;plotarea margintop="18"/&gt;
+  &lt;legend rows="1" border="0" opacity="0.0" base="0 1" anchor="0 1" position="0 25"&gt;
+    &lt;icon border="0" width="30" height="30"/&gt;
+  &lt;/legend&gt;
+  &lt;horizontalaxis id="date"
                   type="datetime"
                   min="20100101"
-                  max="20110101">
-    <labels spacing="100Y 50Y 20Y 10Y 5Y 1Y 6M 3M 2M 1M 7D 1D" format="%n %d%L%Y"/>
-    <title/>
-    <grid/>
-  </horizontalaxis>
-  <verticalaxis id="temp"
+                  max="20110101"&gt;
+    &lt;labels spacing="100Y 50Y 20Y 10Y 5Y 1Y 6M 3M 2M 1M 7D 1D" format="%n %d%L%Y"/&gt;
+    &lt;title/&gt;
+    &lt;grid/&gt;
+  &lt;/horizontalaxis&gt;
+  &lt;verticalaxis id="temp"
                 min="55"
-                max="110">
-    <title anchor="0 -1" angle="90" position="-25 0">Degrees (F)</title>
-    <grid/>
-    <labels spacing="100 50 20 10 5 1 0.5 0.2 0.1" format="%f"/>
-  </verticalaxis>
+                max="110"&gt;
+    &lt;title anchor="0 -1" angle="90" position="-25 0"&gt;Degrees (F)&lt;/title&gt;
+    &lt;grid/&gt;
+    &lt;labels spacing="100 50 20 10 5 1 0.5 0.2 0.1" format="%f"/&gt;
+  &lt;/verticalaxis&gt;
 
-  <plot>
-    <legend label="Normal Temperature"/>
-    <horizontalaxis ref="date">
-      <variable ref="date"/>
-    </horizontalaxis>
-    <verticalaxis ref="temp">
-      <variable ref="normal_maxt"/>
-    </verticalaxis>
-    <renderer type="line">
-      <option name="linecolor" value="0x0000ff"/>
-      <option name="linewidth" value="2"/>
-    </renderer>
-  </plot>
+  &lt;plot&gt;
+    &lt;legend label="Normal Temperature"/&gt;
+    &lt;horizontalaxis ref="date"&gt;
+      &lt;variable ref="date"/&gt;
+    &lt;/horizontalaxis&gt;
+    &lt;verticalaxis ref="temp"&gt;
+      &lt;variable ref="normal_maxt"/&gt;
+    &lt;/verticalaxis&gt;
+    &lt;renderer type="line"&gt;
+      &lt;option name="linecolor" value="0x0000ff"/&gt;
+      &lt;option name="linewidth" value="2"/&gt;
+    &lt;/renderer&gt;
+  &lt;/plot&gt;
 
 
-  <data>
-    <variables missingvalue="-9000" missingop="le">
-      <variable column="0" id="date" type="datetime"/>
-      <variable column="1" id="normal_maxt"/>
-    </variables>
-    <repeat period="1Y"/>
-    <values>
+  &lt;data&gt;
+    &lt;variables missingvalue="-9000" missingop="le"&gt;
+      &lt;variable column="0" id="date" type="datetime"/&gt;
+      &lt;variable column="1" id="normal_maxt"/&gt;
+    &lt;/variables&gt;
+    &lt;repeat period="1Y"/&gt;
+    &lt;values&gt;
 20100101,65.3
 20100102,65.4
 20100103,65.5
@@ -426,10 +423,7 @@ autogen: true
 20101229,65.1
 20101230,65.2
 20101231,65.3
-    </values>
-  </data>
-</mugl>
-
-
-{% endhighlight %}
-</div>
+    &lt;/values&gt;
+  &lt;/data&gt;
+&lt;/mugl&gt;
+</pre>

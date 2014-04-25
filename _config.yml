@@ -1,4 +1,4 @@
-auto: false
+name: Multigraph
+markdown: html
+markdown: rdiscount
 pygments: true
-redcloth:
-  hard_breaks: false

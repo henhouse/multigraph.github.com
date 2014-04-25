@@ -1,68 +1,65 @@
 ---
-siteroot: ..
-layout: example
-menu-examples: selected
-title: Multigraph - Examples - dashboard-temp.xml
+title: Examples - dashboard-temp.xml
+examples: selected
 example-dashboard-temp: selected
 mugl: dashboard-temp.xml
-autogen: true
+layout: example
 ---
-<div class="title">{{page.mugl}}</div>
-<div class="multigraph" data-src="{{ page.siteroot }}/lib/js-multigraph/spec/mugl/{{page.mugl}}"></div>
 
-<table width="100%"><tr>
-<td align="left">Download mugl: <a href="../lib/js-multigraph/spec/mugl/dashboard-temp.xml">dashboard-temp.xml</a></td>
-<td align="right"><a href="../tester/?muglurl=../lib/js-multigraph/spec/mugl/dashboard-temp.xml">Open in Tester</a></td>
-</tr></table>
+<h3 class="example-title">{{page.mugl}}</h3>
 
-<div class="mugl">
-{% highlight xml %}
-<mugl>
-  <window border="0" margin="0" padding="0"/>
-  <legend visible="false"/>
-  <plotarea marginbottom="50" marginleft="60" marginright="25" margintop="10"/>
+<div class="multigraph" data-src="graphs/{{page.mugl}}"></div>
 
-  <horizontalaxis highlightstyle="labels" id="yearaxis" linewidth="0" max="2020" min="1870" tickmax="0" tickmin="-4" type="datetime">
-    <labels>
-      <label format="%Y" spacing="200Y 100Y 50Y 20Y 10Y 5Y 2Y 1Y"/>
-      <label format="%n %y" spacing="6M 3M 2M 1M"/>
-    </labels>
-    <grid/>
-    <title anchor="0 5" position="-10 0">Year</title>
-  </horizontalaxis>
+<span class="example-download">Download mugl: <a href="graphs/{{page.mugl}}">{{page.mugl}}</a></span>
+<span class="example-open"><a href="/tester/?muglurl=/examples/graphs/{{page.mugl}}">Open in Tester</a></span>
 
-  <verticalaxis highlightstyle="labels" id="tempaxis" linewidth="0" max="1" min="-1" tickmax="0" tickmin="-4" type="number">
-    <labels densityfactor="0.5" format="%.2f" spacing="50 20 10 5 2 1 0.5 0.25 0.1 0.05 0.02 0.01"/>
-    <grid/>
-    <title anchor="0 -4" angle="90" position="-20 -22">Global Temperature Anomaly (C) compared to 1901-2000</title>
-  </verticalaxis>
+<pre class="example prettyprint">
+&lt;mugl&gt;
+  &lt;window border="0" margin="0" padding="0"/&gt;
+  &lt;legend visible="false"/&gt;
+  &lt;plotarea marginbottom="50" marginleft="60" marginright="25" margintop="10"/&gt;
 
-  <plot>
-    <horizontalaxis ref="yearaxis">
-      <variable ref="year"/>
-    </horizontalaxis>
-    <verticalaxis ref="tempaxis">
-      <variable ref="temp"/>
-    </verticalaxis>
-    <renderer type="bar">
-      <option min="0" name="fillcolor" value="0xCD6760"/>
-      <option max="0" name="fillcolor" value="0x6194C8"/>
-      <option name="barwidth" value="1Y"/>
-      <option name="baroffset" value="0"/>
-      <option name="barbase" value="0"/>
-    </renderer>
-    <datatips format="{0}: {1}">
-      <variable format="'%y"/>
-      <variable format="%.1f"/>
-    </datatips>
-  </plot>
+  &lt;horizontalaxis highlightstyle="labels" id="yearaxis" linewidth="0" max="2020" min="1870" tickmax="0" tickmin="-4" type="datetime"&gt;
+    &lt;labels&gt;
+      &lt;label format="%Y" spacing="200Y 100Y 50Y 20Y 10Y 5Y 2Y 1Y"/&gt;
+      &lt;label format="%n %y" spacing="6M 3M 2M 1M"/&gt;
+    &lt;/labels&gt;
+    &lt;grid/&gt;
+    &lt;title anchor="0 5" position="-10 0"&gt;Year&lt;/title&gt;
+  &lt;/horizontalaxis&gt;
 
-  <data>
-    <variables>
-      <variable column="0" id="year" type="datetime"/>
-      <variable column="1" id="temp"/>
-    </variables>
-    <values>
+  &lt;verticalaxis highlightstyle="labels" id="tempaxis" linewidth="0" max="1" min="-1" tickmax="0" tickmin="-4" type="number"&gt;
+    &lt;labels densityfactor="0.5" format="%.2f" spacing="50 20 10 5 2 1 0.5 0.25 0.1 0.05 0.02 0.01"/&gt;
+    &lt;grid/&gt;
+    &lt;title anchor="0 -4" angle="90" position="-20 -22"&gt;Global Temperature Anomaly (C) compared to 1901-2000&lt;/title&gt;
+  &lt;/verticalaxis&gt;
+
+  &lt;plot&gt;
+    &lt;horizontalaxis ref="yearaxis"&gt;
+      &lt;variable ref="year"/&gt;
+    &lt;/horizontalaxis&gt;
+    &lt;verticalaxis ref="tempaxis"&gt;
+      &lt;variable ref="temp"/&gt;
+    &lt;/verticalaxis&gt;
+    &lt;renderer type="bar"&gt;
+      &lt;option min="0" name="fillcolor" value="0xCD6760"/&gt;
+      &lt;option max="0" name="fillcolor" value="0x6194C8"/&gt;
+      &lt;option name="barwidth" value="1Y"/&gt;
+      &lt;option name="baroffset" value="0"/&gt;
+      &lt;option name="barbase" value="0"/&gt;
+    &lt;/renderer&gt;
+    &lt;datatips format="{0}: {1}"&gt;
+      &lt;variable format="'%y"/&gt;
+      &lt;variable format="%.1f"/&gt;
+    &lt;/datatips&gt;
+  &lt;/plot&gt;
+
+  &lt;data&gt;
+    &lt;variables&gt;
+      &lt;variable column="0" id="year" type="datetime"/&gt;
+      &lt;variable column="1" id="temp"/&gt;
+    &lt;/variables&gt;
+    &lt;values&gt;
       1880,-0.1637
       1881,-0.1114
       1882,-0.1269
@@ -195,9 +192,7 @@ autogen: true
       2009,0.5928
       2010,0.6558
       2011,0.5341
-    </values>
-  </data>
-</mugl>
-
-{% endhighlight %}
-</div>
+    &lt;/values&gt;
+  &lt;/data&gt;
+&lt;/mugl&gt;
+</pre>

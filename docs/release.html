@@ -1,0 +1,170 @@
+---
+title: Releasing Multigraph
+docs: selected
+---
+
+{% include header.html %}
+{% include content.html %}
+
+    <h2>Creating a Release of Multigraph</h2>
+    <ol>
+        <li>
+        <p>Be absolutely sure that you're ready to create a release; deleting a release is difficult. Before you start, be sure to:</p>
+
+        <ul>
+            <li>make sure your copy of the js-multigraph repo is on the master branch</li>
+            <li>make sure your copy of the js-multigraph repo is up to date with the latest commits, or, if you want to create a release that is not at the head of the master branch, that it is positioned at the commit where you want to create the release</li>
+            <li>make sure that any submodules (jermaine, error-display) are present in your js-multigraph and positioned at the correct commit for the release</li>
+            <li>run all jasmine tests</li>
+            <li>view all graphics tests</li>
+        </ul>
+        </li>
+
+        <li>
+            <p>Do all of the following steps at the same time; don't start the release process and leave it before you have finished all these steps.</p>
+        </li>
+
+        <li>
+            <p>Decide on a version number for the release; this is usually done by incrementing the minor verison number (the part after the decimal) by one. You can view a list of all the release tags in the repository by running the "tags" script in the top level of the js-multigraph project.</p>
+
+            <pre> cd js-multigraph
+ ./tags</pre>
+        </li>
+
+        <li>
+            <p>Edit the file ReleaseNotes.md in the top level directory of the js-multigraph project, to add whatever notes are pertinent to the new release. Be sure to include mention of the specific version number. Commit the change.</p>
+
+            <pre> emacs ReleaseNotes.md
+ git add ReleaseNotes.md
+ git commit -m 'updates ReleaseNotes.md in preparation for release 4.1'</pre>
+        </li>
+
+        <li>
+            <p>Run 'ant minify' to rebuild the built versions of Multigraph in the project; commit the results.</p>
+
+            <pre> ant minify
+ git add build
+ git commit -m 'runs ant minify'</pre>
+        </li>
+
+        <li>
+            <p>Tag the release with the tag 'vM.N', where M.N is the version number, and with a log message using the -m option. For example:</p>
+
+            <pre> git tag -a v4.1 -m 'Release 4.1'</pre>
+        </li>
+
+        <li>
+            <p>Push the master branch and the new tag to github</p>
+
+            <pre> git push origin master
+ git push origin v4.1</pre>
+        </li>
+
+        <li>
+            <p>In the multigraph.github.io repo, run the <code>update-releases</code> script</p>
+
+            <pre> cd multigraph-github.io
+ ./update-releases</pre>
+
+            <p>This script updates the files in the 'download' directory by creating new ones called multigraph-4.1.js and multigraph-min-4.1.js, and copies of them called 'multigraph.js' and 'multigraph-min.js'. It also creates downloads/ReleaseNotes-4.1.md by copying ReleaseNotes.md file from the v4.1 tag, and updates various pages on the site with links to these files.</p>
+
+            <p>Note that <code>update-releases</code> takes care of updating the lib/js-multigraph submodule of multigraph.github.io, including leaving it in a state with the latest release checked out.</p>
+        </li>
+
+        <li>
+            <p>Preview the web site by running jekyll locally. Be sure to especially check the downloads page.</p>
+
+            <pre> jekyll --server
+ browse to http://0.0.0.0:4000</pre>
+        </li>
+
+        <li>
+            <p>Commit the changes and push to github</p>
+
+            <pre> git add .
+ git commit -m 'updates to js-multigraph creating release v4.1'
+ git push</pre>
+        </li>
+    </ol>
+
+    <h3>Deleting a Release of Multigraph</h3>
+
+    <p>In general you should NOT delete a release, especially if it has been out long enough for anyone to have downloaded it. If you've decided that a particular release of Multigraph is bad for some reason and needs to be removed from the web so that no one will download it any more, you can flag it as bad.</p>
+
+    <h3>Flagging a Release as Bad</h3>
+
+    <p>This process keeps the release tag in the repository, so there is still a record of it, but removes mention of that release from the web site, and prevents the <code>update-releases</code> script from ever including it again.</p>
+
+    <ol>
+        <li>
+            <p>In the js-multigraph repo, create an additional tag for the release, whose name is the release tag followed by the suffix "-bad", and push the new tag to github.</p>
+
+    <pre> cd js-multigraph
+ git tag -a -m 'tags v4.1 as bad' v4.1-bad v4.1 
+ git push origin v4.1-bad</pre>
+
+            <p>Note that it's important to use the full release tag name; for example, if the bad tag is "v4.1", you should create a tag named "v4.1-bad", not "4.1-bad".</p>
+        </li>
+
+        <li>
+            <p>In the multigraph.github.io repo, delete the download files associated with the bad release, and re-run the <code>update-releases</code> script.</p>
+
+            <pre> cd multigraph-github.io
+ git rm download/*-4.1.*
+ ./update-releases</pre>
+        </li>
+
+        <li>
+            <p>Preview the web site by running jekyll locally. Be sure to especially check the downloads page.</p>
+
+            <pre> jekyll --server
+ browse to http://0.0.0.0:4000</pre>
+        </li>
+
+        <li>
+            <p>Commit the changes and push to github</p>
+
+            <pre> git add .
+ git commit -m 'updates to js-multigraph marking release v4.1 as bad'
+ git push</pre>
+        </li>
+    </ol>
+
+    <h3>Completely Removing a Release</h3>
+
+    <p>If you really want to completely remove a release so that there is no record of it ever having existed, you can do the following. Only do this if you are sure that no one has updated their local copy of the js-multigraph repository since the release was created; deleting a release after someone has pulled the tag into their local copy will probably cause problems. Really, the only situation in which you should do this is if you are testing the release process itself and you are sure that no one else has been using the js-multigraph repo on github since you created the release that you're deleting.</p>
+
+    <ol>
+        <li>
+            <p>Delete the tag from your js-multigraph project, and push the deletion to github.</p>
+
+            <pre> cd js-multigraph
+ git tag -d v4.1
+ git push origin :refs/tags/v4.1</pre>
+        </li>
+
+        <li>
+            <p>In the multigraph.github.io repo, delete the download files associated with the deleted release, and re-run the <code>update-releases</code> script.</p>
+
+            <pre> cd multigraph-github.io
+ git rm download/*-4.1.*
+ ./update-releases</pre>
+        </li>
+
+        <li>
+            <p>Preview the web site by running jekyll locally. Be sure to especially check the downloads page.</p>
+
+            <pre> jekyll --server
+ browse to http://0.0.0.0:4000</pre>
+        </li>
+
+        <li>
+            <p>Commit the changes and push to github</p>
+
+            <pre> git add .
+ git commit -m 'updates to js-multigraph deleting release v4.1'
+ git push</pre>
+        </li>
+    </ol>
+
+{% include end.html %}

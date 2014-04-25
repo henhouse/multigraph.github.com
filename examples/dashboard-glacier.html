@@ -1,71 +1,68 @@
 ---
-siteroot: ..
-layout: example
-menu-examples: selected
-title: Multigraph - Examples - dashboard-glacier.xml
+title: Examples - dashboard-glacier.xml
+examples: selected
 example-dashboard-glacier: selected
 mugl: dashboard-glacier.xml
-autogen: true
+layout: example
 ---
-<div class="title">{{page.mugl}}</div>
-<div class="multigraph" data-src="{{ page.siteroot }}/lib/js-multigraph/spec/mugl/{{page.mugl}}"></div>
 
-<table width="100%"><tr>
-<td align="left">Download mugl: <a href="../lib/js-multigraph/spec/mugl/dashboard-glacier.xml">dashboard-glacier.xml</a></td>
-<td align="right"><a href="../tester/?muglurl=../lib/js-multigraph/spec/mugl/dashboard-glacier.xml">Open in Tester</a></td>
-</tr></table>
+<h3 class="example-title">{{page.mugl}}</h3>
 
-<div class="mugl">
-{% highlight xml %}
-<mugl>
-  <background color="0xFFFFFF"/>
-  <window border="0" margin="0" padding="0"/>
-  <legend visible="false"/>
-  <plotarea marginbottom="50" marginleft="55" marginright="25" margintop="10"/>
+<div class="multigraph" data-src="graphs/{{page.mugl}}"></div>
+
+<span class="example-download">Download mugl: <a href="graphs/{{page.mugl}}">{{page.mugl}}</a></span>
+<span class="example-open"><a href="/tester/?muglurl=/examples/graphs/{{page.mugl}}">Open in Tester</a></span>
+
+<pre class="example prettyprint">
+&lt;mugl&gt;
+  &lt;background color="0xFFFFFF"/&gt;
+  &lt;window border="0" margin="0" padding="0"/&gt;
+  &lt;legend visible="false"/&gt;
+  &lt;plotarea marginbottom="50" marginleft="55" marginright="25" margintop="10"/&gt;
   
-  <horizontalaxis highlightstyle="labels" id="datetime" linewidth="0" max="2010" min="1975" tickmax="0" tickmin="-4" type="datetime">
-    <labels>
-      <label format="%Y" spacing="200Y 100Y 50Y 20Y 10Y 5Y 2Y 1Y"/>
+  &lt;horizontalaxis highlightstyle="labels" id="datetime" linewidth="0" max="2010" min="1975" tickmax="0" tickmin="-4" type="datetime"&gt;
+    &lt;labels&gt;
+      &lt;label format="%Y" spacing="200Y 100Y 50Y 20Y 10Y 5Y 2Y 1Y"/&gt;
       
-    </labels>
-    <grid/>
-    <title anchor="0 5" position="-10 0">Year</title>
-  </horizontalaxis>
+    &lt;/labels&gt;
+    &lt;grid/&gt;
+    &lt;title anchor="0 5" position="-10 0"&gt;Year&lt;/title&gt;
+  &lt;/horizontalaxis&gt;
 
-  <verticalaxis highlightstyle="labels" id="col1" linewidth="0" max="5" min="-15" tickmax="0" tickmin="-4" type="number">
-    <labels densityfactor="1.5" format="%.2f" spacing="100 50 20 10 5 2 1 0.5 0.3 0.24 0.2 0.1 0.05 0.02 0.01"/>
-    <grid/>		
-    <title anchor="0 -4" angle="90" position="-15 0">Cumulative Glacier Mass Balance (meters of water equivalent)</title>
-    <pan max="50" min="-50"/>
-  </verticalaxis>
+  &lt;verticalaxis highlightstyle="labels" id="col1" linewidth="0" max="5" min="-15" tickmax="0" tickmin="-4" type="number"&gt;
+    &lt;labels densityfactor="1.5" format="%.2f" spacing="100 50 20 10 5 2 1 0.5 0.3 0.24 0.2 0.1 0.05 0.02 0.01"/&gt;
+    &lt;grid/&gt;		
+    &lt;title anchor="0 -4" angle="90" position="-15 0"&gt;Cumulative Glacier Mass Balance (meters of water equivalent)&lt;/title&gt;
+    &lt;pan max="50" min="-50"/&gt;
+  &lt;/verticalaxis&gt;
 
-  <plot>
-    <horizontalaxis ref="datetime">
-      <variable ref="datetime"/>
-    </horizontalaxis>
+  &lt;plot&gt;
+    &lt;horizontalaxis ref="datetime"&gt;
+      &lt;variable ref="datetime"/&gt;
+    &lt;/horizontalaxis&gt;
     
-    <verticalaxis ref="col1">
-      <variable ref="col1"/>
-    </verticalaxis>
-    <legend visible="false"/>
-    <renderer type="fill">
+    &lt;verticalaxis ref="col1"&gt;
+      &lt;variable ref="col1"/&gt;
+    &lt;/verticalaxis&gt;
+    &lt;legend visible="false"/&gt;
+    &lt;renderer type="fill"&gt;
 
-      <option name="fillcolor" value="0x5bc69a"/>
-      <option name="fillopacity" value="0.2"/>
-    </renderer>
-    <datatips format="{0}: {1}">
-      <variable format="%Y"/>
-      <variable format="%.2f"/>
-    </datatips>
-  </plot>
+      &lt;option name="fillcolor" value="0x5bc69a"/&gt;
+      &lt;option name="fillopacity" value="0.2"/&gt;
+    &lt;/renderer&gt;
+    &lt;datatips format="{0}: {1}"&gt;
+      &lt;variable format="%Y"/&gt;
+      &lt;variable format="%.2f"/&gt;
+    &lt;/datatips&gt;
+  &lt;/plot&gt;
 
 
-  <data>
-    <variables>
-      <variable column="0" id="datetime" type="datetime"/>
-      <variable column="1" id="col1"/>
-    </variables>
-    <values>1979,0
+  &lt;data&gt;
+    &lt;variables&gt;
+      &lt;variable column="0" id="datetime" type="datetime"/&gt;
+      &lt;variable column="1" id="col1"/&gt;
+    &lt;/variables&gt;
+    &lt;values&gt;1979,0
     1980,-0.1600
     1981,-0.2200
     1982,-0.7000
@@ -95,9 +92,7 @@ autogen: true
     2006,-10.5050
     2007,-11.1780
     2008,-11.5670
-    </values>
-  </data>
-</mugl>
-
-{% endhighlight %}
-</div>
+    &lt;/values&gt;
+  &lt;/data&gt;
+&lt;/mugl&gt;
+</pre>

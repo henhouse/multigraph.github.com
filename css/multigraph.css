@@ -1,0 +1,250 @@
+/*
+ * This file overrides several Bootstrap's styles
+ * or provides custom ones for various pages.
+ * Use this file. DO NOT EDIT the bootstrap files!
+ */
+
+
+/* HOME PAGE */
+.jumbotron {
+    padding-top: 25px;
+    padding-bottom: 25px;
+    background: url("/images/jumbotron-bg.png") #fafafa;
+}
+.jumbotron p.lead {
+    text-indent: 0.5cm;
+}
+.row h1, .row h2, .row p {
+    text-align: center;
+}
+.list-group {
+    width: 50%;
+    float: left;
+    padding: 0 2px 0 2px;
+}
+.panning:hover {
+    color: #d12913;
+}
+.zooming:hover {
+    color: #0a82d1;
+}
+.integrating:hover {
+    color: #8d07e0;
+}
+p.get-started {
+    text-align: center;
+    background: #f8f8f8;
+    border: 1px #e2e2e2 dashed;
+    padding: 5px;
+}
+.fa-github-square {
+    font-size: 15pt;
+}
+.fa-download {
+    font-size: 10pt;
+    padding-right: 1px;
+}
+
+
+/* UNIVERSAL STYLES */
+.content {
+    margin-top: 75px;
+}
+footer {
+    padding-top: 30px;
+    text-align: center;
+    font-size: 8pt;
+    color: #bebcbc;
+    clear: both;
+}
+footer a.icon {
+    color: #dedede;
+}
+footer a:hover.icon {
+    color: #0a82d1;
+}
+footer a:active.icon {
+    color: #056aad;
+}
+footer a {
+    color: #bebcbc;
+}
+footer a:hover {
+    color: #919293;
+    text-decoration: none;
+}
+footer a:active {
+    color: #6d6d6d;
+}
+footer abbr[title] {
+    border-bottom-width: 0;
+}
+pre.prettyprint {
+    padding: 10px;
+    border: 1px solid #cccccc;
+}
+
+
+/* CREDITS PAGE */
+.credit-logo  {
+    padding-right: 15px;
+    padding-left: 15px;
+    float: left;
+}
+
+
+/* DOWNLOAD PAGE */
+table.release-table {
+    margin-left: 10px;
+    width: auto;
+    border-collapse: collapse;
+}
+table.release-table td, table.release-table th {
+    padding: 6px 10px 6px 10px;
+    border: 1px solid gray;
+}
+table.release-table td.notes {
+    text-align: center;
+}
+table.release-table tr:nth-of-type(even) {
+    background: #ededed;
+}
+
+
+/* EXAMPLES PAGE */
+.example-nav {
+    font-size: 9pt;
+    float: left;
+    width: 20%;
+}
+.example-nav li.active a {
+    color: #000;
+    font-weight: bold;
+}
+.example-content {
+    font-size: 9pt;
+    text-align: center;
+}
+.example-content .multigraph {
+    width: 80%;
+    height: 400px;
+    float: left;
+}
+.example-download {
+    float: left;
+}
+.example-open {
+    float: right;
+}
+pre.example {
+    overflow: auto;
+    width: 80%;
+    height: 500px;
+    text-align: left;
+}
+h3.example-title {
+    text-align: center;
+}
+
+
+/* TESTER PAGE */
+.nav-tabs {
+    border-bottom: 0;
+}
+.multigraph-tester-content {
+    border: 1px solid #dddddd;
+    width: 100%;
+    height: 550px;
+    position: relative;
+	color: #333;
+}
+.multigraph-tester-content.nav li.active {
+    font-weight: bold;
+}
+.multigraph-tester-content .graph-message {
+    width: 500px;
+    text-align: center;
+    height: auto;
+    margin-top: 150px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.js-multigraph-tester-options {
+    left: 0px;
+    width: auto;
+}
+.js-multigraph-tester-option {
+    float: left;
+    margin: 3px 0px;
+    border-left: 1px solid rgba(192, 192, 192, 0.7);
+    padding: 0px 4px;
+}
+.js-multigraph-tester-option input {
+    border: 1px solid #cccccc;
+}
+.js-multigraph-tester-option:first-child {
+    border-left: none;
+}
+.js-multigraph-tester-textarea {
+    position: relative;
+    width: 100%;
+    height: 505px;
+    border: 0;
+    border-top: 1px solid #cccccc;
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+}
+.js-multigraph-tester-textarea:focus, .js-multigraph-tester-option input:focus {
+  border-color: #66afe9;
+  outline: 0;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);
+}
+.form-control {
+    display: inline;
+    width: auto;
+}
+.multigraph {
+    width: 100%;
+}
+
+
+/* Elements to change when user is on smartphone */
+@media (max-width: 768px) {
+    .content {
+        margin-top: 60px;
+    }
+    .example-nav {
+        display: none;
+    }
+    .example-intro-text {
+        display: none;
+    }
+    .example-content .multigraph {
+        width: 100%;
+    }
+    pre.example {
+        width: 100%;
+        height: 300px;
+        font-size: 9pt;
+    }
+    .btn, button {
+        padding: 8px;
+    }
+    .dropdown-menu li a {
+        padding: 8px;
+    }
+    .dropdown-menu li.active a {
+        font-weight: bold;
+        background-color: inherit;
+    }
+    .credit-logo {
+        display: none;
+    }
+}
+
+/* Elements to change or disappear when NOT on smartphone */
+@media (min-width: 768px) {
+    .example-mobile-nav {
+        display: none;
+    }
+}

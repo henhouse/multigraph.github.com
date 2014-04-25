@@ -1,63 +1,60 @@
 ---
-siteroot: ..
-layout: example
-menu-examples: selected
-title: Multigraph - Examples - fotos-sst.xml
+title: Examples - fotos-sst.xml
+examples: selected
 example-fotos-sst: selected
 mugl: fotos-sst.xml
-autogen: true
+layout: example
 ---
-<div class="title">{{page.mugl}}</div>
-<div class="multigraph" data-src="{{ page.siteroot }}/lib/js-multigraph/spec/mugl/{{page.mugl}}"></div>
 
-<table width="100%"><tr>
-<td align="left">Download mugl: <a href="../lib/js-multigraph/spec/mugl/fotos-sst.xml">fotos-sst.xml</a></td>
-<td align="right"><a href="../tester/?muglurl=../lib/js-multigraph/spec/mugl/fotos-sst.xml">Open in Tester</a></td>
-</tr></table>
+<h3 class="example-title">{{page.mugl}}</h3>
 
-<div class="mugl">
-{% highlight xml %}
-<mugl>
-  <window height="400" margin="2" padding="5" width="625"/>
-  <background color="0xffffff">
-    <img anchor="0 0" base="0 0" frame="plot" src="NOAA100-transparent.png"/>
-  </background>
-  <plotarea marginbottom="75" marginleft="50" marginright="25" margintop="50"/>
-  <title fontsize="10">Sea Surface Temperature  Lon: -158.91, Lat: -17.05</title>
-  <horizontalaxis id="haxis" max="2008" min="2006" type="datetime">
-<!--    <labels anchor="1 0" angle="90" format="%Y %M %D" spacing="1M 1D"/> -->
-    <labels angle="90" format="%Y %M %D" spacing="10Y 5Y 1Y 6M 1M 1D"/>
-    <title position="0 -50">Date</title>
-    <zoom allowed="yes" max="5Y" min="1Y"/>
-    <pan max="20140101"/>
-  </horizontalaxis>
-  <legend anchor="0 1" base="0 1" border="1" bordercolor="0x000000" color="0xFFFFFF" opacity="0.8" position="0 25" rows="2">
-    <icon height="20" width="20"/>
-  </legend>
-  <verticalaxis id="Degrees C" max="40" maxoffset="10" min="-3" minoffset="5" position="0 0" postgap="0" pregap="0" type="number">
-    <title anchor="0 0" angle="90" position="-40 0">Degrees C</title>
-    <labels format="%.1f" spacing="100 50 20 10 5 2 1 0.5 0.2 0.1" anchor="1 0" angle="0" position="-5 0" start="0"/>
-  </verticalaxis>
-  <plot>
-    <horizontalaxis ref="haxis">
-      <variable ref="time"/>
-    </horizontalaxis>
-    <verticalaxis ref="Degrees C">
-      <variable ref="smc"/>
-    </verticalaxis>
-    <renderer type="line">
-      <option name="linecolor" value="black"/>
-      <option name="dotcolor" value="red"/>
-      <option name="dotsize" value="3"/>
-      <option name="linewidth" value="2"/>
-    </renderer>
-  </plot>
-  <data>
-    <variables>
-      <variable type="datetime" id="time" column="0"/>
-      <variable id="smc" column="1" missingvalue="-9999.0" missingop="eq"/>
-    </variables>
-    <values>
+<div class="multigraph" data-src="graphs/{{page.mugl}}"></div>
+
+<span class="example-download">Download mugl: <a href="graphs/{{page.mugl}}">{{page.mugl}}</a></span>
+<span class="example-open"><a href="/tester/?muglurl=/examples/graphs/{{page.mugl}}">Open in Tester</a></span>
+
+<pre class="example prettyprint">
+&lt;mugl&gt;
+  &lt;window height="400" margin="2" padding="5" width="625"/&gt;
+  &lt;background color="0xffffff"&gt;
+    &lt;img anchor="0 0" base="0 0" frame="plot" src="NOAA100-transparent.png"/&gt;
+  &lt;/background&gt;
+  &lt;plotarea marginbottom="75" marginleft="50" marginright="25" margintop="50"/&gt;
+  &lt;title fontsize="10"&gt;Sea Surface Temperature  Lon: -158.91, Lat: -17.05&lt;/title&gt;
+  &lt;horizontalaxis id="haxis" max="2008" min="2006" type="datetime"&gt;
+&lt;!--    &lt;labels anchor="1 0" angle="90" format="%Y %M %D" spacing="1M 1D"/&gt; --&gt;
+    &lt;labels angle="90" format="%Y %M %D" spacing="10Y 5Y 1Y 6M 1M 1D"/&gt;
+    &lt;title position="0 -50"&gt;Date&lt;/title&gt;
+    &lt;zoom allowed="yes" max="5Y" min="1Y"/&gt;
+    &lt;pan max="20140101"/&gt;
+  &lt;/horizontalaxis&gt;
+  &lt;legend anchor="0 1" base="0 1" border="1" bordercolor="0x000000" color="0xFFFFFF" opacity="0.8" position="0 25" rows="2"&gt;
+    &lt;icon height="20" width="20"/&gt;
+  &lt;/legend&gt;
+  &lt;verticalaxis id="Degrees C" max="40" maxoffset="10" min="-3" minoffset="5" position="0 0" postgap="0" pregap="0" type="number"&gt;
+    &lt;title anchor="0 0" angle="90" position="-40 0"&gt;Degrees C&lt;/title&gt;
+    &lt;labels format="%.1f" spacing="100 50 20 10 5 2 1 0.5 0.2 0.1" anchor="1 0" angle="0" position="-5 0" start="0"/&gt;
+  &lt;/verticalaxis&gt;
+  &lt;plot&gt;
+    &lt;horizontalaxis ref="haxis"&gt;
+      &lt;variable ref="time"/&gt;
+    &lt;/horizontalaxis&gt;
+    &lt;verticalaxis ref="Degrees C"&gt;
+      &lt;variable ref="smc"/&gt;
+    &lt;/verticalaxis&gt;
+    &lt;renderer type="line"&gt;
+      &lt;option name="linecolor" value="black"/&gt;
+      &lt;option name="dotcolor" value="red"/&gt;
+      &lt;option name="dotsize" value="3"/&gt;
+      &lt;option name="linewidth" value="2"/&gt;
+    &lt;/renderer&gt;
+  &lt;/plot&gt;
+  &lt;data&gt;
+    &lt;variables&gt;
+      &lt;variable type="datetime" id="time" column="0"/&gt;
+      &lt;variable id="smc" column="1" missingvalue="-9999.0" missingop="eq"/&gt;
+    &lt;/variables&gt;
+    &lt;values&gt;
       20000115000000 , 13.46
       20000215000000 , 14.21
       20000315000000 , 13.74
@@ -188,9 +185,7 @@ autogen: true
       20100815000000 , 9.809999
       20100915000000 , 9.67
       20101015000000 , 9.91
-    </values>
-  </data>
-</mugl>
-
-{% endhighlight %}
-</div>
+    &lt;/values&gt;
+  &lt;/data&gt;
+&lt;/mugl&gt;
+</pre>

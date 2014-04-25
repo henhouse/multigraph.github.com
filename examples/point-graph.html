@@ -1,56 +1,53 @@
 ---
-siteroot: ..
-layout: example
-menu-examples: selected
-title: Multigraph - Examples - point-graph.xml
+title: Examples - point-graph.xml
+examples: selected
 example-point-graph: selected
 mugl: point-graph.xml
-autogen: true
+layout: example
 ---
-<div class="title">{{page.mugl}}</div>
-<div class="multigraph" data-src="{{ page.siteroot }}/lib/js-multigraph/spec/mugl/{{page.mugl}}"></div>
 
-<table width="100%"><tr>
-<td align="left">Download mugl: <a href="../lib/js-multigraph/spec/mugl/point-graph.xml">point-graph.xml</a></td>
-<td align="right"><a href="../tester/?muglurl=../lib/js-multigraph/spec/mugl/point-graph.xml">Open in Tester</a></td>
-</tr></table>
+<h3 class="example-title">{{page.mugl}}</h3>
 
-<div class="mugl">
-{% highlight xml %}
-<mugl>
-  <background color="0xcccccc"/>
-    <window margin="0" padding="5" border="5" bordercolor="0x000000"/>
-    <plotarea margintop="10" marginleft="38" marginbottom="35" marginright="35"/>
-    <horizontalaxis id="x" min="1900" max="2000" length="1" base="-1,-1" anchor="-1" tickmin="-5" tickmax="5">
-      <labels format="%1d" start="0" spacing="1000 500 200 100 50 20 10 5 2 1" anchor="0,0" position="10,-10" angle="45" />
-    </horizontalaxis>
-    <verticalaxis   id="y"  min="-1" max="1" length="1">
-      <labels format="%.2f" start="0" spacing="100 20 10 5 2 1 0.5 0.2 0.1 0.05 0.02 0.01" anchor="0,0" position="0,0" angle="0" />
-    </verticalaxis>
-    <plot>
-      <horizontalaxis ref="x">
-        <variable ref="x"/>
-      </horizontalaxis>
-      <verticalaxis ref="y">
-        <variable ref="y"/>
-      </verticalaxis>
-      <renderer type="point">
-        <option name="linecolor" value="0xff00ff"/>
-        <option name="linewidth" value="3"/>
-        <option name="pointshape" value="circle"/>
-        <option name="pointoutlinewidth" value="2"/>
-        <option name="pointoutlinecolor" value="0x000000"/>
-        <option name="pointcolor" value="0xffffff"/>
-        <option name="pointopacity" value="1.0"/>
-        <option name="pointsize" value="3"/>
-      </renderer>
-    </plot>
-    <data>
-      <variables>
-        <variable column="0" id="x"/>
-        <variable column="1" id="y" missingvalue="-9000" missingop="le"/>
-      </variables>
-      <values>
+<div class="multigraph" data-src="graphs/{{page.mugl}}"></div>
+
+<span class="example-download">Download mugl: <a href="graphs/{{page.mugl}}">{{page.mugl}}</a></span>
+<span class="example-open"><a href="/tester/?muglurl=/examples/graphs/{{page.mugl}}">Open in Tester</a></span>
+
+<pre class="example prettyprint">
+&lt;mugl&gt;
+  &lt;background color="0xcccccc"/&gt;
+    &lt;window margin="0" padding="5" border="5" bordercolor="0x000000"/&gt;
+    &lt;plotarea margintop="10" marginleft="38" marginbottom="35" marginright="35"/&gt;
+    &lt;horizontalaxis id="x" min="1900" max="2000" length="1" base="-1,-1" anchor="-1" tickmin="-5" tickmax="5"&gt;
+      &lt;labels format="%1d" start="0" spacing="1000 500 200 100 50 20 10 5 2 1" anchor="0,0" position="10,-10" angle="45" /&gt;
+    &lt;/horizontalaxis&gt;
+    &lt;verticalaxis   id="y"  min="-1" max="1" length="1"&gt;
+      &lt;labels format="%.2f" start="0" spacing="100 20 10 5 2 1 0.5 0.2 0.1 0.05 0.02 0.01" anchor="0,0" position="0,0" angle="0" /&gt;
+    &lt;/verticalaxis&gt;
+    &lt;plot&gt;
+      &lt;horizontalaxis ref="x"&gt;
+        &lt;variable ref="x"/&gt;
+      &lt;/horizontalaxis&gt;
+      &lt;verticalaxis ref="y"&gt;
+        &lt;variable ref="y"/&gt;
+      &lt;/verticalaxis&gt;
+      &lt;renderer type="point"&gt;
+        &lt;option name="linecolor" value="0xff00ff"/&gt;
+        &lt;option name="linewidth" value="3"/&gt;
+        &lt;option name="pointshape" value="circle"/&gt;
+        &lt;option name="pointoutlinewidth" value="2"/&gt;
+        &lt;option name="pointoutlinecolor" value="0x000000"/&gt;
+        &lt;option name="pointcolor" value="0xffffff"/&gt;
+        &lt;option name="pointopacity" value="1.0"/&gt;
+        &lt;option name="pointsize" value="3"/&gt;
+      &lt;/renderer&gt;
+    &lt;/plot&gt;
+    &lt;data&gt;
+      &lt;variables&gt;
+        &lt;variable column="0" id="x"/&gt;
+        &lt;variable column="1" id="y" missingvalue="-9000" missingop="le"/&gt;
+      &lt;/variables&gt;
+      &lt;values&gt;
 	1900,-0.710738
 	1901,-0.709837
 	1902,-0.738885
@@ -152,9 +149,7 @@ autogen: true
 	1998,0.120801
 	1999,0.137926
 	2000,0.166130
-      </values>
-    </data>
-</mugl>
-
-{% endhighlight %}
-</div>
+      &lt;/values&gt;
+    &lt;/data&gt;
+&lt;/mugl&gt;
+</pre>

@@ -1,118 +1,115 @@
 ---
-siteroot: ..
-layout: example
-menu-examples: selected
-title: Multigraph - Examples - geomweather.xml
+title: Examples - geomweather.xml
+examples: selected
 example-geomweather: selected
 mugl: geomweather.xml
-autogen: true
+layout: example
 ---
-<div class="title">{{page.mugl}}</div>
-<div class="multigraph" data-src="{{ page.siteroot }}/lib/js-multigraph/spec/mugl/{{page.mugl}}"></div>
 
-<table width="100%"><tr>
-<td align="left">Download mugl: <a href="../lib/js-multigraph/spec/mugl/geomweather.xml">geomweather.xml</a></td>
-<td align="right"><a href="../tester/?muglurl=../lib/js-multigraph/spec/mugl/geomweather.xml">Open in Tester</a></td>
-</tr></table>
+<h3 class="example-title">{{page.mugl}}</h3>
 
-<div class="mugl">
-{% highlight xml %}
-<mugl>
-  <plotarea marginleft="40" marginright="40" marginbottom="45" margintop="35"/>
+<div class="multigraph" data-src="graphs/{{page.mugl}}"></div>
 
-  <legend  rows="1"  border="0"  anchor="0 1"  base="0 1" opacity="0.0" position="0 30">
-    <icon border="0" height="20"/>
-  </legend>
+<span class="example-download">Download mugl: <a href="graphs/{{page.mugl}}">{{page.mugl}}</a></span>
+<span class="example-open"><a href="/tester/?muglurl=/examples/graphs/{{page.mugl}}">Open in Tester</a></span>
 
-  <horizontalaxis id="datetime" type="datetime" min="2012111308" max="2012111508">
-    <labels format="%H:%i%L%n %d%L%Y" spacing="1M 7D 1D 12H 6H 4H 2H 1H 30m 10m 5m" />
-    <grid/>
-    <title/>
-  </horizontalaxis>
+<pre class="example prettyprint">
+&lt;mugl&gt;
+  &lt;plotarea marginleft="40" marginright="40" marginbottom="45" margintop="35"/&gt;
 
-  <verticalaxis  id="fahrenheit" positionbase="right" min="0" max="95">
-    <title angle="90" anchor="0 1" position="25 0">Fahrenheit</title>
-    <labels spacing="50 20 10 5 2 1 0.5 0.2"/>
-    <grid/>
-    <binding id="tempbinding" min="32" max="212"/>
-  </verticalaxis>
+  &lt;legend  rows="1"  border="0"  anchor="0 1"  base="0 1" opacity="0.0" position="0 30"&gt;
+    &lt;icon border="0" height="20"/&gt;
+  &lt;/legend&gt;
 
-  <verticalaxis  id="celsius" positionbase="left">
-    <title angle="90" anchor="0 -1" position="-27 0">Celsius</title>
-    <binding id="tempbinding" min="0" max="100"/>
-  </verticalaxis>
+  &lt;horizontalaxis id="datetime" type="datetime" min="2012111308" max="2012111508"&gt;
+    &lt;labels format="%H:%i%L%n %d%L%Y" spacing="1M 7D 1D 12H 6H 4H 2H 1H 30m 10m 5m" /&gt;
+    &lt;grid/&gt;
+    &lt;title/&gt;
+  &lt;/horizontalaxis&gt;
+
+  &lt;verticalaxis  id="fahrenheit" positionbase="right" min="0" max="95"&gt;
+    &lt;title angle="90" anchor="0 1" position="25 0"&gt;Fahrenheit&lt;/title&gt;
+    &lt;labels spacing="50 20 10 5 2 1 0.5 0.2"/&gt;
+    &lt;grid/&gt;
+    &lt;binding id="tempbinding" min="32" max="212"/&gt;
+  &lt;/verticalaxis&gt;
+
+  &lt;verticalaxis  id="celsius" positionbase="left"&gt;
+    &lt;title angle="90" anchor="0 -1" position="-27 0"&gt;Celsius&lt;/title&gt;
+    &lt;binding id="tempbinding" min="0" max="100"/&gt;
+  &lt;/verticalaxis&gt;
 
 
-  <plot>
-    <legend label="Outdoor Forecast"/>
-    <horizontalaxis ref="datetime">
-      <variable ref="f0d"/>
-    </horizontalaxis>
-    <verticalaxis ref="fahrenheit">
-      <variable ref="f0t"/>
-    </verticalaxis>
-    <renderer type="line">
-      <option name="linecolor" value="green"/>
-      <option name="dotcolor" value="green"/>
-      <option name="linewidth" value="3"/>
-      <option name="dotsize" value="0"/>
-    </renderer>
-  </plot>
+  &lt;plot&gt;
+    &lt;legend label="Outdoor Forecast"/&gt;
+    &lt;horizontalaxis ref="datetime"&gt;
+      &lt;variable ref="f0d"/&gt;
+    &lt;/horizontalaxis&gt;
+    &lt;verticalaxis ref="fahrenheit"&gt;
+      &lt;variable ref="f0t"/&gt;
+    &lt;/verticalaxis&gt;
+    &lt;renderer type="line"&gt;
+      &lt;option name="linecolor" value="green"/&gt;
+      &lt;option name="dotcolor" value="green"/&gt;
+      &lt;option name="linewidth" value="3"/&gt;
+      &lt;option name="dotsize" value="0"/&gt;
+    &lt;/renderer&gt;
+  &lt;/plot&gt;
 
-  <plot>
-    <legend label="Living Room"/>
-    <horizontalaxis ref="datetime">
-      <variable ref="datetime"/>
-    </horizontalaxis>
-    <verticalaxis ref="celsius">
-      <variable ref="livtemp"/>
-    </verticalaxis>
-    <renderer type="line">
-      <option name="linecolor" value="red"/>
-      <option name="dotsize" value="0"/>
-    </renderer>
-  </plot>
+  &lt;plot&gt;
+    &lt;legend label="Living Room"/&gt;
+    &lt;horizontalaxis ref="datetime"&gt;
+      &lt;variable ref="datetime"/&gt;
+    &lt;/horizontalaxis&gt;
+    &lt;verticalaxis ref="celsius"&gt;
+      &lt;variable ref="livtemp"/&gt;
+    &lt;/verticalaxis&gt;
+    &lt;renderer type="line"&gt;
+      &lt;option name="linecolor" value="red"/&gt;
+      &lt;option name="dotsize" value="0"/&gt;
+    &lt;/renderer&gt;
+  &lt;/plot&gt;
 
-  <plot>
-    <legend label="Upstairs Office"/>
-    <horizontalaxis ref="datetime">
-      <variable ref="datetime"/>
-    </horizontalaxis>
-    <verticalaxis ref="celsius">
-      <variable ref="intemp"/>
-    </verticalaxis>
-    <renderer type="line">
-      <option name="linecolor" value="black"/>
-      <option name="dotsize" value="0"/>
-    </renderer>
-  </plot>
+  &lt;plot&gt;
+    &lt;legend label="Upstairs Office"/&gt;
+    &lt;horizontalaxis ref="datetime"&gt;
+      &lt;variable ref="datetime"/&gt;
+    &lt;/horizontalaxis&gt;
+    &lt;verticalaxis ref="celsius"&gt;
+      &lt;variable ref="intemp"/&gt;
+    &lt;/verticalaxis&gt;
+    &lt;renderer type="line"&gt;
+      &lt;option name="linecolor" value="black"/&gt;
+      &lt;option name="dotsize" value="0"/&gt;
+    &lt;/renderer&gt;
+  &lt;/plot&gt;
 
-  <plot>
-    <legend label="Outdoor"/>
-    <horizontalaxis ref="datetime">
-      <variable ref="datetime"/>
-    </horizontalaxis>
-    <verticalaxis ref="celsius">
-      <variable ref="outtemp"/>
-    </verticalaxis>
-    <renderer type="line">
-      <option name="linecolor" value="blue"/>
-      <option name="linewidth" value="3"/>
-      <option name="dotsize" value="0"/>
-    </renderer>
-  </plot>
-
+  &lt;plot&gt;
+    &lt;legend label="Outdoor"/&gt;
+    &lt;horizontalaxis ref="datetime"&gt;
+      &lt;variable ref="datetime"/&gt;
+    &lt;/horizontalaxis&gt;
+    &lt;verticalaxis ref="celsius"&gt;
+      &lt;variable ref="outtemp"/&gt;
+    &lt;/verticalaxis&gt;
+    &lt;renderer type="line"&gt;
+      &lt;option name="linecolor" value="blue"/&gt;
+      &lt;option name="linewidth" value="3"/&gt;
+      &lt;option name="dotsize" value="0"/&gt;
+    &lt;/renderer&gt;
+  &lt;/plot&gt;
 
 
 
-  <data>
-    <variables missingvalue="-9999" missingop="eq">
-      <variable id="datetime" column="0" type="datetime"/>
-      <variable id="outtemp" column="1"/>
-      <variable id="intemp" column="2"/>
-      <variable id="livtemp" column="3"/>
-    </variables>
-    <values>
+
+  &lt;data&gt;
+    &lt;variables missingvalue="-9999" missingop="eq"&gt;
+      &lt;variable id="datetime" column="0" type="datetime"/&gt;
+      &lt;variable id="outtemp" column="1"/&gt;
+      &lt;variable id="intemp" column="2"/&gt;
+      &lt;variable id="livtemp" column="3"/&gt;
+    &lt;/variables&gt;
+    &lt;values&gt;
 201211100805,6.6,17.6,20.1
 201211100810,7,17.6,20
 201211100815,7.2,17.8,20.3
@@ -1275,15 +1272,15 @@ autogen: true
 201211140840,-1.3,14.2,17.4
 201211140845,-1.2,14,17.2
 201211140850,-0.8,14.1,17.1
-    </values>
-  </data>
+    &lt;/values&gt;
+  &lt;/data&gt;
 
-  <data>
-    <variables>
-      <variable id="f0d" column="0" type="datetime"/>
-      <variable id="f0t" column="1"/>
-    </variables>
-    <values>
+  &lt;data&gt;
+    &lt;variables&gt;
+      &lt;variable id="f0d" column="0" type="datetime"/&gt;
+      &lt;variable id="f0t" column="1"/&gt;
+    &lt;/variables&gt;
+    &lt;values&gt;
 201211141300,50
 201211141600,48
 201211141900,42
@@ -1319,10 +1316,8 @@ autogen: true
 201211200700,35
 201211201300,50
 201211201900,44
-    </values>
-  </data>
+    &lt;/values&gt;
+  &lt;/data&gt;
 
-</mugl>
-
-{% endhighlight %}
-</div>
+&lt;/mugl&gt;
+</pre>
