@@ -1,0 +1,193 @@
+---
+title: Data Types 
+docs: selected
+---
+
+{% include header.html %}
+{% include content.html %}
+
+
+<h1 id="data-types">Data Types</h1>
+<p>The various data types that are used when defining Multigraph objects in Mugl files.</p>
+
+<hr>
+<h4>Color</h4>
+<p>A color is expressed as either a 6-digit hexadecimal code or one of the following strings: <code>"black"</code>, <code>"red"</code>, <code>"green"</code>, <code>"blue"</code>, <code>"yellow"</code>, <code>"magenta"</code>, <code>"cyan"</code>, or <code>"white"</code>.</p>
+
+<hr>
+<h4 id="data-values">Data Value</h4>
+<p>Data values in Multigraph come in two types: <code>number</code> and <code>datetime</code>. A data value of type <code>number</code> may be specified in either integer or decimal format. The <code>datetime</code> type is a combination of a date and time of day.</p>
+<p>A datetime value may be specified in the 17-character format YYYYMMDDHHmmssqqq (see the table below).</p>
+
+<div class="panel panel-default">
+
+  <div class="panel-heading">
+   <div class="row">
+    <div class="col-md-2"><h4 class="panel-title">Component</h4></div>
+    <div class="col-md-10"><h4 class="panel-title">Meaning</h4></div>
+   </div>
+  </div>
+
+  <ul class="list-group">
+      <li class="list-group-item">
+        <div class="row">
+          <div class="col-md-2">YYYY</div>
+          <div class="col-md-10">
+           <p>4-digit year</p>
+          </div>
+        </div>
+      </li>
+      <li class="list-group-item">
+        <div class="row">
+          <div class="col-md-2">MM</div>
+          <div class="col-md-10">
+           <p>2-digit month (01-12)</p>
+          </div>
+        </div>
+      </li>
+      <li class="list-group-item">
+        <div class="row">
+          <div class="col-md-2">DD</div>
+          <div class="col-md-10">
+           <p>2-digit day of month (01-31)</p>
+          </div>
+        </div>
+      </li>
+      <li class="list-group-item">
+        <div class="row">
+          <div class="col-md-2">HH</div>
+          <div class="col-md-10">
+           <p>2-digit hour of day (00-23)</p>
+          </div>
+        </div>
+      </li>
+      <li class="list-group-item">
+        <div class="row">
+          <div class="col-md-2">mm</div>
+          <div class="col-md-10">
+           <p>2-digit minutes (00-59)</p>
+          </div>
+        </div>
+      </li>
+      <li class="list-group-item">
+        <div class="row">
+          <div class="col-md-2">ss</div>
+          <div class="col-md-10">
+           <p>2-digit seconds (00-59), or decimal seconds with millisecond precision</p>
+          </div>
+        </div>
+      </li>
+      <li class="list-group-item">
+        <div class="row">
+          <div class="col-md-2">qqq</div>
+          <div class="col-md-10">
+           <p>3-digit milliseconds (000-999; should only be present if ss does not contain a decimal)</p>
+          </div>
+        </div>
+      </li>
+    </ul>
+</div>
+
+<p>Any number of these components may be omitted from the right-hand end of the string (except the year YYYY, which is always required), in which case the missing components are assumed to be zero (except MM or DD, which default to 01). Any non-number characters, such as punctuation or spaces, may be inserted anywhere in the datetime string to make it easier for humans to read. Multigraph simply ignores any non-numeric characters in the string (with the exception of the optional decimal symbol in the ss value).</p>
+
+<p>The following are all examples of valid datetime strings:</p>
+
+<div class="panel panel-default">
+  <ul class="list-group">
+    <li class="list-group-item">"20101030"</li>
+    <li class="list-group-item">"20101030"</li>
+    <li class="list-group-item">"2010-10-30"</li>
+    <li class="list-group-item">"201010301100"</li>
+    <li class="list-group-item">"2010-10-30 11:00"</li>
+    <li class="list-group-item">"20101030110002234"</li>
+    <li class="list-group-item">"2010-10-30 11:00:02.234"</li>
+  </ul>
+</div>
+
+<hr>
+<h4>DataMeasure</h4>
+
+<p>A DataMeasure is a Data Value (either number or datetime) that specifies the width of an area relative to the data type of its axis.</p>
+
+<p>A datetime DataMeasure may be specified in the format (brackets not included): <code>[NUMBER][CHARACTER-CODE]</code>. <code>NUMBER</code> is any number and <code>CHARACTER-CODE</code> corresponds to a period of time and is one of the following:</p>
+
+<div class="panel panel-default">
+
+  <div class="panel-heading">
+   <div class="row">
+    <div class="col-md-2"><h4 class="panel-title">Character</h4></div>
+    <div class="col-md-10"><h4 class="panel-title">Meaning</h4></div>
+   </div>
+  </div>
+
+  <ul class="list-group">
+      <li class="list-group-item">
+        <div class="row">
+          <div class="col-md-2">Y</div>
+          <div class="col-md-10">
+           <p>Years</p>
+          </div>
+        </div>
+      </li>
+      <li class="list-group-item">
+        <div class="row">
+          <div class="col-md-2">M</div>
+          <div class="col-md-10">
+           <p>Months</p>
+          </div>
+        </div>
+      </li>
+      <li class="list-group-item">
+        <div class="row">
+          <div class="col-md-2">W</div>
+          <div class="col-md-10">
+           <p>Weeks</p>
+          </div>
+        </div>
+      </li>
+      <li class="list-group-item">
+        <div class="row">
+          <div class="col-md-2">D</div>
+          <div class="col-md-10">
+           <p>Days</p>
+          </div>
+        </div>
+      </li>
+      <li class="list-group-item">
+        <div class="row">
+          <div class="col-md-2">H</div>
+          <div class="col-md-10">
+           <p>Hours</p>
+          </div>
+        </div>
+      </li>
+      <li class="list-group-item">
+        <div class="row">
+          <div class="col-md-2">m</div>
+          <div class="col-md-10">
+           <p>Minutes</p>
+          </div>
+        </div>
+      </li>
+      <li class="list-group-item">
+        <div class="row">
+          <div class="col-md-2">s</div>
+          <div class="col-md-10">
+           <p>Seconds</p>
+          </div>
+        </div>
+      </li>
+      <li class="list-group-item">
+        <div class="row">
+          <div class="col-md-2">ms</div>
+          <div class="col-md-10">
+           <p>Milliseconds</p>
+          </div>
+        </div>
+      </li>
+    </ul>
+</div>
+
+<p>For example, <code>"1Y2M3D"</code> would translate into a time period that is exactly 1 Year, 2 Months & 3 Days long, agnostic of any starting position for the data. <code>"3Y"</code> would be 3 years, <code>"10M2D5H"</code> would be 10 months, 2 days & 5 hours, etc.</p>
+
+{% include end.html %}
