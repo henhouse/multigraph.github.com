@@ -171,6 +171,12 @@ pre.prettyprint {
 }
 
 
+/* QUICKSTART PAGE */
+ol.quickstart-table li {
+    margin-bottom: 10px;
+}
+
+
 /* CREDITS PAGE */
 .credit-logo  {
     padding-right: 15px;

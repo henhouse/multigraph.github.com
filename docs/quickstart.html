@@ -1,5 +1,5 @@
 ---
-title: Quick Start
+title: Quickstart
 quickstart: selected
 permalink: /docs/quickstart/
 ---
@@ -64,27 +64,23 @@ permalink: /docs/quickstart/
  </div>
 </div>
 
-
-<div style="max-width: 50%; margin-bottom: 15px;">
-</div>
-
-<hr>
+<hr />
 
 <p>So what's going on here?</p>
 
-<ol>
- <li style="margin-bottom: 10px;">First we integrate the Multigraph library by referencing its location in the head tag of our html file. Multigraph can be internally linked to your own copy of <a href="http://multigraph.github.io/download/">multigraph-min.js</a>, or linked externally to <code>//multigraph.github.io/js/multigraph-min.js</code>.</li>
+<ol class="quickstart-table">
+  <li>First we integrate the Multigraph library by referencing its location in the head tag of our html file. Multigraph can be internally linked to your own copy of <a href="http://multigraph.github.io/download/">multigraph-min.js</a>, or linked externally to <code>//multigraph.github.io/js/multigraph-min.js</code>. For more information on how to integrate Multigraph onto your site, see our <a href="/docs/integrate">integration page</a>.</li>
 
- <li style="margin-bottom: 10px;">The next thing we do in our html file is instantiate the display object. To do this, we set the <code>class</code> attribute of a <code>&lt;div&gt;</code> element to <code>multigraph</code>. The <code>data-src</code> attribute links to our "mugl" file, graph.xml. The <code>data-width</code> and <code>data-height</code> attributes define the width and height of the graph on the page (these can also be defined externally in a CSS file).</li>
+  <li>The next thing we do in our html file is instantiate the display object. To do this, we set the <code>class</code> attribute of a <code>&lt;div&gt;</code> element to <code>multigraph</code>. The <code>data-src</code> attribute links to our "mugl" file, graph.xml. The <code>data-width</code> and <code>data-height</code> attributes define the width and height of the graph on the page (these can also be defined externally in a CSS file).</li>
 
- <li style="margin-bottom: 10px;">We then specify data values in our mugl file. In this case we use a <code>&lt;values&gt;</code> element to explicitly specify the values in the file. You can also specify a reference to a comma-separated values (csv) file, or even write your own web service that serves up data as it is needed. See the <a href="/docs/mugl-reference">Mugl File Reference</a> for information on how to spice up your graphs.</li>
+  <li>We then specify data values in our mugl file. In this case we use a <code>&lt;values&gt;</code> element to explicitly specify the values in the file. You can also specify a reference to a comma-separated values (csv) file, or even write your own web service that serves up data as it is needed. See the <a href="/docs/mugl-reference">Mugl File Reference</a> for information on how to spice up your graphs.</li>
 
- <li style="margin-bottom: 10px;">Voilà! We have a functioning Multigraph. Notice that your pointer indicates interactivity when you hover over the graph. The horizontal dimension supports zooming with the mouse wheel, and panning is achieved by holding left-click and moving the mouse. Note that you can only pan in one dimension at a time (either vertically or horizontally).</li>
+  <li>Voilà! We have a functioning Multigraph. Notice that your pointer indicates interactivity when you hover over the graph. The horizontal dimension supports zooming with the mouse wheel, and panning is achieved by holding left-click and moving the mouse. Note that you can only pan in one dimension at a time (either vertically or horizontally).</li>
 </ol>
 
 <p>Head over to the <a href="/tester">Multigraph Tester</a> to start experimenting on your own!</p>
 
-<hr>
+<hr />
 
 
 
