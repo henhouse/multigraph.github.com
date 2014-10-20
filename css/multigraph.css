@@ -14,7 +14,7 @@
 .jumbotron p.lead {
     text-indent: 0.5cm;
 }
-.row h1, .row h2 {
+.row h1, .row h2, .row p {
     /* p tag centered on home page */
     text-align: center;
 }
