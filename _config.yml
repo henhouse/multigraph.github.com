@@ -1,4 +1,4 @@
 name: Multigraph
 markdown: html
 markdown: rdiscount
-pygments: true
+highlighter: true

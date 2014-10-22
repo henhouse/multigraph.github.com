@@ -1,0 +1,2113 @@
+---
+title: Mugl File Reference
+docs: selected
+permalink: /docs/mugl-reference/
+---
+
+{% include header.html %}
+{% include inc.prettify.html %}
+{% include content.html %}
+
+
+<div class="row">
+
+<div class="col-md-9">
+
+<h1 id="top">Mugl File Reference</h1>
+<p>The core elements of a Multigraph XML file.</p>
+<hr>
+
+<br>
+<h2 id="window-element">The Window Element</h2>
+<hr>
+
+<p>The optional <code>&lt;window&gt;</code> element customizes the default border, margin, padding box, and plot area regions. The window can be thought of as a set of (mostly invisible) nested rectangles inside of a block-level <code>&lt;div&gt;</code> element. See the figure in the following section for an illustration.</p>
+
+<pre class="prettyprint">
+&lt;mugl&gt;
+ &lt;window
+     width="INTEGER"
+     height="INTEGER"
+     border="INTEGER(2)"
+     bordercolor="COLOR(black)"
+     margin="INTEGER(2)"
+     padding="INTEGER(5)"&gt;
+ &lt;/window&gt;
+&lt;/mugl&gt;
+</pre>
+
+<br>
+
+<!-- Panel !-->
+<div class="panel panel-default">
+  <div class="panel-heading">
+   <h4 class="panel-title">Attributes</h4>
+  </div>
+  
+  <ul class="list-group">
+      <li class="list-group-item">
+        <div class="row">
+          <div class="col-md-2">
+            <code>width</code><br><code>height</code>
+          </div>
+          <div class="col-md-10">
+           <p>Width and height of the graph (in pixels); usually defined with the <code>data-width</code> and <code>data-height</code> attributes specified in the HTML (or CSS) or with options passed to the Multigraph constructor in JavaScript code.</p>
+          </div>
+        </div>
+      </li>
+      <li class="list-group-item">
+        <div class="row">
+          <div class="col-md-2">
+            <code>border</code>
+          </div>
+          <div class="col-md-10">
+           <p>The width of the optional border (in pixels) to draw around the graph.</p>
+           <p>Default: <code>"2"</code></p>
+          </div>
+        </div>
+      </li>
+      <li class="list-group-item">
+        <div class="row">
+          <div class="col-md-2">
+            <code>bordercolor</code>
+          </div>
+          <div class="col-md-10">
+            <p>The color to use for the <code>&lt;window&gt;</code> border. Either an expression of the form 0xRRGGBB or one of the following strings: black, red, green, blue, yellow, magenta, cyan, or white.</p>
+            <p>Default: <code>"black"</code></p>
+          </div>
+        </div>
+      </li>
+      <li class="list-group-item">
+        <div class="row">
+          <div class="col-md-2">
+            <code>margin</code>
+          </div>
+          <div class="col-md-10">
+           <p>Number of pixels of blank space to allow on all sides between the window and the border.</p>
+           <p>Default: <code>"2"</code></p>
+          </div>
+        </div>
+      </li>
+      <li class="list-group-item">
+        <div class="row">
+          <div class="col-md-2">
+            <code>padding</code>
+          </div>
+          <div class="col-md-10">
+           <p>Number of pixels of blank space to allow inside the border; everything else (other than the border) that multigraph draws will be clipped to an imaginary rectangle that is inset by this number of pixels.</p>
+           <p>Default: <code>"5"</code></p>
+          </div>
+        </div>
+      </li>      
+    </ul>
+</div>
+
+
+
+<br>
+<br>
+<h2 id="plotarea-element">The Plotarea Element</h2>
+<hr>
+
+<p>This element defines attributes about the plot area and padding box. The padding box (which includes the plot area) serves as the clipping region for everything that multigraph draws, including axes, labels, and titles. The plot area is region where data points are drawn. There can be <em>at most</em> one of these elements in a mugl file.</p>
+
+<div class="row">
+ <div class="col-md-2"></div>
+ <div class="col-md-8">
+  <img src="/images/MarginBorderPlotarea.png" style="max-width: 100%; max-height: 100%;" />
+ </div>
+ <div class="col-md-2"></div>
+</div>
+
+<pre class="prettyprint">
+&lt;mugl&gt;
+ &lt;plotarea
+     marginbottom="INTEGER(35)"
+     margintop="INTEGER(10)"
+     marginleft="INTEGER(38)"
+     marginright="INTEGER(35)"
+     border="INTEGER(0)"
+     bordercolor="COLOR(0xeeeeee)"
+     color="COLOR">
+ &lt;/plotarea&gt;
+&lt;/mugl&gt;
+</pre>
+
+<br>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+   <h4 class="panel-title">Attributes</h4>
+  </div>
+  
+  <ul class="list-group">
+      <li class="list-group-item">
+        <div class="row">
+          <div class="col-md-2">
+            <code>marginbottom</code>
+          </div>
+          <div class="col-md-10">
+            <p>Offset from the bottom side.</p>
+            <p>Default: <code>"35"</code></p>
+          </div>
+        </div>
+      </li>
+
+      <li class="list-group-item">
+        <div class="row">
+          <div class="col-md-2">
+            <code>margintop</code>
+          </div>
+          <div class="col-md-10">
+            <p>Offset from the top side.</p>
+            <p>Default: <code>"10"</code></p>
+          </div>
+        </div>
+      </li>
+
+      <li class="list-group-item">
+        <div class="row">
+          <div class="col-md-2">
+            <code>marginleft</code>
+          </div>
+          <div class="col-md-10">
+            <p>Offset from the left side.</p>
+            <p>Default: <code>"38"</code></p>
+          </div>
+        </div>
+      </li>
+      <li class="list-group-item">
+        <div class="row">
+          <div class="col-md-2">
+            <code>marginright</code>
+          </div>
+          <div class="col-md-10">
+            <p>Offset from the right side.</p>
+            <p>Default: <code>"35"</code></p>
+          </div>
+        </div>
+      </li>
+      <li class="list-group-item">
+        <div class="row">
+          <div class="col-md-2">
+            <code>border</code>
+          </div>
+          <div class="col-md-10">
+            <p>The width in pixels of a border to be drawn around the plotarea.</p>
+            <p>Default: <code>"0"</code></p>
+          </div>
+        </div>
+      </li>
+      <li class="list-group-item">
+        <div class="row">
+          <div class="col-md-2">
+            <code>bordercolor</code>
+          </div>
+          <div class="col-md-10">
+            <p>The color to use for the <code>&lt;plotarea&gt;</code> border. Either an expression of the form 0xRRGGBB or one of the following strings: black, red, green, blue, yellow, magenta, cyan, or white.</p>
+            <p>Default: <code>"0xeeeeee"</code></p>
+          </div>
+        </div>
+      </li>
+      <li class="list-group-item">
+        <div class="row">
+          <div class="col-md-2">
+            <code>color</code>
+          </div>
+          <div class="col-md-10">
+            <p>The color to fill the background of the <code>&lt;plotarea&gt;</code>. Either an expression of the form 0xRRGGBB or one of the following strings: black, red, green, blue, yellow, magenta, cyan, or white.</p>
+            <p>Default: <code>"0xeeeeee"</code></p>
+          </div>
+        </div>
+      </li>
+    </ul>
+</div>
+
+
+
+
+
+
+
+
+<br>
+<br>
+<h2 id="axis-elements">The Axis Elements</h2>
+<hr>
+
+<p>The <code>&lt;horizontalaxis&gt;</code> and <code>&lt;verticalaxis&gt;</code> elements define the location, display properties, data types, and range of values of a graph's axes. A graph can have one or more of both axis elements.</p>
+
+<p>These attribute values determine the way that each kind of axis is displayed relative to the plot area. The position of each axis is relative to an edge of the plot area, but all or part of the axis may lie outside the plot area (in the padding box). In particular, a negative position value represents a distance away from the plot area (into the padding box).</p>
+
+<!--
+<div class="row">
+ <div class="col-md-6">
+   <h5 style="margin-bottom: 5px;">Vertical Axis Attributes</h5>
+   <img width="100%" src="/images/VerticalAxis.png" />
+ </div>
+ <div class="col-md-6">
+   <h5 style="margin-bottom: 5px;">Horizontal Axis Attributes</h5>
+   <img width="100%" style="margin-left: -5px;" src="/images/HorizontalAxis.png" />
+ </div>
+</div>
+!-->
+
+<pre class="prettyprint">
+&lt;mugl&gt;
+ &lt;horizontalaxis
+     id="STRING"
+     type="DATATYPE(number)"
+     length="RELLEN(1.0)"
+     base="POINT(-1,1)"
+     anchor="DOUBLE(-1)"
+     position="POINT(0,0)"
+     min="DATAVALUEORAUTO(auto)"
+     max="DATAVALUEORAUTO(auto)"
+     minposition="RELPOS(-1.0)"
+     maxposition="RELPOS(1.0)"
+     color="COLOR(black)"
+     linewidth="INTEGER(1)"
+     tickmin="INTEGER(-3)"
+     tickmax="INTEGER(3)"
+     tickcolor="COLOR(black)"&gt;
+     
+   &lt;title
+       base="DOUBLE(0)"
+       anchor="POINT"
+       position="POINT"
+       angle="DOUBLE(0)"&gt;
+   &lt;/title&gt;
+
+   &lt;labels
+       format="STRING"
+       start="DATAVALUE(0)"
+       angle="DOUBLE(0)"
+       position="POINT"
+       anchor="POINT"
+       color="COLOR(black)"
+       spacing="STRING"
+       densityfactor="DOUBLE(1.0)"&gt;
+     &lt;label
+         format="STRING"
+         start="DATAVALUE(0)"
+         angle="DOUBLE(0)"
+         position="POINT"
+         anchor="POINT"
+         color="COLOR(black)"
+         spacing="STRING"
+         densityfactor="DOUBLE(1.0)" /&gt;
+     &lt;label .../&gt;
+     &lt;label .../&gt;
+   &lt;/labels&gt;
+   
+   &lt;grid
+       color="COLOR(0xeeeeee)"
+       visible="BOOLEAN(false)"&gt;
+   &lt;/grid&gt;
+   
+   &lt;pan
+       allowed="BOOLEAN(yes)"
+       min="DATAVALUE"
+       max="DATAVALUE"&gt;
+   &lt;/pan&gt;
+   
+   &lt;zoom
+       allowed="BOOLEAN(yes)"
+       min="DATAMEASURE"
+       max="DATAMEASURE"
+       anchor="DATAVALUE"&gt;
+   &lt;/zoom&gt;
+   
+   &lt;binding
+       id="STRING"
+       min="DATAVALUE"
+       max="DATAVALUE"&gt;
+   &lt;/binding&gt;
+ &lt;/horizontalaxis&gt;
+&lt;/mugl&gt;
+</pre>
+
+<br>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+   <h4 class="panel-title">Attributes</h4>
+  </div>
+  
+  <ul class="list-group">
+      <li class="list-group-item">
+        <div class="row">
+          <div class="col-md-2">
+            <code>id</code>
+          </div>
+          <div class="col-md-10">
+            <p>An identifier that can be used to refer to this axis elsewhere in the mugl file.</p>
+            <p>Default: <code>"x"</code> and <code>"y"</code> for horizontal and vertical axes respectively, and then <code>"x1"</code> or <code>"y1"</code>, <code>"y1"</code> or <code>"y2"</code>, etc, for any additional axes.</p>
+          </div>
+        </div>
+      </li>
+
+      <li class="list-group-item">
+        <div class="row">
+          <div class="col-md-2">
+            <code>type</code>
+          </div>
+          <div class="col-md-10">
+            <p>The data type for the axis, either <code>"number"</code> or <code>"datetime"</code>.</p>
+            <p>Default: <code>"number"</code></p>
+          </div>
+        </div>
+      </li>
+
+      <li class="list-group-item">
+        <div class="row">
+          <div class="col-md-2">
+            <code>length</code>
+          </div>
+          <div class="col-md-10">
+            <p>The length of the axis.</p>
+            <p>There are two ways to specify the axis length.</p>
+            <p>The first way is to provide a number between 0 and 1 (in quotes), which represents a fraction of the parallel dimension of the plot area (width for horizontal axes, height for vertical axes). For example, given a horizontal axis, a value of <code>"1"</code> means that the axis length is exactly the width of the plot area, and a value of <code>"0.5"</code> would mean that the axis is half as long as the width of the plot area.</p>
+            <p>The second way is to give an expression of the form <code>"A+B"</code> or <code>"A-B"</code>. In this case, the first number A represents a fraction of the parallel dimension of the plot area, as above, and the second number +B or -B represents a number of pixels to add or subtract from that length. For example, a length of <code>"1-10"</code> for a horizontal axis would mean 10 pixels less than the width of the plot area. A value of <code>"0.5+20"</code> for a vertical axis would mean 20 pixels longer than half the height of the plot area.</p>
+            <p>If for some reason you want to specify an axis length exactly in terms of pixels, use <code>"0"</code> for A. For example, <code>"0+200"</code> would give an axis that is 200 pixels long. (Note that you definitely need to specify the <code>0+</code> in this case; if you specify a length simply as <code>"200"</code>, Multigraph will interpret it according to the first method above, as 200 times the width or height of the plot area.)</p>
+            <p>Default: <code>"1.0"</code></p>
+          </div>
+        </div>
+      </li>
+
+      <li class="list-group-item">
+        <div class="row">
+          <div class="col-md-2">
+            <code>base</code>
+          </div>
+          <div class="col-md-10">
+            <p>The location of the base point relative to the plot area.</p>
+            <p>Default: <code>"-1 -1"</code> (lower left corner of the plot area)</p>
+            <p>Described in detail in the <a href="#positioning--axes-positioning">Axes Positioning</a> section.</p>
+          </div>
+        </div>
+      </li>
+      
+      <li class="list-group-item">
+        <div class="row">
+          <div class="col-md-2">
+            <code>anchor</code>
+          </div>
+          <div class="col-md-10">
+            <p>A number between -1 and 1 (in quotes) indicating the location of the anchor point along the axis.</p>
+            <p>Default: <code>"-1"</code> (the left endpoint of a horizontal axis, or the bottom endpoint of a vertical axis).</p>
+            <p>Described in detail in the <a href="#positioning--axes-positioning">Axes Positioning</a> section.</p>
+          </div>
+        </div>
+      </li>
+      
+      <li class="list-group-item">
+        <div class="row">
+          <div class="col-md-2">
+            <code>position</code>
+          </div>
+          <div class="col-md-10">
+            <p>A coordinate pair of pixel offsets.</p>
+            <p>Default: <code>"0 0"</code></p>
+            <p>Described in detail in the <a href="#positioning--position-attribute">Position Attribute</a> section.</p>
+          </div>
+        </div>
+      </li>
+      
+      <li class="list-group-item">
+        <div class="row">
+          <div class="col-md-2">
+            <code>min</code><br><code>max</code>
+          </div>
+          <div class="col-md-10">
+            <p>The minimum/maximum data value for the axis; i.e. the data value corresponding to the left (for horizontal axes) or bottom (for vertical axes) endpoint of the axis. If the axis type is <code>"number"</code>, the value is a number. If the type is <code>"datetime"</code>, the value is a datetime in the format YYYYMMDDHHmmss.</p>
+            <p>Default: <code>"auto"</code>. (Computed from data set; must be specified when using a custom web service.)</p>
+          </div>
+        </div>
+      </li>
+      
+      <li class="list-group-item">
+        <div class="row">
+          <div class="col-md-2">
+            <code>minposition</code><br><code>maxposition</code>
+          </div>
+          <div class="col-md-10">
+            <p>Indicates the location along the axis corresponding to the minimum or maximum data value (before any panning or zooming that the user might do). This is expressed in general in the form <code>"A+B"</code> or <code>"A-B"</code>, where <code>A</code> is a relative coordinate between -1 and 1, and <code>B</code> is an optional pixel offset (default is 0).</p>
+            <p>For example, <code>minposition="-1+5"</code> corresponds to a point that is 5 pixels to the right of the left endpoint, or above the bottom endpoint; <code>maxposition="1-5"</code> corresponds to a point that is 5 pixels to the left of the right endpoint, or below the top endpoint.</p>
+            <p>Default (<code>minposition</code>): <code>"-1.0"</code></p>
+            <p>Default (<code>maxposition</code>): <code>"1.0"</code></p>
+            <p><small>Note: it is possible to specify a <code>minposition</code> and <code>maxposition</code> combination in which the minimum position is to the right of, or above, the max position, which will cause the data values along the axis to increase in the opposite direction from usual (increasing leftward for horizontal axes, or downward for vertical axes). This is perfectly valid and will work correctly, but you should make sure that it is really what you want before deciding to make use of this feature, because it is likely to be confusing to users, unless there is a good reason to portray your data in this manner.</small></p>
+          </div>
+        </div>
+      </li>
+      <li class="list-group-item">
+        <div class="row">
+          <div class="col-md-2">
+            <code>color</code>
+          </div>
+          <div class="col-md-10">
+            <p>The color of the line to draw for the axis. Either an expression of the form 0xRRGGBB or one of the following strings: <code>"black"</code>, <code>"red"</code>, <code>"green"</code>, <code>"blue"</code>, <code>"yellow"</code>, <code>"magenta"</code>, <code>cyan</code>, or <code>"white"</code></p>
+            <p>Default: <code>"black"</code></p>
+          </div>
+        </div>
+      </li>    
+      <li class="list-group-item">
+        <div class="row">
+          <div class="col-md-2">
+            <code>linewidth</code>
+          </div>
+          <div class="col-md-10">
+            <p>The pixel thickness of the line to draw for the axis.</p>
+            <p>Default: <code>"1"</code></p>
+          </div>
+        </div>
+      </li>    
+      <li class="list-group-item">
+        <div class="row">
+          <div class="col-md-2">
+            <code>tickmin</code>
+          </div>
+          <div class="col-md-10">
+            <p>The length, in pixels, of the part of the axis tick marks that extends below the axis.</p>
+            <p>Default: <code>"-3"</code></p>
+          </div>
+        </div>
+      </li>    
+      <li class="list-group-item">
+        <div class="row">
+          <div class="col-md-2">
+            <code>tickmax</code>
+          </div>
+          <div class="col-md-10">
+            <p>The length, in pixels, of the part of the axis tick marks that extends above the axis.</p>
+            <p>Default: <code>"3"</code></p>
+          </div>
+        </div>
+      </li>    
+      <li class="list-group-item">
+        <div class="row">
+          <div class="col-md-2">
+            <code>tickcolor</code>
+          </div>
+          <div class="col-md-10">
+            <p>The color of the axis tick marks. Either an expression of the form 0xRRGGBB or one of the following strings: <code>"black"</code>, <code>"red"</code>, <code>"green"</code>, <code>"blue"</code>, <code>"yellow"</code>, <code>"magenta"</code>, <code>cyan</code>, or <code>"white"</code></p>
+            <p>Default: <code>"black"</code></p>
+          </div>
+        </div>
+      </li>    
+      <li class="list-group-item">
+        <div class="row">
+          <div class="col-md-2">
+            <code>positionbase</code>
+          </div>
+          <div class="col-md-10">
+            <p>Deprecated.</p>
+            <p>Use the <code>base</code> attribute instead to switch a vertical axis to be placed relative to the right edge of the plot area (<code>base="1 -1"</code>, for example), or to switch a horizontal axis to be placed relative to the top edge of the plot area (<code>base="-1 1"</code>, for example).</p>
+          </div>
+        </div>
+      </li>    
+      <li class="list-group-item">
+        <div class="row">
+          <div class="col-md-2">
+            <code>pregap</code><br><code>postgap</code>
+          </div>
+          <div class="col-md-10">
+            Deprecated.          
+          </div>
+        </div>
+      </li>
+    </ul>
+</div>
+
+
+<br />
+
+<h3>Axis Sub-Elements</h3>
+<hr>
+<h4 id="axis-sub-element--title">Title</h4>
+
+<p>The title for the axis. An axis title is positioned and oriented according to its <code>position</code>, <code>anchor</code>, and <code>angle</code> attributes (see the <a href="#positioning">positioning</a> section for details). The title is positioned relative to the the center of the axis. To prevent a title from being drawn at all, use an empty title tag, i.e. <code>&lt;title/&gt;</code></p>
+<p>Default: the axis <code>id</code></p>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h4 class="panel-title">Attributes</h4>
+  </div>
+  <ul class="list-group">
+    <li class="list-group-item">
+     <div class="row">
+      <div class="col-md-2"><code>position</code></div>
+      <div class="col-md-10">
+        <p>A pixel offset from the axis center point.</p>
+        <p>Default: depends on the axis; chosen to look reasonable in most common situations</p>
+        <p>Described in detail in the <a href="#positioning--position-attribute">Position Attribute</a> section.</p>
+      </div>
+     </div>
+    </li>
+    <li class="list-group-item">
+     <div class="row">
+      <div class="col-md-2"><code>anchor</code></div>
+      <div class="col-md-10">
+        <p>Default: depends on the choice and position of the axis.</p>
+        <p>Described in detail in the <a href="#positioning--base-and-anchor-attributes">Base & Anchor Attributes</a> section.</p>
+      </div>
+     </div>
+    </li>
+    <li class="list-group-item">
+     <div class="row">
+      <div class="col-md-2"><code>angle</code></div>
+      <div class="col-md-10">
+        <p>Default: <code>"0"</code></p>
+        <p>Described in detail in the <a href="#positioning--angle-attribute">Angle Attribute</a> section.</p>
+      </div>
+     </div>
+    </li>
+    <li class="list-group-item">
+     <div class="row">
+      <div class="col-md-2"><code>base</code></div>
+      <div class="col-md-10">
+        <p>Default: <code>"0"</code></p>
+        <p>Described in detail in the <a href="#positioning--base-and-anchor-attributes">Base & Anchor Attributes</a> section.</p>
+      </div>
+     </div>
+    </li>
+  </ul>
+</div>
+
+
+<hr>
+
+<h4 id="axis-sub-element--labels">Labels</h4>
+
+<p>Specifies how multigraph will draw tick marks along the axes and defines tick mark text labels. Multigraph will attempt to choose the densest tick spacing possible from the defined <code>spacing</code> attribute(s) so that the labels do not overlap. Attributes applied to the <code>&lt;labels&gt;</code> element are applied to all spacing intervals.</p>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h4 class="panel-title">Attributes</h4>
+  </div>
+  <ul class="list-group">
+    <li class="list-group-item">
+     <div class="row">
+      <div class="col-md-2"><code>color</code></div>
+      <div class="col-md-10">
+        <p>The color of the line to draw for the axis. Either an expression of the form 0xRRGGBB or one of the following strings: <code>"black"</code>, <code>"red"</code>, <code>"green"</code>, <code>"blue"</code>, <code>"yellow"</code>, <code>"magenta"</code>, <code>cyan</code>, or <code>"white"</code>.</p>
+            <p>Default: <code>"black"</code></code>     
+      </div>
+     </div>
+    </li>
+  </ul>
+</div>
+
+<h5 id="axis--labels-sub-element--label">Sub-Element: Label</h5>
+
+<p>To customize specific spacing intervals, leave out a <code>spacing</code> attribute in the <code>&lt;labels&gt;</code> element and define <code>&lt;label&gt;</code> sub-elements each with a single number for the <code>spacing</code> attribute. Any attributes defined in these sub-elements will be applied to a specific spacing interval and override any attributes defined in the parent <code>&lt;labels&gt;</code> element.</p>
+
+<p>The following attributes apply to the <code>&lt;labels&gt;</code> element and any <code>&lt;label&gt;</code> sub-elements.</p>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h4 class="panel-title">Attributes</h4>
+  </div>
+  <ul class="list-group">
+    <li class="list-group-item">
+     <div class="row">
+      <div class="col-md-2"><code>spacing</code></div>
+      <div class="col-md-10">
+        <p>Defines axis tick spacing intervals.</p>
+        <p>When defined in the <code>&lt;labels&gt;</code> element, the value of <code>spacing</code> is a list of numbers sorted in descending order, separated by spaces. This list specifies the possible spacings to be used between tick marks on the axis. The default value for a number axis is <code>"10000</code> <code>5000</code> <code>2000</code> <code>1000</code> <code>500</code> <code>200</code> <code>100</code> <code>50</code> <code>20</code> <code>10</code> <code>5 2 1 0.1</code> <code>0.01 0.001"</code>. The default value for a datetime axis is <code>"1000Y</code> <code>500Y</code> <code>200Y</code> <code>100Y</code> <code>50Y</code> <code>20Y</code> <code>10Y</code> <code>5Y</code> <code>2Y</code> <code>1Y</code> <code>6M</code> <code>3M</code> <code>2M</code> <code>1M</code> <code>7D 3D 2D 1D</code> <code>12H 6H 3H 2H 1H"</code></p>
+        <p>When using <code>&lt;label&gt;</code> sub-elements, the <code>spacing</code> attribute is a single number, and there is no <code>spacing</code> attribute for the <code>&lt;labels&gt;</code> element.</p>
+      </div>
+     </div>
+    </li>
+    <li class="list-group-item">
+     <div class="row">
+      <div class="col-md-2"><code>start</code></div>
+      <div class="col-md-10">
+        <p>Indicates where tick marks should be aligned on the axis. The location of axis tick marks is determined by <code>start</code> and <code>spacing</code>. Multigraph will draw tick marks, and labels for them, at locations <code>T + n*S</code>, where <code>T</code> is the value of <code>start</code>, <code>S</code> is the value of <code>spacing</code>, for each integer <code>n</code> such that <code>T + n*S</code> is visible in the graph's padding area.</p>
+        <p>Default: <code>"0"</code></p>
+      </div>
+     </div>
+    </li>
+    <li class="list-group-item">
+     <div class="row">
+      <div class="col-md-2"><code>densityfactor</code></div>
+      <div class="col-md-10">
+        <p>Note: this attribute is not yet fully implemented in Multigraph 4.0.</p>
+        <p>This is a factor that can be used to tweak Multigraph's concept of what constitutes an "optimal" density of labels along the axis. It must be a positive number; values greather than 1 result in more labels, and values less than one result in fewer labels.</p>
+        <p>Default: <code>"1.0"</code></p>
+      </div>
+     </div>
+    </li>
+    <li class="list-group-item">
+     <div class="row">
+      <div class="col-md-2"><code>angle</code><br><code>position</code><br><code>anchor</code></div>
+      <div class="col-md-10">
+        <p>These determine the location and orientation of each tick mark's label relative to the location of the tic mark itself. See the <a href="#positioning--axes-positioning">Axes Positioning</a> section for details.</p>
+      </div>
+     </div>
+    </li>
+    <li class="list-group-item">
+     <div class="row">
+      <div class="col-md-2"><code>format</code></div>
+      <div class="col-md-10">
+        <p>String describing the format to be used for tick labels. The syntax depends on the type of the axis. For an axis of type <code>'number'</code>, it should be a C-style "printf" format string, such as <code>'%1d'</code>, which is the default. For a <code>'datetime'</code> type axis, it should be a string containing some combination of the following special format characters, each of which should be preceeded by a <code>%</code>. Any characters in the format string that are not preceded by a <code>%</code> are included verbatim in the formatted result.</p>
+        <p>Default (number axis): <code>"%.1f"</code></p>
+        <p>Default (datetime axis): <code>"%Y-%M-%D %H:%i"</code></p>
+        <div class="row">
+         <div class="col-md-6">
+           <table class="table table-bordered table-condensed table-striped">
+             <tbody>
+              <tr>
+               <td><strong>Character</strong></td>
+               <td><strong>Description</strong></td>
+              </tr>
+              <tr>
+               <td>Y</td><td>four digit year</td>
+              </tr>
+              <tr>
+               <td>d</td><td>day of month without leading zero</td>
+              </tr>
+              <tr>
+               <td>h</td><td>hour of day, 12-hour clock</td>
+              </tr>
+              <tr>
+               <td>m</td><td>month number without leading zero</td>
+              </tr>
+              <tr>
+               <td>N</td><td>month name, spelled out</td>
+              </tr>
+              <tr>
+               <td>P</td><td>AM or PM</td>
+              </tr>
+              <tr>
+               <td>i</td><td>minutes</td>
+              </tr>
+              <tr>
+               <td>v</td><td>deciseconds (10ths of a second)</td>
+              </tr>
+              <tr>
+               <td>q</td><td>milliseconds (1000ths of a second)</td>
+              </tr>
+              <tr>
+               <td>W</td><td>weekday name, spelled out</td>
+              </tr>
+             </tbody>
+            </table>
+          </div>
+         <div class="col-md-6">
+          <table class="table table-bordered table-condensed table-striped">
+           <tbody>
+           <tr>
+            <td><strong>Character</strong></td>
+            <td><strong>Description</strong></td>
+           </tr>
+           <tr>
+            <td>y</td><td>two digit year</td>
+           </tr>
+           <tr>
+            <td>D</td><td>2-digit day of month with leading zero</td>
+           </tr>
+           <tr>
+            <td>H</td><td>hour of day, 24-hour clock</td>
+           </tr>
+           <tr>
+            <td>M</td><td>2-digit month number with leading zero</td>
+           </tr>
+           <tr>
+            <td>n</td><td>month name, 3 letter abbreviation</td>
+           </tr>
+           <tr>
+            <td>p</td><td>am or pm</td>
+           </tr>
+           <tr>
+            <td>s</td><td>seconds</td>
+           </tr>
+           <tr>
+            <td>V</td><td>centiseconds (100ths of a second)</td>
+           </tr>
+           <tr>
+            <td>L</td><td>newline</td>
+           </tr>
+           <tr>
+            <td>w</td><td>weekday name, 3-letter abbreviation</td>
+           </tr>
+          </tbody>
+          </table>
+         </div>
+        </div>
+       </div>
+     </div>
+    </li>
+   </ul>
+</div>
+
+<hr>
+
+<h4 id="axis-sub-element--grid">Grid</h4>
+
+<p>When this element is defined Multigraph will draw grid lines perpendicular to the axis being customized at the location of each tick mark. If this element is left absent, Multigraph will not draw grid lines along the axis. If you want both horizontal and vertical grid lines, be sure to include a <code>&lt;grid&gt;</code> sub-element in both axis elements.</p>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h4 class="panel-title">Attributes</h4>
+  </div>
+  <ul class="list-group">
+    <li class="list-group-item">
+     <div class="row">
+      <div class="col-md-2"><code>color</code></div>
+      <div class="col-md-10">
+        <p>Defines the grid line color as a hex value. </p>
+        <p>Default: <code>"0xeeeeee"</code>     
+      </div>
+     </div>
+    </li>
+    <li class="list-group-item">
+     <div class="row">
+      <div class="col-md-2"><code>visible</code></div>
+      <div class="col-md-10">
+        <p>Indicates whether grid lines should be drawn for this axis. Either <code>"true"</code> or <code>"false"</code></p>
+        <p>Default: <code>"false"</code>     
+      </div>
+     </div>
+    </li>
+
+  </ul>
+</div>
+<hr>
+
+<h4 id="axis-sub-element--pan">Pan</h4>
+
+<p>Used to configure the type of panning that Multigraph allows the user to do for the axis.</p>
+
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h4 class="panel-title">Attributes</h4>
+  </div>
+  <ul class="list-group">
+    <li class="list-group-item">
+      <div class="row">
+        <div class="col-md-2"><code>allowed</code></div>
+        <div class="col-md-10">
+          <p>Either <code>"yes"</code> or <code>"no"</code></p>
+            <p>Default: <code>"yes"</code></p>
+        </div>
+      </div>
+    </li>
+    <li class="list-group-item">
+      <div class="row">
+        <div class="col-md-2"><code>min</code></div>
+        <div class="col-md-10">
+          <p>Minimum data value to ever be displayed for this axis; panning is never allowed to go below this number.</p>
+        </div>
+      </div>
+    </li>
+    <li class="list-group-item">
+      <div class="row">
+        <div class="col-md-2"><code>max</code></div>
+        <div class="col-md-10">
+          <p>Maximum data value to ever be displayed for this axis; panning is never allowed to go above this number.</p>
+        </div>
+      </div>
+    </li>
+  </ul>
+</div>
+
+<hr>
+
+<h4 id="axis-sub-element--zoom">Zoom</h4>
+
+<p>Used to configure the type of zooming that multigraph allows the user to do for the axis.</p>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h4 class="panel-title">Attributes</h4>
+  </div>
+  <ul class="list-group">
+    <li class="list-group-item">
+      <div class="row">
+        <div class="col-md-2"><code>allowed</code></div>
+        <div class="col-md-10">
+          <p>Either <code>"yes"</code> or <code>"no"</code></p>
+            <p>Default: <code>"yes"</code></p>
+        </div>
+      </div>
+    </li>
+    <li class="list-group-item">
+      <div class="row">
+        <div class="col-md-2"><code>min</code><br><code>max</code></div>
+        <div class="col-md-10">
+          <p>These attributes control how far "in" or "out" the user can zoom on an axis; its value is a distance along the axis, and is the smallest or biggest interval that the user will be allowed to zoom in to.</p>
+          <p>For a number type axis, this value is just a number, and multigraph will constrain the zooming so that the range of values displayed along the axis is at least or at most that number.</p>
+          <p>For a datetime type axis, the value should be an interval of time consisting of a number followed by one of the letters 'Y', 'M', 'D', 'H', 'm', or 's', which indicate years, months, days, hours, minutes, or seconds, respectively. For example, a <code>min</code> value of <code>"6M"</code> will cause multigraph to constrain zooming along the axis so that the range of time displayed along the axis is always at least 6 months.</p>
+          <p>Default: unconstrained zooming</p>
+        </div>
+      </div>
+    </li>
+    <li class="list-group-item">
+      <div class="row">
+        <div class="col-md-2"><code>anchor</code></div>
+        <div class="col-md-10">
+          <p>Indicates a location on the axis about which zooming should be centered. Should be either a data value, or the keyword <code>"none"</code>. If it is <code>"none"</code> then zooming is centered about the location of the mouse cursor when the user first presses the mouse button to begin dragging.</p>
+          <p>Default: <code>"none"</code></p>
+        </div>
+      </div>
+    </li>
+  </ul>
+</div>
+
+<hr>
+
+<h4 id="axis-sub-element--binding">Binding</h4>
+
+<p>Used to "bind" two or more axes together with a linear mapping so that interactive panning and/or zooming causes them to move together. It is typically used to connect axes that represent the same vertical scale with different units, such as celsius and Fahrenheit temperature. It can also be used to connect axes in different graphs that represent the same scale (for example, the horizontal time axis).</p>
+
+<p>This element <strong>requires</strong> all three of its attributes.</p>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h4 class="panel-title">Attributes</h4>
+  </div>
+  <ul class="list-group">
+    <li class="list-group-item">
+      <div class="row">
+        <div class="col-md-2"><code>id</code></div>
+        <div class="col-md-10">
+          <p>Identifies the binding; it can be any string, and all axes having binding elements with the same <code>id</code> value will be connected to each other.</p>
+        </div>
+      </div>
+    </li>
+    <li class="list-group-item">
+      <div class="row">
+        <div class="col-md-2"><code>min</code><br><code>max</code></div>
+        <div class="col-md-10">
+          <p>A minimum and maximum value for the binding. Axes bound together in a binding will be connected in such a way that their <code>max</code> and <code>min</code> values correspond to each other.</p>
+          <p>For example, to bind a celsius temperature axis to a Fahrenheit temperature axis, you could use the binding <code>&lt;binding id="tempbinding"</code> <code>min="0" max="100"/&gt;</code> on the celsius axis, and <code>&lt;binding id="tempbinding"</code> <code>min="32" max="212"/&gt;</code> on the Fahrenheit axis.</p>
+          <p>The <code>min</code> and <code>max</code> attributes can be any two data values on the axis that determine the linear relationship between an axis and other axes in the same binding. They do not need to correspond to the axis's own min and max values, and in general they will not.</p>
+        </div>
+      </div>
+    </li>
+  </ul>
+</div>
+
+
+
+
+
+
+<br>
+<br>
+<h2 id="legend-element">The Legend Element</h2>
+<hr>
+
+<p>When a graph has more than one plot, Multigraph automatically adds a legend in the upper-right corner. The <code>&lt;legend&gt;</code> element allows you to control the legend's appearance.</p>
+
+
+<pre class="prettyprint">
+&lt;mugl&gt;
+ &lt;legend
+     visible="BOOLEAN"
+     base="POINT(1,1)"
+     anchor="POINT(1,1)"
+     position="POINT(0,0)"
+     frame="FRAME(padding)"
+     color="COLOR(white)"
+     opacity="DOUBLE(1.0)"
+     border="INTEGER(1)"
+     bordercolor="COLOR(black)"
+     rows="INTEGER"
+     columns="INTEGER"
+     cornerradius="INTEGER(0)"
+     padding="INTEGER(0)"&gt;
+     
+   &lt;icon
+       width="INTEGER(40)"
+       height="INTEGER(30)"
+       border="INTEGER(1)"&gt;
+   &lt;/icon&gt;
+
+ &lt;/legend&gt;
+&lt;/mugl&gt;
+</pre>
+
+<br>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h4 class="panel-title">Attributes</h4>
+  </div>
+  <ul class="list-group">
+    <li class="list-group-item">
+      <div class="row">
+        <div class="col-md-2"><code>visible</code></div>
+        <div class="col-md-10">
+          <p>A value of <code>"true"</code> means that the legend should appear, and <code>"false"</code> means that it should not. You can use this attribute to disable the legend in graphs containing more than one plot, or to enable it in graphs containing only one plot. You can also specify <code>"yes"</code> or <code>"no"</code></p>
+          <p>Default: <code>"true"</code> if the graph contains more than one plot, otherwise <code>"false"</code>.</p>
+        </div>
+      </div>
+    </li>
+    <li class="list-group-item">
+      <div class="row">
+        <div class="col-md-2"><code>rows</code><br><code>columns</code></div>
+        <div class="col-md-10">
+          <p>The legend contains an entry for each plot, laid out in a grid. These attributes determine the number of rows and columns in that grid. If you specify one of these values and not the other, the other will be determined by the number of entries in the legend.</p>
+          <p>Default: <code>columns="1"</code> and <code>rows</code> is left unspecified (the legend will be laid out in a single vertical column with one row per entry). If you want a single horizontal legend layout instead, specify <code>rows="1"</code> and leave <code>columns</code> unspecified.</p>
+        </div>
+      </div>
+    </li>
+    <li class="list-group-item">
+      <div class="row">
+        <div class="col-md-2"><code>border</code></div>
+        <div class="col-md-10">
+          <p>The thickness of the border drawn around the legend. Use <code>"0"</code> to turn off the border.</p>
+          <p>Default: <code>"1"</code></p>
+        </div>
+      </div>
+    </li>
+    <li class="list-group-item">
+      <div class="row">
+        <div class="col-md-2"><code>bordercolor</code></div>
+        <div class="col-md-10">
+          <p>The color of the border.</p>
+          <p>Default: <code>"black"</code> (0x000000).</p>
+        </div>
+      </div>
+    </li>
+    <li class="list-group-item">
+      <div class="row">
+        <div class="col-md-2"><code>color</code></div>
+        <div class="col-md-10">
+          <p>The color used to fill the background of the legend.</p>
+          <p>Default: <code>"white"</code> (0xFFFFFF)</p>
+        </div>
+      </div>
+    </li>
+    <li class="list-group-item">
+      <div class="row">
+        <div class="col-md-2"><code>opacity</code></div>
+        <div class="col-md-10">
+          <p>Sets the opacity for the legend. The range of values is from 0.0 to 1.0. This is relevant because depending on where the legend is, it may obscure some parts of the plot data.</p>
+          <p>Default: <code>"1.0"</code> (completely opaque: any parts of the plot data that appear behind the legend will not be visible at all)</p>
+        </div>
+      </div>
+    </li>
+    <li class="list-group-item">
+      <div class="row">
+        <div class="col-md-2"><code>cornerradius</code></div>
+        <div class="col-md-10">
+          <p>Determines whether the corners of the legend box appear rounded (if it is drawn). If it is greater than 0, then the corners are rounded off using circles whose radius is <code>cornerradius</code> pixels.</p>
+          <p>Default: <code>"0"</code> (corners are right angles).</p>
+        </div>
+      </div>
+    </li>
+    <li class="list-group-item">
+      <div class="row">
+        <div class="col-md-2"><code>padding</code></div>
+        <div class="col-md-10">
+          <p>An amount of padding, in pixels, to leave between the edges of the legend box and the entries inside it.</p>
+          <p>Default: <code>"0"</code></p>
+        </div>
+      </div>
+    </li>
+    <li class="list-group-item">
+      <div class="row">
+        <div class="col-md-2"><code>anchor</code></div>
+        <div class="col-md-10">
+          <p>Default: <code>"1 1"</code> (upper right corner of the legend is anchored to the base point)</p>
+          <p>Details in the <a href="#positioning--base-and-anchor-attributes">Base & Anchor Attributes</a> section.</p>
+        </div>
+      </div>
+    </li>
+    <li class="list-group-item">
+      <div class="row">
+        <div class="col-md-2"><code>base</code></div>
+        <div class="col-md-10">
+          <p>Default: <code>"1 1"</code> (upper right corner of the plot area)</p>
+          <p>Details in the <a href="#positioning--base-and-anchor-attributes">Base & Anchor Attributes</a> section.</p>
+        </div>
+      </div>
+    </li>
+    </li>
+    <li class="list-group-item">
+      <div class="row">
+        <div class="col-md-2"><code>position</code></div>
+        <div class="col-md-10">
+          <p>Default: <code>"0 0"</code> (coordinate offset from default position)</p>
+          <p>Details in the <a href="#positioning--position-attribute">Position Attribute</a> section.</p>
+        </div>
+      </div>
+    </li>
+    <li class="list-group-item">
+      <div class="row">
+        <div class="col-md-2"><code>frame</code></div>
+        <div class="col-md-10">
+          <p>Determines whether the legend is positioned relative to the plot area or the padding box. Either <code>"padding"</code> or <code>"plot"</code></p>
+          <p>Default: <code>"padding"</code></p>
+          <p>Details in the <a href="#positioning--frame-attribute">Frame Attribute</a> section.</p>
+        </div>
+      </div>
+    </li>
+
+  </ul>
+</div>
+
+<br>
+
+<h4 id="legend-sub-element--icon">Sub-Element: Icon</h4>
+
+<p>The <code>&lt;icon&gt;</code> element affects the appearance of the individual plot icons in the legend.</p>
+
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h4 class="panel-title">Attributes</h4>
+  </div>
+  <ul class="list-group">
+    <li class="list-group-item">
+      <div class="row">
+        <div class="col-md-2"><code>width</code><br><code>height</code></div>
+        <div class="col-md-10">
+          <p>The width and height, in pixels, of the icons.
+          <p>Default: <code>width="40"</code>, <code>height="30"</code></p>
+        </div>
+      </div>
+    </li>
+    <li class="list-group-item">
+      <div class="row">
+        <div class="col-md-2"><code>border</code></div>
+        <div class="col-md-10">
+          <p>The thickness of a border drawn around the icons. Specify <code>"0"</code> to turn off the icon borders.</p>
+          <p>Default: <code>"1"</code></p>
+        </div>
+      </div>
+    </li>
+  </ul>
+</div>
+
+
+
+
+<br>
+<br>
+<h2 id="plot-element">The Plot Element</h2>
+<hr>
+
+<p>The data that Multigraph draws into the plot area is organized into one or more "plots." A plot consists of a selection of variables (usually two) to be plotted, along with information about which axes to plot them along, as well as visual attributes of the plot.</p>
+
+<p>A plot is described with a <code>&lt;plot&gt;</code> element. There can be any number (zero or more) of <code>&lt;plot&gt;</code> elements in the file. Multigraph will draw the plots in the order they appear in a mugl file. If a <code>&lt;plot&gt;</code> element is present at all, Multigraph will create a single line plot of the <code>&lt;data&gt;</code> element's first variable on the horizontal axis against the second variable on the vertical axis (or first vertical axis, if there is more than one).</p>
+
+<pre class="prettyprint">
+&lt;mugl&gt;
+ &lt;plot&gt;
+   &lt;legend
+       visible="BOOLEAN(true)"
+       label="STRING"&gt;
+   &lt;/legend&gt;
+   
+   &lt;horizontalaxis ref="STRING"&gt;
+     &lt;variable ref="STRING" /&gt;
+     &lt;variable .../&gt;
+     &lt;variable .../&gt;
+   &lt;/horizontalaxis&gt;
+
+   &lt;verticalaxis ref="STRING"&gt;
+     &lt;variable ref="STRING" /&gt;
+     &lt;variable .../&gt;
+     &lt;variable .../&gt;
+     
+     &lt;constant value="DATAVALUE" /&gt;
+     &lt;constant .../&gt;
+     &lt;constant .../&gt;
+   &lt;/verticalaxis&gt;
+
+   &lt;renderer type="RENDERERTYPE(line)"&gt;
+     &lt;option
+         name="STRING"
+         value="STRING"
+         min="DATAVALUE"
+         max="DATAVALUE"&gt;
+     &lt;/option&gt;
+     &lt;option .../&gt;&lt;/option&gt;
+     &lt;option .../&gt;&lt;/option&gt;
+   &lt;/renderer&gt;
+
+   &lt;datatips
+       format="STRING"
+       bgcolor="COLOR"
+       bgalpha="DOUBLE"
+       border="INTEGER"
+       bordercolor="COLOR"
+       pad="INTEGER"&gt;
+     &lt;variable
+         format="STRING"&gt;
+     &lt;/variable&gt;
+   &lt;/datatips&gt;
+ &lt;/plot&gt;
+&lt;/mugl&gt;
+</pre>
+
+<br>
+
+<h3>Plot Sub-Elements</h3>
+<hr>
+
+<h4 id="plot-sub-element--legend">Legend</h4>
+
+<p>In addition to the <code>&lt;legend&gt;</code> element at the top level of the mugl file, which controls the overall properties of the legend, each <code>&lt;plot&gt;</code> element may contain its own <code>&lt;legend&gt;</code> element to control how that plot's entry in the legend appears.</p>
+
+<p>The individual plot entries in the legend are laid out in the order in which the corresponding <code>&lt;plot&gt;</code> elements appear in the mugl file. To change the order of the entries in the legend, change the order of the <code>&lt;plot&gt;</code> elements. See the <a href="#legend-element">legend</a> documentation for information about the graph's legend.</p>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h4 class="panel-title">Attributes</h4>
+  </div>
+  <ul class="list-group">
+    <li class="list-group-item">
+      <div class="row">
+        <div class="col-md-2"><code>visible</code></div>
+        <div class="col-md-10">
+          <p>Determines whether the plot is listed in the legend at all. Either <code>"true"</code> or <code>"false"</code>.</p>
+          <p>Default: all plots have an entry in the legend if <code>&lt;legend&gt;</code> is present.</p>
+        </div>
+      </div>
+    </li>
+    <li class="list-group-item">
+      <div class="row">
+        <div class="col-md-2"><code>label</code></div>
+        <div class="col-md-10">
+          <p>The text to be used for the plot's entry in the legend.</p>
+          <p>Default: <code>id</code> of the first <code>&lt;variable&gt;</code> sub-element assigned to the plot's vertical axis.</p>
+        </div>
+      </div>
+    </li>
+  </ul>
+</div>
+
+<hr>
+
+<h4 id="plot-sub-element--horizontalaxis">Horizontalaxis</h4>
+
+<p>Indicates which variable(s) should be mapped to a horizontal axis on the plot. Most plots will have just one correspondence. To specify multiple correspondences, use a sequence of <code>&lt;variable&gt;</code> sub-elements.</p>
+<p>Default: the first <code>&lt;variable&gt;</code> sub-element of the <code>&lt;data&gt;</code> element along the horizontal axis.</p>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h4 class="panel-title">Attributes</h4>
+  </div>
+  <ul class="list-group">
+    <li class="list-group-item">
+      <div class="row">
+        <div class="col-md-2"><code>ref</code></div>
+        <div class="col-md-10">
+          <p>The <code>id</code> of a horizontal axis; must match the <code>id</code> attribute of a top-level <code>&lt;horizontalaxis&gt;</code> element.</p>
+        </div>
+      </div>
+    </li>
+  </ul>
+</div>
+
+<h5 id="plot--horizontalaxis-sub-element--variable">Sub-Element: Variable</h5>
+<p>Specifies a correspondence between a horizontal axis and a value from the <code>&lt;data&gt;</code> element.</p>
+
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h4 class="panel-title">Attributes</h4>
+  </div>
+  <ul class="list-group">
+    <li class="list-group-item">
+      <div class="row">
+        <div class="col-md-2"><code>ref</code></div>
+        <div class="col-md-10">
+          <p>The <code>id</code> of the corresponding <code>&lt;variable&gt;</code> sub-element in the <code>&lt;data&gt;</code> element.</p>
+        </div>
+      </div>
+    </li>
+  </ul>
+</div>
+
+<hr>
+
+<h4 id="plot-sub-element--verticalaxis">Verticalaxis</h4>
+
+<p>Indicates which variable(s) should be mapped to a vertical axis on the plot. Most plots will have just one correspondence, but some may have more than one. For example, a plot with error bars would have two "vertical axis" variables: one for the value, and another for the error amount. To specify multiple correspondences, use a sequence of <code>&lt;variable&gt;</code> sub-elements.</p>
+<p>Default: the second <code>&lt;variable&gt;</code> sub-element from the <code>&lt;data&gt;</code> element along the vertical axis.</p>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h4 class="panel-title">Attributes</h4>
+  </div>
+  <ul class="list-group">
+    <li class="list-group-item">
+      <div class="row">
+        <div class="col-md-2"><code>ref</code></div>
+        <div class="col-md-10">
+          <p>The <code>id</code> of a vertical axis; must match the <code>id</code> attribute of a top-level <code>&lt;horizontalaxis&gt;</code> element.</p>
+        </div>
+      </div>
+    </li>
+  </ul>
+</div>
+
+
+<h5 id="plot--verticalaxis-sub-element--variable">Sub-Element: Variable</h5>
+<p>Specifies a correspondence between a vertical axis and a <code>&lt;variable&gt;</code> sub-element from the <code>&lt;data&gt;</code> element. 
+
+<br>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h4 class="panel-title">Attributes</h4>
+  </div>
+  <ul class="list-group">
+    <li class="list-group-item">
+      <div class="row">
+        <div class="col-md-2"><code>ref</code></div>
+        <div class="col-md-10">
+          <p>The <code>id</code> of the corresponding <code>&lt;variable&gt;</code> sub-element of the <code>data</code> element.</p>
+        </div>
+      </div>
+    </li>
+  </ul>
+</div>
+
+
+<h5 id="plot--verticalaxis-sub-element--constant">Sub-Element: Constant</h5>
+
+<p>Draws a horizontal line on the graph at a specified location. You can specify styling details for the horizontal line, such as what plot style and colors to use, by using the <code>&lt;renderer&gt;</code> sub-element of the plot element, described below.</p>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h4 class="panel-title">Attributes</h4>
+  </div>
+  <ul class="list-group">
+    <li class="list-group-item">
+      <div class="row">
+        <div class="col-md-2"><code>value</code></div>
+        <div class="col-md-10">
+          <p>The data value at which the horizontal line should appear.</p>
+        </div>
+      </div>
+    </li>
+  </ul>
+</div>
+
+
+<hr>
+
+<h4 id="plot-sub-element--renderer">Renderer</h4>
+
+<p>Specifies the graph style to be used for the plot. "Renderers" are objects in the multigraph software that are responsible for drawing data plots. Each one corresponds to a specific plot style, such as points, lines, bars, and so on. See the <a href="/docs/renderers">List of Renderers</a> for full details.</p>
+
+<p>Default: <code>"line"</code></p>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h4 class="panel-title">Attributes</h4>
+  </div>
+  <ul class="list-group">
+    <li class="list-group-item">
+      <div class="row">
+        <div class="col-md-2"><code>type</code></div>
+        <div class="col-md-10">
+          <p>Indicates the name of the renderer. Supported renderers are shown below.</p>
+          <p>Default: <code>"line"</code></p>
+          <div class="row">
+            <div class="col-md-2"><code>"band"</code></div>
+            <div class="col-md-10">
+              <p>Fills the region between two data lines with a solid color, and draws a line segment between consecutive data points in each line.</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-2"><code>"bar"</code></div>
+            <div class="col-md-10">
+              <p>Standard bar graph.</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-2"><code>"fill"</code></div>
+            <div class="col-md-10">
+              <p>Plot lines connecting data points with a solid fill between the lines and the horizontal axis.</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-2"><code>"line"</code></div>
+            <div class="col-md-10">
+              <p>Standard line graph.</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-2"><code>"point"</code></div>
+            <div class="col-md-10">
+              <p>Data values rendered as points only.</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-2"><code>"pointline"</code></div>
+            <div class="col-md-10">
+              <p>Line graph with point values also rendered.</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-2"><code>"rangebar"</code></div>
+            <div class="col-md-10">
+              <p>Draws a vertical bar between two data values, and an optional outline around the bars.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </li>
+  </ul>
+</div>
+
+
+<h5 id="plot--renderer-sub-element--options">Sub-Element: Option</h5>
+<p>This element customizes visual aspects of the plot. See the <a href="/docs/renderers">List of Renderers</a> details on options for each renderer.</p>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h4 class="panel-title">Attributes</h4>
+  </div>
+  <ul class="list-group">
+    <li class="list-group-item">
+      <div class="row">
+        <div class="col-md-2"><code>min</code><br><code>max</code></div>
+        <div class="col-md-10">
+          <p>These attributes define an "applicability range" for the option. If the <code>min</code> attribute is present, it specifies a lower endpoint for the applicability range, and analogously, the <code>max</code> attribute specifies an upper endpoint. If either of these attributes is omitted, the applicability range is unlimited in the corresponding direction.</p>
+        </div>
+      </div>
+    </li>
+    <li class="list-group-item">
+      <div class="row">
+        <div class="col-md-2"><code>value</code></div>
+        <div class="col-md-10">
+          <p>The value of the option.</p>
+        </div>
+      </div>
+    </li>
+    <li class="list-group-item">
+      <div class="row">
+        <div class="col-md-2"><code>name</code></div>
+        <div class="col-md-10">
+          <p>The name of the option. Options vary depending on the chosen renderer.</p>
+        </div>
+      </div>
+    </li>
+  </ul>
+</div>
+
+<hr>
+
+<h4 id="plot-sub-element--datatips">Datatips</h4>
+
+<p>Note: the <code>&lt;datatips&gt;</code> element is not yet implemented in Multigraph 4.0</p>
+
+<p>This element tells Multigraph to display "tooltip"-style popups as the user moves the mouse over individual data points, and indicates the format to use for those popups. This element is optional, and if left absent, no tips will be displayed.</p>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h4 class="panel-title">Attributes</h4>
+  </div>
+  <ul class="list-group">
+    <li class="list-group-item">
+      <div class="row">
+        <div class="col-md-2"><code>format</code></div>
+        <div class="col-md-10">
+          <p>A string that gives the text to be displayed in each datatip popup. Within this string, expressions of the form {0}, {1}, etc will be replaced with the values of the corresponding variable from the plot (with {0} being the first variable, {1} the second, and so on). By defining <code>&lt;variable&gt;</code> sub-elements, you can define your own format strings.</p>
+        </div>
+      </div>
+    </li>
+    <li class="list-group-item">
+      <div class="row">
+        <div class="col-md-2"><code>bgcolor</code></div>
+        <div class="col-md-10">
+          <p>The color to use for the background of the datatip.</p>
+        </div>
+      </div>
+    </li>
+    <li class="list-group-item">
+      <div class="row">
+        <div class="col-md-2"><code>bgalpha</code></div>
+        <div class="col-md-10">
+          <p>The alpha (transparency) value to use for the background of the datatip.</p>
+        </div>
+      </div>
+    </li>
+    <li class="list-group-item">
+      <div class="row">
+        <div class="col-md-2"><code>border</code></div>
+        <div class="col-md-10">
+          <p>The thickness of a border to draw around the outline of the tooltip rectangle.</p>
+        </div>
+      </div>
+    </li>
+    <li class="list-group-item">
+      <div class="row">
+        <div class="col-md-2"><code>bordercolor</code></div>
+        <div class="col-md-10">
+          <p>The color to use for the border.</p>
+        </div>
+      </div>
+    </li>
+    <li class="list-group-item">
+      <div class="row">
+        <div class="col-md-2"><code>pad</code></div>
+        <div class="col-md-10">
+          <p>An amount of space (in pixels) to leave around the text.</p>
+        </div>
+      </div>
+    </li>
+  </ul>
+</div>
+
+<h5 id="plot--datatips-sub-element--variable">Sub-Element: Variable</h5>
+
+<p>Each <code>&lt;variable&gt;</code> sub-element of the <code>&lt;datatips&gt;</code> element indicates a format string to be used when formatting the values of a variable to be used in constructing the datatip.</p>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h4 class="panel-title">Attributes</h4>
+  </div>
+  <ul class="list-group">
+    <li class="list-group-item">
+      <div class="row">
+        <div class="col-md-2"><code>format</code></div>
+        <div class="col-md-10">
+          <p>The format string to be used for the variable.</p>
+        </div>
+      </div>
+    </li>
+  </ul>
+</div>
+
+
+
+<br>
+<br>
+<h2 id="data-element">The Data Element</h2>
+<hr>
+
+<p>The <code>&lt;data&gt;</code> element in the mugl file specifies the data to be plotted. The <code>&lt;data&gt;</code> element is the only element that is absolutely required in a mugl file. It is helpful to think of the data as consisting of a table of values, where each column in the table corresponds to a particular variable, and each row corresponds to a set of values for those variables.</p>
+
+<pre class="prettyprint">
+&lt;mugl&gt;
+ &lt;data&gt;
+   &lt;variables
+       missingvalue="DATAVALUE"
+       missingop="COMPARATOR"&gt;
+     &lt;variable
+         id="STRING!"
+         column="INTEGER"
+         type="DATATYPE(number)"
+         missingvalue="STRING"
+         missingop="COMPARATOR"&gt;
+     &lt;/variable&gt;
+     &lt;variable .../&gt;&lt;/variable&gt;
+     &lt;variable .../&gt;&lt;/variable&gt;
+   &lt;/variables&gt;
+
+  &lt;!-- Be sure to include only one data source attribute !--&gt;
+   &lt;values&gt;
+    0,1
+    14,2
+    7,3
+   &lt;/values&gt;
+  OR
+   &lt;csv location="STRING" /&gt;
+  OR
+   &lt;service
+       location="STRING"
+       format="STRING"&gt;
+   &lt;/service&gt;
+ &lt;/data&gt;
+&lt;/mugl&gt;
+</pre>
+
+<br>
+
+<h4 id="data-sub-element--variables">Sub-Element: Variables</h4>
+
+<p>A mugl file's <code>&lt;data&gt;</code> element should begin with a <code>&lt;variables&gt;</code> sub-element that indicates some basic information about the columns in this "table" of data. This element's attributes define global rules for determining when to treat data values as "missing." These rules may be overridden in <code>&lt;variable&gt;</code> sub-elements.</p>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h4 class="panel-title">Attributes</h4>
+  </div>
+  <ul class="list-group">
+    <li class="list-group-item">
+      <div class="row">
+        <div class="col-md-2"><code>missingop</code></div>
+        <div class="col-md-10">
+          <p>Multigraph will leave a gap at locations corresponding to missing data points. <code>missingop</code> is the operation to be used in determining whether a value should be considered missing. Should be one of the strings <code>"lt"</code>, <code>"le"</code>, <code>"eq"</code>, <code>"ge"</code>, or <code>"gt"</code>, which stand for "less than", "less than or equal", "equal", "greater than or equal", and "greater than", respectively.</p>
+          <p>Default: <code>"eq"</code> (tests for exact equality)</p>
+        </div>
+      </div>
+    </li>
+    <li class="list-group-item">
+      <div class="row">
+        <div class="col-md-2"><code>missingvalue</code></div>
+        <div class="col-md-10">
+          <p>Value tested against by <code>missingop</code>. For example, if <code>missingop</code> is <code>"le"</code> and <code>missingvalue</code> is <code>"-9000"</code>, then any data values less than or equal to -9000 will be considered missing.</p>
+          <p>Default: none (no data values missing)</p>
+        </div>
+      </div>
+    </li>
+  </ul>
+</div>
+
+<h5 id="data--variables-sub-element--variable">Sub-Element: Variable</h5>
+
+<p>Information about individual data variables is provided by a sequence of <code>&lt;variable&gt;</code> sub-elements within the <code>&lt;variables&gt;</code> element.</p>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h4 class="panel-title">Attributes</h4>
+  </div>
+  <ul class="list-group">
+    <li class="list-group-item">
+      <div class="row">
+        <div class="col-md-2"><code>id</code></div>
+        <div class="col-md-10">
+          <p>An identifier to be used to refer to this variable elsewhere in the mugl file.</p>
+          <p>Default: <code>"x"</code> for the first variable, <code>"y"</code> for the second variable, and <code>"y1"</code>, <code>"y2"</code>, ... for any additional variables.</p>
+        </div>
+      </div>
+    </li>
+    <li class="list-group-item">
+      <div class="row">
+        <div class="col-md-2"><code>column</code></div>
+        <div class="col-md-10">
+          <p>A number indicating which "column" the variable is in.</p>
+          <p>Default: <code>"0"</code> for the first variable, <code>"1"</code> for the second, etc.</p>
+        </div>
+      </div>
+    </li>
+    <li class="list-group-item">
+      <div class="row">
+        <div class="col-md-2"><code>type</code></div>
+        <div class="col-md-10">
+          <p>The data type of the variable. Should be either <code>'number'</code> or <code>'datetime'</code></p>
+          <p>Default: <code>"number"</code></p>
+        </div>
+      </div>
+    </li>
+    <li class="list-group-item">
+      <div class="row">
+        <div class="col-md-2"><code>missingop</code></div>
+        <div class="col-md-10">
+          <p>Operation to be used in determining whether a value should be considered missing. Should be one of the strings <code>"lt"</code>, <code>"le"</code>, <code>"eq"</code>, <code>"ge"</code>, or <code>"gt"</code>, which stand for "less than", "less than or equal", "equal", "greater than or equal", and "greater than", respectively.</p>
+          <p>Default: <code>"eq"</code> (tests for exact equality)</p>
+        </div>
+      </div>
+    </li>
+    <li class="list-group-item">
+      <div class="row">
+        <div class="col-md-2"><code>missingvalue</code></div>
+        <div class="col-md-10">
+          <p>Value tested against by <code>missingop</code>. Multigraph will leave a gap at locations corresponding to missing data points. For example, if <code>missingop</code> is <code>"le"</code> and <code>missingvalue</code> is <code>"-9000"</code>, then any data values less than or equal to -9000 will be considered missing.</p>
+          <p>Default: none (no data values missing)</p>
+        </div>
+      </div>
+    </li>
+  </ul>
+</div>
+
+<br>
+
+<h3 id="data-source-elements">Data Source Elements</h3>
+<hr>
+
+<p>There are three ways to specify data:
+  <ul>
+   <li>List comma-separated values directly in the mugl file.</li>
+   <li>Refer to a comma-separated value (.csv) file.</li>
+   <li>Link to a compatible web service that provides the data.</li>
+  </ul>
+</p>
+
+<p>The <code>&lt;data&gt;</code> element must have <strong>exactly one</strong> of the following sub-elements to define how data values are referenced:</p>
+
+<hr>
+<h4 id="data-sub-element--values">Values</h4>
+
+<p>List values directly in the mugl file. The data is structured as set of values per line, with individual values on each line separated by commas.</p>
+
+<hr>
+<h4 id="data-sub-element--csv">CSV</h4>
+
+<p>This element has a single attribute named <code>location</code>, whose value is name of the csv file.</p>
+
+<hr>
+<h4 id="data-sub-element--service">Service</h4>
+
+<p>Fetch the data from a REST web service.</p>
+
+<p>The value of <code>location</code> should be either a root-relative (starting with '/') path, or a path that is relative to the location of the HTML file. The URL should not include the "http://" prefix or a server name. Because of JavaScript security restrictions, the address must be on the same server where the HTML page containing the graph is. See the <a href="/docs/writing-web-service-data-sources">Writing Web Service Data Sources</a> page for more information.</p>
+
+<br>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h4 class="panel-title">Attributes</h4>
+  </div>
+  <ul class="list-group">
+    <li class="list-group-item">
+      <div class="row">
+        <div class="col-md-2"><code>location</code></div>
+        <div class="col-md-10">
+          <p>The service URL. Multigraph automatically appends the string <code>$min,$max</code> to the URL, then replaces <code>$min</code> and <code>$max</code> with the minimum and maximum values of the data source's first variable for the requested range.</p>
+        </div>
+      </div>
+    </li>
+    <li class="list-group-item">
+      <div class="row">
+        <div class="col-md-2"><code>format</code></div>
+        <div class="col-md-10">
+          <p>A format string to be used in formatting the data values that will be substituted for <code>$min</code> and <code>$max</code> in constructing request URLs as described above.</p>
+          <p>Default (number): <code>"%f"</code>
+          <p>Default (datetime): <code>"%Y%M%D%H%i%s"</code></p>
+        </div>
+      </div>
+    </li>
+  </ul>
+</div>
+
+
+
+
+<br>
+<br>
+<h2 id="title-element">The Title Element</h2>
+<hr>
+
+<p>This element indicates a title to be displayed in the graph.  If the <code>&lt;title&gt;</code> element is not present, no title is drawn.  If it is present, the text of the element indicates the text of the title.</p>
+
+<hr>
+<p><small>NOTE: at the time of this writing, the title element is not fully implemented in Multigraph 4.0.  A better way to implement a graph title is to do it outside of Multigraph: create a <code>&lt;div&gt;</code> element outside of the Multigraph <code>&lt;div&gt;</code>, and use CSS to style and position it as desired.  (You can even position it to appear as though it's inside the graph, by using relative or absolute positioning.) anchor, base, position, frame:  specify the position of the title color: color of the background rectangle to be drawn behind the title opacity: opacity of the title background border: thickness, in pixels, of the border drawn around the title; a value of <code>"0"</code> causes no border to be drawn.</small></p>
+
+
+<br>
+
+<pre class="prettyprint">
+&lt;mugl&gt;
+ &lt;title
+     base="POINT(0,1)"
+     anchor="POINT(0,1)"
+     position="POINT(0,0)"
+     frame="FRAME(padding)"
+     color="COLOR(white)"
+     opacity="DOUBLE(1.0)"
+     border="INTEGER(0)"
+     bordercolor="COLOR(black)"
+     padding="INTEGER(0)"
+     cornerradius="INTEGER(15)"
+     fontsize="INTEGER"&gt;
+ &lt;/title&gt;
+&lt;/mugl&gt;
+</pre>
+
+<br>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h4 class="panel-title">Attributes</h4>
+  </div>
+  <ul class="list-group">
+    <li class="list-group-item">
+      <div class="row">
+        <div class="col-md-2"><code>anchor</code><br><code>base</code><br><code>position</code><br><code>frame</code></div>
+        <div class="col-md-10">
+          <p>Details in the <a href="#positioning">positioning</a> section.</p>
+        </div>
+      </div>
+    </li>
+    <li class="list-group-item">
+      <div class="row">
+        <div class="col-md-2"><code>bordercolor</code></div>
+        <div class="col-md-10">
+          <p>Color of border around the title</p>
+        </div>
+      </div>
+    </li>
+    <li class="list-group-item">
+      <div class="row">
+        <div class="col-md-2"><code>padding</code></div>
+        <div class="col-md-10">
+          <p>An amount of space, in pixels, to leave inside the border of the title.</p>
+        </div>
+      </div>
+    </li>
+    <li class="list-group-item">
+      <div class="row">
+        <div class="col-md-2"><code>cornerradius</code></div>
+        <div class="col-md-10">
+          <p>The radius, in pixels, of rounding to apply to the corners of the title box.</p>
+        </div>
+      </div>
+    </li>
+    <li class="list-group-item">
+      <div class="row">
+        <div class="col-md-2"><code>fontsize</code></div>
+        <div class="col-md-10">
+          <p>The size of the font to use for the title.</p>
+        </div>
+      </div>
+    </li>
+  </ul>
+</div>
+
+
+<br>
+<br>
+<h2 id="background-element">The Background Element</h2>
+<hr>
+
+<p>You can specify an alternate background color or an image to be used in the background of a graph with the <code>&lt;background&gt;</code> sub-element. If this element is present at all, it should appear at the top level of the Mugl file, inside the mugl tag.</p>
+
+<pre class="prettyprint">
+&lt;mugl&gt;
+ &lt;background color="COLOR(white)"&gt;
+   &lt;img
+       src="STRING!"
+       anchor="POINT(-1,-1)"
+       base="POINT(-1,-1)"
+       position="POINT(0,0)"
+       frame="FRAME(padding)"&gt;
+   &lt;/img&gt;
+ &lt;/background&gt;
+&lt;/mugl&gt;
+</pre>
+
+<br>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h4 class="panel-title">Attributes</h4>
+  </div>
+  <ul class="list-group">
+    <li class="list-group-item">
+      <div class="row">
+        <div class="col-md-2"><code>color</code></div>
+        <div class="col-md-10">
+          <p>The color to use for the graph background.</p>
+          <p>Default: <code>"0xffffff"</code> (white).</p>
+        </div>
+      </div>
+    </li>
+  </ul>
+</div>
+
+<h4 id="background-sub-element--img">Sub-Element: Img</h4>
+
+<p>Specifies an image to be drawn in the background. If it is present, the image is drawn <em>after</em> the background is filled with the background color, but before everything else is drawn, so the image will appear underneath everything.</p>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h4 class="panel-title">Attributes</h4>
+  </div>
+  <ul class="list-group">
+    <li class="list-group-item">
+      <div class="row">
+        <div class="col-md-2"><code>src</code></div>
+        <div class="col-md-10">
+          <p>The URL of the image to be used. This URL may be either relative or absolute.</p>
+        </div>
+      </div>
+    </li>
+    <li class="list-group-item">
+      <div class="row">
+        <div class="col-md-2"><code>color</code></div>
+        <div class="col-md-10">
+          <p>The color to use for the graph background.</p>
+          <p>Default: <code>"0xffffff"</code> (white).</p>
+        </div>
+      </div>
+    </li>
+    <li class="list-group-item">
+      <div class="row">
+        <div class="col-md-2"><code>anchor</code></div>
+        <div class="col-md-10">
+          <p>Default: <code>"-1 -1"</code> (upper left corner)</p>
+          <p>See the <a href="#positioning--base-and-anchor-attributes">Base & Anchor Attributes</a> section.</p>
+        </div>
+      </div>
+    </li>
+    <li class="list-group-item">
+      <div class="row">
+        <div class="col-md-2"><code>base</code></div>
+        <div class="col-md-10">
+          <p>Default: <code>"-1 -1"</code> (upper left corner)</p>
+          <p>See the <a href="#positioning--base-and-anchor-attributes">Base & Anchor Attributes</a> section.</p>
+        </div>
+      </div>
+    </li>
+    </li>
+    <li class="list-group-item">
+      <div class="row">
+        <div class="col-md-2"><code>position</code></div>
+        <div class="col-md-10">
+          <p>Default: <code>"0 0"</code></p>
+          <p>See the <a href="#positioning--position-attribute">Position Attribute</a> section.</p>
+        </div>
+      </div>
+    </li>
+
+    <li class="list-group-item">
+      <div class="row">
+        <div class="col-md-2"><code>frame</code></div>
+        <div class="col-md-10">
+          <p>Default: <code>"padding"</code></p>
+          <p>See the <a href="#positioning--frame-attribute">Frame Attribute</a> section.</p>
+        </div>
+      </div>
+    </li>
+  </ul>
+</div>
+
+
+
+<br>
+<br>
+<h2 id="throttle-element">The Throttle Element</h2>
+<hr>
+
+<p>Allows Multigraph to enforce constraints on the rate at which it initiates requests to fetch data for <code>&lt;csv&gt;</code> and/or <code>&lt;service&gt;</code> data sources. A mugl file may contain any number of <code>&lt;throttle&gt;</code> elements; each one specifies a regular expression pattern, and a set of constraint values. Multigraph enforces that set of constraints to all URLs it fetches that match the regular expression. If more than one of these elements is present, Multigraph will choose the constraints in the first element in the file whose pattern matches the fetched URL.</p>
+
+<p>A <code>&lt;throttle&gt;</code> element with an empty pattern, or missing pattern attribute, will match any URL, so its constraints will be applied to every outgoing request, unless there is another  before it with a pattern that also matches the request URL.</p>
+
+<p>The test for whether a request URL matches a <code>&lt;throttle&gt;</code> pattern is done on the original "location" value for the <code>&lt;csv&gt;</code> or <code>&lt;service&gt;</code> element.  For <code>&lt;service&gt;</code> elements, this is before any range values are inserted into the URL, and in both cases, the pattern is checked before a relative URL is rewritten to be relative to the location of the MUGL file.</p>
+
+<p>Throttling only applies to data fetched via a <code>&lt;csv&gt;</code> or <code>&lt;service&gt;</code> data source; it does not apply to any images retrieved by the <code>&lt;background&gt;</code> <code>&lt;img&gt;</code> element.</p>
+
+<pre class="prettyprint">
+&lt;mugl&gt;
+ &lt;throttle
+     pattern="STRING()"
+     requests="INTEGER(0)"
+     period="INTEGER(0)"
+     concurrent="INTEGER(0)"&gt;
+ &lt;/throttle&gt;
+&lt;/mugl&gt;
+</pre>
+
+<br>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h4 class="panel-title">Attributes</h4>
+  </div>
+  <ul class="list-group">
+    <li class="list-group-item">
+      <div class="row">
+        <div class="col-md-2"><code>pattern</code></div>
+        <div class="col-md-10">
+          <p>The regular expression (JavaScript syntax) for URLs that this element's constraints should be applied to.  This regular expression should NOT include delimiting '/' marks.</p>
+        </div>
+      </div>
+    </li>
+    <li class="list-group-item">
+      <div class="row">
+        <div class="col-md-2"><code>period</code></div>
+        <div class="col-md-10">
+          <p>An interval of time (in milliseconds). No more than (value of <code>requests</code>) are initiated per <code>period</code>.</p>
+          <p>Default: <code>"0"</code> (no time period-based constraint)</p>
+        </div>
+      </div>
+    </li>
+    <li class="list-group-item">
+      <div class="row">
+        <div class="col-md-2"><code>requests</code></div>
+        <div class="col-md-10">
+          <p>Maximum number of requests to make per <code>period</code>.</p>
+          <p>Default: <code>"0"</code> (no time period-based constraint)</p>
+        </div>
+      </div>
+    </li>
+    <li class="list-group-item">
+      <div class="row">
+        <div class="col-md-2"><code>concurrent</code></div>
+        <div class="col-md-10">
+          <p>Maximum number of outstanding requests allowed.</p>
+          <p>Default: <code>"0"</code> (no constraint of concurrent requests)</p>
+        </div>
+      </div>
+    </li>
+  </ul>
+</div>
+
+<br>
+<br>
+<h2 id="positioning">Positioning</h2>
+<hr>
+
+<p>Many visual components in Multigraph are positioned relative to another component. A graph title or legend is typically positioned relative to the entire graph window. A title for an axis is usually positioned relative to the axis, and labels along the axis are positioned relative to the tic marks on the axis. The axes themselves are positioned relative to the plot area. Multigraph uses a common collection of attributes and conventions for relative positioning of various components. One of these conventions is a  "relative" coordinate system. The lower-left corner of an element has the coordinates (-1,-1), the upper-right corner has coordinates (1,1), and the center has coordinates (0,0).</p>
+
+<p>Many elements in a Mugl file represent rectangles (such as the plot area or padding box) or line segments (such as an axis) that may be positioned with the <code>base</code>, <code>anchor</code>, <code>position</code>, <code>angle</code>, and <code>frame</code> attributes.</p>
+
+<hr>
+<h4 id="positioning--base-and-anchor-attributes">The Base & Anchor Attributes</h4>
+
+<p>We specify the location of the green rectangle relative to the blue one by specifying an "anchor" point in the green rectangle with the <code>anchor</code> attribute, and a "base" point in the blue rectangle with the <code>base</code> attribute. The <code>base</code> and <code>anchor</code> attributes in this example would be specified as <code>base="1 0"</code> and <code>anchor="1 -1"</code>. When the elements are positioned by Multigraph, the anchor and base points line up with each other (assuming no other positioning attributes are used).</p>
+
+<img src="/images/PositioningRectangles.png" width="100%" />
+
+<hr>
+<p><small>Note: When positioning elements, you're not always dealing with rectangles. For example, in some cases the base point is determined by context and there is no need (or it doesn't make sense) to think in terms of a base rectangle. When positioning an axis title, the base point is the center point of the axis, so the <code>&lt;title&gt;</code> sub-element of the axis element takes position, anchor, and angle attributes that position the title relative to the axis center point, and the base attribute is not needed (or allowed).</small></p>
+<hr>
+
+<h4 id="positioning--position-attribute">The Position Attribute</h4>
+
+<p>The <code>position</code> attribute defines a pixel offset from the base point in the form of a coordinate pair. Positive numbers offset the relatively positioned element to the right for a horizontal offset or updwards for a vertical offset; negative numbers offset the element to the left for the horizontal offset or downwards for the vertical offset.</p>
+
+<p>In the above illustration, the base point is (1,0) and the anchor point is (1,-1). The base point is specified in the relative coordinates of the "base" rectangle, and the anchor point is in the relative coordinates of the relatively positioned rectangle. The position vector is about (-30,-20), and would be written as <code>position="-30 20"</code>.</p>
+
+<img src="/images/RelativePositioningExample.png" width="100%" />
+
+<hr>
+<h4 id="positioning--angle-attribute">The Angle Attribute</h4>
+
+<p>The <code>angle</code> attribute rotates (in degrees) the relatively positioned element. Positive values rotate the element counterclockwise, and negative values rotate the element clockwise.</p>
+
+<hr>
+<h4 id="positioning--frame-attribute">The Frame Attribute</h4>
+
+<p>Some mugl tags accept the <code>frame</code> attribute as a way of identifying the base rectangle. It typically takes values like <code>"plot"</code> or <code>"padding"</code>, to indicate that the base rectangle is the plot box or the padding box, respectively. In most cases, though, the base rectangle is determined by the context and there is no need (or allowance) for a <code>frame</code> attribute.</p>
+<hr>
+
+<br>
+<br>
+<h3 id="positioning--axes-positioning">Axes Positioning</h3>
+<hr>
+
+<p>When positioning an axis, the base rectangle is the plot area rectangle, and the relatively positioned rectangle is a line segment. Instead of a set of relative coordinates, the <code>anchor</code> attribute then takes a single value: a number ranging from -1 to 1 that represents a location along the line segment. Similarly, when positioning an axis title relative to the axis, the base rectangle is a line segment; in this case the <code>base</code> attribute is a single number between -1 and 1.</p>
+
+<hr>
+<h4>Axis Label Positioning</h4>
+
+<p>The <code>&lt;labels&gt;</code> sub-element of the <code>&lt;horizontalaxis&gt;</code> and <code>&lt;verticalaxis&gt;</code> elements allows you to control how Multigraph places tic marks and labels along the axis. The location of the label for each tic mark is determined by the <code>position</code>, <code>anchor</code>, and <code>angle</code> attributes of the <code>&lt;labels&gt;</code> tag. The relatively positioned rectangle is the text label area, and the "base" point for each label is the location of the corresponding tic mark on the axis (the <code>&lt;labels&gt;</code> tag does not take a base attribute).</p>
+
+<p>The following figure shows a few examples of positioning schemes for axis labels. Note that the rectangles drawn around the text in the figure are shown just for clarity; in a real graph, Multigraph does not draw these rectangles.</p>
+
+<div class="row">
+  <img class="col-md-12" width="100%" src="/images/AxisLabelExamples.png" />
+</div>
+
+<br>
+<br>
+
+
+
+
+
+
+
+</div> <!-- end of col-md-9 (main content) !-->
+
+
+
+
+<nav class="sidebar-menu col-md-3">
+  <ul class="nav nav-list" role="complementary">
+    <li><a href="#window-element">Window</a></li>
+    <li><a href="#plotarea-element">Plotarea</a></li>
+    <li><a href="#axis-elements">Axis</a>
+      <ul class="nav">
+        <li><a href="#axis-sub-element--title">Title</a></li>
+        <li>
+          <a href="#axis-sub-element--labels">Labels</a>
+          <ul class="nav">
+            <li><a href="#axis--labels-sub-element--label">Label</a></li>
+          </ul>
+        </li>
+        <li><a href="#axis-sub-element--grid">Grid</a></li>
+        <li><a href="#axis-sub-element--pan">Pan</a></li>
+        <li><a href="#axis-sub-element--zoom">Zoom</a></li>
+        <li><a href="#axis-sub-element--binding">Binding</a></li>
+      </ul>
+    </li>
+    <li><a href="#legend-element">Legend</a>
+      <ul class="nav">
+        <li><a href="#legend-sub-element--icon">Icon</a></li>
+      </ul>
+    </li>
+    <li><a href="#plot-element">Plot</a>
+      <ul class="nav">
+        <li><a href="#plot-sub-element--legend">Legend</a></li>
+        <li>
+          <a href="#plot-sub-element--horizontalaxis">Horizontalaxis</a>
+          <ul class="nav">
+            <li><a href="#plot--horizontalaxis-sub-element--variable">Variable</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="#plot-sub-element--verticalaxis">Verticalaxis</a>
+          <ul class="nav">
+            <li><a href="#plot--verticalaxis-sub-element--variable">Variable</a></li>
+            <li><a href="#plot--verticalaxis-sub-element--constant">Constant</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="#plot-sub-element--renderer">Renderer</a>
+          <ul class="nav">
+            <li><a href="#plot--renderer-sub-element--options">Option</a></li>
+          </ul> 
+        </li>
+        <li>
+          <a href="#plot-sub-element--datatips">Datatips</a>
+          <ul class="nav">
+            <li><a href="#plot--datatips-sub-element--variable">Variable</a></li>
+          </ul> 
+        </li>
+      </ul>
+    </li>
+    <li><a href="#data-element">Data</a>
+      <ul class="nav">
+        <li>
+          <a href="#data-sub-element--variables">Variables</a>
+          <ul class="nav">
+            <li><a href="#data--variables-sub-element--variable">Variable</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="#data-source-elements">Data Source Elements</a>
+          <ul class="nav">
+            <li><a href="#data-sub-element--values">Values</a></li>
+            <li><a href="#data-sub-element--csv">Csv</a></li>
+            <li><a href="#data-sub-element--service">Service</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#title-element">Title</a></li>
+    <li><a href="#background-element">Background</a>
+      <ul class="nav">
+        <li><a href="#background-sub-element--img">Img</a></li>
+      </ul>
+    </li>
+    <li><a href="#throttle-element">Throttle</a></li>
+    <li><a href="#positioning">Positioning</a>
+      <ul class="nav">
+        <li><a href="#positioning--axes-positioning">Axes Positioning</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+</div>
+
+
+
+
+
+<!-- custom end.html include with scrollspy !-->
+      <footer>
+          <a href="//github.com/multigraph/js-multigraph" class="icon"><i class="fa fa-github fa-3x"></i></a><br />
+          <p>&copy; 2014 <a href="//nemac.unca.edu"><abbr title="UNC Asheville's National Environmental Modeling & Analysis Center">UNC Asheville's NEMAC</abbr></a></p>
+      </footer>
+
+    </div>
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script>$('body').scrollspy({ target: '.sidebar-menu', offset: 50 });</script>
+  </body>
+</html>
+

@@ -1,6 +1,7 @@
 ---
 title: Using JavaScript in Multigraph
 docs: selected
+permalink: /docs/js/
 ---
 
 {% include header.html %}
@@ -9,7 +10,7 @@ docs: selected
 
     <h2>Using Multigraph with JavaScript</h2>
     
-    <p>Multigraph's HTML5 interface lets you create a graph in an HTML page by simply putting a <code>div</code> in the page which has <code>class="multigraph"</code>, and a <code>data-src</code> attribute that gives the location of the MUGL file to load (see the <a href='/integrate'>integration page</a> for details). Multigraph scans through the entire page looking for all <code>div</code>s of class <code>multigraph</code>, and runs some code on each one to insert the relevant graph into it. This is the easiest way to get a Multigraph into a web page, and doesn't involve writing any JavaScript code. If you want more control over the details of what Multigraph does, though, you can write your own custom JavaScript code that interacts with Multigraph.</p>
+    <p>Multigraph's HTML5 interface lets you create a graph in an HTML page by simply putting a <code>div</code> in the page which has <code>class="multigraph"</code>, and a <code>data-src</code> attribute that gives the location of the MUGL file to load. Multigraph scans through the entire page looking for all <code>div</code>s of class <code>multigraph</code>, and runs some code on each one to insert the relevant graph into it. This is the easiest way to get a Multigraph into a web page, and doesn't involve writing any JavaScript code. If you want more control over the details of what Multigraph does, though, you can write your own custom JavaScript code that interacts with Multigraph.</p>
 
     <h3>The <code>multigraph</code> JavaScript Namespace</h3>
 
@@ -45,49 +46,104 @@ docs: selected
 
     <p>The <code>multigraph</code> plugin function takes a single argument which is a JavaScript object that specifies options that govern how the Multigraph is created. The possible values in this options object are:</p>
 
-    <ul>
-        <li><code>mugl</code>
-        <p>this should be the URL of a MUGL file to load. Exactly one of <code>mugl</code> or <code>muglString</code> must be present.</p>
-        </li>
-
-        <li><code>muglString</code>
-        <p>this should be a string which contains the MUGL XML to be loaded (the actual XML document, as a string, not the URL or name of a file containing it). Exactly one of <code>mugl</code> or <code>muglString</code> must be present.</p>
-        </li>
-
-        <li><code>width</code>
-        <p>the width of the graph, in pixels. If this is not present, Multigraph will query the div itself to get its width; this means that you can use CSS to assign it.</p>
-        </li>
-
-        <li><code>height</code>
-        <p>the height of the graph, in pixels. If this is not present, Multigraph will query the div itself to get its height; this means that you can use CSS to assign it.</p>
-        </li>
-
-        <li><code>driver</code>
-        <p>the graphics driver to use in the graph. The possible values are</p>
-
-        <ul>
-            <li><code>"canvas"</code>
-            <p>causes Multigraph to use the HTML5 Canvas tag for graphics. This works in all recent browsers except versions of IE prior to 9.</p>
-            </li>
-
-            <li><code>"raphael"</code>
-            <p>causes Multigraph to use the <a href='http://raphaeljs.com'>Raphael</a> graphics library for graphics. This library uses SVG in browsers that support SVG; it uses VML in versions of IE prior to 9.</p>
-            </li>
-
-            <li><code>"auto"</code>
-            <p>this is the default; it causes Multigraph to use the canvas driver in all browsers that support it, and otherwise it uses the Raphael driver.</p>
-            </li>
-        </ul>
-        </li>
-
-        <li><code>error</code>
-        <p>this is optional; if it is present, its value should be a function for handling error messages that Multigraph generates. Multigraph will call this function if and when it encounters an error in the course of loading a MUGL file, drawing a graph, or doing anything else that it does. The function should take a single argument which is an instance of a JavaScript Error object. The default behavior, which is what happens if this option is not present, is to use Multigraph's own internal mechanism for displaying user messages.</p>
-        </li>
-
-        <li><code>warning</code>
-        <p>this is optional; if it is present, its value should be a function for handling warning messages, similar to the above description for error messages. (Warning messages are like errors but are less severe.) The default behavior is that warnings are handled using whatever the current mechanism for handling errors is &#8212; i.e. either Multigraph's internal message display, or the custom function specified by the value of the <code>error</code> option.</p>
-        </li>
+<div class="panel panel-default">
+  <div class="panel-heading">
+   <h4 class="panel-title">Attributes</h4>
+  </div>
+  
+  <ul class="list-group">
+      <li class="list-group-item">
+        <div class="row">
+          <div class="col-md-2">
+            <code>mugl</code>
+          </div>
+          <div class="col-md-10">
+           <p>This should be the URL of a MUGL file to load. Exactly one of mugl or muglString must be present.</p>
+          </div>
+        </div>
+      </li>
+      <li class="list-group-item">
+        <div class="row">
+          <div class="col-md-2">
+            <code>muglString</code>
+          </div>
+          <div class="col-md-10">
+           <p>This should be a string which contains the MUGL XML to be loaded (the actual XML document, as a string, not the URL or name of a file containing it). Exactly one of mugl or muglString must be present.</p>
+          </div>
+        </div>
+      </li>
+      <li class="list-group-item">
+        <div class="row">
+          <div class="col-md-2">
+            <code>width</code>
+          </div>
+          <div class="col-md-10">
+            <p>The width of the graph, in pixels. If this is not present, Multigraph will query the div itself to get its width; this means that you can use CSS to assign it.</p>
+          </div>
+        </div>
+      </li>
+      <li class="list-group-item">
+        <div class="row">
+          <div class="col-md-2">
+            <code>height</code>
+          </div>
+          <div class="col-md-10">
+           <p>The height of the graph, in pixels. If this is not present, Multigraph will query the div itself to get its height; this means that you can use CSS to assign it.</p>
+          </div>
+        </div>
+      </li>
+      <li class="list-group-item">
+        <div class="row">
+          <div class="col-md-2">
+            <code>driver</code>
+          </div>
+          <div class="col-md-10">
+           <p>The graphics driver to use in the graph. The possible values are:</p>
+           <div class="row">
+             <div class="col-md-2">
+               <code>"canvas"</code>
+             </div>
+             <div class="col-md-10">
+               <p>Causes Multigraph to use the HTML5 Canvas tag for graphics. This works in all recent browsers except versions of IE prior to 9.</p>
+             </div>
+             <div class="col-md-2">
+               <code>"raphael"</code>
+             </div>
+             <div class="col-md-10">
+               <p>Causes Multigraph to use the Raphael graphics library for graphics. This library uses SVG in browsers that support SVG; it uses VML in versions of IE prior to 9.</p>
+             </div>
+             <div class="col-md-2">
+               <code>"auto"</code>
+             </div>
+             <div class="col-md-10">
+               <p>This is the default; it causes Multigraph to use the canvas driver in all browsers that support it, and otherwise it uses the Raphael driver.</p>
+             </div>
+           </div>
+          </div>
+        </div>
+      </li>
+      <li class="list-group-item">
+        <div class="row">
+          <div class="col-md-2">
+            <code>error</code>
+          </div>
+          <div class="col-md-10">
+           <p>This is optional; if it is present, its value should be a function for handling error messages that Multigraph generates. Multigraph will call this function if and when it encounters an error in the course of loading a MUGL file, drawing a graph, or doing anything else that it does. The function should take a single argument which is an instance of a JavaScript Error object. The default behavior, which is what happens if this option is not present, is to use Multigraph's own internal mechanism for displaying user messages.</p>
+          </div>
+        </div>
+      </li>
+      <li class="list-group-item">
+        <div class="row">
+          <div class="col-md-2">
+            <code>warning</code>
+          </div>
+          <div class="col-md-10">
+           <p>This is optional; if it is present, its value should be a function for handling warning messages, similar to the above description for error messages. (Warning messages are like errors but are less severe.) The default behavior is that warnings are handled using whatever the current mechanism for handling errors is — i.e. either Multigraph's internal message display, or the custom function specified by the value of the error option.</p>
+          </div>
+        </div>
+      </li>
     </ul>
+</div>
 
     <h3>Accessing a Multigraph</h3>
 
